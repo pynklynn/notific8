@@ -17,6 +17,7 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
       heading: 'Notification Heading'
     });
 
+
 ## Options
 * life: number of milliseconds that the notification will be visible (10000)
 * heading: short heading for the notification
