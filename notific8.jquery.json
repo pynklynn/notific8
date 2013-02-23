@@ -1,0 +1,30 @@
+{
+	"name": "notific8",
+	"title": "Notific8",
+	"description": "Notification plug-in inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations",
+	"keywords": [
+		"notifications"
+	],
+	"version": "0.0.1",
+	"author": {
+		"name": "Will Steinmetz",
+		"url": "http://willsteinmetz.net/"
+	},
+	"maintainers": {
+		"name": "Will Steinmetz",
+		"url": "http://willsteinmetz.net/"
+	},
+	"licenses": [
+		{
+			"type": "BSD",
+			"url": "http://willsteinmetz.net/bsd"
+		}
+	],
+	"bugs": "https://github.com/willsteinmetz/jquery-notific8/issues",
+	"homepage": "https://github.com/willsteinmetz/jquery-notific8",
+	"docs": "https://github.com/willsteinmetz/jquery-notific8",
+	"download": "https://github.com/willsteinmetz/jquery-notific8/tags",
+	"dependencies": {
+		"jquery": ">=1.4"
+	}
+}
