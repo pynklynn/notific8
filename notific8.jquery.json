@@ -10,10 +10,12 @@
 		"name": "Will Steinmetz",
 		"url": "http://willsteinmetz.net/"
 	},
-	"maintainers": {
-		"name": "Will Steinmetz",
-		"url": "http://willsteinmetz.net/"
-	},
+	"maintainers": [
+        {
+            "name": "Will Steinmetz",
+            "url": "http://willsteinmetz.net/"
+        }
+    ],
 	"licenses": [
 		{
 			"type": "BSD",
