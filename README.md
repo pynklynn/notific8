@@ -24,3 +24,10 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 
 * life: number of milliseconds that the notification will be visible (10000)
 * heading: short heading for the notification
+
+## Future plans
+
+* Make the notifications slide in and out of an edge of the screen
+* Ability to set a CSS theme for the notification
+    * Have a set of themes in the provided CSS file for the plug-in
+* Ability to set an icon for the notification
