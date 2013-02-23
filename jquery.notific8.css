@@ -22,7 +22,10 @@
 .jquery-notific8-notification {
 	margin-top: 0.625em;/* 10px/16px */
 	width: 23em;/* 368px/16px */
-	margin-right: -25em;/* 400px/16px hide it off the screen */
+	/*margin-right: -25em;/* 400px/16px hide it off the screen */
+	/**** temp fading instead of sliding in/out ****/
+	display: none;
+	/**** /temp ****/
 	padding: 0.625em;/* 10px/16px */
 	border: solid 2px #0099cc;
 	border-right: none;

@@ -7,8 +7,7 @@
  * Licensed under the BSD license.
  * http://opensource.org/licenses/BSD-3-Clause
  */
-
-;(function($) {
+; (function ($) {
 	var settings = {
 		life: 10000
 	};
@@ -65,13 +64,11 @@
 			$('#jquery-notific8-container').append(notification);
 			
 			// slide the message onto the screen
-			console.log(notification);
-			notification.animate({marginRight: 0}, {
+			/*notification.animate({marginRight: 0}, {
 				duration: 1000,
-				queue: false/*,
+				queue: false,
 				complete: function() {
 					setTimeout(function() {
-						console.log(notification);
 						notification.animate({marginRight: '-25em'}, {
 							duration: 1000,
 							queue: false,
@@ -80,14 +77,27 @@
 							}
 						});
 					}, data.settings.life);
-				}*/
-			});
+				}
+			});*/
+			// temp - fade the notification instead of slide for now
+			notification.fadeIn(500, function() {
+			    setTimeout(function() {
+                    notification.fadeOut(500, function() {
+                        notification.remove();
+                    });
+                }, data.settings.life);
+                data.settings = {};
+            });
+            // END temp
 		}
 	};
 	
 	// wrapper since this plug-in is called without selecting an item first
 	$.notific8 = function(message, options) {
-		if ($('#jquery-notific8-container').size() == 0) {
+		if (typeof options == undefined) {
+		    options = {};
+        }
+		if ($('#jquery-notific8-container').size() === 0) {
 			$('body').append($('<div />').attr('id', 'jquery-notific8-container'));
 		}
 		$('#jquery-notific8-container').notific8(message, options);
