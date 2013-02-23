@@ -3,9 +3,11 @@
 jQuery notification plug-in inspired by the notifications introduced in Windows 8
 
 ## Initial features
+
 * Notifications fade in and out in upper right corner of the page
 
 ## Usage
+
     $.notific8('My notification message goes here.');
     // with a life set
     $.notific8('My notification message has a life span.', {life: 5000});
@@ -19,5 +21,6 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 
 
 ## Options
+
 * life: number of milliseconds that the notification will be visible (10000)
 * heading: short heading for the notification
