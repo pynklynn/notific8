@@ -1,0 +1,12 @@
+#jquery-notific8-container{display:block;font-size:16px;padding:0;margin:0;position:fixed;top:0;right:0}
+.jquery-notific8-notification{position:relative;margin-top:.625em;width:22.88em;display:none;padding:.625em;color:#fff;height:4.88em;border-style:solid;border-width:2px}
+.jquery-notific8-notification.teal{border-color:#09c;background-color:#069}
+.jquery-notific8-notification.amethyst{border-color:#915faa;background-color:#5d2d77}
+.jquery-notific8-notification.ruby{border-color:#d10;background-color:#a10}
+.jquery-notific8-notification.tangerine{border-color:#ffb23f;background-color:#e88f00}
+.jquery-notific8-notification.lemon{border-color:#ffde00;background-color:#fc0;color:#333}
+.jquery-notific8-notification.lime{border-color:#38d315;background-color:#32b512}
+.jquery-notific8-notification.ebony{border-color:#666;background-color:#121212}
+.jquery-notific8-notification.smoke{border-color:#ababab;background-color:#efefef;color:#333}
+.jquery-notific8-heading{font-weight:bold;margin-bottom:.3125em}
+.jquery-notific8-message{font-size:.875em}

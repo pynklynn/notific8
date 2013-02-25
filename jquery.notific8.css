@@ -20,17 +20,60 @@
 }
 
 .jquery-notific8-notification {
+    position: relative;
 	margin-top: 0.625em;/* 10px/16px */
-	width: 23em;/* 368px/16px */
+	width: 22.88em;/* 366px/16px */
 	/*margin-right: -25em;/* 400px/16px hide it off the screen */
 	/**** temp fading instead of sliding in/out ****/
 	display: none;
 	/**** /temp ****/
 	padding: 0.625em;/* 10px/16px */
-	border: solid 2px #0099cc;
-	border-right: none;
-	background-color: #006699;
 	color: #fff;
+	height: 4.88em;/* 76px/16px */
+	border-style: solid;
+    border-width: 2px;
+}
+
+.jquery-notific8-notification.teal {
+    border-color: #09c;
+	background-color: #069;
+}
+
+.jquery-notific8-notification.amethyst {
+    border-color: #915faa;
+	background-color: #5D2D77;
+}
+
+.jquery-notific8-notification.ruby {
+    border-color: #d10;
+    background-color: #a10;
+}
+
+.jquery-notific8-notification.tangerine {
+    border-color: #ffb23f;
+    background-color: #e88f00;
+}
+
+.jquery-notific8-notification.lemon {
+    border-color: #ffde00;
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.jquery-notific8-notification.lime {
+    border-color: #38d315;
+    background-color: #32b512;
+}
+
+.jquery-notific8-notification.ebony {
+    border-color: #666;
+	background-color: #121212;
+}
+
+.jquery-notific8-notification.smoke {
+    border-color: #ababab;
+	background-color: #efefef;
+	color: #333;
 }
 
 .jquery-notific8-heading {

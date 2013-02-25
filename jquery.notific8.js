@@ -9,7 +9,8 @@
  */
 ; (function ($) {
 	var settings = {
-		life: 10000
+		life: 10000,
+		theme: 'teal'
 	};
 	
 	var methods = {
@@ -49,7 +50,7 @@
 			var data = $this.data('notific8'),
 				notification = $('<div />');
 			
-			notification.addClass('jquery-notific8-notification');
+			notification.addClass('jquery-notific8-notification').addClass(data.settings.theme);
 			notification.attr('id', 'jquery-notific8-notification-' + $this.find('.jquery-notific8-notification').size().toString());
 			
 			// check for a heading
@@ -80,9 +81,9 @@
 				}
 			});*/
 			// temp - fade the notification instead of slide for now
-			notification.fadeIn(500, function() {
+			notification.fadeIn(300, function() {
 			    setTimeout(function() {
-                    notification.fadeOut(500, function() {
+                    notification.fadeOut(300, function() {
                         notification.remove();
                     });
                 }, data.settings.life);
