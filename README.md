@@ -43,4 +43,4 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 
 
 ## Demo here
-http://jsfiddle.net/N4VXw/
+http://jsfiddle.net/N4VXw/1/
