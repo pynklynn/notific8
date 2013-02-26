@@ -1,5 +1,14 @@
+/**
+ * @author Will Steinmetz
+ * 
+ * Styles for the notific8 plug-in for jQuery
+ * 
+ * Copyright (c)2013, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
+ */
 #jquery-notific8-container{display:block;font-size:16px;padding:0;margin:0;position:fixed;top:0;right:0}
-.jquery-notific8-notification{position:relative;margin-top:.625em;width:22.88em;display:none;padding:.625em;color:#fff;height:4.88em;border-style:solid;border-width:2px}
+.jquery-notific8-notification{position:relative;margin-top:.625em;width:22.88em;display:none;float:right;clear:right;padding:.625em;color:#fff;height:4.88em;border-style:solid;border-width:2px}
 .jquery-notific8-notification.teal{border-color:#09c;background-color:#069}
 .jquery-notific8-notification.amethyst{border-color:#915faa;background-color:#5d2d77}
 .jquery-notific8-notification.ruby{border-color:#d10;background-color:#a10}

@@ -4,7 +4,7 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 
 ## Features
 
-* Notifications fade in and out in upper right corner of the page
+* Notifications slide in and out from the upper right corner of the page
 * Configurable life span of the notification
 * Option to display a heading
 * Theme options (see CSS for built in themes)
@@ -36,6 +36,7 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 
 ## Future plans
 
-* Make the notifications slide in and out of an edge of the screen
+* Ability to set which edge of the screen the notifications slide in from
 * Ability to set an icon for the notification
 * Ability to make a notification sticky
+* Ability to set configuration options for future notifications so that the same settings don't need to be sent each time

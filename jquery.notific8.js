@@ -48,10 +48,13 @@
 		 */
 		_buildNotification: function($this) {
 			var data = $this.data('notific8'),
-				notification = $('<div />');
+				notification = $('<div />'),
+				num = Number($('#jquery-notific8-container').attr('data-notifications'));
+            num++;
 			
 			notification.addClass('jquery-notific8-notification').addClass(data.settings.theme);
-			notification.attr('id', 'jquery-notific8-notification-' + $this.find('.jquery-notific8-notification').size().toString());
+			notification.attr('id', 'jquery-notific8-notification-' + num);
+			$('#jquery-notific8-container').attr('data-notifications', num);
 			
 			// check for a heading
 			if (data.settings.hasOwnProperty('heading') && (typeof data.settings.heading == "string")) {
@@ -65,31 +68,20 @@
 			$('#jquery-notific8-container').append(notification);
 			
 			// slide the message onto the screen
-			/*notification.animate({marginRight: 0}, {
-				duration: 1000,
-				queue: false,
-				complete: function() {
-					setTimeout(function() {
-						notification.animate({marginRight: '-25em'}, {
-							duration: 1000,
-							queue: false,
-							complete: function() {
-								notification.remove();
-							}
-						});
-					}, data.settings.life);
-				}
-			});*/
-			// temp - fade the notification instead of slide for now
-			notification.fadeIn(300, function() {
-			    setTimeout(function() {
-                    notification.fadeOut(300, function() {
-                        notification.remove();
-                    });
-                }, data.settings.life);
-                data.settings = {};
-            });
-            // END temp
+			// @TODO make settings available for positioning the notifications
+			notification.animate({width: 'show'}, {
+			    duration: 'fast',
+			    complete: function() {
+			        setTimeout(function() {
+                        notification.animate({width: 'hide'}, {
+                           duration: 'fast',
+                           complete: function() {
+                               notification.remove();
+                           } 
+                        });
+                    }, data.settings.life);
+                }
+			});
 		}
 	};
 	
@@ -99,7 +91,7 @@
 		    options = {};
         }
 		if ($('#jquery-notific8-container').size() === 0) {
-			$('body').append($('<div />').attr('id', 'jquery-notific8-container'));
+			$('body').append($('<div />').attr('id', 'jquery-notific8-container').attr('data-notifications', 0));
 		}
 		$('#jquery-notific8-container').notific8(message, options);
 	};

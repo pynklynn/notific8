@@ -23,10 +23,9 @@
     position: relative;
 	margin-top: 0.625em;/* 10px/16px */
 	width: 22.88em;/* 366px/16px */
-	/*margin-right: -25em;/* 400px/16px hide it off the screen */
-	/**** temp fading instead of sliding in/out ****/
 	display: none;
-	/**** /temp ****/
+	float: right;
+    clear: right;
 	padding: 0.625em;/* 10px/16px */
 	color: #fff;
 	height: 4.88em;/* 76px/16px */
