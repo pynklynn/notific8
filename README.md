@@ -40,3 +40,7 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 * Ability to set an icon for the notification
 * Ability to make a notification sticky
 * Ability to set configuration options for future notifications so that the same settings don't need to be sent each time
+
+## Demo page
+
+An interactive demo page can be found here http://willsteinmetz.net/jquery/notific8
