@@ -10,7 +10,8 @@
 ; (function ($) {
 	var settings = {
 		life: 10000,
-		theme: 'teal'
+		theme: 'teal',
+		sticky: false
 	};
 	
 	var methods = {
@@ -23,10 +24,11 @@
 					$this.data('notific8', {
 						target: $this,
 						settings: {},
-						message: message
+						message: ""
 					});
 					data = $this.data('notific8');
 				}
+				data.message = message;
 				
 				// apply the options
 				$.extend(data.settings, settings, options);
@@ -61,6 +63,22 @@
 				notification.append($('<div />').addClass('jquery-notific8-heading').html(data.settings.heading));
 			}
 			
+			// check if the notification is supposed to be sticky
+			if (data.settings.sticky) {
+			    var close = $('<div />').addClass('jquery-notific8-close').append(
+                    $('<span />').html('close x')
+                );
+                close.click(function(event) {
+                    notification.animate({width: 'hide'}, {
+                        duration: 'fast',
+                        complete: function() {
+                            notification.remove();
+                        }
+                    });
+                });
+                notification.append(close);
+            }
+			
 			// add the message
 			notification.append($('<div />').addClass('jquery-notific8-message').html(data.message));
 			
@@ -72,14 +90,17 @@
 			notification.animate({width: 'show'}, {
 			    duration: 'fast',
 			    complete: function() {
-			        setTimeout(function() {
-                        notification.animate({width: 'hide'}, {
-                           duration: 'fast',
-                           complete: function() {
-                               notification.remove();
-                           } 
-                        });
-                    }, data.settings.life);
+                    if (!data.settings.sticky) {
+                        setTimeout(function() {
+                            notification.animate({width: 'hide'}, {
+                               duration: 'fast',
+                               complete: function() {
+                                   notification.remove();
+                               } 
+                            });
+                        }, data.settings.life);
+                    }
+                    data.settings = {};
                 }
 			});
 		}
