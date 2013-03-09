@@ -2,6 +2,10 @@
 
 jQuery notification plug-in inspired by the notifications introduced in Windows 8
 
+## Demo page
+
+An interactive demo page can be found here http://willsteinmetz.net/jquery/notific8
+
 ## Features
 
 * Notifications slide in and out from the upper right corner of the page
@@ -40,12 +44,23 @@ jQuery notification plug-in inspired by the notifications introduced in Windows 
 * sticky: boolean for whether or not the notification should stick
     * If sticky is set to true, life will be ignored if it is also set
 
+## Browser support
+
+Currently supported and testing:
+* Chrome
+* Firefox
+* Safari (Mac only)
+* IE 9+
+
+Future support and testing
+* Opera (will start after their transition to webkit)
+
+### Browser version support
+
+As a rule of thumb, only the most recent plus one version older of a browser is supported unless marked otherwise. While it may work in IE8, notific8 will not be tested or officially supported in legacy browsers such as versions of IE older than 9.
+
 ## Future plans
 
 * Ability to set which edge of the screen the notifications slide in from
 * Ability to set an icon for the notification
 * Ability to set configuration options for future notifications so that the same settings don't need to be sent each time
-
-## Demo page
-
-An interactive demo page can be found here http://willsteinmetz.net/jquery/notific8
