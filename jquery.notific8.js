@@ -38,6 +38,9 @@
 			});
 		},
 		
+        /**
+         * Destroy the notification
+         */
 		destroy: function($this) {
 			var data = $this.data('notific8');
 			
@@ -51,12 +54,12 @@
 		_buildNotification: function($this) {
 			var data = $this.data('notific8'),
 				notification = $('<div />'),
-				num = Number($('#jquery-notific8-container').attr('data-notifications'));
+				num = Number($('body').attr('data-notific8s'));
             num++;
 			
 			notification.addClass('jquery-notific8-notification').addClass(data.settings.theme);
 			notification.attr('id', 'jquery-notific8-notification-' + num);
-			$('#jquery-notific8-container').attr('data-notifications', num);
+			$('body').attr('data-notific8s', num);
 			
 			// check for a heading
 			if (data.settings.hasOwnProperty('heading') && (typeof data.settings.heading == "string")) {
@@ -103,7 +106,14 @@
                     data.settings = {};
                 }
 			});
-		}
+		},
+        
+        /**
+         * Set up the configuration settings
+         */
+        configure: function(options) {
+            $.extend(settings, options);
+        }
 	};
 	
 	// wrapper since this plug-in is called without selecting an item first
@@ -112,17 +122,26 @@
 		    options = {};
         }
 		if ($('#jquery-notific8-container').size() === 0) {
-			$('body').append($('<div />').attr('id', 'jquery-notific8-container').attr('data-notifications', 0));
+            $('body').attr('data-notific8s', 0);
+			$('body').append($('<div />').attr('id', 'jquery-notific8-container'));
 		}
 		$('#jquery-notific8-container').notific8(message, options);
 	};
 	
 	// plugin setup
 	$.fn.notific8 = function(message, options) {
-		if (typeof message == "string") {
-			return methods.init.apply(this, arguments);
-		} else {
-			$.error('jQuery.notific8 takes a string message as the first parameter');
-		}
+		switch (message) {
+            case 'configure':
+            case 'config':
+                return methods.configure.apply(this, [options]);
+            break;
+            default:
+                if (typeof message == "string") {
+                    return methods.init.apply(this, arguments);
+                } else {
+                    $.error('jQuery.notific8 takes a string message as the first parameter');
+                }
+            break;
+        }
 	};
 })(jQuery);

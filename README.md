@@ -1,6 +1,6 @@
 # jquery-notific8
 
-jQuery notification plug-in inspired by the notifications introduced in Windows 8
+Notific8 is a notification plug-in inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes and is easy to create new themes for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
 
 ## Demo page
 
@@ -13,6 +13,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
 * Option to display a heading
 * Theme options (see CSS for built in themes)
 * Ability to make the notification sticky
+* Ability to set up custom settings for reuse without having to type them over and over
 
 ## Usage
 
@@ -33,6 +34,14 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
       theme: 'amethyst',
       sticky: true
     });
+    
+    // set up your own default settings to save time and typing later
+    // NOTE this is not required
+    $.notific8('configure', {
+      life: 5000,
+      theme: 'ruby',
+      sticky: true
+    });
 
 
 ## Options
@@ -43,6 +52,8 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet
 * sticky: boolean for whether or not the notification should stick
     * If sticky is set to true, life will be ignored if it is also set
+
+All of these settings are available to be configured. The configure function is used if you have specific settings such as theme and life that you want every notification to share. By configuring these settings, they become the new defaults and you don't have to type them for every notification. The configure function can be called multiple times.
 
 ## Browser support
 
@@ -63,4 +74,3 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 
 * Ability to set which edge of the screen the notifications slide in from
 * Ability to set an icon for the notification
-* Ability to set configuration options for future notifications so that the same settings don't need to be sent each time
