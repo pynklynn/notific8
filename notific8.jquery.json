@@ -1,9 +1,14 @@
 {
 	"name": "notific8",
 	"title": "Notific8",
-	"description": "Notification plug-in inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations",
+	"description": "Notific8 is a notification plug-in inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes and is easy to create new themes for. The plug-in was born from a want for a simply designed yet modern and stylish notification system.",
 	"keywords": [
-		"notifications"
+		"notifications",
+        "messages",
+        "toaster",
+        "notify",
+        "themable",
+        "alert"
 	],
 	"version": "0.3.1",
 	"author": {
@@ -24,6 +29,7 @@
 	],
 	"bugs": "https://github.com/willsteinmetz/jquery-notific8/issues",
 	"homepage": "https://github.com/willsteinmetz/jquery-notific8",
+    "demo": "http://willsteinmetz.net/jquery/notific8",
 	"docs": "https://github.com/willsteinmetz/jquery-notific8",
 	"download": "https://github.com/willsteinmetz/jquery-notific8/tags",
 	"dependencies": {
