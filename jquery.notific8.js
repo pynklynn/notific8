@@ -11,7 +11,9 @@
 	var settings = {
 		life: 10000,
 		theme: 'teal',
-		sticky: false
+		sticky: false,
+		verticalEdge: 'right',
+		horizontalEdge: 'top'
 	};
 	
 	var methods = {
@@ -86,10 +88,9 @@
 			notification.append($('<div />').addClass('jquery-notific8-message').html(data.message));
 			
 			// add the notification to the stack
-			$('#jquery-notific8-container').append(notification);
+			$('.jquery-notific8-container.' + data.settings.verticalEdge + '.' + data.settings.horizontalEdge).append(notification);
 			
 			// slide the message onto the screen
-			// @TODO make settings available for positioning the notifications
 			notification.animate({width: 'show'}, {
 			    duration: 'fast',
 			    complete: function() {
@@ -118,30 +119,47 @@
 	
 	// wrapper since this plug-in is called without selecting an item first
 	$.notific8 = function(message, options) {
-		if (typeof options == undefined) {
-		    options = {};
-        }
-		if ($('#jquery-notific8-container').size() === 0) {
-            $('body').attr('data-notific8s', 0);
-			$('body').append($('<div />').attr('id', 'jquery-notific8-container'));
-		}
-		$('#jquery-notific8-container').notific8(message, options);
-	};
-	
-	// plugin setup
-	$.fn.notific8 = function(message, options) {
 		switch (message) {
             case 'configure':
             case 'config':
                 return methods.configure.apply(this, [options]);
             break;
             default:
-                if (typeof message == "string") {
-                    return methods.init.apply(this, arguments);
-                } else {
-                    $.error('jQuery.notific8 takes a string message as the first parameter');
+                if (typeof options == undefined) {
+                    options = {};
                 }
+                
+                // make sure that the stack containers exist
+                if ($('.jquery-notific8-container').size() === 0) {
+                    $('body').attr('data-notific8s', 0);
+                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('right'));
+                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('left'));
+                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('right'));
+                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('left'));
+                }
+                
+                // make sure the edge settings exist
+                if ((!options.hasOwnProperty('verticalEdge')) || ((options.verticalEdge.toLowerCase() != 'right') && (options.verticalEdge.toLowerCase() != 'left'))) {
+                    options.verticalEdge = 'right';
+                }
+                if ((!options.hasOwnProperty('horizontalEdge')) || ((options.horizontalEdge.toLowerCase() != 'top') && (options.horizontalEdge.toLowerCase() != 'bottom'))) {
+                    options.horizontalEdge = 'top';
+                }
+                options.verticalEdge = options.verticalEdge.toLowerCase();
+                options.horizontalEdge = options.horizontalEdge.toLowerCase();
+                
+                //display the notification in the right corner
+                $('.jquery-notific8-container.' + options.verticalEdge + '.' + options.horizontalEdge).notific8(message, options);
             break;
+        }
+	};
+	
+	// plugin setup
+	$.fn.notific8 = function(message, options) {
+        if (typeof message == "string") {
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('jQuery.notific8 takes a string message as the first parameter');
         }
 	};
 })(jQuery);

@@ -14,6 +14,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
 * Theme options (see CSS for built in themes)
 * Ability to make the notification sticky
 * Ability to set up custom settings for reuse without having to type them over and over
+* Ability to set which corner the notifications are shown in
 
 ## Usage
 
@@ -27,12 +28,18 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     $.notific8('My notification has a theme.', {theme: 'amethyst'});
     // make the notification sticky
     $.notific8('My notification is sticky.', {sticky: true});
+    // change whether to notification is at the top or bottom
+    $.notific8('My notification is at the bottom.', {horizontalEdge: 'bottom'});
+    // change whether to notification is on the left or right
+    $.notific8('My notification is on the left.', {verticalEdge: 'left'});
     // all options set
     $.notific8('My notification with all options.', {
       life: 5000,
       heading: 'Notification Heading',
       theme: 'amethyst',
-      sticky: true
+      sticky: true,
+      horizontalEdge: 'bottom',
+      verticalEdge: 'left'
     });
     
     // set up your own default settings to save time and typing later
@@ -40,7 +47,9 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     $.notific8('configure', {
       life: 5000,
       theme: 'ruby',
-      sticky: true
+      sticky: true,
+      horizontalEdge: 'bottom',
+      verticalEdge: 'left'
     });
 
 
@@ -52,6 +61,10 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet
 * sticky: boolean for whether or not the notification should stick
     * If sticky is set to true, life will be ignored if it is also set
+* horizontalEdge: string value for top or bottom of the page (default: 'top')
+    * only accepts values 'top' and 'bottom'
+* verticalEdge: string value for left or right of the page (default: 'right')
+    * only accepts values 'left' and 'right'
 
 All of these settings are available to be configured. The configure function is used if you have specific settings such as theme and life that you want every notification to share. By configuring these settings, they become the new defaults and you don't have to type them for every notification. The configure function can be called multiple times.
 
@@ -72,5 +85,4 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 
 ## Future plans
 
-* Ability to set which edge of the screen the notifications slide in from
 * Ability to set an icon for the notification
