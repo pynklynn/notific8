@@ -82,6 +82,7 @@
                     });
                 });
                 notification.append(close);
+                notification.addClass('sticky');
             }
 			
 			// add the message

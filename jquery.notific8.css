@@ -45,15 +45,15 @@
 	overflow: hidden;
 	border-style: solid;
     border-width: 2px;
+    width: 22.88em;/* 366px/16px */
 }
 
 .right .jquery-notific8-notification {
     float: right;
     clear: right;
-    width: 22.88em;/* 366px/16px */
 }
 
-.left .jquery-notific8-notification {
+.left .jquery-notific8-notification.sticky {
     float: left;
     clear: left;
     padding-left: 2.06em;/* 33px/16px */

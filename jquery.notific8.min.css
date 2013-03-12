@@ -12,9 +12,9 @@
 .jquery-notific8-container.top.left{top:0;left:0}
 .jquery-notific8-container.bottom.right{bottom:0;right:0}
 .jquery-notific8-container.bottom.left{bottom:0;left:0}
-.jquery-notific8-notification{position:relative;display:none;padding:.625em;color:#fff;height:4.125em;max-height:4.125em;overflow:hidden;border-style:solid;border-width:2px}
-.right .jquery-notific8-notification{float:right;clear:right;width:22.88em}
-.left .jquery-notific8-notification{float:left;clear:left;padding-left:2.06em;width:21.44em}
+.jquery-notific8-notification{position:relative;display:none;padding:.625em;color:#fff;height:4.125em;max-height:4.125em;overflow:hidden;border-style:solid;border-width:2px;width:22.88em}
+.right .jquery-notific8-notification{float:right;clear:right}
+.left .jquery-notific8-notification.sticky{float:left;clear:left;padding-left:2.06em;width:21.44em}
 .top .jquery-notific8-notification{margin-top:.625em}
 .bottom .jquery-notific8-notification{margin-bottom:.625em}
 .jquery-notific8-notification.teal{border-color:#09c;background-color:#069}
