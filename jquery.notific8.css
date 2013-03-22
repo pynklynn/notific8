@@ -53,6 +53,11 @@
     clear: right;
 }
 
+.right .jquery-notific8-notification.sticky {
+    padding-right: 2.06em;/* 33px/16px */
+    width: 21.44em;/* 343px/16px */
+}
+
 .left .jquery-notific8-notification.sticky {
     float: left;
     clear: left;
