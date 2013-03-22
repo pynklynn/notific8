@@ -13,7 +13,8 @@
 		theme: 'teal',
 		sticky: false,
 		verticalEdge: 'right',
-		horizontalEdge: 'top'
+		horizontalEdge: 'top',
+		zindex: 1100
 	};
 	
 	var methods = {
@@ -115,6 +116,13 @@
          */
         configure: function(options) {
             $.extend(settings, options);
+        },
+        
+        /**
+         * Set up the z-index
+         */
+        zindex: function(zindex) {
+            settings.zindex = zindex;
         }
 	};
 	
@@ -124,6 +132,9 @@
             case 'configure':
             case 'config':
                 return methods.configure.apply(this, [options]);
+            break;
+            case 'zindex':
+                return methods.zindex.apply(this, [options]);
             break;
             default:
                 if (typeof options == undefined) {
@@ -137,6 +148,7 @@
                     $('body').append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('left'));
                     $('body').append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('right'));
                     $('body').append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('left'));
+                    $('.jquery-notific8-container').css('z-index', settings.zindex);
                 }
                 
                 // make sure the edge settings exist

@@ -15,6 +15,8 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
 * Ability to make the notification sticky
 * Ability to set up custom settings for reuse without having to type them over and over
 * Ability to set which corner the notifications are shown in
+* Ability to set the z-index
+    * Can be set via config/configure or the zindex function
 
 ## Usage
 
@@ -32,6 +34,8 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     $.notific8('My notification is at the bottom.', {horizontalEdge: 'bottom'});
     // change whether to notification is on the left or right
     $.notific8('My notification is on the left.', {verticalEdge: 'left'});
+    // set the z-index
+    $.notific8('My notification has a z-index of 1500.', {zindex: 1500});
     // all options set
     $.notific8('My notification with all options.', {
       life: 5000,
@@ -39,7 +43,8 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
       theme: 'amethyst',
       sticky: true,
       horizontalEdge: 'bottom',
-      verticalEdge: 'left'
+      verticalEdge: 'left',
+      zindex: 1500
     });
     
     // set up your own default settings to save time and typing later
@@ -49,8 +54,12 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
       theme: 'ruby',
       sticky: true,
       horizontalEdge: 'bottom',
-      verticalEdge: 'left'
+      verticalEdge: 'left',
+      zindex: 1500
     });
+    
+    // set the zindex
+    $.notific8('zindex', 1500);
 
 
 ## Options
@@ -65,6 +74,8 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     * only accepts values 'top' and 'bottom'
 * verticalEdge: string value for left or right of the page (default: 'right')
     * only accepts values 'left' and 'right'
+* zindex: integer value for the z-index (default: 1100)
+    * this must be set before calling notific8 to create a notification via either config/configure or zindex
 
 All of these settings are available to be configured. The configure function is used if you have specific settings such as theme and life that you want every notification to share. By configuring these settings, they become the new defaults and you don't have to type them for every notification. The configure function can be called multiple times.
 
