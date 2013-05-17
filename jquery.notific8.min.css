@@ -12,10 +12,10 @@
 .jquery-notific8-container.top.left{top:0;left:0}
 .jquery-notific8-container.bottom.right{bottom:0;right:0}
 .jquery-notific8-container.bottom.left{bottom:0;left:0}
-.jquery-notific8-notification{position:relative;display:none;padding:.625em;color:#fff;height:4.125em;max-height:4.125em;overflow:hidden;border-style:solid;border-width:2px;width:22.88em}
+.jquery-notific8-notification{position:relative;display:none;padding:.625em;color:#fff;height:4.125em;max-height:4.125em;overflow:hidden;border-style:solid;border-width:2px}
 .right .jquery-notific8-notification{float:right;clear:right}
-.right .jquery-notific8-notification.sticky{padding-right:2.06em;width:21.44em}
-.left .jquery-notific8-notification.sticky{float:left;clear:left;padding-left:2.06em;width:21.44em}
+.right .jquery-notific8-notification{padding-right:2.06em;width:21.44em}
+.left .jquery-notific8-notification{float:left;clear:left;padding-left:2.06em;width:21.44em}
 .top .jquery-notific8-notification{margin-top:.625em}
 .bottom .jquery-notific8-notification{margin-bottom:.625em}
 .jquery-notific8-notification.teal{border-color:#09c;background-color:#069}
@@ -28,10 +28,9 @@
 .jquery-notific8-notification.smoke{border-color:#ababab;background-color:#efefef;color:#333}
 .jquery-notific8-heading{font-weight:bold;margin-bottom:.3125em}
 .jquery-notific8-message{font-size:.875em}
-.jquery-notific8-close{text-align:center;position:absolute;width:5.5625em;padding:.125em 0;cursor:pointer;text-transform:uppercase}
-.right .jquery-notific8-close{top:1.9375em;right:-2.375em;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-o-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}
-.left .jquery-notific8-close{top:1.9375em;left:-2.375em;-webkit-transform:rotate(270deg);-moz-transform:rotate(270deg);-o-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
-.jquery-notific8-close span{font-size:.625em}
+.jquery-notific8-close{position:absolute;padding:0 .25em;cursor:pointer;top:0;display:none}
+.right .jquery-notific8-close{right:-2px}
+.left .jquery-notific8-close{left:-2px}
 .jquery-notific8-notification.teal .jquery-notific8-close{background-color:#09c}
 .jquery-notific8-notification.amethyst .jquery-notific8-close{background-color:#915faa}
 .jquery-notific8-notification.ruby .jquery-notific8-close{background-color:#d10}
@@ -40,3 +39,15 @@
 .jquery-notific8-notification.lime .jquery-notific8-close{background-color:#38d315}
 .jquery-notific8-notification.ebony .jquery-notific8-close{background-color:#666}
 .jquery-notific8-notification.smoke .jquery-notific8-close{background-color:#ababab;color:#fff}
+.jquery-notific8-close-sticky{text-align:center;position:absolute;width:5.5625em;padding:.125em 0;cursor:pointer;text-transform:uppercase}
+.right .jquery-notific8-close-sticky{top:1.9375em;right:-2.375em;-webkit-transform:rotate(90deg);-moz-transform:rotate(90deg);-o-transform:rotate(90deg);-ms-transform:rotate(90deg);transform:rotate(90deg)}
+.left .jquery-notific8-close-sticky{top:1.9375em;left:-2.375em;-webkit-transform:rotate(270deg);-moz-transform:rotate(270deg);-o-transform:rotate(270deg);-ms-transform:rotate(270deg);transform:rotate(270deg)}
+.jquery-notific8-close-sticky span{font-size:.625em}
+.jquery-notific8-notification.teal .jquery-notific8-close-sticky{background-color:#09c}
+.jquery-notific8-notification.amethyst .jquery-notific8-close-sticky{background-color:#915faa}
+.jquery-notific8-notification.ruby .jquery-notific8-close-sticky{background-color:#d10}
+.jquery-notific8-notification.tangerine .jquery-notific8-close-sticky{background-color:#ffb23f}
+.jquery-notific8-notification.lemon .jquery-notific8-close-sticky{background-color:#ffde00;color:#333}
+.jquery-notific8-notification.lime .jquery-notific8-close-sticky{background-color:#38d315}
+.jquery-notific8-notification.ebony .jquery-notific8-close-sticky{background-color:#666}
+.jquery-notific8-notification.smoke .jquery-notific8-close-sticky{background-color:#ababab;color:#fff}

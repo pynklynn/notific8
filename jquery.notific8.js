@@ -71,7 +71,7 @@
 			
 			// check if the notification is supposed to be sticky
 			if (data.settings.sticky) {
-			    var close = $('<div />').addClass('jquery-notific8-close').append(
+			    var close = $('<div />').addClass('jquery-notific8-close-sticky').append(
                     $('<span />').html('close x')
                 );
                 close.click(function(event) {
@@ -84,6 +84,27 @@
                 });
                 notification.append(close);
                 notification.addClass('sticky');
+            }
+            // otherwise, put the normal close button up that is only display
+            // when the notification is hovered over
+            else {
+                var close = $('<div />').addClass('jquery-notific8-close').append(
+                    $('<span />').html('X')
+                );
+                close.click(function(event) {
+                    notification.animate({width: 'hide'}, {
+                        duration: 'fast',
+                        complete: function() {
+                            notification.remove();
+                        }
+                    });
+                });
+                notification.append(close);
+                notification.mouseenter(function(event) {
+                    close.show();
+                }).mouseleave(function(event) {
+                    close.hide();
+                });;
             }
 			
 			// add the message
