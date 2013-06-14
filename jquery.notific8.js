@@ -158,7 +158,7 @@
                 return methods.zindex.apply(this, [options]);
             break;
             default:
-                if (typeof options == undefined) {
+                if (typeof options === undefined || options === undefined) {
                     options = {};
                 }
                 
