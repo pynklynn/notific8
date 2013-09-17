@@ -23,14 +23,12 @@
 				var $this = $(this),
 					data = $this.data('notific8');
 					
-				if (!data) {
-					$this.data('notific8', {
-						target: $this,
-						settings: {},
-						message: ""
-					});
-					data = $this.data('notific8');
-				}
+                $this.data('notific8', {
+                    target: $this,
+                    settings: {},
+                    message: ""
+                });
+                data = $this.data('notific8');
 				data.message = message;
 				
 				// apply the options
@@ -118,14 +116,16 @@
 			    duration: 'fast',
 			    complete: function() {
                     if (!data.settings.sticky) {
-                        setTimeout(function() {
-                            notification.animate({width: 'hide'}, {
-                               duration: 'fast',
-                               complete: function() {
-                                   notification.remove();
-                               } 
-                            });
-                        }, data.settings.life);
+                        (function(n, l) {
+                            setTimeout(function() {
+                                n.animate({width: 'hide'}, {
+                                   duration: 'fast',
+                                   complete: function() {
+                                       n.remove();
+                                   } 
+                                });
+                            }, l);
+                        })(notification, data.settings.life);
                     }
                     data.settings = {};
                 }
