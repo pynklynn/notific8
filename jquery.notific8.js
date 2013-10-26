@@ -73,8 +73,8 @@
                     $('<span />').html('close x')
                 );
                 close.click(function(event) {
-                    notification.animate({width: 'hide'}, {
-                        duration: 'fast',
+                    notification.animate({width: 'hide', opacity: 0}, {
+                        duration: 'slow',
                         complete: function() {
                             notification.remove();
                         }
@@ -90,8 +90,8 @@
                     $('<span />').html('X')
                 );
                 close.click(function(event) {
-                    notification.animate({width: 'hide'}, {
-                        duration: 'fast',
+                    notification.animate({width: 'hide', opacity: 0}, {
+                        duration: 'slow',
                         complete: function() {
                             notification.remove();
                         }
@@ -118,8 +118,8 @@
                     if (!data.settings.sticky) {
                         (function(n, l) {
                             setTimeout(function() {
-                                n.animate({width: 'hide'}, {
-                                   duration: 'fast',
+                                n.animate({opacity: 0}, {
+                                   duration: 4000,
                                    complete: function() {
                                        n.remove();
                                    } 
