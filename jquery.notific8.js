@@ -84,9 +84,10 @@
             // otherwise, put the normal close button up that is only display
             // when the notification is hovered over
             else {
-                var close = $('<div />').addClass('jquery-notific8-close').append(
+                /*var close = $('<div />').addClass('jquery-notific8-close').append(
                         $('<span />').html('X')
-                        );
+                        );*/
+                var close = $('<div />').addClass('jquery-notific8-close');
                 close.click(function(event) {
                     methods.closeNotification(notification);
                 });

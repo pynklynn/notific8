@@ -130,11 +130,16 @@
 
 /**** regular close button ****/
 .jquery-notific8-close {
+    background-image: url('img/ui/icon-close.png');
     position: absolute;
-    padding: 0 0.25em;
+    /*padding: 0 0.25em;*/
     cursor: pointer;
     top: 0;
     display: none;
+    background-repeat: no-repeat;
+    background-position: top right;  
+    width: 16px;
+    height: 16px;    
 }
 
 .right .jquery-notific8-close {
@@ -142,7 +147,7 @@
 }
 
 .left .jquery-notific8-close {
-    left: -2px;
+    left: 0;
 }
 
 /**** sticky close button ****/
