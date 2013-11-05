@@ -174,10 +174,10 @@
                 
                 // make sure the edge settings exist
                 if ((!options.hasOwnProperty('verticalEdge')) || ((options.verticalEdge.toLowerCase() != 'right') && (options.verticalEdge.toLowerCase() != 'left'))) {
-                    options.verticalEdge = 'right';
+                    options.verticalEdge = settings.verticalEdge;
                 }
                 if ((!options.hasOwnProperty('horizontalEdge')) || ((options.horizontalEdge.toLowerCase() != 'top') && (options.horizontalEdge.toLowerCase() != 'bottom'))) {
-                    options.horizontalEdge = 'top';
+                    options.horizontalEdge = settings.horizontalEdge;
                 }
                 options.verticalEdge = options.verticalEdge.toLowerCase();
                 options.horizontalEdge = options.horizontalEdge.toLowerCase();
