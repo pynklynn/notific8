@@ -7,7 +7,7 @@
  * Licensed under the BSD license.
  * http://opensource.org/licenses/BSD-3-Clause
  */
-; (function ($) {
+;(function($) {
 	var settings = {
 		life: 10000,
 		theme: 'teal',
@@ -164,11 +164,12 @@
                 
                 // make sure that the stack containers exist
                 if ($('.jquery-notific8-container').size() === 0) {
-                    $('body').attr('data-notific8s', 0);
-                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('right'));
-                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('left'));
-                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('right'));
-                    $('body').append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('left'));
+                    var $body = $('body');
+                    $body.attr('data-notific8s', 0);
+                    $body.append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('right'));
+                    $body.append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('left'));
+                    $body.append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('right'));
+                    $body.append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('left'));
                     $('.jquery-notific8-container').css('z-index', settings.zindex);
                 }
                 
