@@ -67,7 +67,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
 * life: number of milliseconds that the notification will be visible (default: 10000)
 * heading: short heading for the notification
 * theme: string for the theme (default: 'teal')
-    * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet - see not below about custom themes
+    * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet - see note below about custom themes
 * sticky: boolean for whether or not the notification should stick
     * If sticky is set to true, life will be ignored if it is also set
 * horizontalEdge: string value for top or bottom of the page (default: 'top')
