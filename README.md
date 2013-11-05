@@ -67,7 +67,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
 * life: number of milliseconds that the notification will be visible (default: 10000)
 * heading: short heading for the notification
 * theme: string for the theme (default: 'teal')
-    * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet
+    * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet - see not below about custom themes
 * sticky: boolean for whether or not the notification should stick
     * If sticky is set to true, life will be ignored if it is also set
 * horizontalEdge: string value for top or bottom of the page (default: 'top')
@@ -78,6 +78,11 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
     * this must be set before calling notific8 to create a notification via either config/configure or zindex
 
 All of these settings are available to be configured. The configure function is used if you have specific settings such as theme and life that you want every notification to share. By configuring these settings, they become the new defaults and you don't have to type them for every notification. The configure function can be called multiple times.
+
+## Custom themes
+As of notific8 version 0.9.0, the plug-in's CSS is coded in SASS (SCSS format) and Compass. To create a custom theme, open the jquery.notific8.scss file, copy and paste the template line, uncomment your pasted line, and replace the variables with your own values. Be sure to recompile your SASS file to CSS to use the new theme. The goal is to only make updates to the _notific8.scss file so that updates will not wipe out your custom themes.
+
+If you are using SASS for the rest of your project, you can include the _notific8.scss file in your project's main SCSS file to create your custom themes in there.
 
 ## Browser support
 
