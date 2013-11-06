@@ -98,11 +98,6 @@
                     });
                 });
                 notification.append(close);
-                notification.mouseenter(function(event) {
-                    close.show();
-                }).mouseleave(function(event) {
-                    close.hide();
-                });;
             }
 			
 			// add the message
