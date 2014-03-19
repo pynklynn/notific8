@@ -12,7 +12,7 @@
     "css",
     "sass"
   ],
-  "license": "MIT",
+  "license": "BSD",
   "homepage": "https://github.com/willsteinmetz/jquery-notific8",
   "ignore": [
     "**/.*",
