@@ -5,9 +5,7 @@ module.exports = function(grunt) {
                 mangle: true,
                 banner: '/**\n\
  * @author Will Steinmetz\n\
- * \n\
  * jQuery notification plug-in inspired by the notification style of Windows 8\n\
- * \n\
  * Copyright (c)2013, Will Steinmetz\n\
  * Licensed under the BSD license.\n\
  * http://opensource.org/licenses/BSD-3-Clause\n\

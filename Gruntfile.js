@@ -5,5 +5,5 @@ module.exports = function(grunt) {
 
     grunt.loadTasks('grunt');
     
-    grunt.registerTask('default', ['compass', 'cssmin', 'ugilfy']);
+    grunt.registerTask('default', ['compass', 'cssmin', 'uglify']);
 };
