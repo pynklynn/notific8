@@ -2,6 +2,10 @@
 
 Notific8 is a notification plug-in inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes and is easy to create new themes for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
 
+## Install with Bower
+
+    $ bower install jquery-notific8 --save
+
 ## Demo page
 
 An interactive demo page can be found here http://willsteinmetz.net/jquery/notific8
