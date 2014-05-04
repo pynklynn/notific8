@@ -1,6 +1,6 @@
 {
   "name": "jquery-notific8",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "authors": [
     "Will Steinmetz <willsteinmetz@users.noreply.github.com>"
   ],
@@ -13,7 +13,7 @@
     "sass"
   ],
   "license": "BSD",
-  "homepage": "https://github.com/willsteinmetz/jquery-notific8",
+  "homepage": "https://github.com/ralivue/jquery-notific8",
   "ignore": [
     "**/.*",
     "node_modules",

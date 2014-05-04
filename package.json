@@ -1,6 +1,6 @@
 {
   "name": "jquery-notific8",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "jQuery notific8 notification plug-in",
   "main": "jquery.notific8.min.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@git.willsteinmetz.net:js-projects/jquery-notific8.git"
+    "url": "git@github.com:ralivue/jquery-notific8.git"
   },
   "keywords": [
     "javascript",

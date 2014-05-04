@@ -50,7 +50,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
       verticalEdge: 'left',
       zindex: 1500
     });
-    
+
     // set up your own default settings to save time and typing later
     // NOTE this is not required
     $.notific8('configure', {
@@ -61,7 +61,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
       verticalEdge: 'left',
       zindex: 1500
     });
-    
+
     // set the zindex
     $.notific8('zindex', 1500);
 
@@ -106,3 +106,9 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 ## Future plans
 
 * Ability to set an icon for the notification
+
+## License
+
+The jQuery notific8 plug-in is released under the BSD license.
+
+(c) 2013-2014 [Ralivue](http://ralivue.com)
