@@ -84,7 +84,7 @@ An interactive demo page can be found here http://willsteinmetz.net/jquery/notif
 All of these settings are available to be configured. The configure function is used if you have specific settings such as theme and life that you want every notification to share. By configuring these settings, they become the new defaults and you don't have to type them for every notification. The configure function can be called multiple times.
 
 ## Custom themes
-As of notific8 version 0.9.0, the plug-in's CSS is coded in SASS (SCSS format) and Compass. To create a custom theme, open the jquery.notific8.scss file, copy and paste the template line, uncomment your pasted line, and replace the variables with your own values. Be sure to recompile your SASS file to CSS to use the new theme. The goal is to only make updates to the _notific8.scss file so that updates will not wipe out your custom themes.
+As of notific8 version 0.9.0, the plug-in's CSS is coded in SASS (SCSS format). To create a custom theme, open the jquery.notific8.scss file, copy and paste the template line, uncomment your pasted line, and replace the variables with your own values. Be sure to recompile your SASS file to CSS to use the new theme. The goal is to only make development updates to the _notific8.scss file so that updates will not wipe out your custom themes.
 
 If you are using SASS for the rest of your project, you can include the _notific8.scss file in your project's main SCSS file to create your custom themes in there.
 
