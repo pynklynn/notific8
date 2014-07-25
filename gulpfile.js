@@ -5,14 +5,15 @@
  */
 
 // require modules
-var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
+var gulp         = require('gulp'),
+    sass         = require('gulp-ruby-sass'),
     autoprefixer = require('gulp-autoprefixer'),
-    minifycss = require('gulp-minify-css'),
-    uglify = require('gulp-uglify'),
-    rename = require('gulp-rename'),
-    clean = require('gulp-clean'),
-    header = require('gulp-header');
+    minifycss    = require('gulp-minify-css'),
+    uglify       = require('gulp-uglify'),
+    rename       = require('gulp-rename'),
+    clean        = require('gulp-clean'),
+    header       = require('gulp-header'),
+    sourcemaps   = require('gulp-sourcemaps');
 
 // styles task
 gulp.task('styles', function () {
@@ -38,15 +39,17 @@ gulp.task('styles', function () {
 // scripts task
 gulp.task('scripts', function () {
     return gulp.src('src/js/**/*.js')
-        .pipe(rename({suffix: '.min'}))
-        .pipe(uglify())
-        .pipe(header('/**\n\
+        .pipe(sourcemaps.init())
+            .pipe(rename({suffix: '.min'}))
+            .pipe(uglify())
+            .pipe(header('/**\n\
  * @author Will Steinmetz\n\
  * jQuery notification plug-in inspired by the notification style of Windows 8\n\
  * Copyright (c)2014, Will Steinmetz\n\
  * Licensed under the BSD license.\n\
  * http://opensource.org/licenses/BSD-3-Clause\n\
  */\n'))
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist'));
 });
 
