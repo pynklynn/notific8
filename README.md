@@ -8,7 +8,7 @@ Notific8 is a notification plug-in inspired by the notifications introduced in W
 
 ## Demo page
 
-An interactive demo page can be found here http://willsteinmetz.net/jquery/notific8
+An interactive demo page can be found in the ./demo/ directory
 
 ## Features
 
