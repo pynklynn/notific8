@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery notific8 demo</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" media="screen">
+    <link rel="stylesheet" href="../dist/jquery.notific8.min.css" media="screen">
+    <style>
+table td {
+    padding: 0.5em;
+}
+table td.label {
+    font-weight: bold;
+    text-align: right;
+}
+    </style>
+</head>
+<body>
+
+<h1>jQuery notific8 demo</h1>
+
+<p>jQuery notific8 is a notification plug-in that was inspired by the notification style introduced in Windows 8.</p>
+<p>Use the fields below to test the different options for the plug-in.</p>
+<table>
+    <tbody>
+        <tr>
+            <td class="label">
+                <label for="notific8Text">Notification text</label>
+            </td>
+            <td>
+                <input type="text" name="notific8Text" id="notific8Text" size="50" maxlength="100" value="notific8 was inspired by Windows 8 notifications" />
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label for="notific8Sticky">Sticky</label>
+            </td>
+            <td>
+                <input type="checkbox" name="notific8Sticky" id="notific8Sticky" /> (if checked, setting life below will be ignored)
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label for="notific8Life">Life</label>
+            </td>
+            <td>
+                <select name="notific8Life" id="notific8Life">
+                    <option value="1000">1 second</option>
+                    <option value="5000">5 seconds</option>
+                    <option value="10000" selected="selected">10 seconds (default)</option>
+                    <option value="25000">25 seconds</option>
+                    <option value="60000">60 seconds</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">
+                <label for="notific8Heading">Heading (optional)</label>
+            </td>
+            <td>
+                <input type="text" name="notific8Heading" id="notific8Heading" size="50" maxlength="50" />
+            </td>
+        </tr>
+        <tr>
+            <td class="label"><label for="notific8Theme">Theme</label></td>
+            <td>
+                <select name="notific8Theme" id="notific8Theme">
+                    <option value="teal" selected="selected">teal (default)</option>
+                    <option value="amethyst">amethyst</option>
+                    <option value="ruby">ruby</option>
+                    <option value="tangerine">tangerine</option>
+                    <option value="lemon">lemon</option>
+                    <option value="lime">lime</option>
+                    <option value="ebony">ebony</option>
+                    <option value="smoke">smoke</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Position</td>
+            <td>
+                <select name="notific8horizontal" id="notific8horizontal">
+                    <option value="top">top (default)</option>
+                    <option value="bottom">bottom</option>
+                </select> <select name="notific8vertical" id="notific8vertical">
+                    <option value="right">right (default)</option>
+                    <option value="left">left</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="label"></td>
+            <td>
+                <button type="button" name="notific8Test" id="notific8Test">Test notific8</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- script includes -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="../dist/jquery.notific8.min.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('#notific8Test').on('click', function (event) {
+        var params = {
+                life: $('#notific8Life').find('option:selected').val(),
+                theme: $('#notific8Theme').val(),
+                sticky: $('#notific8Sticky').is(':checked'),
+                horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
+                verticalEdge: $('#notific8vertical').find('option:selected').val()
+            },
+            text = $('#notific8Text').val(),
+            $heading = $('#notific8Heading');
+
+        if ($.trim($heading.val()) !== '') {
+            params.heading = $heading.val();
+        }
+
+        // show notification
+        $.notific8($('#notific8Text').val(), params);
+    });
+});
+</script>
+</body>
+</html>
