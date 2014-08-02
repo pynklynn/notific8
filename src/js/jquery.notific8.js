@@ -41,7 +41,10 @@
             var data = $this.data('notific8'),
                 notification = $('<div />'),
                 num = Number($('body').data('notific8s')),
-                close;
+                close,
+                animate = 'margin-' + data.settings.verticalEdge,
+                styles = {};
+
             num += 1;
 
             notification.addClass('jquery-notific8-notification').addClass(data.settings.theme);
@@ -62,7 +65,8 @@
                 close.addClass('jquery-notific8-close').find('span').html('X');
             }
             close.on('click', function (event) {
-                notification.animate({width: 'hide'}, {
+                styles[animate] = -345;
+                notification.animate(styles, {
                     duration: 'fast',
                     complete: function () {
                         notification.remove();
@@ -78,13 +82,15 @@
             $('.jquery-notific8-container.' + data.settings.verticalEdge + '.' + data.settings.horizontalEdge).append(notification);
 
             // slide the message onto the screen
-            notification.animate({width: 'show'}, {
+            styles[animate] = 0;
+            notification.animate(styles, {
                 duration: 'fast',
                 complete: function () {
+                    styles[animate] = -345;
                     if (!data.settings.sticky) {
                         (function (n, l) {
                             setTimeout(function () {
-                                n.animate({width: 'hide'}, {
+                                n.animate(styles, {
                                     duration: 'fast',
                                     complete: function () {
                                         n.remove();

@@ -36,15 +36,14 @@
 }
 
 .jquery-notific8-notification {
-  position: relative;
-  display: none;
-  padding: 0.625em;
+  border-style: solid;
+  border-width: 2px;
   color: #fff;
   height: 4.125em;
   max-height: 4.125em;
   overflow: hidden;
-  border-style: solid;
-  border-width: 2px;
+  padding: 0.625em;
+  position: relative;
   width: 21.4375em;
 }
 .jquery-notific8-notification:hover .jquery-notific8-close {
@@ -83,6 +82,7 @@
 .right .jquery-notific8-notification {
   float: right;
   clear: right;
+  margin-right: -21.4375em;
   padding-right: 2.0625em;
 }
 .right .jquery-notific8-close {
@@ -99,6 +99,7 @@
 .left .jquery-notific8-notification {
   float: left;
   clear: left;
+  margin-left: -21.4375em;
   padding-left: 2.0625em;
 }
 .left .jquery-notific8-close {
