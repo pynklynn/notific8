@@ -43,7 +43,8 @@
                 num = Number($('body').data('notific8s')),
                 close,
                 animate = 'margin-' + data.settings.verticalEdge,
-                styles = {};
+                styles = {},
+                $container = $('.jquery-notific8-container.' + data.settings.verticalEdge + '.' + data.settings.horizontalEdge);
 
             num += 1;
 
@@ -79,7 +80,7 @@
             notification.append($('<div />').addClass('jquery-notific8-message').html(data.message));
 
             // add the notification to the stack
-            $('.jquery-notific8-container.' + data.settings.verticalEdge + '.' + data.settings.horizontalEdge).append(notification);
+            $container.append(notification);
 
             // slide the message onto the screen
             styles[animate] = 0;
@@ -87,6 +88,7 @@
                 duration: 'fast',
                 complete: function () {
                     styles[animate] = -345;
+                    styles['height'] = 0;
                     if (!data.settings.sticky) {
                         (function (n, l) {
                             setTimeout(function () {
