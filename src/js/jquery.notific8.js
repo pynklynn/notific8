@@ -40,13 +40,13 @@
         function buildNotification($this) {
             var data = $this.data('notific8'),
                 notification = $('<div />'),
-                num = Number($('body').attr('data-notific8s')),
+                num = Number($('body').data('notific8s')),
                 close;
             num += 1;
 
             notification.addClass('jquery-notific8-notification').addClass(data.settings.theme);
             notification.attr('id', 'jquery-notific8-notification-' + num);
-            $('body').attr('data-notific8s', num);
+            $('body').data('notific8s', num);
 
             // check for a heading
             if (data.settings.hasOwnProperty('heading') && (typeof data.settings.heading === "string")) {
@@ -54,36 +54,22 @@
             }
 
             // check if the notification is supposed to be sticky
+            close = $('<div />').append('<span />');
             if (data.settings.sticky) {
-                close = $('<div />').addClass('jquery-notific8-close-sticky').append(
-                    $('<span />').html('close x')
-                );
-                close.on('click', function (event) {
-                    notification.animate({width: 'hide'}, {
-                        duration: 'fast',
-                        complete: function () {
-                            notification.remove();
-                        }
-                    });
-                });
-                notification.append(close);
+                close.addClass('jquery-notific8-close-sticky').find('span').html('close x');
                 notification.addClass('sticky');
-            // otherwise, put the normal close button up that is only display
-            // when the notification is hovered over
             } else {
-                close = $('<div />').addClass('jquery-notific8-close').append(
-                    $('<span />').html('X')
-                );
-                close.on('click', function (event) {
-                    notification.animate({width: 'hide'}, {
-                        duration: 'fast',
-                        complete: function () {
-                            notification.remove();
-                        }
-                    });
-                });
-                notification.append(close);
+                close.addClass('jquery-notific8-close').find('span').html('X');
             }
+            close.on('click', function (event) {
+                notification.animate({width: 'hide'}, {
+                    duration: 'fast',
+                    complete: function () {
+                        notification.remove();
+                    }
+                });
+            });
+            notification.append(close);
 
             // add the message
             notification.append($('<div />').addClass('jquery-notific8-message').html(data.message));
@@ -155,11 +141,42 @@
             });
         }
 
+        /**
+         * Initialize the containers for the plug-in
+         */
+        function initContainers() {
+            var $body = $('body');
+            $body.data('notific8s', 0);
+            $body.append($('<div class="jquery-notific8-container top right"></div>'));
+            $body.append($('<div class="jquery-notific8-container top left"></div>'));
+            $body.append($('<div class="jquery-notific8-container bottom right"></div>'));
+            $body.append($('<div class="jquery-notific8-container bottom left"></div>'));
+            $('.jquery-notific8-container').css('z-index', settings.zindex);
+        }
+
+        /**
+         * Make sure that the edge options are ok
+         * @param object options
+         */
+        function checkEdges(options) {
+            options.verticalEdge = options.verticalEdge.toLowerCase() || settings.verticalEdge;
+            options.horizontalEdge = options.horizontalEdge.toLowerCase() || settings.horizontalEdge;
+
+            if ((options.verticalEdge !== 'right') && (options.verticalEdge !== 'left')) {
+                options.verticalEdge = settings.verticalEdge;
+            }
+            if ((options.horizontalEdge !== 'top') && (options.horizontalEdge !== 'bottom')) {
+                options.horizontalEdge = settings.horizontalEdge;
+            }
+        }
+
         return {
-            init: init,
-            destroy: destroy,
-            configure: configure,
-            zindex: zindex
+            init:           init,
+            destroy:        destroy,
+            configure:      configure,
+            zindex:         zindex,
+            initContainers: initContainers,
+            checkEdges:     checkEdges
         };
     }());
 
@@ -182,24 +199,11 @@
 
             // make sure that the stack containers exist
             if ($('.jquery-notific8-container').size() === 0) {
-                var $body = $('body');
-                $body.attr('data-notific8s', 0);
-                $body.append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('right'));
-                $body.append($('<div />').addClass('jquery-notific8-container').addClass('top').addClass('left'));
-                $body.append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('right'));
-                $body.append($('<div />').addClass('jquery-notific8-container').addClass('bottom').addClass('left'));
-                $('.jquery-notific8-container').css('z-index', settings.zindex);
+                methods.initContainers();
             }
 
             // make sure the edge settings exist
-            if ((!options.hasOwnProperty('verticalEdge')) || ((options.verticalEdge.toLowerCase() !== 'right') && (options.verticalEdge.toLowerCase() !== 'left'))) {
-                options.verticalEdge = settings.verticalEdge;
-            }
-            if ((!options.hasOwnProperty('horizontalEdge')) || ((options.horizontalEdge.toLowerCase() !== 'top') && (options.horizontalEdge.toLowerCase() !== 'bottom'))) {
-                options.horizontalEdge = settings.horizontalEdge;
-            }
-            options.verticalEdge = options.verticalEdge.toLowerCase();
-            options.horizontalEdge = options.horizontalEdge.toLowerCase();
+            methods.checkEdges(options);
 
             //display the notification in the right corner
             $('.jquery-notific8-container.' + options.verticalEdge + '.' + options.horizontalEdge).notific8(message, options);
