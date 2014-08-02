@@ -25,19 +25,13 @@
 .jquery-notific8-container.top {
   top: 0;
 }
-.jquery-notific8-container.top.right {
-  right: 0;
-}
-.jquery-notific8-container.top.left {
-  left: 0;
-}
 .jquery-notific8-container.bottom {
   bottom: 0;
 }
-.jquery-notific8-container.bottom.right {
+.jquery-notific8-container.top.right, .jquery-notific8-container.bottom.right {
   right: 0;
 }
-.jquery-notific8-container.bottom.left {
+.jquery-notific8-container.top.left, .jquery-notific8-container.bottom.left {
   left: 0;
 }
 
