@@ -67,13 +67,7 @@
                 close.addClass('jquery-notific8-close').find('span').html('X');
             }
             close.on('click', function (event) {
-                styles[animate] = -345;
-                notification.animate(styles, {
-                    duration: 'fast',
-                    complete: function () {
-                        notification.remove();
-                    }
-                });
+                closeNotification(notification, styles, animate);
             });
             notification.append(close);
 
@@ -84,27 +78,58 @@
             $container.append(notification);
 
             // slide the message onto the screen
-            styles[animate] = 0;
-            notification.animate(styles, {
-                duration: 'fast',
-                complete: function () {
-                    styles[animate] = notification.outerWidth() * -1;
-                    styles.height = 0;
+            if (supports.transition) {
+                setTimeout(function () {
+                    notification.addClass('open');
                     if (!data.settings.sticky) {
                         (function (n, l) {
                             setTimeout(function () {
-                                n.animate(styles, {
-                                    duration: 'fast',
-                                    complete: function () {
-                                        n.remove();
-                                    }
-                                });
+                                closeNotification(n);
                             }, l);
-                        }(notification, data.settings.life));
+                        }(notification, Number(data.settings.life) + 200));
                     }
-                    data.settings = {};
-                }
-            });
+                }, 5);
+            } else {
+                styles[animate] = 0;
+                notification.animate(styles, {
+                    duration: 'fast',
+                    complete: function () {
+                        if (!data.settings.sticky) {
+                            (function (n, l) {
+                                setTimeout(function () {
+                                    closeNotification(n, styles, animate);
+                                }, l);
+                            }(notification, data.settings.life));
+                        }
+                        data.settings = {};
+                    }
+                });
+            }
+        }
+
+        /**
+         * Close the given notification
+         * @param object n
+         * @param object styles
+         * @param animate
+         */
+        function closeNotification(n, styles, animate) {
+            if (supports.transition) {
+                n.removeClass('open');
+                n.height(0);
+                setTimeout(function () {
+                    n.remove()
+                }, 200);
+            } else {
+                styles[animate] = notification.outerWidth() * -1;
+                styles.height = 0;
+                n.animate(styles, {
+                    duration: 'fast',
+                    complete: function () {
+                        n.remove();
+                    }
+                });
+            }
         }
 
         /**

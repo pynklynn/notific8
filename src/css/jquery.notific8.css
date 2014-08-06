@@ -44,6 +44,8 @@
   overflow: hidden;
   padding: 0.625em;
   position: relative;
+  -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
   width: 21.4375em;
 }
 .jquery-notific8-notification:hover .jquery-notific8-close {
@@ -85,6 +87,9 @@
   margin-right: -21.4375em;
   padding-right: 2.0625em;
 }
+.right .jquery-notific8-notification.open {
+  margin-right: 0;
+}
 .right .jquery-notific8-close {
   right: -2px;
 }
@@ -101,6 +106,9 @@
   clear: left;
   margin-left: -21.4375em;
   padding-left: 2.0625em;
+}
+.left .jquery-notific8-notification.open {
+  margin-left: 0;
 }
 .left .jquery-notific8-close {
   left: -2px;
