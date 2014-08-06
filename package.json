@@ -1,6 +1,6 @@
 {
   "name": "jquery-notific8",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "jQuery notific8 notification plug-in",
   "main": "jquery.notific8.min.js",
   "scripts": {
