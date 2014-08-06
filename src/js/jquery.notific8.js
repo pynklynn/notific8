@@ -10,7 +10,8 @@
 
     var settings,
         methods,
-        self;
+        self,
+        supports;
 
     settings = {
         life: 10000,
@@ -87,8 +88,8 @@
             notification.animate(styles, {
                 duration: 'fast',
                 complete: function () {
-                    styles[animate] = -345;
-                    styles['height'] = 0;
+                    styles[animate] = notification.outerWidth() * -1;
+                    styles.height = 0;
                     if (!data.settings.sticky) {
                         (function (n, l) {
                             setTimeout(function () {
@@ -178,13 +179,44 @@
             }
         }
 
+        /**
+         * Determine support for CSS3 property
+         * @param string prop
+         */
+        function css3Support(prop) {
+            var p = prop.split('-'),
+                pStr = '',
+                i,
+                len,
+                s = document.createElement('p').style,
+                capitalize,
+                pNoPrefix;
+
+            capitalize = function (l) {
+                return l.charAt(0).toUpperCase() + l.slice(1);
+            };
+
+            for (i = 0, len = p.length; i < len; i = i + 1) {
+                pStr = pStr + p[i].toLowerCase().replace(/\b\w{3,}/g, capitalize);
+            }
+
+            pNoPrefix = pStr.charAt(0).toLowerCase() + pStr.slice(1);
+
+            supports[prop] = s.hasOwnProperty(pNoPrefix) ||
+                s.hasOwnProperty('Webkit' + pStr) ||
+                s.hasOwnProperty('Moz' + pStr) ||
+                s.hasOwnProperty('ms' + pStr) ||
+                s.hasOwnProperty('O' + pStr);
+        }
+
         return {
             init:           init,
             destroy:        destroy,
             configure:      configure,
             zindex:         zindex,
             initContainers: initContainers,
-            checkEdges:     checkEdges
+            checkEdges:     checkEdges,
+            css3Support:    css3Support
         };
     }());
 
@@ -224,6 +256,11 @@
      */
     $.fn.notific8 = function (message, options) {
         self = this;
+
+        if (typeof supports === 'undefined') {
+            supports = {};
+            methods.css3Support('transition');
+        }
 
         if (typeof message === "string") {
             return methods.init.apply(this, arguments);
