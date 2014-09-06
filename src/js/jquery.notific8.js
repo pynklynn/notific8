@@ -118,10 +118,10 @@
                 n.removeClass('open');
                 n.height(0);
                 setTimeout(function () {
-                    n.remove()
+                    n.remove();
                 }, 200);
             } else {
-                styles[animate] = notification.outerWidth() * -1;
+                styles[animate] = n.outerWidth() * -1;
                 styles.height = 0;
                 n.animate(styles, {
                     duration: 'fast',
