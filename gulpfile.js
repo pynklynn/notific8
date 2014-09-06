@@ -53,21 +53,27 @@ gulp.task('scripts', function () {
         .pipe(gulp.dest('dist'));
 });
 
+// copy fonts
+gulp.task('fonts', function () {
+    return gulp.src(['src/css/fonts/**/*.*'], { base: 'src/css' })
+        .pipe(gulp.dest('dist'));
+});
+
 // clean up task
 gulp.task('clean', function () {
-    return gulp.src(['dist', 'src/css'], {read: false})
+    return gulp.src(['dist', 'src/css/**/*.css'], {read: false})
         .pipe(clean());
 });
 
-// cleanup task
+// default task
 gulp.task('default', ['clean'], function () {
-    gulp.start('styles', 'scripts');
+    gulp.start('styles', 'fonts', 'scripts');
 });
 
 // watch task
 gulp.task('watch', function() {
     // Watch .scss files
-    gulp.watch('src/sass/**/*.scss', ['styles']);
+    gulp.watch('src/sass/**/*.scss', ['styles', 'fonts']);
 
     // Watch .js files
     gulp.watch('src/js/**/*.js', ['scripts']);
