@@ -711,18 +711,29 @@
 .jquery-notific8-notification {
   border-style: solid;
   border-width: 2px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   color: #fff;
-  height: 4.125em;
-  max-height: 4.125em;
+  height: 5.625em;
+  max-height: 5.625em;
   overflow: hidden;
   padding: 0.625em;
   position: relative;
   -webkit-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
-  width: 21.4375em;
+  width: 24.375em;
 }
 .jquery-notific8-notification:hover .jquery-notific8-close {
   display: block;
+}
+.jquery-notific8-notification.has-icon {
+  width: 27.1875em;
+}
+
+.jquery-notific8-icon {
+  font-size: 4.375em;
+  line-height: 1em;
+  margin-top: -1px;
 }
 
 .jquery-notific8-heading {
@@ -757,11 +768,18 @@
 .right .jquery-notific8-notification {
   float: right;
   clear: right;
-  margin-right: -21.4375em;
+  margin-right: -24.375em;
   padding-right: 2.0625em;
 }
 .right .jquery-notific8-notification.open {
   margin-right: 0;
+}
+.right .jquery-notific8-notification.has-icon {
+  padding-left: 90px;
+}
+.right .jquery-notific8-icon {
+  float: left;
+  margin-left: -1.15714em;
 }
 .right .jquery-notific8-close {
   right: -2px;
@@ -777,17 +795,24 @@
 .left .jquery-notific8-notification {
   float: left;
   clear: left;
-  margin-left: -21.4375em;
+  margin-left: -24.375em;
   padding-left: 2.0625em;
 }
 .left .jquery-notific8-notification.open {
   margin-left: 0;
 }
+.left .jquery-notific8-notification.has-icon {
+  padding-right: 90px;
+}
+.left .jquery-notific8-icon {
+  float: right;
+  margin-right: -1.15714em;
+}
 .left .jquery-notific8-close {
   left: -2px;
 }
 .left .jquery-notific8-close-sticky {
-  top: 1.9375em;
+  top: 31px;
   left: -2.375em;
   -webkit-transform: rotate(270deg);
       -ms-transform: rotate(270deg);

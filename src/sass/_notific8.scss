@@ -8,6 +8,9 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
+// variables
+$base-font-size: 16px;
+
 // mixins
 @mixin theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color) {
     .jquery-notific8-notification.#{$name} {
@@ -19,6 +22,11 @@
             color: $close-text-color;
         }
     }
+}
+
+// functions
+@function em($px, $base: $base-font-size) {
+    @return ($px / $base) * 1em;
 }
 
 // definitions
@@ -46,28 +54,38 @@
 .jquery-notific8-notification {
     border-style: solid;
     border-width: 2px;
+    box-sizing: border-box;
     color: #fff;
-    height: (66em/16);
-    max-height: (66em/16);
+    height: em(90px);
+    max-height: em(90px);
     overflow: hidden;
-    padding: (10em/16);
+    padding: em(10px);
     position: relative;
     transition: all 0.2s ease-in-out;
-    width: (343em/16);
+    width: em(390px);
     &:hover {
         .jquery-notific8-close {
             display: block;
         }
     }
+    &.has-icon {
+        width: em(435px);
+    }
+}
+
+.jquery-notific8-icon {
+    font-size: em(70px);
+    line-height: 1em;
+    margin-top: -1px;
 }
 
 .jquery-notific8-heading {
     font-weight: bold;
-    margin-bottom: (5em/16);
+    margin-bottom: em(5px);
 }
 
 .jquery-notific8-message {
-    font-size: (14em/16);
+    font-size: em(14px);
 }
 
 .jquery-notific8-close {
@@ -81,12 +99,12 @@
 .jquery-notific8-close-sticky {
     text-align: center;
     position: absolute;
-    width: (89em/16);
-    padding: (2em/16) 0;
+    width: em(89px);
+    padding: em(2px) 0;
     cursor: pointer;
     text-transform: uppercase;
     span {
-        font-size: (10em/16);
+        font-size: em(10px);
     }
 }
 
@@ -94,18 +112,25 @@
     .jquery-notific8-notification {
         float: right;
         clear: right;
-        margin-right: -(343em/16);
-        padding-right: (33em/16);
+        margin-right: em(-390px);
+        padding-right: em(33px);
         &.open {
             margin-right: 0;
         }
+        &.has-icon {
+            padding-left: 90px;
+        }
+    }
+    .jquery-notific8-icon {
+        float: left;
+        margin-left: em(-81px, 70px);
     }
     .jquery-notific8-close {
         right: -2px;
     }
     .jquery-notific8-close-sticky {
-        top: (31em/16);
-        right: (-38em/16);
+        top: em(31px);
+        right: em(-38px);
         transform: rotate(90deg);
     }
 }
@@ -114,26 +139,33 @@
     .jquery-notific8-notification {
         float: left;
         clear: left;
-        margin-left: -(343em/16);
-        padding-left: (33em/16);
+        margin-left: em(-390px);
+        padding-left: em(33px);
         &.open {
             margin-left: 0;
         }
+        &.has-icon {
+            padding-right: 90px;
+        }
+    }
+    .jquery-notific8-icon {
+        float: right;
+        margin-right: em(-81px, 70px);
     }
     .jquery-notific8-close {
         left: -2px;
     }
     .jquery-notific8-close-sticky {
-        top: (31em/16);
-        left: (-38em/16);
+        top: (31px);
+        left: em(-38px);
         transform: rotate(270deg);
     }
 }
 
 .top .jquery-notific8-notification {
-    margin-top: (10em/16);
+    margin-top: em(10px);
 }
 
 .bottom .jquery-notific8-notification {
-    margin-bottom: (10em/16);
+    margin-bottom: em(10px);
 }

@@ -19,7 +19,8 @@
         sticky: false,
         verticalEdge: 'right',
         horizontalEdge: 'top',
-        zindex: 1100
+        zindex: 1100,
+        icon: false
     };
 
     methods = (function () {
@@ -49,13 +50,19 @@
 
             num += 1;
 
-            notification.addClass('jquery-notific8-notification').addClass(data.settings.theme);
+            notification.addClass('jquery-notific8-notification ' + data.settings.theme);
             notification.attr('id', 'jquery-notific8-notification-' + num);
             $('body').data('notific8s', num);
 
+            // check for an icon
+            if (data.settings.hasOwnProperty('icon') && (typeof data.settings.icon === "string")) {
+                notification.addClass('has-icon');
+                notification.append('<i class="jquery-notific8-icon notific8-fontastic-' + data.settings.icon + '"></i>');
+            }
+
             // check for a heading
             if (data.settings.hasOwnProperty('heading') && (typeof data.settings.heading === "string")) {
-                notification.append($('<div />').addClass('jquery-notific8-heading').html(data.settings.heading));
+                notification.append($('<div class="jquery-notific8-heading"></div>').html(data.settings.heading));
             }
 
             // check if the notification is supposed to be sticky
@@ -72,7 +79,7 @@
             notification.append(close);
 
             // add the message
-            notification.append($('<div />').addClass('jquery-notific8-message').html(data.message));
+            notification.append($('<div class="jquery-notific8-message"></div>').html(data.message));
 
             // add the notification to the stack
             $container.append(notification);

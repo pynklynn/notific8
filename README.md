@@ -15,7 +15,8 @@ An interactive demo page can be found in the ./demo/ directory
 * Notifications slide in and out from the upper right corner of the page
 * Configurable life span of the notification
 * Option to display a heading
-* Theme options (see CSS for built in themes)
+* Option to pick an icon from the including icon font
+* Built in theme options with ability to create custom themes (see CSS for built in themes)
 * Ability to make the notification sticky
 * Ability to set up custom settings for reuse without having to type them over and over
 * Ability to set which corner the notifications are shown in
@@ -30,6 +31,8 @@ An interactive demo page can be found in the ./demo/ directory
     $.notific8('My notification message has a life span.', {life: 5000});
     // with a heading
     $.notific8('My notification has a heading line.', {heading: 'Notification Heading'});
+    // with an icon
+    $.notific8('My notification has an icon.', {icon: 'check-mark-2'});
     // with a theme
     $.notific8('My notification has a theme.', {theme: 'amethyst'});
     // make the notification sticky
@@ -44,6 +47,7 @@ An interactive demo page can be found in the ./demo/ directory
     $.notific8('My notification with all options.', {
       life: 5000,
       heading: 'Notification Heading',
+      icon: 'check-mark-2',
       theme: 'amethyst',
       sticky: true,
       horizontalEdge: 'bottom',
@@ -56,6 +60,7 @@ An interactive demo page can be found in the ./demo/ directory
     $.notific8('configure', {
       life: 5000,
       theme: 'ruby',
+      icon: 'minus-circle',
       sticky: true,
       horizontalEdge: 'bottom',
       verticalEdge: 'left',
@@ -70,6 +75,8 @@ An interactive demo page can be found in the ./demo/ directory
 
 * life: number of milliseconds that the notification will be visible (default: 10000)
 * heading: short heading for the notification
+* icon: string for the icon
+    * Open the included demo file for an example of the included icons
 * theme: string for the theme (default: 'teal')
     * Custom themes should be named .jquery-notific8-notification.[theme name] in your stylesheet - see note below about custom themes
 * sticky: boolean for whether or not the notification should stick
@@ -91,21 +98,26 @@ If you are using SASS for the rest of your project, you can include the _notific
 ## Browser support
 
 Currently supported and testing:
+
 * Chrome
 * Firefox
 * Safari (Mac only)
 * IE 9+
 
 Future support and testing
+
 * Opera (will start after their transition to webkit)
+* IE support will bump to 10 with version 2.0
 
 ### Browser version support
 
 As a rule of thumb, only the most recent plus one version older of a browser is supported unless marked otherwise. While it may work in IE8, notific8 will not be tested or officially supported in legacy browsers such as versions of IE older than 9.
 
-## Future plans
+## Future development
 
-* Ability to set an icon for the notification
+* Create new theme style with theme options
+    * Existing themes will be kept in a legacy SASS module included with the plug-in and new included themes will have different names for backwards compatibility
+* Add the ability to use a custom image instead of one of the built in icons
 
 ## License
 
