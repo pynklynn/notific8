@@ -200,8 +200,8 @@
          * @param object options
          */
         function checkEdges(options) {
-            options.verticalEdge = options.verticalEdge.toLowerCase() || settings.verticalEdge;
-            options.horizontalEdge = options.horizontalEdge.toLowerCase() || settings.horizontalEdge;
+            options.verticalEdge = (options.verticalEdge || settings.verticalEdge).toLowerCase();
+            options.horizontalEdge = (options.horizontalEdge || settings.horizontalEdge).toLowerCase();
 
             if ((options.verticalEdge !== 'right') && (options.verticalEdge !== 'left')) {
                 options.verticalEdge = settings.verticalEdge;
