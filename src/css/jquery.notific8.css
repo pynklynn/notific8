@@ -751,18 +751,23 @@
   cursor: pointer;
   top: 0;
   display: none;
+  line-height: 1em;
+  font-size: 1.25em;
 }
 
 .jquery-notific8-close-sticky {
   text-align: center;
   position: absolute;
-  width: 5.5625em;
-  padding: 0.125em 0;
+  width: 8.9em;
+  padding: 0.2em 0;
   cursor: pointer;
   text-transform: uppercase;
+  font-size: 0.625em;
+  line-height: 1.4em;
 }
 .jquery-notific8-close-sticky span {
-  font-size: 0.625em;
+  font-size: 1.5em;
+  font-weight: 100;
 }
 
 .right .jquery-notific8-notification {
@@ -785,8 +790,8 @@
   right: -2px;
 }
 .right .jquery-notific8-close-sticky {
-  top: 1.9375em;
-  right: -2.375em;
+  top: 3.4em;
+  right: -3.7em;
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
@@ -812,8 +817,8 @@
   left: -2px;
 }
 .left .jquery-notific8-close-sticky {
-  top: 31px;
-  left: -2.375em;
+  top: 3.4em;
+  left: -3.7em;
   -webkit-transform: rotate(270deg);
       -ms-transform: rotate(270deg);
           transform: rotate(270deg);

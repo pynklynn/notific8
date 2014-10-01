@@ -66,12 +66,12 @@
             }
 
             // check if the notification is supposed to be sticky
-            close = $('<div />').append('<span />');
+            close = $('<div />');
             if (data.settings.sticky) {
-                close.addClass('jquery-notific8-close-sticky').find('span').html('close x');
+                close.addClass('jquery-notific8-close-sticky').html('close <span>&times;</span>');
                 notification.addClass('sticky');
             } else {
-                close.addClass('jquery-notific8-close').find('span').html('X');
+                close.addClass('jquery-notific8-close').html('&times;');
             }
             close.on('click', function (event) {
                 closeNotification(notification, styles, animate);
