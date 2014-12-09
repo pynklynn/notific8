@@ -20,7 +20,8 @@
         verticalEdge: 'right',
         horizontalEdge: 'top',
         zindex: 1100,
-        icon: false
+        icon: false,
+        closeText: 'close'
     };
 
     methods = (function () {
@@ -68,7 +69,7 @@
             // check if the notification is supposed to be sticky
             close = $('<div />');
             if (data.settings.sticky) {
-                close.addClass('jquery-notific8-close-sticky').html('close <span>&times;</span>');
+                close.addClass('jquery-notific8-close-sticky').html(data.settings.closeText + ' <span>&times;</span>');
                 notification.addClass('sticky');
             } else {
                 close.addClass('jquery-notific8-close').html('&times;');

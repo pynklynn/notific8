@@ -13,7 +13,9 @@ var gulp         = require('gulp'),
     rename       = require('gulp-rename'),
     clean        = require('gulp-clean'),
     header       = require('gulp-header'),
-    sourcemaps   = require('gulp-sourcemaps');
+    sourcemaps   = require('gulp-sourcemaps'),
+    pkg          = require('./package.json'),
+    now          = new Date();
 
 // styles task
 gulp.task('styles', function () {
@@ -28,11 +30,12 @@ gulp.task('styles', function () {
         .pipe(minifycss())
         .pipe(header('/**\n\
  * @author Will Steinmetz\n\
+ * @version <%= version %>\n\
  * jQuery notification plug-in inspired by the notification style of Windows 8\n\
- * Copyright (c)2014, Will Steinmetz\n\
+ * Copyright (c)2013-<%= year %>, Will Steinmetz\n\
  * Licensed under the BSD license.\n\
  * http://opensource.org/licenses/BSD-3-Clause\n\
- */\n'))
+ */\n', { version: pkg.version, year: now.getFullYear() }))
         .pipe(gulp.dest('dist'));
 });
 
@@ -44,11 +47,12 @@ gulp.task('scripts', function () {
             .pipe(uglify())
             .pipe(header('/**\n\
  * @author Will Steinmetz\n\
+ * @version <%= version %>\n\
  * jQuery notification plug-in inspired by the notification style of Windows 8\n\
- * Copyright (c)2014, Will Steinmetz\n\
+ * Copyright (c)2013-<%= year %>, Will Steinmetz\n\
  * Licensed under the BSD license.\n\
  * http://opensource.org/licenses/BSD-3-Clause\n\
- */\n'))
+ */\n', { version: pkg.version, year: now.getFullYear() }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('dist'));
 });
