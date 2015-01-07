@@ -23,6 +23,7 @@ An interactive demo page can be found in the ./demo/ directory
 * Ability to set the z-index
     * Can be set via config/configure or the zindex function
 * Ability to customize close text on sticky notifications
+* Events for init, create, and close
 
 ## Usage
 
@@ -46,6 +47,34 @@ An interactive demo page can be found in the ./demo/ directory
     $.notific8('My notification has a z-index of 1500.', {zindex: 1500});
     // with custom close text
     $.notific8('Custom close text.', {closeText: 'près');
+    // onInit event
+    $.notific8('onInit event example.', {
+      onInit: function(data) {
+        console.log('--onInit--');
+        console.log('data:');
+        console.log(data);
+      }
+    }
+    // onCreate event
+    $.notific8('onCreate event example.', {
+      onCreate: function(notification, data) {
+        console.log('--onCreate--');
+        console.log('notification:');
+        console.log(notification);
+        console.log('data:');
+        console.log(data);
+      }
+    }
+    // onClose event
+    $.notific8('onClose event example.', {
+      onClose: function(notification, data) {
+        console.log('--onClose--');
+        console.log('notification:');
+        console.log(notification);
+        console.log('data:');
+        console.log(data);
+      }
+    }
     // all options set
     $.notific8('My notification with all options.', {
       life: 5000,
@@ -56,7 +85,26 @@ An interactive demo page can be found in the ./demo/ directory
       horizontalEdge: 'bottom',
       verticalEdge: 'left',
       zindex: 1500,
-      closeText: 'près'
+      closeText: 'près',
+      onInit: function(data) {
+        console.log('--onInit--');
+        console.log('data:');
+        console.log(data);
+      },
+      onCreate: function(notification, data) {
+        console.log('--onCreate--');
+        console.log('notification:');
+        console.log(notification);
+        console.log('data:');
+        console.log(data);
+      },
+      onClose: function(notification, data) {
+        console.log('--onClose--');
+        console.log('notification:');
+        console.log(notification);
+        console.log('data:');
+        console.log(data);
+      }
     });
 
     // set up your own default settings to save time and typing later
@@ -93,6 +141,9 @@ An interactive demo page can be found in the ./demo/ directory
 * zindex: integer value for the z-index (default: 1100)
     * this must be set before calling notific8 to create a notification via either config/configure or zindex
 * closeText: string for the text on the close button (default: 'close')
+* onInit: function that takes one parameter containing the data that notific8 is initialized with
+* onCreate: function that takes two parameters, one containing a pointer to the notification object and one containing the notification's data
+* onClose: function that takes two parameters, one containing a pointer to the notification object and one containing the notification's data
 
 All of these settings are available to be configured. The configure function is used if you have specific settings such as theme and life that you want every notification to share. By configuring these settings, they become the new defaults and you don't have to type them for every notification. The configure function can be called multiple times.
 
@@ -129,4 +180,4 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 
 The jQuery notific8 plug-in is released under the BSD license.
 
-(c) 2013-2014 [Ralivue](http://ralivue.com)
+(c) 2013-2015 [Ralivue](http://ralivue.com)

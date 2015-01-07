@@ -21,7 +21,10 @@
         horizontalEdge: 'top',
         zindex: 1100,
         icon: false,
-        closeText: 'close'
+        closeText: 'close',
+        onInit: null,
+        onCreate: null,
+        onClose: null
     };
 
     methods = (function () {
@@ -85,6 +88,11 @@
             // add the notification to the stack
             $container.append(notification);
 
+            // call the onCreate handler if it exists
+            if (data.settings.onCreate) {
+              data.settings.onCreate(notification, data);
+            }
+
             // slide the message onto the screen
             if (supports.transition) {
                 setTimeout(function () {
@@ -92,7 +100,7 @@
                     if (!data.settings.sticky) {
                         (function (n, l) {
                             setTimeout(function () {
-                                closeNotification(n);
+                                closeNotification(n, null, null, data);
                             }, l);
                         }(notification, Number(data.settings.life) + 200));
                     }
@@ -105,7 +113,7 @@
                         if (!data.settings.sticky) {
                             (function (n, l) {
                                 setTimeout(function () {
-                                    closeNotification(n, styles, animate);
+                                    closeNotification(n, styles, animate, data);
                                 }, l);
                             }(notification, data.settings.life));
                         }
@@ -119,14 +127,18 @@
          * Close the given notification
          * @param object n
          * @param object styles
-         * @param animate
+         * @param boolean animate
+         * @param object data
          */
-        function closeNotification(n, styles, animate) {
+        function closeNotification(n, styles, animate, data) {
             if (supports.transition) {
                 n.removeClass('open');
                 n.height(0);
                 setTimeout(function () {
                     n.remove();
+                    if (data.settings.onClose) {
+                        data.settings.onClose(n, data);
+                    }
                 }, 200);
             } else {
                 styles[animate] = n.outerWidth() * -1;
@@ -135,6 +147,9 @@
                     duration: 'fast',
                     complete: function () {
                         n.remove();
+                        if (data.settings.onClose) {
+                            data.settings.onClose(n, data);
+                        }
                     }
                 });
             }
@@ -180,6 +195,10 @@
 
                 // add the notification to the stack
                 buildNotification($this);
+
+                if (data.settings.onInit) {
+                  data.settings.onInit(data)
+                }
             });
         }
 
