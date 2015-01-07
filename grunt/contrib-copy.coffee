@@ -7,10 +7,13 @@
 ###
 
 module.exports = (grunt) ->
-  grunt.initConfig(
-    pkg: require('./package.json')
+  grunt.config('copy',
+    files:
+      expand: true
+      src: ['src/css/fonts/*']
+      dest: 'dist/fonts'
+      filter: 'isFile'
+      flatten: true
   )
 
-  grunt.loadTasks 'grunt'
-
-  grunt.registerTask 'default', ['clean', 'sass', 'cssmin', 'uglify', 'copy']
+  grunt.loadNpmTasks 'grunt-contrib-copy'
