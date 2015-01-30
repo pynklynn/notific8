@@ -78,7 +78,7 @@
                 close.addClass('jquery-notific8-close').html('&times;');
             }
             close.on('click', function (event) {
-                closeNotification(notification, styles, animate);
+                closeNotification(notification, styles, animate, data);
             });
             notification.append(close);
 
