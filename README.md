@@ -123,6 +123,9 @@ An interactive demo page can be found in the ./demo/ directory
     // set the zindex
     $.notific8('zindex', 1500);
 
+    // destroy the plug-in's foot print (can be initialized by calling the plug-in again)
+    $.notific8('destroy');
+
 
 ## Options
 

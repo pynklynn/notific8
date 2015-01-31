@@ -33,10 +33,8 @@
          * @param object $this
          */
         function destroy($this) {
-            var data = $this.data('notific8');
-
             $(window).unbind('.notific8');
-            $this.removeData('notific8');
+            $('.jquery-notific8-container').remove();
         }
 
         /**
@@ -282,8 +280,13 @@
         case 'configure':
         case 'config':
             return methods.configure.apply(this, [options]);
+        break;
         case 'zindex':
             return methods.zindex.apply(this, [options]);
+        break;
+        case 'destroy':
+            return methods.destroy.apply(this, [options]);
+        break;
         default:
             if (typeof options === 'undefined') {
                 options = {};
