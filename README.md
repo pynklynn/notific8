@@ -126,6 +126,9 @@ An interactive demo page can be found in the ./demo/ directory
     // destroy the plug-in's foot print (can be initialized by calling the plug-in again)
     $.notific8('destroy');
 
+    // remove all visible notifications but leaves the plug-in's foot print
+    $.notific8('remove');
+
 
 ## Options
 

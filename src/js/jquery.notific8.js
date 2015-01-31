@@ -162,6 +162,13 @@
         }
 
         /**
+         * Remove the currently visible notifications from the screen
+         */
+        function remove() {
+            $('.jquery-notific8-notification').remove()
+        }
+
+        /**
          * Set up the z-index
          * @param int z
          */
@@ -266,7 +273,8 @@
             zindex:         zindex,
             initContainers: initContainers,
             checkEdges:     checkEdges,
-            css3Support:    css3Support
+            css3Support:    css3Support,
+            remove:         remove
         };
     }());
 
@@ -286,6 +294,9 @@
         break;
         case 'destroy':
             return methods.destroy.apply(this, [options]);
+        break;
+        case 'remove':
+            return methods.remove.apply(this, [options]);
         break;
         default:
             if (typeof options === 'undefined') {
