@@ -17,9 +17,9 @@ module.exports = (grunt) ->
       tasks: ['compass', 'cssmin']
       options:
         spawn: false
-    scripts:
-      files: ['src/js/*.js', '!.min.js']
-      tasks: ['uglify']
+    coffee:
+      files: ['src/coffee/*.coffee']
+      tasks: ['coffee', 'uglify']
       options:
         spawn: false
   )

@@ -7,17 +7,13 @@
 ###
 
 module.exports = (grunt) ->
-  grunt.initConfig(
-    pkg: require('./package.json')
+  grunt.config('coffee',
+    compile:
+      options:
+        sourceMap: true
+        bare: true
+      files:
+        'src/js/jquery.notific8.js': 'src/coffee/jquery.notific8.coffee'
   )
 
-  grunt.loadTasks 'grunt'
-
-  grunt.registerTask 'default', [
-    'clean',
-    'sass',
-    'cssmin',
-    'coffee',
-    'uglify',
-    'copy'
-  ]
+  grunt.loadNpmTasks 'grunt-contrib-coffee'
