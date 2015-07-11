@@ -9,16 +9,16 @@
  */
 
 // variables
-$base-font-size: 16px;
-$ns: "jquery-notific8";
+$notific8-base-font-size: 16px;
+$notific8-ns: "jquery-notific8";
 
 // mixins
-@mixin theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color) {
-  .#{$ns}-notification.#{$name} {
+@mixin notific8_legacy_theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color) {
+  .#{$notific8-ns}-notification.#{$name} {
     background-color: $background-color;
     border-color: $border-color;
     color: $text-color;
-    .#{$ns}-close, .#{$ns}-close-sticky {
+    .#{$notific8-ns}-close, .#{$notific8-ns}-close-sticky {
       background-color: $close-background-color;
       color: $close-text-color;
     }
@@ -26,12 +26,12 @@ $ns: "jquery-notific8";
 }
 
 // functions
-@function em($px, $base: $base-font-size) {
+@function em($px, $base: $notific8-base-font-size) {
   @return ($px / $base) * 1em;
 }
 
 // definitions
-.#{$ns}-container {
+.#{$notific8-ns}-container {
   display: block;
   margin: 0;
   padding: 0;
@@ -52,7 +52,7 @@ $ns: "jquery-notific8";
   }
 }
 
-.#{$ns}-notification {
+.#{$notific8-ns}-notification {
   border-style: solid;
   border-width: 2px;
   box-sizing: border-box;
@@ -65,7 +65,7 @@ $ns: "jquery-notific8";
   transition: all 0.2s ease-in-out;
   width: em(390px);
   &:hover {
-    .#{$ns}-close {
+    .#{$notific8-ns}-close {
       display: block;
     }
   }
@@ -74,22 +74,22 @@ $ns: "jquery-notific8";
   }
 }
 
-.#{$ns}-icon {
+.#{$notific8-ns}-icon {
   font-size: em(70px);
   line-height: 1em;
   margin-top: -1px;
 }
 
-.#{$ns}-heading {
+.#{$notific8-ns}-heading {
   font-weight: bold;
   margin-bottom: em(5px);
 }
 
-.#{$ns}-message {
+.#{$notific8-ns}-message {
   font-size: em(14px);
 }
 
-.#{$ns}-close {
+.#{$notific8-ns}-close {
   cursor: pointer;
   display: none;
   font-size: 1.25em;
@@ -99,7 +99,7 @@ $ns: "jquery-notific8";
   top: 0;
 }
 
-.#{$ns}-close-sticky {
+.#{$notific8-ns}-close-sticky {
   cursor: pointer;
   font-size: em(10px);
   line-height: em(14px, 10px);
@@ -117,7 +117,7 @@ $ns: "jquery-notific8";
 $sides: (right: left, left: right);
 @each $main-dir, $second-dir in $sides {
   .#{$main-dir} {
-    .#{$ns}-notification {
+    .#{$notific8-ns}-notification {
       clear: #{$main-dir};
       float: #{$main-dir};
       margin-#{$main-dir}: em(-390px);
@@ -129,14 +129,14 @@ $sides: (right: left, left: right);
         padding-#{$second-dir}: 90px;
       }
     }
-    .#{$ns}-icon {
+    .#{$notific8-ns}-icon {
       float: #{$second-dir};
       margin-#{$second-dir}: em(-81px, 70px);
     }
-    .#{$ns}-close {
+    .#{$notific8-ns}-close {
       #{$main-dir}: -2px;
     }
-    .#{$ns}-close-sticky {
+    .#{$notific8-ns}-close-sticky {
       #{$main-dir}: em(-37px, 10px);
       top: em(34px, 10px);
       @if $main-dir == left {
@@ -148,10 +148,10 @@ $sides: (right: left, left: right);
   }
 }
 
-.top .#{$ns}-notification {
+.top .#{$notific8-ns}-notification {
   margin-top: em(10px);
 }
 
-.bottom .#{$ns}-notification {
+.bottom .#{$notific8-ns}-notification {
   margin-bottom: em(10px);
 }

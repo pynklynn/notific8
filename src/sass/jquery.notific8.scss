@@ -14,6 +14,6 @@
 @import "themes";
 
 // custom themes
-//@include theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color);
+//@include notific8_legacy_theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color);
 // example:
-//@include theme(smoke, #ababab, #efefef, #ababab, #333, #fff);
+//@include notific8_legacy_theme(smoke, #ababab, #efefef, #ababab, #333, #fff);
