@@ -14,7 +14,7 @@ module.exports = (grunt) ->
         'src/css/*.css',
         'src/css/!*.min.css'
       ]
-      tasks: ['compass', 'cssmin']
+      tasks: ['sass', 'cssmin']
       options:
         spawn: false
     coffee:
