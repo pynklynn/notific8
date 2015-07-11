@@ -63,12 +63,12 @@ http://opensource.org/licenses/BSD-3-Clause
       notification.append $("<div class=\"jquery-notific8-heading\"></div>").html(data.settings.heading)  if data.settings.hasOwnProperty("heading") and (typeof data.settings.heading is "string")
 
       # check if the notification is supposed to be sticky
-      close = $("<div />")
+      close = $("<div />").addClass("jquery-notific8-close")
       if data.settings.sticky
-        close.addClass("jquery-notific8-close-sticky").html "#{data.settings.closeText} <span>&times;</span>"
+        close.addClass("sticky").html "#{data.settings.closeText} <span>&times;</span>"
         notification.addClass "sticky"
       else
-        close.addClass("jquery-notific8-close").html "&times;"
+        close.html "&times;"
       close.on "click", (event) ->
         closeNotification notification, styles, animate, data
         return

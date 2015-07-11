@@ -324,7 +324,7 @@
 
 .notific8-fontastic-safari:before { content: "d"; }
 
-/** @author Will Steinmetz  Styles for the notific8 plug-in for jQuery  Copyright (c)2014, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
+/** @author Will Steinmetz  Styles for the notific8 plug-in for jQuery  Copyright (c)2015, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
 .jquery-notific8-container { display: block; margin: 0; padding: 0; position: fixed; }
 .jquery-notific8-container.top { top: 0; }
 .jquery-notific8-container.bottom { bottom: 0; }
@@ -342,23 +342,22 @@
 .jquery-notific8-message { font-size: 0.875em; }
 
 .jquery-notific8-close { cursor: pointer; display: none; font-size: 1.25em; line-height: 1em; position: absolute; padding: 0 0.25em; top: 0; }
-
-.jquery-notific8-close-sticky { cursor: pointer; font-size: 0.625em; line-height: 1.4em; padding: 0.2em 0; position: absolute; text-align: center; text-transform: uppercase; width: 8.9em; }
-.jquery-notific8-close-sticky span { font-size: 1.5em; font-weight: 100; }
+.jquery-notific8-close.sticky { display: block; font-size: 0.625em; line-height: 1.4em; padding: 0.2em 0; position: absolute; text-align: center; text-transform: uppercase; width: 8.9em; }
+.jquery-notific8-close.sticky span { font-size: 1.5em; font-weight: 100; }
 
 .right .jquery-notific8-notification { clear: right; float: right; margin-right: -24.375em; padding-right: 2.0625em; }
 .right .jquery-notific8-notification.open { margin-right: 0; }
 .right .jquery-notific8-notification.has-icon { padding-left: 90px; }
 .right .jquery-notific8-icon { float: left; margin-left: -1.15714em; }
 .right .jquery-notific8-close { right: -2px; }
-.right .jquery-notific8-close-sticky { right: -3.7em; top: 3.4em; transform: rotate(90deg); }
+.right .jquery-notific8-close.sticky { right: -3.7em; top: 3.4em; transform: rotate(90deg); }
 
 .left .jquery-notific8-notification { clear: left; float: left; margin-left: -24.375em; padding-left: 2.0625em; }
 .left .jquery-notific8-notification.open { margin-left: 0; }
 .left .jquery-notific8-notification.has-icon { padding-right: 90px; }
 .left .jquery-notific8-icon { float: right; margin-right: -1.15714em; }
 .left .jquery-notific8-close { left: -2px; }
-.left .jquery-notific8-close-sticky { left: -3.7em; top: 3.4em; transform: rotate(270deg); }
+.left .jquery-notific8-close.sticky { left: -3.7em; top: 3.4em; transform: rotate(270deg); }
 
 .top .jquery-notific8-notification { margin-top: 0.625em; }
 
@@ -366,27 +365,27 @@
 
 /** @author Will Steinmetz  Themes for the notific8 plug-in for jQuery  Copyright (c)2014, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
 .jquery-notific8-notification.teal { background-color: #069; border-color: #09c; color: #fff; }
-.jquery-notific8-notification.teal .jquery-notific8-close, .jquery-notific8-notification.teal .jquery-notific8-close-sticky { background-color: #09c; color: #fff; }
+.jquery-notific8-notification.teal .jquery-notific8-close { background-color: #09c; color: #fff; }
 
 .jquery-notific8-notification.amethyst { background-color: #5D2D77; border-color: #915faa; color: #fff; }
-.jquery-notific8-notification.amethyst .jquery-notific8-close, .jquery-notific8-notification.amethyst .jquery-notific8-close-sticky { background-color: #915faa; color: #fff; }
+.jquery-notific8-notification.amethyst .jquery-notific8-close { background-color: #915faa; color: #fff; }
 
 .jquery-notific8-notification.ruby { background-color: #a10; border-color: #d10; color: #fff; }
-.jquery-notific8-notification.ruby .jquery-notific8-close, .jquery-notific8-notification.ruby .jquery-notific8-close-sticky { background-color: #d10; color: #fff; }
+.jquery-notific8-notification.ruby .jquery-notific8-close { background-color: #d10; color: #fff; }
 
 .jquery-notific8-notification.tangerine { background-color: #e88f00; border-color: #ffb23f; color: #fff; }
-.jquery-notific8-notification.tangerine .jquery-notific8-close, .jquery-notific8-notification.tangerine .jquery-notific8-close-sticky { background-color: #ffb23f; color: #fff; }
+.jquery-notific8-notification.tangerine .jquery-notific8-close { background-color: #ffb23f; color: #fff; }
 
 .jquery-notific8-notification.lemon { background-color: #ffcc00; border-color: #ffde00; color: #333; }
-.jquery-notific8-notification.lemon .jquery-notific8-close, .jquery-notific8-notification.lemon .jquery-notific8-close-sticky { background-color: #ffde00; color: #333; }
+.jquery-notific8-notification.lemon .jquery-notific8-close { background-color: #ffde00; color: #333; }
 
 .jquery-notific8-notification.lime { background-color: #32b512; border-color: #38d315; color: #fff; }
-.jquery-notific8-notification.lime .jquery-notific8-close, .jquery-notific8-notification.lime .jquery-notific8-close-sticky { background-color: #38d315; color: #fff; }
+.jquery-notific8-notification.lime .jquery-notific8-close { background-color: #38d315; color: #fff; }
 
 .jquery-notific8-notification.ebony { background-color: #121212; border-color: #666; color: #fff; }
-.jquery-notific8-notification.ebony .jquery-notific8-close, .jquery-notific8-notification.ebony .jquery-notific8-close-sticky { background-color: #666; color: #fff; }
+.jquery-notific8-notification.ebony .jquery-notific8-close { background-color: #666; color: #fff; }
 
 .jquery-notific8-notification.smoke { background-color: #efefef; border-color: #ababab; color: #333; }
-.jquery-notific8-notification.smoke .jquery-notific8-close, .jquery-notific8-notification.smoke .jquery-notific8-close-sticky { background-color: #ababab; color: #fff; }
+.jquery-notific8-notification.smoke .jquery-notific8-close { background-color: #ababab; color: #fff; }
 
 /*# sourceMappingURL=jquery.notific8.css.map */
