@@ -41,70 +41,88 @@ http://opensource.org/licenses/BSD-3-Clause
     ###
     buildNotification = ($this) ->
       data = $this.data("notific8")
-      notification = $("<div />")
       num = Number($("body").data("notific8s"))
-      close = undefined
       animate = "margin-" + data.settings.verticalEdge
       styles = {}
       vEdge = data.settings.verticalEdge
       hEdge = data.settings.horizontalEdge
       $container = $(".jquery-notific8-container.#{vEdge}.#{hEdge}")
       num += 1
-      notification.addClass(
-        "jquery-notific8-notification #{data.settings.theme}"
-      )
-      notification.attr "id", "jquery-notific8-notification-#{num}"
+
       $("body").data "notific8s", num
 
+      notificationClasses = [
+        'jquery-notific8-notification'
+        "#{data.settings.theme}"
+      ]
+
       # check for an icon
+      icon = ""
       if (
         data.settings.hasOwnProperty("icon") and
         (typeof data.settings.icon is "string")
       )
-        notification.addClass "has-icon"
-        iconClass = "notific8-fontastic-#{data.settings.icon}"
-        notification.append(
-          "<i class=\"jquery-notific8-icon #{iconClass}\"></i>"
-        )
+        notificationClasses.push "has-icon"
+        icon = """
+<i class="jquery-notific8-icon notific8-fontastic-#{data.settings.icon}"></i>
+"""
 
       # check for a heading
+      heading = ""
       if (
         data.settings.hasOwnProperty("heading") and
         (typeof data.settings.heading is "string")
       )
-        $heading = $("<div class=\"jquery-notific8-heading\"></div>")
-          .html(data.settings.heading)
-        notification.append $heading
+        heading = """
+<div class="jquery-notific8-heading">
+  #{data.settings.heading}
+</div>
+"""
 
-      # check if the notification is supposed to be sticky
-      close = $("<div />").addClass("jquery-notific8-close")
+      close = '<div class="jquery-notific8-close'
       if data.settings.sticky
-        close.addClass("sticky")
-          .html "#{data.settings.closeText} <span>&times;</span>"
-        notification.addClass "sticky"
+        close += ' sticky">'
+        close += "#{data.settings.closeText} <span>&times; </span>"
+        notificationClasses.push "sticky"
       else
-        close.html "&times;"
-      close.on "click", (event) ->
-        closeNotification notification, styles, animate, data
-        return
-
-      notification.append close
+        close += '">&times;'
+      close += '</div>'
 
       # add the message
-      $message = $("<div class=\"jquery-notific8-message\"></div>")
-        .html(data.message)
-      notification.append $message
+      message = """
+<div class="jquery-notific8-message">
+  #{data.message}
+</div>
+"""
+
+      # build the notification HTML
+      notificationId = "jquery-notific8-notification-#{num}"
+      notification = """
+<div class="#{notificationClasses.join(' ')}" id="#{notificationId}">
+#{icon}
+#{heading}
+#{close}
+#{message}
+</div>
+"""
 
       # add the notification to the stack
-      $container.append notification
+      $notification = $(notification)
+      $container.append $notification
+
+      # add close functionality
+      $close = $notification.find('.jquery-notific8-close')
+      $close.on "click", (event) ->
+        closeNotification $notification, styles, animate, data
+        return
 
       # call the onCreate handler if it exists
-      data.settings.onCreate notification, data  if data.settings.onCreate
+      data.settings.onCreate $notification, data  if data.settings.onCreate
 
       # slide the message onto the screen
       if supports.transition
         setTimeout (->
-          notification.addClass "open"
+          $notification.addClass "open"
           unless data.settings.sticky
             ((n, l) ->
               setTimeout (->
@@ -112,12 +130,12 @@ http://opensource.org/licenses/BSD-3-Clause
                 return
               ), l
               return
-            ) notification, Number(data.settings.life) + 200
+            ) $notification, Number(data.settings.life) + 200
           return
         ), 5
       else
         styles[animate] = 0
-        notification.animate styles,
+        $notification.animate styles,
           duration: "fast"
           complete: ->
             unless data.settings.sticky
@@ -127,7 +145,7 @@ http://opensource.org/licenses/BSD-3-Clause
                   return
                 ), l
                 return
-              ) notification, data.settings.life
+              ) $notification, data.settings.life
             data.settings = {}
             return
 
@@ -216,12 +234,12 @@ http://opensource.org/licenses/BSD-3-Clause
     initContainers = ->
       $body = $("body")
       $body.data "notific8s", 0
-      $container = $('<div class="jquery-notific8-container"></div>')
-      $body.append $container.clone().addClass('top right')
-      $body.append $container.clone().addClass('top left')
-      $body.append $container.clone().addClass('bottom right')
-      $body.append $container.clone().addClass('bottom left')
-      $(".jquery-notific8-container").css "z-index", settings.zindex
+      containerStr = '<div class="jquery-notific8-container $pos"></div>'
+      $body.append containerStr.replace('$pos', 'top right')
+      $body.append containerStr.replace('$pos', 'top left')
+      $body.append containerStr.replace('$pos', 'bottom right')
+      $body.append containerStr.replace('$pos', 'bottom left')
+      $('.jquery-notific8-container').css "z-index", settings.zindex
       return
 
     ###
@@ -307,7 +325,7 @@ http://opensource.org/licenses/BSD-3-Clause
         options = {}  if typeof options is "undefined"
 
         # make sure that the stack containers exist
-        methods.initContainers()  if $(".jquery-notific8-container").size() is 0
+        methods.initContainers() if $(".jquery-notific8-container").size() is 0
 
         # make sure the edge settings exist
         methods.checkEdges options

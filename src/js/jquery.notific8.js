@@ -43,60 +43,61 @@ http://opensource.org/licenses/BSD-3-Clause
     @param object $this
      */
     buildNotification = function($this) {
-      var $container, $heading, $message, animate, close, data, hEdge, iconClass, notification, num, styles, vEdge;
+      var $close, $container, $notification, animate, close, data, hEdge, heading, icon, message, notification, notificationClasses, notificationId, num, styles, vEdge;
       data = $this.data("notific8");
-      notification = $("<div />");
       num = Number($("body").data("notific8s"));
-      close = void 0;
       animate = "margin-" + data.settings.verticalEdge;
       styles = {};
       vEdge = data.settings.verticalEdge;
       hEdge = data.settings.horizontalEdge;
       $container = $(".jquery-notific8-container." + vEdge + "." + hEdge);
       num += 1;
-      notification.addClass("jquery-notific8-notification " + data.settings.theme);
-      notification.attr("id", "jquery-notific8-notification-" + num);
       $("body").data("notific8s", num);
+      notificationClasses = ['jquery-notific8-notification', "" + data.settings.theme];
+      icon = "";
       if (data.settings.hasOwnProperty("icon") && (typeof data.settings.icon === "string")) {
-        notification.addClass("has-icon");
-        iconClass = "notific8-fontastic-" + data.settings.icon;
-        notification.append("<i class=\"jquery-notific8-icon " + iconClass + "\"></i>");
+        notificationClasses.push("has-icon");
+        icon = "<i class=\"jquery-notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>";
       }
+      heading = "";
       if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
-        $heading = $("<div class=\"jquery-notific8-heading\"></div>").html(data.settings.heading);
-        notification.append($heading);
+        heading = "<div class=\"jquery-notific8-heading\">\n  " + data.settings.heading + "\n</div>";
       }
-      close = $("<div />").addClass("jquery-notific8-close");
+      close = '<div class="jquery-notific8-close';
       if (data.settings.sticky) {
-        close.addClass("sticky").html("" + data.settings.closeText + " <span>&times;</span>");
-        notification.addClass("sticky");
+        close += ' sticky">';
+        close += "" + data.settings.closeText + " <span>&times; </span>";
+        notificationClasses.push("sticky");
       } else {
-        close.html("&times;");
+        close += '">&times;';
       }
-      close.on("click", function(event) {
-        closeNotification(notification, styles, animate, data);
+      close += '</div>';
+      message = "<div class=\"jquery-notific8-message\">\n  " + data.message + "\n</div>";
+      notificationId = "jquery-notific8-notification-" + num;
+      notification = "<div class=\"" + (notificationClasses.join(' ')) + "\" id=\"" + notificationId + "\">\n" + icon + "\n" + heading + "\n" + close + "\n" + message + "\n</div>";
+      $notification = $(notification);
+      $container.append($notification);
+      $close = $notification.find('.jquery-notific8-close');
+      $close.on("click", function(event) {
+        closeNotification($notification, styles, animate, data);
       });
-      notification.append(close);
-      $message = $("<div class=\"jquery-notific8-message\"></div>").html(data.message);
-      notification.append($message);
-      $container.append(notification);
       if (data.settings.onCreate) {
-        data.settings.onCreate(notification, data);
+        data.settings.onCreate($notification, data);
       }
       if (supports.transition) {
         setTimeout((function() {
-          notification.addClass("open");
+          $notification.addClass("open");
           if (!data.settings.sticky) {
             (function(n, l) {
               setTimeout((function() {
                 closeNotification(n, null, null, data);
               }), l);
-            })(notification, Number(data.settings.life) + 200);
+            })($notification, Number(data.settings.life) + 200);
           }
         }), 5);
       } else {
         styles[animate] = 0;
-        notification.animate(styles, {
+        $notification.animate(styles, {
           duration: "fast",
           complete: function() {
             if (!data.settings.sticky) {
@@ -104,7 +105,7 @@ http://opensource.org/licenses/BSD-3-Clause
                 setTimeout((function() {
                   closeNotification(n, styles, animate, data);
                 }), l);
-              })(notification, data.settings.life);
+              })($notification, data.settings.life);
             }
             data.settings = {};
           }
@@ -197,15 +198,15 @@ http://opensource.org/licenses/BSD-3-Clause
     Initialize the containers for the plug-in
      */
     initContainers = function() {
-      var $body, $container;
+      var $body, containerStr;
       $body = $("body");
       $body.data("notific8s", 0);
-      $container = $('<div class="jquery-notific8-container"></div>');
-      $body.append($container.clone().addClass('top right'));
-      $body.append($container.clone().addClass('top left'));
-      $body.append($container.clone().addClass('bottom right'));
-      $body.append($container.clone().addClass('bottom left'));
-      $(".jquery-notific8-container").css("z-index", settings.zindex);
+      containerStr = '<div class="jquery-notific8-container $pos"></div>';
+      $body.append(containerStr.replace('$pos', 'top right'));
+      $body.append(containerStr.replace('$pos', 'top left'));
+      $body.append(containerStr.replace('$pos', 'bottom right'));
+      $body.append(containerStr.replace('$pos', 'bottom left'));
+      $('.jquery-notific8-container').css("z-index", settings.zindex);
     };
 
     /*
