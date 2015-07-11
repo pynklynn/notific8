@@ -46,7 +46,9 @@ http://opensource.org/licenses/BSD-3-Clause
       close = undefined
       animate = "margin-" + data.settings.verticalEdge
       styles = {}
-      $container = $(".jquery-notific8-container.#{data.settings.verticalEdge}.#{data.settings.horizontalEdge}")
+      vEdge = data.settings.verticalEdge
+      hEdge = data.settings.horizontalEdge
+      $container = $(".jquery-notific8-container.#{vEdge}.#{hEdge}")
       num += 1
       notification.addClass(
         "jquery-notific8-notification #{data.settings.theme}"
@@ -55,17 +57,30 @@ http://opensource.org/licenses/BSD-3-Clause
       $("body").data "notific8s", num
 
       # check for an icon
-      if data.settings.hasOwnProperty("icon") and (typeof data.settings.icon is "string")
+      if (
+        data.settings.hasOwnProperty("icon") and
+        (typeof data.settings.icon is "string")
+      )
         notification.addClass "has-icon"
-        notification.append "<i class=\"jquery-notific8-icon notific8-fontastic-#{data.settings.icon}\"></i>"
+        iconClass = "notific8-fontastic-#{data.settings.icon}"
+        notification.append(
+          "<i class=\"jquery-notific8-icon #{iconClass}\"></i>"
+        )
 
       # check for a heading
-      notification.append $("<div class=\"jquery-notific8-heading\"></div>").html(data.settings.heading)  if data.settings.hasOwnProperty("heading") and (typeof data.settings.heading is "string")
+      if (
+        data.settings.hasOwnProperty("heading") and
+        (typeof data.settings.heading is "string")
+      )
+        $heading = $("<div class=\"jquery-notific8-heading\"></div>")
+          .html(data.settings.heading)
+        notification.append $heading
 
       # check if the notification is supposed to be sticky
       close = $("<div />").addClass("jquery-notific8-close")
       if data.settings.sticky
-        close.addClass("sticky").html "#{data.settings.closeText} <span>&times;</span>"
+        close.addClass("sticky")
+          .html "#{data.settings.closeText} <span>&times;</span>"
         notification.addClass "sticky"
       else
         close.html "&times;"
@@ -76,7 +91,9 @@ http://opensource.org/licenses/BSD-3-Clause
       notification.append close
 
       # add the message
-      notification.append $("<div class=\"jquery-notific8-message\"></div>").html(data.message)
+      $message = $("<div class=\"jquery-notific8-message\"></div>")
+        .html(data.message)
+      notification.append $message
 
       # add the notification to the stack
       $container.append notification
@@ -199,10 +216,11 @@ http://opensource.org/licenses/BSD-3-Clause
     initContainers = ->
       $body = $("body")
       $body.data "notific8s", 0
-      $body.append $("<div class=\"jquery-notific8-container top right\"></div>")
-      $body.append $("<div class=\"jquery-notific8-container top left\"></div>")
-      $body.append $("<div class=\"jquery-notific8-container bottom right\"></div>")
-      $body.append $("<div class=\"jquery-notific8-container bottom left\"></div>")
+      $container = $('<div class="jquery-notific8-container"></div>')
+      $body.append $container.clone().addClass('top right')
+      $body.append $container.clone().addClass('top left')
+      $body.append $container.clone().addClass('bottom right')
+      $body.append $container.clone().addClass('bottom left')
       $(".jquery-notific8-container").css "z-index", settings.zindex
       return
 
@@ -211,10 +229,22 @@ http://opensource.org/licenses/BSD-3-Clause
     @param object options
     ###
     checkEdges = (options) ->
-      options.verticalEdge = (options.verticalEdge or settings.verticalEdge).toLowerCase()
-      options.horizontalEdge = (options.horizontalEdge or settings.horizontalEdge).toLowerCase()
-      options.verticalEdge = settings.verticalEdge  if (options.verticalEdge isnt "right") and (options.verticalEdge isnt "left")
-      options.horizontalEdge = settings.horizontalEdge  if (options.horizontalEdge isnt "top") and (options.horizontalEdge isnt "bottom")
+      options.verticalEdge = (
+        options.verticalEdge or settings.verticalEdge
+      ).toLowerCase()
+      options.horizontalEdge = (
+        options.horizontalEdge or settings.horizontalEdge
+      ).toLowerCase()
+      if (
+        (options.verticalEdge isnt "right") and
+        (options.verticalEdge isnt "left")
+      )
+        options.verticalEdge = settings.verticalEdge
+      if (
+        (options.horizontalEdge isnt "top") and
+        (options.horizontalEdge isnt "bottom")
+      )
+        options.horizontalEdge = settings.horizontalEdge
       return
 
     ###
@@ -239,7 +269,13 @@ http://opensource.org/licenses/BSD-3-Clause
         pStr = pStr + p[i].toLowerCase().replace(/\b\w{3,}/g, capitalize)
         i = i + 1
       pNoPrefix = pStr.charAt(0).toLowerCase() + pStr.slice(1)
-      supports[prop] = s.hasOwnProperty(pNoPrefix) or s.hasOwnProperty("Webkit" + pStr) or s.hasOwnProperty("Moz" + pStr) or s.hasOwnProperty("ms" + pStr) or s.hasOwnProperty("O" + pStr)
+      supports[prop] = (
+        s.hasOwnProperty(pNoPrefix) or
+        s.hasOwnProperty("Webkit" + pStr) or
+        s.hasOwnProperty("Moz" + pStr) or
+        s.hasOwnProperty("ms" + pStr) or
+        s.hasOwnProperty("O" + pStr)
+      )
       return
 
     init: init
@@ -277,7 +313,12 @@ http://opensource.org/licenses/BSD-3-Clause
         methods.checkEdges options
 
         #display the notification in the right corner
-        $(".jquery-notific8-container.#{options.verticalEdge}.#{options.horizontalEdge}").notific8 message, options
+        vEdge = options.verticalEdge
+        hEdge = options.horizontalEdge
+        $(".jquery-notific8-container.#{vEdge}.#{hEdge}").notific8(
+          message
+          options
+        )
 
   ###
   plugin setup

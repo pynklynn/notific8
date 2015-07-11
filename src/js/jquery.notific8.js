@@ -43,24 +43,28 @@ http://opensource.org/licenses/BSD-3-Clause
     @param object $this
      */
     buildNotification = function($this) {
-      var $container, animate, close, data, notification, num, styles;
+      var $container, $heading, $message, animate, close, data, hEdge, iconClass, notification, num, styles, vEdge;
       data = $this.data("notific8");
       notification = $("<div />");
       num = Number($("body").data("notific8s"));
       close = void 0;
       animate = "margin-" + data.settings.verticalEdge;
       styles = {};
-      $container = $(".jquery-notific8-container." + data.settings.verticalEdge + "." + data.settings.horizontalEdge);
+      vEdge = data.settings.verticalEdge;
+      hEdge = data.settings.horizontalEdge;
+      $container = $(".jquery-notific8-container." + vEdge + "." + hEdge);
       num += 1;
       notification.addClass("jquery-notific8-notification " + data.settings.theme);
       notification.attr("id", "jquery-notific8-notification-" + num);
       $("body").data("notific8s", num);
       if (data.settings.hasOwnProperty("icon") && (typeof data.settings.icon === "string")) {
         notification.addClass("has-icon");
-        notification.append("<i class=\"jquery-notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>");
+        iconClass = "notific8-fontastic-" + data.settings.icon;
+        notification.append("<i class=\"jquery-notific8-icon " + iconClass + "\"></i>");
       }
       if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
-        notification.append($("<div class=\"jquery-notific8-heading\"></div>").html(data.settings.heading));
+        $heading = $("<div class=\"jquery-notific8-heading\"></div>").html(data.settings.heading);
+        notification.append($heading);
       }
       close = $("<div />").addClass("jquery-notific8-close");
       if (data.settings.sticky) {
@@ -73,7 +77,8 @@ http://opensource.org/licenses/BSD-3-Clause
         closeNotification(notification, styles, animate, data);
       });
       notification.append(close);
-      notification.append($("<div class=\"jquery-notific8-message\"></div>").html(data.message));
+      $message = $("<div class=\"jquery-notific8-message\"></div>").html(data.message);
+      notification.append($message);
       $container.append(notification);
       if (data.settings.onCreate) {
         data.settings.onCreate(notification, data);
@@ -192,13 +197,14 @@ http://opensource.org/licenses/BSD-3-Clause
     Initialize the containers for the plug-in
      */
     initContainers = function() {
-      var $body;
+      var $body, $container;
       $body = $("body");
       $body.data("notific8s", 0);
-      $body.append($("<div class=\"jquery-notific8-container top right\"></div>"));
-      $body.append($("<div class=\"jquery-notific8-container top left\"></div>"));
-      $body.append($("<div class=\"jquery-notific8-container bottom right\"></div>"));
-      $body.append($("<div class=\"jquery-notific8-container bottom left\"></div>"));
+      $container = $('<div class="jquery-notific8-container"></div>');
+      $body.append($container.clone().addClass('top right'));
+      $body.append($container.clone().addClass('top left'));
+      $body.append($container.clone().addClass('bottom right'));
+      $body.append($container.clone().addClass('bottom left'));
       $(".jquery-notific8-container").css("z-index", settings.zindex);
     };
 
@@ -260,6 +266,7 @@ http://opensource.org/licenses/BSD-3-Clause
   @param object options
    */
   $.notific8 = function(message, options) {
+    var hEdge, vEdge;
     switch (message) {
       case "configure":
       case "config":
@@ -278,7 +285,9 @@ http://opensource.org/licenses/BSD-3-Clause
           methods.initContainers();
         }
         methods.checkEdges(options);
-        return $(".jquery-notific8-container." + options.verticalEdge + "." + options.horizontalEdge).notific8(message, options);
+        vEdge = options.verticalEdge;
+        hEdge = options.horizontalEdge;
+        return $(".jquery-notific8-container." + vEdge + "." + hEdge).notific8(message, options);
     }
   };
 
