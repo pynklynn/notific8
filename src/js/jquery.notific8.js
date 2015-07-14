@@ -43,7 +43,7 @@ http://opensource.org/licenses/BSD-3-Clause
     @param object $this
      */
     buildNotification = function($this) {
-      var $close, $container, $notification, animate, close, data, hEdge, heading, icon, message, notification, notificationClasses, notificationId, num, styles, vEdge;
+      var $container, $notification, animate, close, data, hEdge, heading, icon, message, notification, notificationClasses, notificationId, num, styles, vEdge;
       data = $this.data("notific8");
       num = Number($("body").data("notific8s"));
       animate = "margin-" + data.settings.verticalEdge;
@@ -77,10 +77,6 @@ http://opensource.org/licenses/BSD-3-Clause
       notification = "<div class=\"" + (notificationClasses.join(' ')) + "\" id=\"" + notificationId + "\">\n" + icon + "\n" + heading + "\n" + close + "\n" + message + "\n</div>";
       $notification = $(notification);
       $container.append($notification);
-      $close = $notification.find('.jquery-notific8-close');
-      $close.on("click", function(event) {
-        closeNotification($notification, styles, animate, data);
-      });
       if (data.settings.onCreate) {
         data.settings.onCreate($notification, data);
       }
@@ -207,6 +203,15 @@ http://opensource.org/licenses/BSD-3-Clause
       $body.append(containerStr.replace('$pos', 'bottom right'));
       $body.append(containerStr.replace('$pos', 'bottom left'));
       $('.jquery-notific8-container').css("z-index", settings.zindex);
+      $('.jquery-notific8-container').on('click', '.jquery-notific8-close', function(e) {
+        var $container, $notification, $target, animate, data;
+        $target = $(e.currentTarget);
+        $notification = $target.closest('.jquery-notific8-notification');
+        $container = $notification.closest('.jquery-notific8-container');
+        data = $container.data('notific8');
+        animate = "margin-" + data.settings.verticalEdge;
+        closeNotification($notification, {}, animate, data);
+      });
     };
 
     /*

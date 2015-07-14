@@ -110,12 +110,6 @@ http://opensource.org/licenses/BSD-3-Clause
       $notification = $(notification)
       $container.append $notification
 
-      # add close functionality
-      $close = $notification.find('.jquery-notific8-close')
-      $close.on "click", (event) ->
-        closeNotification $notification, styles, animate, data
-        return
-
       # call the onCreate handler if it exists
       data.settings.onCreate $notification, data if data.settings.onCreate
 
@@ -240,6 +234,18 @@ http://opensource.org/licenses/BSD-3-Clause
       $body.append containerStr.replace('$pos', 'bottom right')
       $body.append containerStr.replace('$pos', 'bottom left')
       $('.jquery-notific8-container').css "z-index", settings.zindex
+      $('.jquery-notific8-container').on(
+        'click'
+        '.jquery-notific8-close'
+        (e) ->
+          $target = $(e.currentTarget)
+          $notification = $target.closest('.jquery-notific8-notification')
+          $container = $notification.closest('.jquery-notific8-container')
+          data = $container.data('notific8')
+          animate = "margin-" + data.settings.verticalEdge
+          closeNotification $notification, {}, animate, data
+          return
+      )
       return
 
     ###
