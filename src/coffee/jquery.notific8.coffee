@@ -51,58 +51,14 @@ http://opensource.org/licenses/BSD-3-Clause
 
       $("body").data "notific8s", num
 
-      notificationClasses = [
-        'jquery-notific8-notification'
-        "#{data.settings.theme}"
-      ]
-
-      # check for an icon
-      icon = ""
-      if (
-        data.settings.hasOwnProperty("icon") and
-        (typeof data.settings.icon is "string")
-      )
-        notificationClasses.push "has-icon"
-        icon = """
-<i class="jquery-notific8-icon notific8-fontastic-#{data.settings.icon}"></i>
-"""
-
-      # check for a heading
-      heading = ""
-      if (
-        data.settings.hasOwnProperty("heading") and
-        (typeof data.settings.heading is "string")
-      )
-        heading = """
-<div class="jquery-notific8-heading">
-  #{data.settings.heading}
-</div>
-"""
-
-      close = '<div class="jquery-notific8-close'
-      if data.settings.sticky
-        close += ' sticky">'
-        close += "#{data.settings.closeText} <span>&times; </span>"
-        notificationClasses.push "sticky"
-      else
-        close += '">&times;'
-      close += '</div>'
-
-      # add the message
-      message = """
-<div class="jquery-notific8-message">
-  #{data.message}
-</div>
-"""
-
       # build the notification HTML
       notificationId = "jquery-notific8-notification-#{num}"
       notification = """
-<div class="#{notificationClasses.join(' ')}" id="#{notificationId}">
-#{icon}
-#{heading}
-#{close}
-#{message}
+<div class="#{notificationClasses(data).join(' ')}" id="#{notificationId}">
+#{buildIcon(data)}
+#{buildHeading(data)}
+#{buildClose(data)}
+#{buildMessage(data)}
 </div>
 """
 
@@ -144,6 +100,67 @@ http://opensource.org/licenses/BSD-3-Clause
             return
 
       return
+
+    # region: boolean checkers
+    hasIcon = (data) ->
+      return data.settings.hasOwnProperty("icon") and
+        (typeof data.settings.icon is "string")
+    # end region: boolean checkers
+
+    # region: generators
+    buildClose = (data) ->
+      close = '<div class="jquery-notific8-close'
+      if data.settings.sticky
+        close += ' sticky">'
+        close += "#{data.settings.closeText} <span>&times; </span>"
+      else
+        close += '">&times;'
+      close += '</div>'
+
+      close
+
+    buildHeading = (data) ->
+      if (
+        data.settings.hasOwnProperty("heading") and
+        (typeof data.settings.heading is "string")
+      )
+        """
+<div class="jquery-notific8-heading">
+  #{data.settings.heading}
+</div>
+"""
+      else
+        ""
+
+    buildIcon = (data) ->
+      if hasIcon(data)
+        """
+<i class="jquery-notific8-icon notific8-fontastic-#{data.settings.icon}"></i>
+"""
+      else
+        ""
+
+    buildMessage = (data) ->
+      """
+<div class="jquery-notific8-message">
+  #{data.message}
+</div>
+"""
+
+    notificationClasses = (data) ->
+      classes = [
+        'jquery-notific8-notification'
+        data.settings.theme
+      ]
+
+      if hasIcon(data)
+        classes.push "has-icon"
+
+      if data.settings.sticky
+        classes.push "sticky"
+
+      classes
+    # end region: generators
 
     ###
     Close the given notification

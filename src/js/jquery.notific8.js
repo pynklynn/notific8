@@ -32,7 +32,7 @@ http://opensource.org/licenses/BSD-3-Clause
     Destroy the notification
     @param object $this
      */
-    var buildNotification, checkEdges, closeNotification, configure, css3Support, destroy, init, initContainers, remove, zindex;
+    var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, css3Support, destroy, hasIcon, init, initContainers, notificationClasses, remove, zindex;
     destroy = function($this) {
       $(window).unbind(".notific8");
       $(".jquery-notific8-container").remove();
@@ -43,7 +43,7 @@ http://opensource.org/licenses/BSD-3-Clause
     @param object $this
      */
     buildNotification = function($this) {
-      var $container, $notification, animate, close, data, hEdge, heading, icon, message, notification, notificationClasses, notificationId, num, styles, vEdge;
+      var $container, $notification, animate, data, hEdge, notification, notificationId, num, styles, vEdge;
       data = $this.data("notific8");
       num = Number($("body").data("notific8s"));
       animate = "margin-" + data.settings.verticalEdge;
@@ -53,28 +53,8 @@ http://opensource.org/licenses/BSD-3-Clause
       $container = $(".jquery-notific8-container." + vEdge + "." + hEdge);
       num += 1;
       $("body").data("notific8s", num);
-      notificationClasses = ['jquery-notific8-notification', "" + data.settings.theme];
-      icon = "";
-      if (data.settings.hasOwnProperty("icon") && (typeof data.settings.icon === "string")) {
-        notificationClasses.push("has-icon");
-        icon = "<i class=\"jquery-notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>";
-      }
-      heading = "";
-      if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
-        heading = "<div class=\"jquery-notific8-heading\">\n  " + data.settings.heading + "\n</div>";
-      }
-      close = '<div class="jquery-notific8-close';
-      if (data.settings.sticky) {
-        close += ' sticky">';
-        close += "" + data.settings.closeText + " <span>&times; </span>";
-        notificationClasses.push("sticky");
-      } else {
-        close += '">&times;';
-      }
-      close += '</div>';
-      message = "<div class=\"jquery-notific8-message\">\n  " + data.message + "\n</div>";
       notificationId = "jquery-notific8-notification-" + num;
-      notification = "<div class=\"" + (notificationClasses.join(' ')) + "\" id=\"" + notificationId + "\">\n" + icon + "\n" + heading + "\n" + close + "\n" + message + "\n</div>";
+      notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n" + (buildIcon(data)) + "\n" + (buildHeading(data)) + "\n" + (buildClose(data)) + "\n" + (buildMessage(data)) + "\n</div>";
       $notification = $(notification);
       $container.append($notification);
       if (data.settings.onCreate) {
@@ -107,6 +87,49 @@ http://opensource.org/licenses/BSD-3-Clause
           }
         });
       }
+    };
+    hasIcon = function(data) {
+      return data.settings.hasOwnProperty("icon") && (typeof data.settings.icon === "string");
+    };
+    buildClose = function(data) {
+      var close;
+      close = '<div class="jquery-notific8-close';
+      if (data.settings.sticky) {
+        close += ' sticky">';
+        close += "" + data.settings.closeText + " <span>&times; </span>";
+      } else {
+        close += '">&times;';
+      }
+      close += '</div>';
+      return close;
+    };
+    buildHeading = function(data) {
+      if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
+        return "<div class=\"jquery-notific8-heading\">\n  " + data.settings.heading + "\n</div>";
+      } else {
+        return "";
+      }
+    };
+    buildIcon = function(data) {
+      if (hasIcon(data)) {
+        return "<i class=\"jquery-notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>";
+      } else {
+        return "";
+      }
+    };
+    buildMessage = function(data) {
+      return "<div class=\"jquery-notific8-message\">\n  " + data.message + "\n</div>";
+    };
+    notificationClasses = function(data) {
+      var classes;
+      classes = ['jquery-notific8-notification', data.settings.theme];
+      if (hasIcon(data)) {
+        classes.push("has-icon");
+      }
+      if (data.settings.sticky) {
+        classes.push("sticky");
+      }
+      return classes;
     };
 
     /*
