@@ -70,34 +70,18 @@ http://opensource.org/licenses/BSD-3-Clause
       data.settings.onCreate $notification, data if data.settings.onCreate
 
       # slide the message onto the screen
-      if supports.transition
-        setTimeout (->
-          $notification.addClass "open"
-          unless data.settings.sticky
-            ((n, l) ->
-              setTimeout (->
-                closeNotification n, null, null, data
-                return
-              ), l
+      setTimeout (->
+        $notification.addClass "open"
+        unless data.settings.sticky
+          ((n, l) ->
+            setTimeout (->
+              closeNotification n, data
               return
-            ) $notification, Number(data.settings.life) + 200
-          return
-        ), 5
-      else
-        styles[animate] = 0
-        $notification.animate styles,
-          duration: "fast"
-          complete: ->
-            unless data.settings.sticky
-              ((n, l) ->
-                setTimeout (->
-                  closeNotification n, styles, animate, data
-                  return
-                ), l
-                return
-              ) $notification, data.settings.life
-            data.settings = {}
+            ), l
             return
+          ) $notification, Number(data.settings.life) + 200
+        return
+      ), 5
 
       return
 
@@ -165,28 +149,16 @@ http://opensource.org/licenses/BSD-3-Clause
     ###
     Close the given notification
     @param object n
-    @param object styles
-    @param boolean animate
     @param object data
     ###
-    closeNotification = (n, styles, animate, data) ->
-      if supports.transition
-        n.removeClass "open"
-        n.height 0
-        setTimeout (->
-          n.remove()
-          data.settings.onClose n, data if data.settings.onClose
-          return
-        ), 200
-      else
-        styles[animate] = n.outerWidth() * -1
-        styles.height = 0
-        n.animate styles,
-          duration: "fast"
-          complete: ->
-            n.remove()
-            data.settings.onClose n, data if data.settings.onClose
-            return
+    closeNotification = (n, data) ->
+      n.removeClass "open"
+      n.height 0
+      setTimeout (->
+        n.remove()
+        data.settings.onClose n, data if data.settings.onClose
+        return
+      ), 200
 
       return
 
@@ -259,8 +231,7 @@ http://opensource.org/licenses/BSD-3-Clause
           $notification = $target.closest('.jquery-notific8-notification')
           $container = $notification.closest('.jquery-notific8-container')
           data = $container.data('notific8')
-          animate = "margin-" + data.settings.verticalEdge
-          closeNotification $notification, {}, animate, data
+          closeNotification $notification, data
           return
       )
       return

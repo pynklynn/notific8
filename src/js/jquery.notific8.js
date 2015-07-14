@@ -60,33 +60,16 @@ http://opensource.org/licenses/BSD-3-Clause
       if (data.settings.onCreate) {
         data.settings.onCreate($notification, data);
       }
-      if (supports.transition) {
-        setTimeout((function() {
-          $notification.addClass("open");
-          if (!data.settings.sticky) {
-            (function(n, l) {
-              setTimeout((function() {
-                closeNotification(n, null, null, data);
-              }), l);
-            })($notification, Number(data.settings.life) + 200);
-          }
-        }), 5);
-      } else {
-        styles[animate] = 0;
-        $notification.animate(styles, {
-          duration: "fast",
-          complete: function() {
-            if (!data.settings.sticky) {
-              (function(n, l) {
-                setTimeout((function() {
-                  closeNotification(n, styles, animate, data);
-                }), l);
-              })($notification, data.settings.life);
-            }
-            data.settings = {};
-          }
-        });
-      }
+      setTimeout((function() {
+        $notification.addClass("open");
+        if (!data.settings.sticky) {
+          (function(n, l) {
+            setTimeout((function() {
+              closeNotification(n, data);
+            }), l);
+          })($notification, Number(data.settings.life) + 200);
+        }
+      }), 5);
     };
     hasIcon = function(data) {
       return data.settings.hasOwnProperty("icon") && (typeof data.settings.icon === "string");
@@ -135,33 +118,17 @@ http://opensource.org/licenses/BSD-3-Clause
     /*
     Close the given notification
     @param object n
-    @param object styles
-    @param boolean animate
     @param object data
      */
-    closeNotification = function(n, styles, animate, data) {
-      if (supports.transition) {
-        n.removeClass("open");
-        n.height(0);
-        setTimeout((function() {
-          n.remove();
-          if (data.settings.onClose) {
-            data.settings.onClose(n, data);
-          }
-        }), 200);
-      } else {
-        styles[animate] = n.outerWidth() * -1;
-        styles.height = 0;
-        n.animate(styles, {
-          duration: "fast",
-          complete: function() {
-            n.remove();
-            if (data.settings.onClose) {
-              data.settings.onClose(n, data);
-            }
-          }
-        });
-      }
+    closeNotification = function(n, data) {
+      n.removeClass("open");
+      n.height(0);
+      setTimeout((function() {
+        n.remove();
+        if (data.settings.onClose) {
+          data.settings.onClose(n, data);
+        }
+      }), 200);
     };
 
     /*
@@ -227,13 +194,12 @@ http://opensource.org/licenses/BSD-3-Clause
       $body.append(containerStr.replace('$pos', 'bottom left'));
       $('.jquery-notific8-container').css("z-index", settings.zindex);
       $('.jquery-notific8-container').on('click', '.jquery-notific8-close', function(e) {
-        var $container, $notification, $target, animate, data;
+        var $container, $notification, $target, data;
         $target = $(e.currentTarget);
         $notification = $target.closest('.jquery-notific8-notification');
         $container = $notification.closest('.jquery-notific8-container');
         data = $container.data('notific8');
-        animate = "margin-" + data.settings.verticalEdge;
-        closeNotification($notification, {}, animate, data);
+        closeNotification($notification, data);
       });
     };
 
