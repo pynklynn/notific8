@@ -117,7 +117,7 @@ http://opensource.org/licenses/BSD-3-Clause
         return
 
       # call the onCreate handler if it exists
-      data.settings.onCreate $notification, data  if data.settings.onCreate
+      data.settings.onCreate $notification, data if data.settings.onCreate
 
       # slide the message onto the screen
       if supports.transition
@@ -164,7 +164,7 @@ http://opensource.org/licenses/BSD-3-Clause
         n.height 0
         setTimeout (->
           n.remove()
-          data.settings.onClose n, data  if data.settings.onClose
+          data.settings.onClose n, data if data.settings.onClose
           return
         ), 200
       else
@@ -174,7 +174,7 @@ http://opensource.org/licenses/BSD-3-Clause
           duration: "fast"
           complete: ->
             n.remove()
-            data.settings.onClose n, data  if data.settings.onClose
+            data.settings.onClose n, data if data.settings.onClose
             return
 
       return
@@ -225,7 +225,7 @@ http://opensource.org/licenses/BSD-3-Clause
 
         # add the notification to the stack
         buildNotification $this
-        data.settings.onInit data  if data.settings.onInit
+        data.settings.onInit data if data.settings.onInit
         return
 
     ###
@@ -322,7 +322,7 @@ http://opensource.org/licenses/BSD-3-Clause
       when "remove"
         return methods.remove.apply(this, [options])
       else
-        options = {}  if typeof options is "undefined"
+        options = {} if typeof options is "undefined"
 
         # make sure that the stack containers exist
         methods.initContainers() if $(".jquery-notific8-container").size() is 0
