@@ -243,6 +243,14 @@
         </td>
       </tr>
       <tr>
+        <td class="label"><label for="notific8Family">Theme Family</label></td>
+        <td>
+           <select name="notific8Family" id="notific8Family">
+            <option value="legacy" selected="">legacy (default)</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
         <td class="label">
           <label for="notific8Theme">Theme</label>
         </td>
@@ -289,6 +297,7 @@
       $('#notific8Test').on('click', function (event) {
         var params = {
             life: $('#notific8Life').find('option:selected').val(),
+            family: $('#notific8Family').find('option:selected').val(),
             theme: $('#notific8Theme').val(),
             sticky: $('#notific8Sticky').is(':checked'),
             horizontalEdge: $('#notific8horizontal').find('option:selected').val(),

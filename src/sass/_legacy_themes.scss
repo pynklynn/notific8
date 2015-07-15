@@ -8,6 +8,20 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
+// mixins
+@mixin notific8_legacy_theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color) {
+  .#{$notific8-ns}-notification.#{$name} {
+    background-color: $background-color;
+    border-color: $border-color;
+    color: $text-color;
+    .#{$notific8-ns}-close {
+      background-color: $close-background-color;
+      color: $close-text-color;
+    }
+  }
+}
+
+// default legacy themes
 @include notific8_legacy_theme("teal", #09c, #069);
 @include notific8_legacy_theme("amethyst", #915faa, #5D2D77);
 @include notific8_legacy_theme("ruby", #d10, #a10);

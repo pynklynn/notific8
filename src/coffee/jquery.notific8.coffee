@@ -13,6 +13,7 @@ http://opensource.org/licenses/BSD-3-Clause
   supports = undefined
   settings =
     life: 10000
+    family: 'legacy'
     theme: "teal"
     sticky: false
     verticalEdge: "right"
@@ -134,6 +135,7 @@ http://opensource.org/licenses/BSD-3-Clause
     notificationClasses = (data) ->
       classes = [
         'jquery-notific8-notification'
+        "family-#{data.settings.family}"
         data.settings.theme
       ]
 

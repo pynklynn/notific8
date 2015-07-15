@@ -15,6 +15,7 @@ http://opensource.org/licenses/BSD-3-Clause
   supports = void 0;
   settings = {
     life: 10000,
+    family: 'legacy',
     theme: "teal",
     sticky: false,
     verticalEdge: "right",
@@ -105,7 +106,7 @@ http://opensource.org/licenses/BSD-3-Clause
     };
     notificationClasses = function(data) {
       var classes;
-      classes = ['jquery-notific8-notification', data.settings.theme];
+      classes = ['jquery-notific8-notification', "family-" + data.settings.family, data.settings.theme];
       if (hasIcon(data)) {
         classes.push("has-icon");
       }
