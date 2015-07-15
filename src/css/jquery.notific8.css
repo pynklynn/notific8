@@ -331,39 +331,48 @@
 .jquery-notific8-container.top.right, .jquery-notific8-container.bottom.right { right: 0; }
 .jquery-notific8-container.top.left, .jquery-notific8-container.bottom.left { left: 0; }
 
-.jquery-notific8-notification { border-style: solid; border-width: 2px; box-sizing: border-box; color: #fff; height: 5.625em; max-height: 5.625em; overflow: hidden; padding: 0.625em; position: relative; transition: all 0.2s ease-in-out; width: 24.375em; }
+.jquery-notific8-notification { box-sizing: border-box; height: 5.625em; max-height: 5.625em; overflow: hidden; padding: 0.625em; position: relative; width: 24.375em; }
 .jquery-notific8-notification:hover .jquery-notific8-close { display: block; }
 .jquery-notific8-notification.has-icon { width: 27.1875em; }
 
-.jquery-notific8-icon { font-size: 4.375em; line-height: 1em; margin-top: -1px; }
+.jquery-notific8-close { cursor: pointer; display: none; position: absolute; }
+.jquery-notific8-close.sticky { display: block; position: absolute; text-align: center; }
 
-.jquery-notific8-heading { font-weight: bold; margin-bottom: 0.3125em; }
+.right .jquery-notific8-notification { clear: right; float: right; }
+.right .jquery-notific8-icon { float: left; }
+.right .jquery-notific8-close.sticky { transform: rotate(90deg); }
 
-.jquery-notific8-message { font-size: 0.875em; }
-
-.jquery-notific8-close { cursor: pointer; display: none; font-size: 1.25em; line-height: 1em; position: absolute; padding: 0 0.25em; top: 0; }
-.jquery-notific8-close.sticky { display: block; font-size: 0.625em; line-height: 1.4em; padding: 0.2em 0; position: absolute; text-align: center; text-transform: uppercase; width: 8.9em; }
-.jquery-notific8-close.sticky span { font-size: 1.5em; font-weight: 100; }
-
-.right .jquery-notific8-notification { clear: right; float: right; margin-right: -24.375em; padding-right: 2.0625em; }
-.right .jquery-notific8-notification.open { margin-right: 0; }
-.right .jquery-notific8-notification.has-icon { padding-left: 90px; }
-.right .jquery-notific8-icon { float: left; margin-left: -1.15714em; }
-.right .jquery-notific8-close { right: -2px; }
-.right .jquery-notific8-close.sticky { right: -3.7em; top: 3.4em; transform: rotate(90deg); }
-
-.left .jquery-notific8-notification { clear: left; float: left; margin-left: -24.375em; padding-left: 2.0625em; }
-.left .jquery-notific8-notification.open { margin-left: 0; }
-.left .jquery-notific8-notification.has-icon { padding-right: 90px; }
-.left .jquery-notific8-icon { float: right; margin-right: -1.15714em; }
-.left .jquery-notific8-close { left: -2px; }
-.left .jquery-notific8-close.sticky { left: -3.7em; top: 3.4em; transform: rotate(270deg); }
+.left .jquery-notific8-notification { clear: left; float: left; }
+.left .jquery-notific8-icon { float: right; }
+.left .jquery-notific8-close.sticky { transform: rotate(270deg); }
 
 .top .jquery-notific8-notification { margin-top: 0.625em; }
 
 .bottom .jquery-notific8-notification { margin-bottom: 0.625em; }
 
-/** @author Will Steinmetz  Themes for the notific8 plug-in for jQuery  Copyright (c)2014, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
+/** @author Will Steinmetz  Legacy family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2015, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
+.jquery-notific8-notification.family-legacy { border-style: solid; border-width: 2px; color: #fff; transition: all 0.2s ease-in-out; }
+.jquery-notific8-notification.family-legacy .jquery-notific8-icon { font-size: 4.375em; line-height: 1em; margin-top: -1px; }
+.jquery-notific8-notification.family-legacy .jquery-notific8-heading { font-weight: bold; margin-bottom: 0.3125em; }
+.jquery-notific8-notification.family-legacy .jquery-notific8-message { font-size: 0.875em; }
+.jquery-notific8-notification.family-legacy .jquery-notific8-close { font-size: 1.25em; line-height: 1em; padding: 0 0.25em; top: 0; }
+.jquery-notific8-notification.family-legacy .jquery-notific8-close.sticky { font-size: 0.625em; line-height: 1.4em; padding: 0.2em 0; text-transform: uppercase; width: 8.9em; }
+.jquery-notific8-notification.family-legacy .jquery-notific8-close.sticky span { font-size: 1.5em; font-weight: 100; }
+
+.right .jquery-notific8-notification.family-legacy { margin-right: -24.375em; padding-right: 2.0625em; }
+.right .jquery-notific8-notification.family-legacy.open { margin-right: 0; }
+.right .jquery-notific8-notification.family-legacy.has-icon { padding-left: 90px; }
+.right .jquery-notific8-icon { margin-left: -1.15714em; }
+.right .jquery-notific8-close { right: -2px; }
+.right .jquery-notific8-close.sticky { right: -3.7em; top: 3.4em; }
+
+.left .jquery-notific8-notification.family-legacy { margin-left: -24.375em; padding-left: 2.0625em; }
+.left .jquery-notific8-notification.family-legacy.open { margin-left: 0; }
+.left .jquery-notific8-notification.family-legacy.has-icon { padding-right: 90px; }
+.left .jquery-notific8-icon { margin-right: -1.15714em; }
+.left .jquery-notific8-close { left: -2px; }
+.left .jquery-notific8-close.sticky { left: -3.7em; top: 3.4em; }
+
 .jquery-notific8-notification.teal { background-color: #069; border-color: #09c; color: #fff; }
 .jquery-notific8-notification.teal .jquery-notific8-close { background-color: #09c; color: #fff; }
 
