@@ -14,6 +14,9 @@
       font-weight: bold;
       text-align: right;
     }
+    #notific8Theme option {
+      display: none;
+    }
   </style>
 </head>
 
@@ -246,7 +249,8 @@
         <td class="label"><label for="notific8Family">Theme Family</label></td>
         <td>
            <select name="notific8Family" id="notific8Family">
-            <option value="legacy" selected="">legacy (default)</option>
+            <option value="legacy" selected>legacy (default)</option>
+            <option value="chicchat">ChicChat</option>
           </select>
         </td>
       </tr>
@@ -256,14 +260,19 @@
         </td>
         <td>
           <select name="notific8Theme" id="notific8Theme">
-            <option value="teal" selected="selected">teal (default)</option>
-            <option value="amethyst">amethyst</option>
-            <option value="ruby">ruby</option>
-            <option value="tangerine">tangerine</option>
-            <option value="lemon">lemon</option>
-            <option value="lime">lime</option>
-            <option value="ebony">ebony</option>
-            <option value="smoke">smoke</option>
+            <option value="teal" data-for="legacy" data-selected>teal</option>
+            <option value="amethyst" data-for="legacy">amethyst</option>
+            <option value="ruby" data-for="legacy">ruby</option>
+            <option value="tangerine" data-for="legacy">tangerine</option>
+            <option value="lemon" data-for="legacy">lemon</option>
+            <option value="lime" data-for="legacy">lime</option>
+            <option value="ebony" data-for="legacy">ebony</option>
+            <option value="smoke" data-for="legacy">smoke</option>
+
+            <option value="cobalt" data-for="chicchat" data-selected>cobalt</option>
+            <option value="ruby" data-for="chicchat">ruby</option>
+            <option value="honey" data-for="chicchat">honey</option>
+            <option value="shamrock" data-for="chicchat">shamrock</option>
           </select>
         </td>
       </tr>
@@ -294,6 +303,19 @@
   <script src="../dist/jquery.notific8.min.js"></script>
   <script type="text/javascript">
     $(function () {
+      $('#notific8Family').on(
+        'change',
+        function(event) {
+          $family = $(event.currentTarget);
+          family = $family.val()
+          $theme = $('#notific8Theme')
+          $theme.find('option:selected').prop('selected', false);
+          $theme.find('option').hide();
+          $theme.find('option[data-for="' + family + '"]').show()
+          $theme.find('option[data-for="' + family + '"][data-selected]').prop('selected', true)
+        }
+      )
+
       $('#notific8Test').on('click', function (event) {
         var params = {
             life: $('#notific8Life').find('option:selected').val(),
@@ -346,6 +368,8 @@
         // show notification
         $.notific8(text, params);
       });
+
+      $('#notific8Family').trigger('change');
     });
   </script>
 </body>

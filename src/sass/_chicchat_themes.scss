@@ -1,0 +1,96 @@
+/**
+ * @author Will Steinmetz
+ *
+ * ChicChat family themes for the notific8 plug-in for jQuery
+ *
+ * Copyright (c)2013-2015, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
+ */
+
+// mixins
+@mixin notific8_chicchat_theme($name, $color) {
+  .#{$notific8-ns}-notification.family-chicchat.#{$name} {
+    border-color: $color;
+    .#{$notific8-ns}-close {
+      color: $color;
+    }
+    .#{$notific8-ns}-icon {
+      background-color: $color;
+    }
+  }
+}
+
+.#{$notific8-ns}-notification {
+  &.family-chicchat {
+    background-color: #fff;
+    border-radius: .25em;
+    border-style: solid;
+    border-width: 1px;
+    color: #121212;
+    font-size: em(14px);
+    height: 0;
+    max-height: em(100px);
+    padding: 1.125em;
+    transition: all 0.15s ease-in-out;
+    width: em(500px);
+
+    .#{$notific8-ns}-heading {
+      font-weight: bold;
+      margin-bottom: .5em;
+    }
+
+    .#{$notific8-ns}-close {
+      top: .325em;
+      &.sticky {
+        font-size: .75em;
+        text-decoration: underline;
+      }
+    }
+
+    .#{$notific8-ns}-icon {
+      box-sizing: border-box;
+      color: #fff;
+      font-size: 2em;
+      height: em(86px, 28px);
+      padding-top: 1em;
+      position: absolute;
+      text-align: center;
+      top:0;
+      width: em(45px, 28px);
+    }
+  }
+
+  &.open {
+    height: em(120px);
+  }
+}
+
+$notific8-sides: (right: left, left: right);
+@each $main-dir, $second-dir in $notific8-sides {
+  .#{$main-dir} {
+    .#{$notific8-ns}-notification {
+      border-#{$second-dir}-width: em(45px, 14px);
+      margin-#{$main-dir}: .625em;
+
+      &.has-icon {
+        border-#{$second-dir}-width: 1px;
+        padding-#{$second-dir}: em(62px, 14px);
+      }
+
+      .#{$notific8-ns}-icon {
+        #{$second-dir}: 0;
+      }
+
+      .#{$notific8-ns}-close {
+        #{$main-dir}: .5em;
+      }
+    }
+  }
+}
+
+// default ChicChat theme
+@include notific8_chicchat_theme('cobalt', #3171B2);
+@include notific8_chicchat_theme('ruby', #a10);
+@include notific8_chicchat_theme('honey', darken(gold, 2.5%));
+@include notific8_chicchat_theme('shamrock', darken(yellowgreen, 5%));

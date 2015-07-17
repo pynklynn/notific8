@@ -97,7 +97,7 @@ http://opensource.org/licenses/BSD-3-Clause
       close = '<div class="jquery-notific8-close'
       if data.settings.sticky
         close += ' sticky">'
-        close += "#{data.settings.closeText} <span>&times; </span>"
+        close += "#{data.settings.closeText}"
       else
         close += '">&times;'
       close += '</div>'

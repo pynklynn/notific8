@@ -41,19 +41,13 @@ $notific8-ns: "jquery-notific8";
 
 .#{$notific8-ns}-notification {
   box-sizing: border-box;
-  height: em(90px);
-  max-height: em(90px);
   overflow: hidden;
   padding: em(10px);
   position: relative;
-  width: em(390px);
   &:hover {
     .#{$notific8-ns}-close {
       display: block;
     }
-  }
-  &.has-icon {
-    width: em(435px);
   }
 }
 
@@ -74,18 +68,6 @@ $notific8-sides: (right: left, left: right);
     .#{$notific8-ns}-notification {
       clear: #{$main-dir};
       float: #{$main-dir};
-    }
-    .#{$notific8-ns}-icon {
-      float: #{$second-dir};
-    }
-    .#{$notific8-ns}-close {
-      &.sticky {
-        @if $main-dir == left {
-          transform: rotate(270deg);
-        } @else {
-          transform: rotate(90deg);
-        }
-      }
     }
   }
 }
