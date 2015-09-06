@@ -11,8 +11,12 @@
 // import the style file
 @import "icons";
 @import "notific8";
-@import "legacy_themes";
-@import "chicchat_themes";
+@import "legacy_theme";
+@import "chicchat_theme";
+
+// import the default themes
+@import "default_legacy_themes";
+@import "default_chicchat_themes";
 
 // custom themes
 //@include notific8_legacy_theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color);
