@@ -69,7 +69,7 @@
 $notific8-sides: (right: left, left: right);
 @each $main-dir, $second-dir in $notific8-sides {
   .#{$main-dir} {
-    .#{$notific8-ns}-notification {
+    .#{$notific8-ns}-notification.family-chicchat {
       border-#{$second-dir}-width: em(45px, 14px);
       margin-#{$main-dir}: .625em;
 
