@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 2.0.1
+
+- Move default themes out of theme family files
+- Handling side sizing for ChicChat bug being in main code instead of themed
+
 ## 2.0
 
 - Theme families were added for version 2.0
