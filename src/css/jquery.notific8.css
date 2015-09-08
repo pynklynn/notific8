@@ -386,6 +386,25 @@
 .left .jquery-notific8-notification.family-chicchat .jquery-notific8-icon { right: 0; }
 .left .jquery-notific8-notification.family-chicchat .jquery-notific8-close { left: .5em; }
 
+/** @author Will Steinmetz  ChicChat family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2015, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
+.jquery-notific8-notification.family-atomic { border-radius: 3px; font-size: 0.875em; height: 0; max-height: 6.25em; padding: 0; transition: all 0.15s ease-in-out; width: 31.25em; }
+.jquery-notific8-notification.family-atomic .jquery-notific8-heading { padding: .75em; }
+.jquery-notific8-notification.family-atomic .jquery-notific8-message { font-size: 0.85714em; padding: 0.75em; }
+.jquery-notific8-notification.family-atomic .jquery-notific8-close { top: .325em; }
+.jquery-notific8-notification.family-atomic .jquery-notific8-close.sticky { font-size: .75em; text-decoration: underline; }
+.jquery-notific8-notification.family-atomic .jquery-notific8-icon { box-sizing: border-box; color: #fff; font-size: 1.25em; height: 4.51429em; padding-top: .375em; position: absolute; text-align: center; top: 0; width: 1.71429em; }
+.jquery-notific8-notification.open { height: 5em; }
+
+.right .jquery-notific8-notification.family-atomic { border-left-width: 3.21429em; margin-right: .625em; }
+.right .jquery-notific8-notification.family-atomic.has-icon { border-left-width: 1px; padding-left: 2.125em; }
+.right .jquery-notific8-notification.family-atomic .jquery-notific8-icon { left: 0; }
+.right .jquery-notific8-notification.family-atomic .jquery-notific8-close { right: .5em; }
+
+.left .jquery-notific8-notification.family-atomic { border-right-width: 3.21429em; margin-left: .625em; }
+.left .jquery-notific8-notification.family-atomic.has-icon { border-right-width: 1px; padding-right: 2.125em; }
+.left .jquery-notific8-notification.family-atomic .jquery-notific8-icon { right: 0; }
+.left .jquery-notific8-notification.family-atomic .jquery-notific8-close { left: .5em; }
+
 .jquery-notific8-notification.family-legacy.teal { background-color: #069; border-color: #09c; color: #fff; }
 .jquery-notific8-notification.family-legacy.teal .jquery-notific8-close { background-color: #09c; color: #fff; }
 
@@ -425,5 +444,29 @@
 .jquery-notific8-notification.family-chicchat.shamrock { border-color: #8bb92d; }
 .jquery-notific8-notification.family-chicchat.shamrock .jquery-notific8-close { color: #8bb92d; }
 .jquery-notific8-notification.family-chicchat.shamrock .jquery-notific8-icon { background-color: #8bb92d; }
+
+.jquery-notific8-notification.family-atomic.cerulean { background-color: #c9e0f2; border-color: #4F99D3; color: #454545; }
+.jquery-notific8-notification.family-atomic.cerulean .jquery-notific8-heading { background-color: #a1c8e7; border-bottom: solid 1px #78b1dd; }
+.jquery-notific8-notification.family-atomic.cerulean .jquery-notific8-icon { background-color: #4F99D3; }
+
+.jquery-notific8-notification.family-atomic.tomato { background-color: #eeb9ba; border-color: #D03E41; color: #454545; }
+.jquery-notific8-notification.family-atomic.tomato .jquery-notific8-heading { background-color: #e49092; border-bottom: solid 1px #da6769; }
+.jquery-notific8-notification.family-atomic.tomato .jquery-notific8-icon { background-color: #D03E41; }
+
+.jquery-notific8-notification.family-atomic.mustard { background-color: #f8f5df; border-color: #DDCE61; color: #454545; }
+.jquery-notific8-notification.family-atomic.mustard .jquery-notific8-heading { background-color: #efe8b5; border-bottom: solid 1px #e6db8b; }
+.jquery-notific8-notification.family-atomic.mustard .jquery-notific8-icon { background-color: #DDCE61; }
+
+.jquery-notific8-notification.family-atomic.pear { background-color: #dfeec5; border-color: #9ECC4E; color: #454545; }
+.jquery-notific8-notification.family-atomic.pear .jquery-notific8-heading { background-color: #c9e39d; border-bottom: solid 1px #b4d776; }
+.jquery-notific8-notification.family-atomic.pear .jquery-notific8-icon { background-color: #9ECC4E; }
+
+.jquery-notific8-notification.family-atomic.amethyst { background-color: #ab73ca; border-color: #5D2D77; color: #eee; }
+.jquery-notific8-notification.family-atomic.amethyst .jquery-notific8-heading { background-color: #954ebc; border-bottom: solid 1px #7a3b9c; }
+.jquery-notific8-notification.family-atomic.amethyst .jquery-notific8-icon { background-color: #5D2D77; }
+
+.jquery-notific8-notification.family-atomic.onyx { background-color: #929292; border-color: #454545; color: #eee; }
+.jquery-notific8-notification.family-atomic.onyx .jquery-notific8-heading { background-color: #787878; border-bottom: solid 1px #5f5f5f; }
+.jquery-notific8-notification.family-atomic.onyx .jquery-notific8-icon { background-color: #454545; }
 
 /*# sourceMappingURL=jquery.notific8.css.map */
