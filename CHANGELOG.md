@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 2.1.1
+
+- Fixed height for the Atomic theme family clashing with other theme families
+
 ## 2.1.0
 
 - Created the Atomic theme family

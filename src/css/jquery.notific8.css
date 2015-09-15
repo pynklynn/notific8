@@ -393,7 +393,7 @@
 .jquery-notific8-notification.family-atomic .jquery-notific8-close { top: .325em; }
 .jquery-notific8-notification.family-atomic .jquery-notific8-close.sticky { font-size: .75em; text-decoration: underline; }
 .jquery-notific8-notification.family-atomic .jquery-notific8-icon { box-sizing: border-box; color: #fff; font-size: 1.25em; height: 4.51429em; padding-top: .375em; position: absolute; text-align: center; top: 0; width: 1.71429em; }
-.jquery-notific8-notification.open { height: 5em; }
+.jquery-notific8-notification.family-atomic.open { height: 5em; }
 
 .right .jquery-notific8-notification.family-atomic { border-left-width: 3.21429em; margin-right: .625em; }
 .right .jquery-notific8-notification.family-atomic.has-icon { border-left-width: 1px; padding-left: 2.125em; }
