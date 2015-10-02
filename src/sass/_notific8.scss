@@ -8,10 +8,6 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-// variables
-$notific8-base-font-size: 16px;
-$notific8-ns: "jquery-notific8";
-
 // functions
 @function em($px, $base: $notific8-base-font-size) {
   @return ($px / $base) * 1em;

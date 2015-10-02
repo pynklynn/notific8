@@ -33,7 +33,7 @@ http://opensource.org/licenses/BSD-3-Clause
     ###
     destroy = ($this) ->
       $(window).unbind ".notific8"
-      $(".jquery-notific8-container").remove()
+      $(".notific8-container").remove()
       return
 
     ###
@@ -47,13 +47,13 @@ http://opensource.org/licenses/BSD-3-Clause
       styles = {}
       vEdge = data.settings.verticalEdge
       hEdge = data.settings.horizontalEdge
-      $container = $(".jquery-notific8-container.#{vEdge}.#{hEdge}")
+      $container = $(".notific8-container.#{vEdge}.#{hEdge}")
       num += 1
 
       $("body").data "notific8s", num
 
       # build the notification HTML
-      notificationId = "jquery-notific8-notification-#{num}"
+      notificationId = "notific8-notification-#{num}"
       notification = """
 <div class="#{notificationClasses(data).join(' ')}" id="#{notificationId}">
 #{buildIcon(data)}
@@ -94,7 +94,7 @@ http://opensource.org/licenses/BSD-3-Clause
 
     # region: generators
     buildClose = (data) ->
-      close = '<div class="jquery-notific8-close'
+      close = '<div class="notific8-close'
       if data.settings.sticky
         close += ' sticky">'
         close += "#{data.settings.closeText}"
@@ -110,7 +110,7 @@ http://opensource.org/licenses/BSD-3-Clause
         (typeof data.settings.heading is "string")
       )
         """
-<div class="jquery-notific8-heading">
+<div class="notific8-heading">
   #{data.settings.heading}
 </div>
 """
@@ -120,21 +120,21 @@ http://opensource.org/licenses/BSD-3-Clause
     buildIcon = (data) ->
       if hasIcon(data)
         """
-<i class="jquery-notific8-icon notific8-fontastic-#{data.settings.icon}"></i>
+<i class="notific8-icon notific8-fontastic-#{data.settings.icon}"></i>
 """
       else
         ""
 
     buildMessage = (data) ->
       """
-<div class="jquery-notific8-message">
+<div class="notific8-message">
   #{data.message}
 </div>
 """
 
     notificationClasses = (data) ->
       classes = [
-        'jquery-notific8-notification'
+        'notific8-notification'
         "family-#{data.settings.family}"
         data.settings.theme
       ]
@@ -176,7 +176,7 @@ http://opensource.org/licenses/BSD-3-Clause
     Remove the currently visible notifications from the screen
     ###
     remove = ->
-      $(".jquery-notific8-notification").remove()
+      $(".notific8-notification").remove()
       return
 
     ###
@@ -219,19 +219,19 @@ http://opensource.org/licenses/BSD-3-Clause
     initContainers = ->
       $body = $("body")
       $body.data "notific8s", 0
-      containerStr = '<div class="jquery-notific8-container $pos"></div>'
+      containerStr = '<div class="notific8-container $pos"></div>'
       $body.append containerStr.replace('$pos', 'top right')
       $body.append containerStr.replace('$pos', 'top left')
       $body.append containerStr.replace('$pos', 'bottom right')
       $body.append containerStr.replace('$pos', 'bottom left')
-      $('.jquery-notific8-container').css "z-index", settings.zindex
-      $('.jquery-notific8-container').on(
+      $('.notific8-container').css "z-index", settings.zindex
+      $('.notific8-container').on(
         'click'
-        '.jquery-notific8-close'
+        '.notific8-close'
         (e) ->
           $target = $(e.currentTarget)
-          $notification = $target.closest('.jquery-notific8-notification')
-          $container = $notification.closest('.jquery-notific8-container')
+          $notification = $target.closest('.notific8-notification')
+          $container = $notification.closest('.notific8-container')
           data = $container.data('notific8')
           closeNotification $notification, data
           return
@@ -321,7 +321,7 @@ http://opensource.org/licenses/BSD-3-Clause
         options = {} if typeof options is "undefined"
 
         # make sure that the stack containers exist
-        methods.initContainers() if $(".jquery-notific8-container").size() is 0
+        methods.initContainers() if $(".notific8-container").size() is 0
 
         # make sure the edge settings exist
         methods.checkEdges options
@@ -329,7 +329,7 @@ http://opensource.org/licenses/BSD-3-Clause
         #display the notification in the right corner
         vEdge = options.verticalEdge
         hEdge = options.horizontalEdge
-        $(".jquery-notific8-container.#{vEdge}.#{hEdge}").notific8(
+        $(".notific8-container.#{vEdge}.#{hEdge}").notific8(
           message
           options
         )

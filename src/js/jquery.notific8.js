@@ -36,7 +36,7 @@ http://opensource.org/licenses/BSD-3-Clause
     var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, css3Support, destroy, hasIcon, init, initContainers, notificationClasses, remove, zindex;
     destroy = function($this) {
       $(window).unbind(".notific8");
-      $(".jquery-notific8-container").remove();
+      $(".notific8-container").remove();
     };
 
     /*
@@ -51,10 +51,10 @@ http://opensource.org/licenses/BSD-3-Clause
       styles = {};
       vEdge = data.settings.verticalEdge;
       hEdge = data.settings.horizontalEdge;
-      $container = $(".jquery-notific8-container." + vEdge + "." + hEdge);
+      $container = $(".notific8-container." + vEdge + "." + hEdge);
       num += 1;
       $("body").data("notific8s", num);
-      notificationId = "jquery-notific8-notification-" + num;
+      notificationId = "notific8-notification-" + num;
       notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n" + (buildIcon(data)) + "\n" + (buildHeading(data)) + "\n" + (buildClose(data)) + "\n" + (buildMessage(data)) + "\n</div>";
       $notification = $(notification);
       $container.append($notification);
@@ -77,7 +77,7 @@ http://opensource.org/licenses/BSD-3-Clause
     };
     buildClose = function(data) {
       var close;
-      close = '<div class="jquery-notific8-close';
+      close = '<div class="notific8-close';
       if (data.settings.sticky) {
         close += ' sticky">';
         close += "" + data.settings.closeText;
@@ -89,24 +89,24 @@ http://opensource.org/licenses/BSD-3-Clause
     };
     buildHeading = function(data) {
       if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
-        return "<div class=\"jquery-notific8-heading\">\n  " + data.settings.heading + "\n</div>";
+        return "<div class=\"notific8-heading\">\n  " + data.settings.heading + "\n</div>";
       } else {
         return "";
       }
     };
     buildIcon = function(data) {
       if (hasIcon(data)) {
-        return "<i class=\"jquery-notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>";
+        return "<i class=\"notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>";
       } else {
         return "";
       }
     };
     buildMessage = function(data) {
-      return "<div class=\"jquery-notific8-message\">\n  " + data.message + "\n</div>";
+      return "<div class=\"notific8-message\">\n  " + data.message + "\n</div>";
     };
     notificationClasses = function(data) {
       var classes;
-      classes = ['jquery-notific8-notification', "family-" + data.settings.family, data.settings.theme];
+      classes = ['notific8-notification', "family-" + data.settings.family, data.settings.theme];
       if (hasIcon(data)) {
         classes.push("has-icon");
       }
@@ -144,7 +144,7 @@ http://opensource.org/licenses/BSD-3-Clause
     Remove the currently visible notifications from the screen
      */
     remove = function() {
-      $(".jquery-notific8-notification").remove();
+      $(".notific8-notification").remove();
     };
 
     /*
@@ -188,17 +188,17 @@ http://opensource.org/licenses/BSD-3-Clause
       var $body, containerStr;
       $body = $("body");
       $body.data("notific8s", 0);
-      containerStr = '<div class="jquery-notific8-container $pos"></div>';
+      containerStr = '<div class="notific8-container $pos"></div>';
       $body.append(containerStr.replace('$pos', 'top right'));
       $body.append(containerStr.replace('$pos', 'top left'));
       $body.append(containerStr.replace('$pos', 'bottom right'));
       $body.append(containerStr.replace('$pos', 'bottom left'));
-      $('.jquery-notific8-container').css("z-index", settings.zindex);
-      $('.jquery-notific8-container').on('click', '.jquery-notific8-close', function(e) {
+      $('.notific8-container').css("z-index", settings.zindex);
+      $('.notific8-container').on('click', '.notific8-close', function(e) {
         var $container, $notification, $target, data;
         $target = $(e.currentTarget);
-        $notification = $target.closest('.jquery-notific8-notification');
-        $container = $notification.closest('.jquery-notific8-container');
+        $notification = $target.closest('.notific8-notification');
+        $container = $notification.closest('.notific8-container');
         data = $container.data('notific8');
         closeNotification($notification, data);
       });
@@ -277,13 +277,13 @@ http://opensource.org/licenses/BSD-3-Clause
         if (typeof options === "undefined") {
           options = {};
         }
-        if ($(".jquery-notific8-container").size() === 0) {
+        if ($(".notific8-container").size() === 0) {
           methods.initContainers();
         }
         methods.checkEdges(options);
         vEdge = options.verticalEdge;
         hEdge = options.horizontalEdge;
-        return $(".jquery-notific8-container." + vEdge + "." + hEdge).notific8(message, options);
+        return $(".notific8-container." + vEdge + "." + hEdge).notific8(message, options);
     }
   };
 
