@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>jQuery notific8 demo</title>
+  <title>notific8 demo</title>
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" media="screen">
   <link rel="stylesheet" href="../src/css/jquery.notific8.css" media="screen">
   <style>
@@ -24,7 +24,7 @@
 
   <h1>jQuery notific8 demo</h1>
 
-  <p>jQuery notific8 is a notification plug-in that was inspired by the notification style introduced in Windows 8.</p>
+  <p>notific8 is a notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple theme families built in. The Sass files can be included in a project for easy customizations.</p>
   <p>Use the fields below to test the different options for the plug-in.</p>
   <p>To see the <i>onInit(data)</i>, <i>onCreate(notification, data)</i>, and <i>onClose(notification, data)</i> actions functioning, open your browser's developer tools' console view.</p>
   <table>
@@ -298,6 +298,13 @@
         </td>
       </tr>
       <tr>
+        <td class="label">CSS Namespace</td>
+        <td>
+          <b>notific8</b> (default, only value available for the demo)
+          <input type="hidden" name="notific8Namespace" id="notific8Namespace" value="notific8">
+        </td>
+      </tr>
+      <tr>
         <td class="label"></td>
         <td>
           <button type="button" name="notific8Test" id="notific8Test">Test notific8</button>
@@ -332,6 +339,7 @@
             sticky: $('#notific8Sticky').is(':checked'),
             horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
             verticalEdge: $('#notific8vertical').find('option:selected').val(),
+            namespace: $('#notific8Namespace').val(),
             onInit: function(data) {
               if (window.console) {
                 console.log('--onInit--');
