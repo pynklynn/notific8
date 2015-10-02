@@ -1,14 +1,14 @@
 {
-  "name": "jquery-notific8",
-  "version": "2.1.1",
-  "description": "jQuery notific8 notification plug-in",
+  "name": "notific8",
+  "version": "2.2.0",
+  "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
   "main": "dist/jquery.notific8.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ralivue/jquery-notific8.git"
+    "url": "git@github.com:ralivue/notific8.git"
   },
   "keywords": [
     "javascript",

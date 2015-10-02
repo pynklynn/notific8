@@ -1,14 +1,14 @@
-# jquery-notific8
+# notific8
 
 Notific8 is a notification plug-in that was originally inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes (colors) and theme families (styles) and is easy to create new theme and theme families for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
 
 ## Install with Bower
 
-    $ bower install jquery-notific8 --save
+    $ bower install notific8 --save
 
 ## Install with NPM
 
-    $ npm install jquery-notific8 --save
+    $ npm install notific8 --save
 
 ## Demo page
 
@@ -47,7 +47,7 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 
 ## Wiki
 
-Please view the [https://github.com/ralivue/jquery-notific8/wiki](wiki) for information on the options available and how to implement them.
+Please view the [https://github.com/ralivue/notific8/wiki](wiki) for information on the options available and how to implement them.
 
 ## Future development
 

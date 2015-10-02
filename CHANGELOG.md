@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 2.2.0
+
+- Changing the project's name to notific8. The old URL for GitHub will still work.
+- Adding namespace for CSS option and moving css variables into their own file
+
 ## 2.1.1
 
 - Fixed height for the Atomic theme family clashing with other theme families
