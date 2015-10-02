@@ -24,16 +24,17 @@ http://opensource.org/licenses/BSD-3-Clause
     onInit: null
     onCreate: null
     onClose: null
+    namespace: 'notific8'
 
   methods = (->
 
     ###
     Destroy the notification
-    @param object $this
+    @param object options
     ###
-    destroy = ($this) ->
+    destroy = (options) ->
       $(window).unbind ".notific8"
-      $(".notific8-container").remove()
+      $(".#{options.namespace}-container").remove()
       return
 
     ###
@@ -47,13 +48,13 @@ http://opensource.org/licenses/BSD-3-Clause
       styles = {}
       vEdge = data.settings.verticalEdge
       hEdge = data.settings.horizontalEdge
-      $container = $(".notific8-container.#{vEdge}.#{hEdge}")
+      $container = $(".#{data.settings.namespace}-container.#{vEdge}.#{hEdge}")
       num += 1
 
       $("body").data "notific8s", num
 
       # build the notification HTML
-      notificationId = "notific8-notification-#{num}"
+      notificationId = "#{data.settings.namespace}-notification-#{num}"
       notification = """
 <div class="#{notificationClasses(data).join(' ')}" id="#{notificationId}">
 #{buildIcon(data)}
@@ -94,7 +95,7 @@ http://opensource.org/licenses/BSD-3-Clause
 
     # region: generators
     buildClose = (data) ->
-      close = '<div class="notific8-close'
+      close = "<div class=\"#{data.settings.namespace}-close"
       if data.settings.sticky
         close += ' sticky">'
         close += "#{data.settings.closeText}"
@@ -110,7 +111,7 @@ http://opensource.org/licenses/BSD-3-Clause
         (typeof data.settings.heading is "string")
       )
         """
-<div class="notific8-heading">
+<div class="#{data.settings.namespace}-heading">
   #{data.settings.heading}
 </div>
 """
@@ -119,22 +120,26 @@ http://opensource.org/licenses/BSD-3-Clause
 
     buildIcon = (data) ->
       if hasIcon(data)
+        classes = [
+          "#{data.settings.namespace}-icon"
+          "#{data.settings.namespace}-fontastic-#{data.settings.icon}"
+        ]
         """
-<i class="notific8-icon notific8-fontastic-#{data.settings.icon}"></i>
+<i class="#{classes.join(' ')}"></i>
 """
       else
         ""
 
     buildMessage = (data) ->
       """
-<div class="notific8-message">
+<div class="#{data.settings.namespace}-message">
   #{data.message}
 </div>
 """
 
     notificationClasses = (data) ->
       classes = [
-        'notific8-notification'
+        "#{data.settings.namespace}-notification"
         "family-#{data.settings.family}"
         data.settings.theme
       ]
@@ -175,8 +180,8 @@ http://opensource.org/licenses/BSD-3-Clause
     ###
     Remove the currently visible notifications from the screen
     ###
-    remove = ->
-      $(".notific8-notification").remove()
+    remove = (options) ->
+      $(".#{options.namespace}-notification").remove()
       return
 
     ###
@@ -216,22 +221,23 @@ http://opensource.org/licenses/BSD-3-Clause
     ###
     Initialize the containers for the plug-in
     ###
-    initContainers = ->
+    initContainers = (options) ->
       $body = $("body")
       $body.data "notific8s", 0
-      containerStr = '<div class="notific8-container $pos"></div>'
+      containerClass= "#{options.namespace}-container"
+      containerStr = "<div class='#{containerClass} $pos'></div>"
       $body.append containerStr.replace('$pos', 'top right')
       $body.append containerStr.replace('$pos', 'top left')
       $body.append containerStr.replace('$pos', 'bottom right')
       $body.append containerStr.replace('$pos', 'bottom left')
-      $('.notific8-container').css "z-index", settings.zindex
-      $('.notific8-container').on(
+      $(".#{containerClass}").css "z-index", settings.zindex
+      $(".#{containerClass}").on(
         'click'
-        '.notific8-close'
+        ".#{options.namespace}-close"
         (e) ->
           $target = $(e.currentTarget)
-          $notification = $target.closest('.notific8-notification')
-          $container = $notification.closest('.notific8-container')
+          $notification = $target.closest(".#{options.namespace}-notification")
+          $container = $notification.closest(".#{containerClass}")
           data = $container.data('notific8')
           closeNotification $notification, data
           return
@@ -308,6 +314,10 @@ http://opensource.org/licenses/BSD-3-Clause
   @param object options
   ###
   $.notific8 = (message, options) ->
+    options = {} if typeof options is "undefined"
+    unless options.hasOwnProperty('namespace')
+      options.namespace = 'notific8'
+
     switch message
       when "configure", "config"
         return methods.configure.apply(this, [options])
@@ -318,10 +328,9 @@ http://opensource.org/licenses/BSD-3-Clause
       when "remove"
         return methods.remove.apply(this, [options])
       else
-        options = {} if typeof options is "undefined"
-
         # make sure that the stack containers exist
-        methods.initContainers() if $(".notific8-container").size() is 0
+        containerClass = "#{options.namespace}-container"
+        methods.initContainers(options) if $(".#{containerClass}").size() is 0
 
         # make sure the edge settings exist
         methods.checkEdges options
@@ -329,7 +338,7 @@ http://opensource.org/licenses/BSD-3-Clause
         #display the notification in the right corner
         vEdge = options.verticalEdge
         hEdge = options.horizontalEdge
-        $(".notific8-container.#{vEdge}.#{hEdge}").notific8(
+        $(".#{containerClass}.#{vEdge}.#{hEdge}").notific8(
           message
           options
         )

@@ -25,18 +25,19 @@ http://opensource.org/licenses/BSD-3-Clause
     closeText: "close",
     onInit: null,
     onCreate: null,
-    onClose: null
+    onClose: null,
+    namespace: 'notific8'
   };
   methods = (function() {
 
     /*
     Destroy the notification
-    @param object $this
+    @param object options
      */
     var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, css3Support, destroy, hasIcon, init, initContainers, notificationClasses, remove, zindex;
-    destroy = function($this) {
+    destroy = function(options) {
       $(window).unbind(".notific8");
-      $(".notific8-container").remove();
+      $("." + options.namespace + "-container").remove();
     };
 
     /*
@@ -51,10 +52,10 @@ http://opensource.org/licenses/BSD-3-Clause
       styles = {};
       vEdge = data.settings.verticalEdge;
       hEdge = data.settings.horizontalEdge;
-      $container = $(".notific8-container." + vEdge + "." + hEdge);
+      $container = $("." + data.settings.namespace + "-container." + vEdge + "." + hEdge);
       num += 1;
       $("body").data("notific8s", num);
-      notificationId = "notific8-notification-" + num;
+      notificationId = "" + data.settings.namespace + "-notification-" + num;
       notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n" + (buildIcon(data)) + "\n" + (buildHeading(data)) + "\n" + (buildClose(data)) + "\n" + (buildMessage(data)) + "\n</div>";
       $notification = $(notification);
       $container.append($notification);
@@ -77,7 +78,7 @@ http://opensource.org/licenses/BSD-3-Clause
     };
     buildClose = function(data) {
       var close;
-      close = '<div class="notific8-close';
+      close = "<div class=\"" + data.settings.namespace + "-close";
       if (data.settings.sticky) {
         close += ' sticky">';
         close += "" + data.settings.closeText;
@@ -89,24 +90,26 @@ http://opensource.org/licenses/BSD-3-Clause
     };
     buildHeading = function(data) {
       if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
-        return "<div class=\"notific8-heading\">\n  " + data.settings.heading + "\n</div>";
+        return "<div class=\"" + data.settings.namespace + "-heading\">\n  " + data.settings.heading + "\n</div>";
       } else {
         return "";
       }
     };
     buildIcon = function(data) {
+      var classes;
       if (hasIcon(data)) {
-        return "<i class=\"notific8-icon notific8-fontastic-" + data.settings.icon + "\"></i>";
+        classes = ["" + data.settings.namespace + "-icon", "" + data.settings.namespace + "-fontastic-" + data.settings.icon];
+        return "<i class=\"" + (classes.join(' ')) + "\"></i>";
       } else {
         return "";
       }
     };
     buildMessage = function(data) {
-      return "<div class=\"notific8-message\">\n  " + data.message + "\n</div>";
+      return "<div class=\"" + data.settings.namespace + "-message\">\n  " + data.message + "\n</div>";
     };
     notificationClasses = function(data) {
       var classes;
-      classes = ['notific8-notification', "family-" + data.settings.family, data.settings.theme];
+      classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.family, data.settings.theme];
       if (hasIcon(data)) {
         classes.push("has-icon");
       }
@@ -143,8 +146,8 @@ http://opensource.org/licenses/BSD-3-Clause
     /*
     Remove the currently visible notifications from the screen
      */
-    remove = function() {
-      $(".notific8-notification").remove();
+    remove = function(options) {
+      $("." + options.namespace + "-notification").remove();
     };
 
     /*
@@ -184,21 +187,22 @@ http://opensource.org/licenses/BSD-3-Clause
     /*
     Initialize the containers for the plug-in
      */
-    initContainers = function() {
-      var $body, containerStr;
+    initContainers = function(options) {
+      var $body, containerClass, containerStr;
       $body = $("body");
       $body.data("notific8s", 0);
-      containerStr = '<div class="notific8-container $pos"></div>';
+      containerClass = "" + options.namespace + "-container";
+      containerStr = "<div class='" + containerClass + " $pos'></div>";
       $body.append(containerStr.replace('$pos', 'top right'));
       $body.append(containerStr.replace('$pos', 'top left'));
       $body.append(containerStr.replace('$pos', 'bottom right'));
       $body.append(containerStr.replace('$pos', 'bottom left'));
-      $('.notific8-container').css("z-index", settings.zindex);
-      $('.notific8-container').on('click', '.notific8-close', function(e) {
+      $("." + containerClass).css("z-index", settings.zindex);
+      $("." + containerClass).on('click', "." + options.namespace + "-close", function(e) {
         var $container, $notification, $target, data;
         $target = $(e.currentTarget);
-        $notification = $target.closest('.notific8-notification');
-        $container = $notification.closest('.notific8-container');
+        $notification = $target.closest("." + options.namespace + "-notification");
+        $container = $notification.closest("." + containerClass);
         data = $container.data('notific8');
         closeNotification($notification, data);
       });
@@ -262,7 +266,13 @@ http://opensource.org/licenses/BSD-3-Clause
   @param object options
    */
   $.notific8 = function(message, options) {
-    var hEdge, vEdge;
+    var containerClass, hEdge, vEdge;
+    if (typeof options === "undefined") {
+      options = {};
+    }
+    if (!options.hasOwnProperty('namespace')) {
+      options.namespace = 'notific8';
+    }
     switch (message) {
       case "configure":
       case "config":
@@ -274,16 +284,14 @@ http://opensource.org/licenses/BSD-3-Clause
       case "remove":
         return methods.remove.apply(this, [options]);
       default:
-        if (typeof options === "undefined") {
-          options = {};
-        }
-        if ($(".notific8-container").size() === 0) {
-          methods.initContainers();
+        containerClass = "" + options.namespace + "-container";
+        if ($("." + containerClass).size() === 0) {
+          methods.initContainers(options);
         }
         methods.checkEdges(options);
         vEdge = options.verticalEdge;
         hEdge = options.horizontalEdge;
-        return $(".notific8-container." + vEdge + "." + hEdge).notific8(message, options);
+        return $("." + containerClass + "." + vEdge + "." + hEdge).notific8(message, options);
     }
   };
 
