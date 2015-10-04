@@ -8,18 +8,20 @@
 
 module.exports = (grunt) ->
   grunt.config('watch',
-    css:
+    options:
+      atBegin: ['copy:font']
+    sass:
       files: [
-        'src/sass/*.scss',
-        'src/css/*.css',
-        'src/css/!*.min.css'
+        'src/sass/*.scss'
       ]
-      tasks: ['sass', 'cssmin']
+      tasks: ['clean:css', 'sass', 'cssmin', 'copy:css']
       options:
         spawn: false
     coffee:
-      files: ['src/coffee/*.coffee']
-      tasks: ['coffee', 'uglify']
+      files: [
+        'src/coffee/*.coffee'
+      ]
+      tasks: ['clean:js', 'coffee', 'uglify', 'copy:js']
       options:
         spawn: false
   )

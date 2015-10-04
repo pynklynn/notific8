@@ -13,7 +13,7 @@ module.exports = (grunt) ->
         sourceMap: true
         bare: true
       files:
-        'src/js/jquery.notific8.js': 'src/coffee/jquery.notific8.coffee'
+        'build/js/jquery.notific8.js': 'src/coffee/jquery.notific8.coffee'
   )
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'

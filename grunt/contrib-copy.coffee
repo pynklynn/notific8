@@ -8,10 +8,39 @@
 
 module.exports = (grunt) ->
   grunt.config('copy',
-    files:
+    font:
       expand: true
-      src: ['src/css/fonts/*']
+      src: ['src/fonts/*']
       dest: 'dist/fonts'
+      filter: 'isFile'
+      flatten: true
+    css:
+      expand: true
+      src: [
+        'build/css/*.css'
+        'build/css/*.css.map'
+      ]
+      dest: 'dist'
+      filter: 'isFile'
+      flatten: true
+    js:
+      expand: true
+      src: [
+        'build/js/*.js'
+        'build/js/*.js.map'
+      ]
+      dest: 'dist'
+      filter: 'isFile'
+      flatten: true
+    code:
+      expand: true
+      src: [
+        'build/css/*.css'
+        'build/css/*.css.map'
+        'build/js/*.js'
+        'build/js/*.js.map'
+      ]
+      dest: 'dist'
       filter: 'isFile'
       flatten: true
   )

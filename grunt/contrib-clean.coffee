@@ -8,10 +8,19 @@
 
 module.exports = (grunt) ->
   grunt.config('clean',
-    [
-      'dist',
-      'src/css/**/*.css',
-      'src/css/**/*.map'
+    all: [
+      'dist'
+      'build'
+    ]
+    js: [
+      'build/js'
+      'dist/*.js'
+      'dist/*.js.map'
+    ]
+    css: [
+      'build/css'
+      'dist/*.css'
+      'dist/*.css.map'
     ]
   )
 

@@ -10,7 +10,6 @@ module.exports = (grunt) ->
   grunt.config('uglify',
     options:
       mangle: true
-      sourceMap: true
       banner: "/**\n\
  * @author Will Steinmetz\n\
  * jQuery notification plug-in inspired by the notification style of Windows 8\n\
@@ -20,7 +19,7 @@ module.exports = (grunt) ->
  */"
     my_target:
       files:
-        'dist/jquery.notific8.min.js': ['src/js/jquery.notific8.js']
+        'dist/jquery.notific8.min.js': ['build/js/jquery.notific8.js']
   )
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'

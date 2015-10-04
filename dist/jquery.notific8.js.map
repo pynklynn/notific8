@@ -1,7 +1,7 @@
 {
   "version": 3,
   "file": "jquery.notific8.js",
-  "sourceRoot": "../coffee/",
+  "sourceRoot": "../../src/coffee/",
   "sources": [
     "jquery.notific8.coffee"
   ],

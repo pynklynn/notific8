@@ -11,7 +11,7 @@ module.exports = (grunt) ->
     minify:
       expand: true
       files:
-        'dist/jquery.notific8.min.css': ['src/css/jquery.notific8.css']
+        'dist/jquery.notific8.min.css': ['build/css/jquery.notific8.css']
     add_banner:
       options:
         banner: "/**\n\
