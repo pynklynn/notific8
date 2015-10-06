@@ -1,6 +1,6 @@
 # notific8
 
-Notific8 is a notification plug-in that was originally inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes (colors) and theme families (styles) and is easy to create new theme and theme families for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
+Notific8 is a notification plug-in that was originally inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes (colors) and theme families (styles) and is easy to create new themes and theme families for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
 
 ## Install with Bower
 
@@ -12,7 +12,7 @@ Notific8 is a notification plug-in that was originally inspired by the notificat
 
 ## Demo page
 
-An interactive demo page can be found in the ./demo/ directory
+An interactive demo page can be found in the ./demo/ directory.
 
 ## Features
 
@@ -27,6 +27,7 @@ An interactive demo page can be found in the ./demo/ directory
 * Ability to set the z-index
     * Can be set via config/configure or the zindex function
 * Ability to customize close text on sticky notifications
+* Ability to set custom CSS namespace if necessary
 * Events for init, create, and close
 
 ## Browser support
@@ -51,6 +52,7 @@ Please view the [https://github.com/ralivue/notific8/wiki](wiki) for information
 
 ## Future development
 
+* Convert the code to be a regular JavaScript plug-in with a jQuery wrapper for use on more pages
 * Add the ability to use a custom image instead of one of the built in icons
 
 ## License
