@@ -16,8 +16,10 @@ html
       #notific8Theme option {
       display: none;
       }
+      .container { max-width: 70%; margin: 0 auto; }
   body
-    include demo.jade
+    .container
+      include demo.jade
 
     // script includes
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
