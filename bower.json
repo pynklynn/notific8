@@ -1,6 +1,6 @@
 {
   "name": "notific8",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "authors": [
     "Will Steinmetz <willsteinmetz@users.noreply.github.com>"
   ],
@@ -16,7 +16,7 @@
     "sass",
     "jquery-plugin"
   ],
-  "license": "BSD",
+  "license": "BSD-3-Clause",
   "homepage": "https://github.com/ralivue/notific8",
   "ignore": [
     "**/.*",
