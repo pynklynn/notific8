@@ -9,8 +9,6 @@ http://opensource.org/licenses/BSD-3-Clause
 (function($) {
   "use strict";
   var methods, self, settings;
-  settings = void 0;
-  methods = void 0;
   self = void 0;
   settings = {
     life: 10000,

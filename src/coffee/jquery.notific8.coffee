@@ -7,8 +7,7 @@ http://opensource.org/licenses/BSD-3-Clause
 ###
 (($) ->
   "use strict"
-  settings = undefined
-  methods = undefined
+  
   self = undefined
   settings =
     life: 10000
