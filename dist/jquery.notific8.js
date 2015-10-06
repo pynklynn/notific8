@@ -8,11 +8,10 @@ http://opensource.org/licenses/BSD-3-Clause
  */
 (function($) {
   "use strict";
-  var methods, self, settings, supports;
+  var methods, self, settings;
   settings = void 0;
   methods = void 0;
   self = void 0;
-  supports = void 0;
   settings = {
     life: 10000,
     family: 'legacy',
@@ -34,7 +33,7 @@ http://opensource.org/licenses/BSD-3-Clause
     Destroy the notification
     @param object options
      */
-    var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, css3Support, destroy, hasIcon, init, initContainers, notificationClasses, remove, zindex;
+    var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, hasIcon, init, initContainers, notificationClasses, remove, zindex;
     destroy = function(options) {
       $(window).unbind(".notific8");
       $("." + options.namespace + "-container").remove();
@@ -222,32 +221,6 @@ http://opensource.org/licenses/BSD-3-Clause
         options.horizontalEdge = settings.horizontalEdge;
       }
     };
-
-    /*
-    Determine support for CSS3 property
-    @param string prop
-     */
-    css3Support = function(prop) {
-      var capitalize, i, len, p, pNoPrefix, pStr, s;
-      p = prop.split("-");
-      pStr = "";
-      i = void 0;
-      len = void 0;
-      s = document.createElement("p").style;
-      capitalize = void 0;
-      pNoPrefix = void 0;
-      capitalize = function(l) {
-        return l.charAt(0).toUpperCase() + l.slice(1);
-      };
-      i = 0;
-      len = p.length;
-      while (i < len) {
-        pStr = pStr + p[i].toLowerCase().replace(/\b\w{3,}/g, capitalize);
-        i = i + 1;
-      }
-      pNoPrefix = pStr.charAt(0).toLowerCase() + pStr.slice(1);
-      supports[prop] = s.hasOwnProperty(pNoPrefix) || s.hasOwnProperty("Webkit" + pStr) || s.hasOwnProperty("Moz" + pStr) || s.hasOwnProperty("ms" + pStr) || s.hasOwnProperty("O" + pStr);
-    };
     return {
       init: init,
       destroy: destroy,
@@ -255,7 +228,6 @@ http://opensource.org/licenses/BSD-3-Clause
       zindex: zindex,
       initContainers: initContainers,
       checkEdges: checkEdges,
-      css3Support: css3Support,
       remove: remove
     };
   })();
@@ -300,10 +272,6 @@ http://opensource.org/licenses/BSD-3-Clause
    */
   $.fn.notific8 = function(message, options) {
     self = this;
-    if (typeof supports === "undefined") {
-      supports = {};
-      methods.css3Support("transition");
-    }
     if (typeof message === "string") {
       methods.init.apply(this, arguments);
     } else {

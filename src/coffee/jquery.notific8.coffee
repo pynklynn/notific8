@@ -10,7 +10,6 @@ http://opensource.org/licenses/BSD-3-Clause
   settings = undefined
   methods = undefined
   self = undefined
-  supports = undefined
   settings =
     life: 10000
     family: 'legacy'
@@ -267,44 +266,12 @@ http://opensource.org/licenses/BSD-3-Clause
         options.horizontalEdge = settings.horizontalEdge
       return
 
-    ###
-    Determine support for CSS3 property
-    @param string prop
-    ###
-    css3Support = (prop) ->
-      p = prop.split("-")
-      pStr = ""
-      i = undefined
-      len = undefined
-      s = document.createElement("p").style
-      capitalize = undefined
-      pNoPrefix = undefined
-      capitalize = (l) ->
-        l.charAt(0).toUpperCase() + l.slice(1)
-
-      i = 0
-      len = p.length
-
-      while i < len
-        pStr = pStr + p[i].toLowerCase().replace(/\b\w{3,}/g, capitalize)
-        i = i + 1
-      pNoPrefix = pStr.charAt(0).toLowerCase() + pStr.slice(1)
-      supports[prop] = (
-        s.hasOwnProperty(pNoPrefix) or
-        s.hasOwnProperty("Webkit" + pStr) or
-        s.hasOwnProperty("Moz" + pStr) or
-        s.hasOwnProperty("ms" + pStr) or
-        s.hasOwnProperty("O" + pStr)
-      )
-      return
-
     init: init
     destroy: destroy
     configure: configure
     zindex: zindex
     initContainers: initContainers
     checkEdges: checkEdges
-    css3Support: css3Support
     remove: remove
   )()
 
@@ -348,9 +315,6 @@ http://opensource.org/licenses/BSD-3-Clause
   ###
   $.fn.notific8 = (message, options) ->
     self = this
-    if typeof supports is "undefined"
-      supports = {}
-      methods.css3Support "transition"
     if typeof message is "string"
       methods.init.apply this, arguments
     else
