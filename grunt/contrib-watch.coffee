@@ -24,6 +24,13 @@ module.exports = (grunt) ->
       tasks: ['clean:js', 'coffee', 'uglify', 'copy:js']
       options:
         spawn: false
+    jade:
+      files: [
+        'src/jade/**/*.jade'
+      ]
+      tasks: ['jade']
+      options:
+        spawn: false
   )
 
   grunt.loadNpmTasks 'grunt-contrib-watch'

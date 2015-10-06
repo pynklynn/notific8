@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title notific8 demo
+    link(rel='stylesheet', href='http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css', media='screen')
+    link(rel='stylesheet', href='../dist/jquery.notific8.css', media='screen')
+    style.
+      table td {
+      padding: 0.5em;
+      }
+      table td.label {
+      font-weight: bold;
+      text-align: right;
+      }
+      #notific8Theme option {
+      display: none;
+      }
+  body
+    include demo.jade
+
+    // script includes
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script(src='../dist/jquery.notific8.js')
+
+    include demo-js.jade

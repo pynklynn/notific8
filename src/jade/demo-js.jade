@@ -1,0 +1,67 @@
+script(type='text/javascript').
+  $(function () {
+  $('#notific8Family').on(
+  'change',
+  function(event) {
+  $family = $(event.currentTarget);
+  family = $family.val()
+  $theme = $('#notific8Theme')
+  $theme.find('option:selected').prop('selected', false);
+  $theme.find('option').hide();
+  $theme.find('option[data-for="' + family + '"]').show()
+  $theme.find('option[data-for="' + family + '"][data-selected]').prop('selected', true)
+  }
+  )
+  $('#notific8Test').on('click', function (event) {
+  var params = {
+  life: $('#notific8Life').find('option:selected').val(),
+  family: $('#notific8Family').find('option:selected').val(),
+  theme: $('#notific8Theme').val(),
+  sticky: $('#notific8Sticky').is(':checked'),
+  horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
+  verticalEdge: $('#notific8vertical').find('option:selected').val(),
+  namespace: $('#notific8Namespace').val(),
+  onInit: function(data) {
+  if (window.console) {
+  console.log('--onInit--');
+  console.log('data:');
+  console.log(data);
+  }
+  },
+  onCreate: function(notification, data) {
+  if (window.console) {
+  console.log('--onCreate--');
+  console.log('notification:');
+  console.log(notification);
+  console.log('data:');
+  console.log(data);
+  }
+  },
+  onClose: function(notification, data) {
+  if (window.console) {
+  console.log('--onClose--');
+  console.log('notification:');
+  console.log(notification);
+  console.log('data:');
+  console.log(data);
+  }
+  }
+  },
+  text = $('#notific8Text').val(),
+  $heading = $('#notific8Heading'),
+  $closeText = $('#notific8CloseText'),
+  $icon = $('#notific8Icon');
+  if ($.trim($heading.val()) !== '') {
+  params.heading = $heading.val();
+  }
+  if ($.trim($icon.val()) !== '') {
+  params.icon = $icon.val();
+  }
+  if ($.trim($closeText.val()) !== '') {
+  params.closeText = $closeText.val();
+  }
+  // show notification
+  $.notific8(text, params);
+  });
+  $('#notific8Family').trigger('change');
+  });

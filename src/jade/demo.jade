@@ -1,0 +1,261 @@
+h1 jQuery notific8 demo
+p
+  | notific8 is a notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple theme families built in. The Sass files can be included in a project for easy customizations.
+p Use the fields below to test the different options for the plug-in.
+p
+  | To see the 
+  i onInit(data)
+  | , 
+  i onCreate(notification, data)
+  | , and 
+  i onClose(notification, data)
+  |  actions functioning, open your browser's developer tools' console view.
+table
+  tbody
+    tr
+      td.label
+        label(for='notific8Text') Notification text
+      td
+        input#notific8Text(type='text', name='notific8Text', size='50', maxlength='100', value='notific8 was inspired by Windows 8 notifications')
+    tr
+      td.label
+        label(for='notific8Sticky') Sticky
+      td
+        input#notific8Sticky(type='checkbox', name='notific8Sticky')
+        |  (if checked, setting life below will be ignored)
+    tr
+      td.label
+        label(for='notific8Life') Life
+      td
+        select#notific8Life(name='notific8Life')
+          option(value='1000') 1 second
+          option(value='5000') 5 seconds
+          option(value='10000', selected='selected') 10 seconds (default)
+          option(value='25000') 25 seconds
+          option(value='60000') 60 seconds
+    tr
+      td.label
+        label(for='notific8Heading') Heading (optional)
+      td
+        input#notific8Heading(type='text', name='notific8Heading', size='50', maxlength='50')
+    tr
+      td.label
+        label(for='notific8CloseText') Close text (optional)
+      td
+        input#notific8CloseText(type='text', name='notific8CloseText', size='50', maxlength='50')
+    tr
+      td.label
+        label(for='notific8Icon') Icon (optional)
+      td
+        select#notific8Icon(name='notific8Icon')
+          option(value='') - None -
+          option(value='trash-bin') trash-bin
+          option(value='pencil') pencil
+          option(value='lifebuoy') lifebuoy
+          option(value='info-circled') info-circled
+          option(value='fontawesome-webfont') fontawesome-webfont
+          option(value='barcode') barcode
+          option(value='book') book
+          option(value='calendar') calendar
+          option(value='briefcase-case-two') briefcase-case-two
+          option(value='camera-retro') camera-retro
+          option(value='chat-bubble-two') chat-bubble-two
+          option(value='check-mark-2') check-mark-2
+          option(value='cloud') cloud
+          option(value='cloud-download') cloud-download
+          option(value='cloud-upload') cloud-upload
+          option(value='code') code
+          option(value='code-fork') code-fork
+          option(value='cog-gear') cog-gear
+          option(value='css3') css3
+          option(value='cut-scissor') cut-scissor
+          option(value='dropbox') dropbox
+          option(value='facebook-square') facebook-square
+          option(value='file-document') file-document
+          option(value='files') files
+          option(value='filmstrip') filmstrip
+          option(value='flag') flag
+          option(value='folder2') folder2
+          option(value='globe-world') globe-world
+          option(value='google-plus') google-plus
+          option(value='group') group
+          option(value='heart') heart
+          option(value='instagram') instagram
+          option(value='html5') html5
+          option(value='like-filled') like-filled
+          option(value='linkedin-square') linkedin-square
+          option(value='link') link
+          option(value='log-in') log-in
+          option(value='log-out') log-out
+          option(value='male') male
+          option(value='pinterest-square') pinterest-square
+          option(value='photo') photo
+          option(value='qrcode') qrcode
+          option(value='power-off') power-off
+          option(value='random') random
+          option(value='repeat-redo') repeat-redo
+          option(value='reply-all') reply-all
+          option(value='reply-mail') reply-mail
+          option(value='retweet') retweet
+          option(value='rss') rss
+          option(value='save-disk') save-disk
+          option(value='science-laboratory') science-laboratory
+          option(value='stackoverflow') stackoverflow
+          option(value='skype') skype
+          option(value='star') star
+          option(value='star-half') star-half
+          option(value='star-half-1') star-half-1
+          option(value='star-two') star-two
+          option(value='tachometer') tachometer
+          option(value='tag-2') tag-2
+          option(value='ticket') ticket
+          option(value='talk-chat-2') talk-chat-2
+          option(value='talk-chat') talk-chat
+          option(value='tumblr-square') tumblr-square
+          option(value='twitter-square') twitter-square
+          option(value='umbrella') umbrella
+          option(value='user') user
+          option(value='video-camera') video-camera
+          option(value='volume-down') volume-down
+          option(value='volume-down-1') volume-down-1
+          option(value='volume-up') volume-up
+          option(value='window-list') window-list
+          option(value='windows') windows
+          option(value='youtube-square') youtube-square
+          option(value='linux') linux
+          option(value='android') android
+          option(value='apple') apple
+          option(value='bar-chart') bar-chart
+          option(value='bitbucket') bitbucket
+          option(value='box-inbox') box-inbox
+          option(value='bullhorn') bullhorn
+          option(value='bug') bug
+          option(value='compass') compass
+          option(value='credit-card') credit-card
+          option(value='cutlery') cutlery
+          option(value='dollar') dollar
+          option(value='euro') euro
+          option(value='bitcoin') bitcoin
+          option(value='exclamation-triangle') exclamation-triangle
+          option(value='external-link') external-link
+          option(value='eye') eye
+          option(value='eye-slash-close') eye-slash-close
+          option(value='facebook') facebook
+          option(value='file-text') file-text
+          option(value='filter') filter
+          option(value='folder-open') folder-open
+          option(value='google-plus-1') google-plus-1
+          option(value='github-square') github-square
+          option(value='github') github
+          option(value='gears-setting') gears-setting
+          option(value='gamepad') gamepad
+          option(value='harddrive') harddrive
+          option(value='home') home
+          option(value='leaf') leaf
+          option(value='location-arrow') location-arrow
+          option(value='magic-wand') magic-wand
+          option(value='mail-forward') mail-forward
+          option(value='mic') mic
+          option(value='mic-no') mic-no
+          option(value='moon-sleep') moon-sleep
+          option(value='minus-circle') minus-circle
+          option(value='paper-clip') paper-clip
+          option(value='pin-map') pin-map
+          option(value='pin-map-2') pin-map-2
+          option(value='pinterest') pinterest
+          option(value='plane-airport') plane-airport
+          option(value='pound') pound
+          option(value='present-gift') present-gift
+          option(value='ptint') ptint
+          option(value='refresh') refresh
+          option(value='road') road
+          option(value='rss-two') rss-two
+          option(value='rupee') rupee
+          option(value='shield') shield
+          option(value='sitemap') sitemap
+          option(value='smile') smile
+          option(value='smiley-frown') smiley-frown
+          option(value='smiley-meh') smiley-meh
+          option(value='tablet') tablet
+          option(value='tag') tag
+          option(value='tags') tags
+          option(value='tasks') tasks
+          option(value='thumbnails') thumbnails
+          option(value='thumbnails-large') thumbnails-large
+          option(value='undo') undo
+          option(value='tumblr') tumblr
+          option(value='twitter') twitter
+          option(value='tint') tint
+          option(value='won') won
+          option(value='wrench') wrench
+          option(value='yen') yen
+          option(value='youtube') youtube
+          option(value='youtube-play') youtube-play
+          option(value='unlock') unlock
+          option(value='unlock-2') unlock-2
+          option(value='amazon') amazon
+          option(value='app-store') app-store
+          option(value='basecamp') basecamp
+          option(value='blogger') blogger
+          option(value='evernote') evernote
+          option(value='dropbox-1') dropbox-1
+          option(value='digg') digg
+          option(value='pandora') pandora
+          option(value='reddit') reddit
+          option(value='steam') steam
+          option(value='stumbleupon') stumbleupon
+          option(value='vimeo') vimeo
+          option(value='ie') ie
+          option(value='chrome') chrome
+          option(value='firefox') firefox
+          option(value='safari') safari
+    tr
+      td.label
+        label(for='notific8Family') Theme Family
+      td
+        select#notific8Family(name='notific8Family')
+          option(value='legacy', selected='') legacy (default)
+          option(value='chicchat') ChicChat
+          option(value='atomic') Atomic
+    tr
+      td.label
+        label(for='notific8Theme') Theme
+      td
+        select#notific8Theme(name='notific8Theme')
+          option(value='teal', data-for='legacy', data-selected='') teal
+          option(value='amethyst', data-for='legacy') amethyst
+          option(value='ruby', data-for='legacy') ruby
+          option(value='tangerine', data-for='legacy') tangerine
+          option(value='lemon', data-for='legacy') lemon
+          option(value='lime', data-for='legacy') lime
+          option(value='ebony', data-for='legacy') ebony
+          option(value='smoke', data-for='legacy') smoke
+          option(value='cobalt', data-for='chicchat', data-selected='') cobalt
+          option(value='ruby', data-for='chicchat') ruby
+          option(value='honey', data-for='chicchat') honey
+          option(value='shamrock', data-for='chicchat') shamrock
+          option(value='amethyst', data-for='atomic', data-selected='') amethyst
+          option(value='cerulean', data-for='atomic') cerulean
+          option(value='mustard', data-for='atomic') mustard
+          option(value='onyx', data-for='atomic') onyx
+          option(value='pear', data-for='atomic') pear
+          option(value='tomato', data-for='atomic') tomato
+    tr
+      td.label Position
+      td
+        select#notific8horizontal(name='notific8horizontal')
+          option(value='top') top (default)
+          option(value='bottom') bottom
+        select#notific8vertical(name='notific8vertical')
+          option(value='right') right (default)
+          option(value='left') left
+    tr
+      td.label CSS Namespace
+      td
+        b notific8
+        |  (default, only value available for the demo)
+        input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
+    tr
+      td.label
+      td
+        button#notific8Test(type='button', name='notific8Test') Test notific8

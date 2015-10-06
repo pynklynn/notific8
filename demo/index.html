@@ -1,393 +1,75 @@
-<!doctype html>
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>notific8 demo</title>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" media="screen">
-  <link rel="stylesheet" href="../dist/jquery.notific8.css" media="screen">
-  <style>
-    table td {
-      padding: 0.5em;
-    }
-    table td.label {
-      font-weight: bold;
-      text-align: right;
-    }
-    #notific8Theme option {
-      display: none;
-    }
-  </style>
-</head>
-
-<body>
-
-  <h1>jQuery notific8 demo</h1>
-
-  <p>notific8 is a notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple theme families built in. The Sass files can be included in a project for easy customizations.</p>
-  <p>Use the fields below to test the different options for the plug-in.</p>
-  <p>To see the <i>onInit(data)</i>, <i>onCreate(notification, data)</i>, and <i>onClose(notification, data)</i> actions functioning, open your browser's developer tools' console view.</p>
-  <table>
-    <tbody>
-      <tr>
-        <td class="label">
-          <label for="notific8Text">Notification text</label>
-        </td>
-        <td>
-          <input type="text" name="notific8Text" id="notific8Text" size="50" maxlength="100" value="notific8 was inspired by Windows 8 notifications" />
-        </td>
-      </tr>
-      <tr>
-        <td class="label">
-          <label for="notific8Sticky">Sticky</label>
-        </td>
-        <td>
-          <input type="checkbox" name="notific8Sticky" id="notific8Sticky" /> (if checked, setting life below will be ignored)
-        </td>
-      </tr>
-      <tr>
-        <td class="label">
-          <label for="notific8Life">Life</label>
-        </td>
-        <td>
-          <select name="notific8Life" id="notific8Life">
-            <option value="1000">1 second</option>
-            <option value="5000">5 seconds</option>
-            <option value="10000" selected="selected">10 seconds (default)</option>
-            <option value="25000">25 seconds</option>
-            <option value="60000">60 seconds</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td class="label">
-          <label for="notific8Heading">Heading (optional)</label>
-        </td>
-        <td>
-          <input type="text" name="notific8Heading" id="notific8Heading" size="50" maxlength="50" />
-        </td>
-      </tr>
-      <tr>
-        <td class="label">
-          <label for="notific8CloseText">Close text (optional)</label>
-        </td>
-        <td>
-          <input type="text" id="notific8CloseText" name="notific8CloseText" size="50" maxlength="50">
-        </td>
-      </tr>
-      <tr>
-        <td class="label">
-          <label for="notific8Icon">Icon (optional)</label>
-        </td>
-        <td>
-          <select name="notific8Icon" id="notific8Icon">
-            <option value="">- None -</option>
-            <option value="trash-bin">trash-bin</option>
-            <option value="pencil">pencil</option>
-            <option value="lifebuoy">lifebuoy</option>
-            <option value="info-circled">info-circled</option>
-            <option value="fontawesome-webfont">fontawesome-webfont</option>
-            <option value="barcode">barcode</option>
-            <option value="book">book</option>
-            <option value="calendar">calendar</option>
-            <option value="briefcase-case-two">briefcase-case-two</option>
-            <option value="camera-retro">camera-retro</option>
-            <option value="chat-bubble-two">chat-bubble-two</option>
-            <option value="check-mark-2">check-mark-2</option>
-            <option value="cloud">cloud</option>
-            <option value="cloud-download">cloud-download</option>
-            <option value="cloud-upload">cloud-upload</option>
-            <option value="code">code</option>
-            <option value="code-fork">code-fork</option>
-            <option value="cog-gear">cog-gear</option>
-            <option value="css3">css3</option>
-            <option value="cut-scissor">cut-scissor</option>
-            <option value="dropbox">dropbox</option>
-            <option value="facebook-square">facebook-square</option>
-            <option value="file-document">file-document</option>
-            <option value="files">files</option>
-            <option value="filmstrip">filmstrip</option>
-            <option value="flag">flag</option>
-            <option value="folder2">folder2</option>
-            <option value="globe-world">globe-world</option>
-            <option value="google-plus">google-plus</option>
-            <option value="group">group</option>
-            <option value="heart">heart</option>
-            <option value="instagram">instagram</option>
-            <option value="html5">html5</option>
-            <option value="like-filled">like-filled</option>
-            <option value="linkedin-square">linkedin-square</option>
-            <option value="link">link</option>
-            <option value="log-in">log-in</option>
-            <option value="log-out">log-out</option>
-            <option value="male">male</option>
-            <option value="pinterest-square">pinterest-square</option>
-            <option value="photo">photo</option>
-            <option value="qrcode">qrcode</option>
-            <option value="power-off">power-off</option>
-            <option value="random">random</option>
-            <option value="repeat-redo">repeat-redo</option>
-            <option value="reply-all">reply-all</option>
-            <option value="reply-mail">reply-mail</option>
-            <option value="retweet">retweet</option>
-            <option value="rss">rss</option>
-            <option value="save-disk">save-disk</option>
-            <option value="science-laboratory">science-laboratory</option>
-            <option value="stackoverflow">stackoverflow</option>
-            <option value="skype">skype</option>
-            <option value="star">star</option>
-            <option value="star-half">star-half</option>
-            <option value="star-half-1">star-half-1</option>
-            <option value="star-two">star-two</option>
-            <option value="tachometer">tachometer</option>
-            <option value="tag-2">tag-2</option>
-            <option value="ticket">ticket</option>
-            <option value="talk-chat-2">talk-chat-2</option>
-            <option value="talk-chat">talk-chat</option>
-            <option value="tumblr-square">tumblr-square</option>
-            <option value="twitter-square">twitter-square</option>
-            <option value="umbrella">umbrella</option>
-            <option value="user">user</option>
-            <option value="video-camera">video-camera</option>
-            <option value="volume-down">volume-down</option>
-            <option value="volume-down-1">volume-down-1</option>
-            <option value="volume-up">volume-up</option>
-            <option value="window-list">window-list</option>
-            <option value="windows">windows</option>
-            <option value="youtube-square">youtube-square</option>
-            <option value="linux">linux</option>
-            <option value="android">android</option>
-            <option value="apple">apple</option>
-            <option value="bar-chart">bar-chart</option>
-            <option value="bitbucket">bitbucket</option>
-            <option value="box-inbox">box-inbox</option>
-            <option value="bullhorn">bullhorn</option>
-            <option value="bug">bug</option>
-            <option value="compass">compass</option>
-            <option value="credit-card">credit-card</option>
-            <option value="cutlery">cutlery</option>
-            <option value="dollar">dollar</option>
-            <option value="euro">euro</option>
-            <option value="bitcoin">bitcoin</option>
-            <option value="exclamation-triangle">exclamation-triangle</option>
-            <option value="external-link">external-link</option>
-            <option value="eye">eye</option>
-            <option value="eye-slash-close">eye-slash-close</option>
-            <option value="facebook">facebook</option>
-            <option value="file-text">file-text</option>
-            <option value="filter">filter</option>
-            <option value="folder-open">folder-open</option>
-            <option value="google-plus-1">google-plus-1</option>
-            <option value="github-square">github-square</option>
-            <option value="github">github</option>
-            <option value="gears-setting">gears-setting</option>
-            <option value="gamepad">gamepad</option>
-            <option value="harddrive">harddrive</option>
-            <option value="home">home</option>
-            <option value="leaf">leaf</option>
-            <option value="location-arrow">location-arrow</option>
-            <option value="magic-wand">magic-wand</option>
-            <option value="mail-forward">mail-forward</option>
-            <option value="mic">mic</option>
-            <option value="mic-no">mic-no</option>
-            <option value="moon-sleep">moon-sleep</option>
-            <option value="minus-circle">minus-circle</option>
-            <option value="paper-clip">paper-clip</option>
-            <option value="pin-map">pin-map</option>
-            <option value="pin-map-2">pin-map-2</option>
-            <option value="pinterest">pinterest</option>
-            <option value="plane-airport">plane-airport</option>
-            <option value="pound">pound</option>
-            <option value="present-gift">present-gift</option>
-            <option value="ptint">ptint</option>
-            <option value="refresh">refresh</option>
-            <option value="road">road</option>
-            <option value="rss-two">rss-two</option>
-            <option value="rupee">rupee</option>
-            <option value="shield">shield</option>
-            <option value="sitemap">sitemap</option>
-            <option value="smile">smile</option>
-            <option value="smiley-frown">smiley-frown</option>
-            <option value="smiley-meh">smiley-meh</option>
-            <option value="tablet">tablet</option>
-            <option value="tag">tag</option>
-            <option value="tags">tags</option>
-            <option value="tasks">tasks</option>
-            <option value="thumbnails">thumbnails</option>
-            <option value="thumbnails-large">thumbnails-large</option>
-            <option value="undo">undo</option>
-            <option value="tumblr">tumblr</option>
-            <option value="twitter">twitter</option>
-            <option value="tint">tint</option>
-            <option value="won">won</option>
-            <option value="wrench">wrench</option>
-            <option value="yen">yen</option>
-            <option value="youtube">youtube</option>
-            <option value="youtube-play">youtube-play</option>
-            <option value="unlock">unlock</option>
-            <option value="unlock-2">unlock-2</option>
-            <option value="amazon">amazon</option>
-            <option value="app-store">app-store</option>
-            <option value="basecamp">basecamp</option>
-            <option value="blogger">blogger</option>
-            <option value="evernote">evernote</option>
-            <option value="dropbox-1">dropbox-1</option>
-            <option value="digg">digg</option>
-            <option value="pandora">pandora</option>
-            <option value="reddit">reddit</option>
-            <option value="steam">steam</option>
-            <option value="stumbleupon">stumbleupon</option>
-            <option value="vimeo">vimeo</option>
-            <option value="ie">ie</option>
-            <option value="chrome">chrome</option>
-            <option value="firefox">firefox</option>
-            <option value="safari">safari</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td class="label"><label for="notific8Family">Theme Family</label></td>
-        <td>
-           <select name="notific8Family" id="notific8Family">
-            <option value="legacy" selected>legacy (default)</option>
-            <option value="chicchat">ChicChat</option>
-            <option value="atomic">Atomic</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td class="label">
-          <label for="notific8Theme">Theme</label>
-        </td>
-        <td>
-          <select name="notific8Theme" id="notific8Theme">
-            <option value="teal" data-for="legacy" data-selected>teal</option>
-            <option value="amethyst" data-for="legacy">amethyst</option>
-            <option value="ruby" data-for="legacy">ruby</option>
-            <option value="tangerine" data-for="legacy">tangerine</option>
-            <option value="lemon" data-for="legacy">lemon</option>
-            <option value="lime" data-for="legacy">lime</option>
-            <option value="ebony" data-for="legacy">ebony</option>
-            <option value="smoke" data-for="legacy">smoke</option>
-
-            <option value="cobalt" data-for="chicchat" data-selected>cobalt</option>
-            <option value="ruby" data-for="chicchat">ruby</option>
-            <option value="honey" data-for="chicchat">honey</option>
-            <option value="shamrock" data-for="chicchat">shamrock</option>
-
-            <option value="amethyst" data-for="atomic" data-selected>amethyst</option>
-            <option value="cerulean" data-for="atomic">cerulean</option>
-            <option value="mustard" data-for="atomic">mustard</option>
-            <option value="onyx" data-for="atomic">onyx</option>
-            <option value="pear" data-for="atomic">pear</option>
-            <option value="tomato" data-for="atomic">tomato</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td class="label">Position</td>
-        <td>
-          <select name="notific8horizontal" id="notific8horizontal">
-            <option value="top">top (default)</option>
-            <option value="bottom">bottom</option>
-          </select>
-          <select name="notific8vertical" id="notific8vertical">
-            <option value="right">right (default)</option>
-            <option value="left">left</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td class="label">CSS Namespace</td>
-        <td>
-          <b>notific8</b> (default, only value available for the demo)
-          <input type="hidden" name="notific8Namespace" id="notific8Namespace" value="notific8">
-        </td>
-      </tr>
-      <tr>
-        <td class="label"></td>
-        <td>
-          <button type="button" name="notific8Test" id="notific8Test">Test notific8</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- script includes -->
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="../dist/jquery.notific8.js"></script>
-  <script type="text/javascript">
-    $(function () {
-      $('#notific8Family').on(
-        'change',
-        function(event) {
-          $family = $(event.currentTarget);
-          family = $family.val()
-          $theme = $('#notific8Theme')
-          $theme.find('option:selected').prop('selected', false);
-          $theme.find('option').hide();
-          $theme.find('option[data-for="' + family + '"]').show()
-          $theme.find('option[data-for="' + family + '"][data-selected]').prop('selected', true)
-        }
-      )
-
-      $('#notific8Test').on('click', function (event) {
-        var params = {
-            life: $('#notific8Life').find('option:selected').val(),
-            family: $('#notific8Family').find('option:selected').val(),
-            theme: $('#notific8Theme').val(),
-            sticky: $('#notific8Sticky').is(':checked'),
-            horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
-            verticalEdge: $('#notific8vertical').find('option:selected').val(),
-            namespace: $('#notific8Namespace').val(),
-            onInit: function(data) {
-              if (window.console) {
-                console.log('--onInit--');
-                console.log('data:');
-                console.log(data);
-              }
-            },
-            onCreate: function(notification, data) {
-              if (window.console) {
-                console.log('--onCreate--');
-                console.log('notification:');
-                console.log(notification);
-                console.log('data:');
-                console.log(data);
-              }
-            },
-            onClose: function(notification, data) {
-              if (window.console) {
-                console.log('--onClose--');
-                console.log('notification:');
-                console.log(notification);
-                console.log('data:');
-                console.log(data);
-              }
-            }
-          },
-          text = $('#notific8Text').val(),
-          $heading = $('#notific8Heading'),
-          $closeText = $('#notific8CloseText'),
-          $icon = $('#notific8Icon');
-
-        if ($.trim($heading.val()) !== '') {
-          params.heading = $heading.val();
-        }
-        if ($.trim($icon.val()) !== '') {
-          params.icon = $icon.val();
-        }
-        if ($.trim($closeText.val()) !== '') {
-          params.closeText = $closeText.val();
-        }
-
-        // show notification
-        $.notific8(text, params);
-      });
-
-      $('#notific8Family').trigger('change');
-    });
-  </script>
-</body>
-
-</html>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>notific8 demo</title><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" media="screen"><link rel="stylesheet" href="../dist/jquery.notific8.css" media="screen"><style>table td {
+padding: 0.5em;
+}
+table td.label {
+font-weight: bold;
+text-align: right;
+}
+#notific8Theme option {
+display: none;
+}</style></head><body><h1>jQuery notific8 demo</h1><p>notific8 is a notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple theme families built in. The Sass files can be included in a project for easy customizations.</p><p>Use the fields below to test the different options for the plug-in.</p><p>To see the <i>onInit(data)</i>, <i>onCreate(notification, data)</i>, and <i>onClose(notification, data)</i> actions functioning, open your browser's developer tools' console view.</p><table><tbody><tr><td class="label"><label for="notific8Text">Notification text</label></td><td><input id="notific8Text" type="text" name="notific8Text" size="50" maxlength="100" value="notific8 was inspired by Windows 8 notifications"></td></tr><tr><td class="label"><label for="notific8Sticky">Sticky</label></td><td><input id="notific8Sticky" type="checkbox" name="notific8Sticky"> (if checked, setting life below will be ignored)</td></tr><tr><td class="label"><label for="notific8Life">Life</label></td><td><select id="notific8Life" name="notific8Life"><option value="1000">1 second</option><option value="5000">5 seconds</option><option value="10000" selected="selected">10 seconds (default)</option><option value="25000">25 seconds</option><option value="60000">60 seconds</option></select></td></tr><tr><td class="label"><label for="notific8Heading">Heading (optional)</label></td><td><input id="notific8Heading" type="text" name="notific8Heading" size="50" maxlength="50"></td></tr><tr><td class="label"><label for="notific8CloseText">Close text (optional)</label></td><td><input id="notific8CloseText" type="text" name="notific8CloseText" size="50" maxlength="50"></td></tr><tr><td class="label"><label for="notific8Icon">Icon (optional)</label></td><td><select id="notific8Icon" name="notific8Icon"><option value="">- None -</option><option value="trash-bin">trash-bin</option><option value="pencil">pencil</option><option value="lifebuoy">lifebuoy</option><option value="info-circled">info-circled</option><option value="fontawesome-webfont">fontawesome-webfont</option><option value="barcode">barcode</option><option value="book">book</option><option value="calendar">calendar</option><option value="briefcase-case-two">briefcase-case-two</option><option value="camera-retro">camera-retro</option><option value="chat-bubble-two">chat-bubble-two</option><option value="check-mark-2">check-mark-2</option><option value="cloud">cloud</option><option value="cloud-download">cloud-download</option><option value="cloud-upload">cloud-upload</option><option value="code">code</option><option value="code-fork">code-fork</option><option value="cog-gear">cog-gear</option><option value="css3">css3</option><option value="cut-scissor">cut-scissor</option><option value="dropbox">dropbox</option><option value="facebook-square">facebook-square</option><option value="file-document">file-document</option><option value="files">files</option><option value="filmstrip">filmstrip</option><option value="flag">flag</option><option value="folder2">folder2</option><option value="globe-world">globe-world</option><option value="google-plus">google-plus</option><option value="group">group</option><option value="heart">heart</option><option value="instagram">instagram</option><option value="html5">html5</option><option value="like-filled">like-filled</option><option value="linkedin-square">linkedin-square</option><option value="link">link</option><option value="log-in">log-in</option><option value="log-out">log-out</option><option value="male">male</option><option value="pinterest-square">pinterest-square</option><option value="photo">photo</option><option value="qrcode">qrcode</option><option value="power-off">power-off</option><option value="random">random</option><option value="repeat-redo">repeat-redo</option><option value="reply-all">reply-all</option><option value="reply-mail">reply-mail</option><option value="retweet">retweet</option><option value="rss">rss</option><option value="save-disk">save-disk</option><option value="science-laboratory">science-laboratory</option><option value="stackoverflow">stackoverflow</option><option value="skype">skype</option><option value="star">star</option><option value="star-half">star-half</option><option value="star-half-1">star-half-1</option><option value="star-two">star-two</option><option value="tachometer">tachometer</option><option value="tag-2">tag-2</option><option value="ticket">ticket</option><option value="talk-chat-2">talk-chat-2</option><option value="talk-chat">talk-chat</option><option value="tumblr-square">tumblr-square</option><option value="twitter-square">twitter-square</option><option value="umbrella">umbrella</option><option value="user">user</option><option value="video-camera">video-camera</option><option value="volume-down">volume-down</option><option value="volume-down-1">volume-down-1</option><option value="volume-up">volume-up</option><option value="window-list">window-list</option><option value="windows">windows</option><option value="youtube-square">youtube-square</option><option value="linux">linux</option><option value="android">android</option><option value="apple">apple</option><option value="bar-chart">bar-chart</option><option value="bitbucket">bitbucket</option><option value="box-inbox">box-inbox</option><option value="bullhorn">bullhorn</option><option value="bug">bug</option><option value="compass">compass</option><option value="credit-card">credit-card</option><option value="cutlery">cutlery</option><option value="dollar">dollar</option><option value="euro">euro</option><option value="bitcoin">bitcoin</option><option value="exclamation-triangle">exclamation-triangle</option><option value="external-link">external-link</option><option value="eye">eye</option><option value="eye-slash-close">eye-slash-close</option><option value="facebook">facebook</option><option value="file-text">file-text</option><option value="filter">filter</option><option value="folder-open">folder-open</option><option value="google-plus-1">google-plus-1</option><option value="github-square">github-square</option><option value="github">github</option><option value="gears-setting">gears-setting</option><option value="gamepad">gamepad</option><option value="harddrive">harddrive</option><option value="home">home</option><option value="leaf">leaf</option><option value="location-arrow">location-arrow</option><option value="magic-wand">magic-wand</option><option value="mail-forward">mail-forward</option><option value="mic">mic</option><option value="mic-no">mic-no</option><option value="moon-sleep">moon-sleep</option><option value="minus-circle">minus-circle</option><option value="paper-clip">paper-clip</option><option value="pin-map">pin-map</option><option value="pin-map-2">pin-map-2</option><option value="pinterest">pinterest</option><option value="plane-airport">plane-airport</option><option value="pound">pound</option><option value="present-gift">present-gift</option><option value="ptint">ptint</option><option value="refresh">refresh</option><option value="road">road</option><option value="rss-two">rss-two</option><option value="rupee">rupee</option><option value="shield">shield</option><option value="sitemap">sitemap</option><option value="smile">smile</option><option value="smiley-frown">smiley-frown</option><option value="smiley-meh">smiley-meh</option><option value="tablet">tablet</option><option value="tag">tag</option><option value="tags">tags</option><option value="tasks">tasks</option><option value="thumbnails">thumbnails</option><option value="thumbnails-large">thumbnails-large</option><option value="undo">undo</option><option value="tumblr">tumblr</option><option value="twitter">twitter</option><option value="tint">tint</option><option value="won">won</option><option value="wrench">wrench</option><option value="yen">yen</option><option value="youtube">youtube</option><option value="youtube-play">youtube-play</option><option value="unlock">unlock</option><option value="unlock-2">unlock-2</option><option value="amazon">amazon</option><option value="app-store">app-store</option><option value="basecamp">basecamp</option><option value="blogger">blogger</option><option value="evernote">evernote</option><option value="dropbox-1">dropbox-1</option><option value="digg">digg</option><option value="pandora">pandora</option><option value="reddit">reddit</option><option value="steam">steam</option><option value="stumbleupon">stumbleupon</option><option value="vimeo">vimeo</option><option value="ie">ie</option><option value="chrome">chrome</option><option value="firefox">firefox</option><option value="safari">safari</option></select></td></tr><tr><td class="label"><label for="notific8Family">Theme Family</label></td><td><select id="notific8Family" name="notific8Family"><option value="legacy" selected="">legacy (default)</option><option value="chicchat">ChicChat</option><option value="atomic">Atomic</option></select></td></tr><tr><td class="label"><label for="notific8Theme">Theme</label></td><td><select id="notific8Theme" name="notific8Theme"><option value="teal" data-for="legacy" data-selected="">teal</option><option value="amethyst" data-for="legacy">amethyst</option><option value="ruby" data-for="legacy">ruby</option><option value="tangerine" data-for="legacy">tangerine</option><option value="lemon" data-for="legacy">lemon</option><option value="lime" data-for="legacy">lime</option><option value="ebony" data-for="legacy">ebony</option><option value="smoke" data-for="legacy">smoke</option><option value="cobalt" data-for="chicchat" data-selected="">cobalt</option><option value="ruby" data-for="chicchat">ruby</option><option value="honey" data-for="chicchat">honey</option><option value="shamrock" data-for="chicchat">shamrock</option><option value="amethyst" data-for="atomic" data-selected="">amethyst</option><option value="cerulean" data-for="atomic">cerulean</option><option value="mustard" data-for="atomic">mustard</option><option value="onyx" data-for="atomic">onyx</option><option value="pear" data-for="atomic">pear</option><option value="tomato" data-for="atomic">tomato</option></select></td></tr><tr><td class="label">Position</td><td><select id="notific8horizontal" name="notific8horizontal"><option value="top">top (default)</option><option value="bottom">bottom</option></select><select id="notific8vertical" name="notific8vertical"><option value="right">right (default)</option><option value="left">left</option></select></td></tr><tr><td class="label">CSS Namespace</td><td><b>notific8</b> (default, only value available for the demo)<input id="notific8Namespace" type="hidden" name="notific8Namespace" value="notific8"></td></tr><tr><td class="label"></td><td><button id="notific8Test" type="button" name="notific8Test">Test notific8</button></td></tr></tbody></table><!-- script includes--><script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script><script src="../dist/jquery.notific8.js"></script><script type="text/javascript">$(function () {
+$('#notific8Family').on(
+'change',
+function(event) {
+$family = $(event.currentTarget);
+family = $family.val()
+$theme = $('#notific8Theme')
+$theme.find('option:selected').prop('selected', false);
+$theme.find('option').hide();
+$theme.find('option[data-for="' + family + '"]').show()
+$theme.find('option[data-for="' + family + '"][data-selected]').prop('selected', true)
+}
+)
+$('#notific8Test').on('click', function (event) {
+var params = {
+life: $('#notific8Life').find('option:selected').val(),
+family: $('#notific8Family').find('option:selected').val(),
+theme: $('#notific8Theme').val(),
+sticky: $('#notific8Sticky').is(':checked'),
+horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
+verticalEdge: $('#notific8vertical').find('option:selected').val(),
+namespace: $('#notific8Namespace').val(),
+onInit: function(data) {
+if (window.console) {
+console.log('--onInit--');
+console.log('data:');
+console.log(data);
+}
+},
+onCreate: function(notification, data) {
+if (window.console) {
+console.log('--onCreate--');
+console.log('notification:');
+console.log(notification);
+console.log('data:');
+console.log(data);
+}
+},
+onClose: function(notification, data) {
+if (window.console) {
+console.log('--onClose--');
+console.log('notification:');
+console.log(notification);
+console.log('data:');
+console.log(data);
+}
+}
+},
+text = $('#notific8Text').val(),
+$heading = $('#notific8Heading'),
+$closeText = $('#notific8CloseText'),
+$icon = $('#notific8Icon');
+if ($.trim($heading.val()) !== '') {
+params.heading = $heading.val();
+}
+if ($.trim($icon.val()) !== '') {
+params.icon = $icon.val();
+}
+if ($.trim($closeText.val()) !== '') {
+params.closeText = $closeText.val();
+}
+// show notification
+$.notific8(text, params);
+});
+$('#notific8Family').trigger('change');
+});</script></body></html>
