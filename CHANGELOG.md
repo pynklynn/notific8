@@ -2,6 +2,16 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 2.3.0
+
+- Removed unused code
+- Refined the build process
+    - Cleans up the src/ directory
+    - Makes use of an untracked build directory for intermediary files
+    - Added task to update the bower and jquery info files from package.json's version
+- Converted the demo page to Jade for easy inclusion in other sites
+    - Note: the use of include instead of extend in the index.jade file is intentional for easy drop-in use
+
 ## 2.2.0
 
 - Changing the project's name to notific8. The old URL for GitHub will still work.
