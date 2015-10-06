@@ -44,7 +44,6 @@ http://opensource.org/licenses/BSD-3-Clause
       data = $this.data("notific8")
       num = Number($("body").data("notific8s"))
       animate = "margin-" + data.settings.verticalEdge
-      styles = {}
       vEdge = data.settings.verticalEdge
       hEdge = data.settings.horizontalEdge
       $container = $(".#{data.settings.namespace}-container.#{vEdge}.#{hEdge}")
@@ -287,13 +286,13 @@ http://opensource.org/licenses/BSD-3-Clause
 
     switch message
       when "configure", "config"
-        return methods.configure.apply(this, [options])
+        return methods.configure.apply(@, [options])
       when "zindex"
-        return methods.zindex.apply(this, [options])
+        return methods.zindex.apply(@, [options])
       when "destroy"
-        return methods.destroy.apply(this, [options])
+        return methods.destroy.apply(@, [options])
       when "remove"
-        return methods.remove.apply(this, [options])
+        return methods.remove.apply(@, [options])
       else
         # make sure that the stack containers exist
         containerClass = "#{options.namespace}-container"
@@ -314,9 +313,9 @@ http://opensource.org/licenses/BSD-3-Clause
   plugin setup
   ###
   $.fn.notific8 = (message, options) ->
-    self = this
+    self = @
     if typeof message is "string"
-      methods.init.apply this, arguments
+      methods.init.apply @, arguments
     else
       $.error "jQuery.notific8 takes a string message as the first parameter"
     return

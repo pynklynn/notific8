@@ -44,11 +44,10 @@ http://opensource.org/licenses/BSD-3-Clause
     @param object $this
      */
     buildNotification = function($this) {
-      var $container, $notification, animate, data, hEdge, notification, notificationId, num, styles, vEdge;
+      var $container, $notification, animate, data, hEdge, notification, notificationId, num, vEdge;
       data = $this.data("notific8");
       num = Number($("body").data("notific8s"));
       animate = "margin-" + data.settings.verticalEdge;
-      styles = {};
       vEdge = data.settings.verticalEdge;
       hEdge = data.settings.horizontalEdge;
       $container = $("." + data.settings.namespace + "-container." + vEdge + "." + hEdge);
