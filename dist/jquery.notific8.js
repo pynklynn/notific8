@@ -238,7 +238,7 @@ http://opensource.org/licenses/BSD-3-Clause
    */
   $.notific8 = function(message, options) {
     var containerClass, hEdge, vEdge;
-    if (typeof options === "undefined") {
+    if (options == null) {
       options = {};
     }
     if (!options.hasOwnProperty('namespace')) {

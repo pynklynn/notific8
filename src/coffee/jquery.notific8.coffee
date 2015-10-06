@@ -280,7 +280,7 @@ http://opensource.org/licenses/BSD-3-Clause
   @param object options
   ###
   $.notific8 = (message, options) ->
-    options = {} if typeof options is "undefined"
+    options = {} unless options?
     unless options.hasOwnProperty('namespace')
       options.namespace = 'notific8'
 
