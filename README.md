@@ -48,7 +48,7 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 
 ## Wiki
 
-Please view the [https://github.com/ralivue/notific8/wiki](wiki) for information on the options available and how to implement them.
+Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information on the options available and how to implement them.
 
 ## Future development
 
