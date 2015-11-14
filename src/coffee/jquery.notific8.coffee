@@ -7,7 +7,7 @@ http://opensource.org/licenses/BSD-3-Clause
 ###
 (($) ->
   "use strict"
-  
+
   self = undefined
   settings =
     life: 10000
@@ -280,7 +280,7 @@ http://opensource.org/licenses/BSD-3-Clause
   ###
   $.notific8 = (message, options) ->
     options = {} unless options?
-    unless options.hasOwnProperty('namespace')
+    unless options.hasOwnProperty('namespace') || message == 'zindex'
       options.namespace = 'notific8'
 
     switch message

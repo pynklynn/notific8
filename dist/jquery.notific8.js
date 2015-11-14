@@ -239,7 +239,7 @@ http://opensource.org/licenses/BSD-3-Clause
     if (options == null) {
       options = {};
     }
-    if (!options.hasOwnProperty('namespace')) {
+    if (!(options.hasOwnProperty('namespace') || message === 'zindex')) {
       options.namespace = 'notific8';
     }
     switch (message) {
