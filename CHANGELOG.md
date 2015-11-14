@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 2.3.1
+
+- Fixing zindex setting bug
+- Fixed readme link
+
 ## 2.3.0
 
 - Removed unused code
