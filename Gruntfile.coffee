@@ -14,11 +14,12 @@ module.exports = (grunt) ->
   grunt.loadTasks 'grunt'
 
   grunt.registerTask 'default', [
-    'clean:all',
-    'sass',
-    'cssmin',
-    'coffee',
-    'uglify',
+    'clean:all'
+    'sass'
+    'cssmin'
+    'coffee'
+    'uglify'
     'copy:font'
     'copy:code'
+    'watch'
   ]
