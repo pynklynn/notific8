@@ -34,6 +34,12 @@ notific8 = (function() {
     $(window).unbind(".notific8");
     $("." + options.namespace + "-container").remove();
   };
+
+  /*
+  Get the container that the notification is inside of
+  @params object data
+  @return object
+   */
   getContainer = function(data) {
     var containerClass, hEdge, namespace, vEdge;
     vEdge = data.settings.verticalEdge;
@@ -45,7 +51,7 @@ notific8 = (function() {
 
   /*
   Build the notification and add it to the screen's stack
-  @param object $this
+  @param object data
    */
   buildNotification = function(data) {
     var body, container, namespace, notification, notificationId, num;
@@ -183,6 +189,7 @@ notific8 = (function() {
 
   /*
   Initialize the containers for the plug-in
+  @param object options
    */
   initContainers = function(options) {
     var body, container, containerClass, containerStr, parser, _i, _len, _ref;
