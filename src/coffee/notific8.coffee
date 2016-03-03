@@ -35,23 +35,38 @@ notific8 = do ->
     $(".#{options.namespace}-container").remove()
     return
 
+  getContainer = (data) ->
+    vEdge = data.settings.verticalEdge
+    hEdge = data.settings.horizontalEdge
+    namespace = data.settings.namespace
+    containerClass = "#{namespace}-container #{vEdge} #{hEdge}"
+    document.getElementsByClassName(containerClass)[0]
   ###
   Build the notification and add it to the screen's stack
   @param object $this
   ###
-  buildNotification = ($this) ->
-    data = $this.data("notific8")
-    num = Number($("body").data("notific8s"))
-    animate = "margin-" + data.settings.verticalEdge
-    vEdge = data.settings.verticalEdge
-    hEdge = data.settings.horizontalEdge
-    $container = $(".#{data.settings.namespace}-container.#{vEdge}.#{hEdge}")
+  # buildNotification = ($this) ->
+  buildNotification = (data) ->
+    # data = $this.data("notific8")
+    # num = Number($("body").data("notific8s"))
+    body = document.getElementsByTagName('body')[0]
+    num = Number(body.dataset.notific8s)
+    # animate = "margin-" + data.settings.verticalEdge
+    # vEdge = data.settings.verticalEdge
+    # hEdge = data.settings.horizontalEdge
+    namespace = data.settings.namespace
+    # $container = $(".#{data.settings.namespace}-container.#{vEdge}.#{hEdge}")
+    # containerClass = "#{namespace}-container #{vEdge} #{hEdge}"
+    # container = document.getElementsByClassName(containerClass)[0]
+    container = getContainer(data)
     num += 1
 
-    $("body").data "notific8s", num
+    # $("body").data "notific8s", num
+    body.dataset.notific8s = num
 
     # build the notification HTML
-    notificationId = "#{data.settings.namespace}-notification-#{num}"
+    # notificationId = "#{data.settings.namespace}-notification-#{num}"
+    notificationId = "#{namespace}-notification-#{num}"
     notification = """
 <div class="#{notificationClasses(data).join(' ')}" id="#{notificationId}">
 #{buildIcon(data)}
@@ -62,15 +77,19 @@ notific8 = do ->
 """
 
     # add the notification to the stack
-    $notification = $(notification)
-    $container.append $notification
+    # $notification = $(notification)
+    # $container.append $notification
+    container.innerHTML += notification
 
     # call the onCreate handler if it exists
-    data.settings.onCreate $notification, data if data.settings.onCreate
+    # data.settings.onCreate $notification, data if data.settings.onCreate
+    #@TODO data.settings.onCreate notification, data if data.settings.onCreate
 
     # slide the message onto the screen
     setTimeout (->
-      $notification.addClass "open"
+      # $notification.addClass "open"
+      notification = document.getElementById(notificationId)
+      notification.className += " open"
       unless data.settings.sticky
         ((n, l) ->
           setTimeout (->
@@ -78,7 +97,8 @@ notific8 = do ->
             return
           ), l
           return
-        ) $notification, Number(data.settings.life) + 200
+        # ) $notification, Number(data.settings.life) + 200
+        ) notification, Number(data.settings.life) + 200
       return
     ), 5
 
@@ -86,8 +106,10 @@ notific8 = do ->
 
   # region: boolean checkers
   hasIcon = (data) ->
-    return data.settings.hasOwnProperty("icon") and
-      (typeof data.settings.icon is "string")
+    # return data.settings.hasOwnProperty("icon") and
+    #   (typeof data.settings.icon is "string")
+
+    data.settings.icon? and (typeof data.settings.icon is "string")
   # end region: boolean checkers
 
   # region: generators
@@ -103,10 +125,11 @@ notific8 = do ->
     close
 
   buildHeading = (data) ->
-    if (
-      data.settings.hasOwnProperty("heading") and
-      (typeof data.settings.heading is "string")
-    )
+    # if (
+    #   data.settings.hasOwnProperty("heading") and
+    #   (typeof data.settings.heading is "string")
+    # )
+    if data.settings.heading? and (typeof data.settings.heading is "string")
       """
 <div class="#{data.settings.namespace}-heading">
 #{data.settings.heading}
@@ -156,11 +179,15 @@ notific8 = do ->
   @param object data
   ###
   closeNotification = (n, data) ->
-    n.removeClass "open"
-    n.height 0
+    # n.removeClass "open"
+    n.className = n.className.replace('open', '')
+    # n.height 0
+    n.style.height = 0
     setTimeout (->
-      n.remove()
-      data.settings.onClose n, data if data.settings.onClose
+      # n.remove()
+      container = getContainer(data)
+      container.removeChild n
+      #@TODO data.settings.onClose n, data if data.settings.onClose
       return
     ), 200
 
@@ -197,24 +224,35 @@ notific8 = do ->
   @return object
   ###
   init = (message, options) ->
-    self.each ->
-      $this = $(this)
-      data = $this.data("notific8")
-      $this.data "notific8",
-        target: $this
-        settings: {}
-        message: ""
+    data =
+      settings: {}
+      message: message
+    for key, option of notific8Defaults
+      data.settings[key] = option
+    for key, option of options
+      data.settings[key] = option
 
-      data = $this.data("notific8")
-      data.message = message
-
-      # apply the options
-      $.extend data.settings, settings, options
-
-      # add the notification to the stack
-      buildNotification $this
-      data.settings.onInit data if data.settings.onInit
-      return
+    buildNotification data
+    #@TODO data.settings.onInit data if data.settings.onInit
+    return
+    # self.each ->
+    #   $this = $(this)
+    #   # data = $this.data("notific8")
+    #   $this.data "notific8",
+    #     target: $this
+    #     settings: {}
+    #     message: ""
+    #
+    #   data = $this.data("notific8")
+    #   data.message = message
+    #
+    #   # apply the options
+    #   $.extend data.settings, settings, options
+    #
+    #   # add the notification to the stack
+    #   buildNotification $this
+    #   data.settings.onInit data if data.settings.onInit
+    #   return
 
   ###
   Initialize the containers for the plug-in
@@ -337,4 +375,6 @@ jQuery.notific8 takes a string message as the first parameter
         #   message
         #   options
         # )
+        init message, options
+        return
     # return

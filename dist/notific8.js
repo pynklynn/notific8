@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, hasIcon, init, initContainers, notificationClasses, remove, zindex;
+  var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, getContainer, hasIcon, init, initContainers, notificationClasses, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
     family: 'legacy',
@@ -34,41 +34,44 @@ notific8 = (function() {
     $(window).unbind(".notific8");
     $("." + options.namespace + "-container").remove();
   };
+  getContainer = function(data) {
+    var containerClass, hEdge, namespace, vEdge;
+    vEdge = data.settings.verticalEdge;
+    hEdge = data.settings.horizontalEdge;
+    namespace = data.settings.namespace;
+    containerClass = "" + namespace + "-container " + vEdge + " " + hEdge;
+    return document.getElementsByClassName(containerClass)[0];
+  };
 
   /*
   Build the notification and add it to the screen's stack
   @param object $this
    */
-  buildNotification = function($this) {
-    var $container, $notification, animate, data, hEdge, notification, notificationId, num, vEdge;
-    data = $this.data("notific8");
-    num = Number($("body").data("notific8s"));
-    animate = "margin-" + data.settings.verticalEdge;
-    vEdge = data.settings.verticalEdge;
-    hEdge = data.settings.horizontalEdge;
-    $container = $("." + data.settings.namespace + "-container." + vEdge + "." + hEdge);
+  buildNotification = function(data) {
+    var body, container, namespace, notification, notificationId, num;
+    body = document.getElementsByTagName('body')[0];
+    num = Number(body.dataset.notific8s);
+    namespace = data.settings.namespace;
+    container = getContainer(data);
     num += 1;
-    $("body").data("notific8s", num);
-    notificationId = "" + data.settings.namespace + "-notification-" + num;
+    body.dataset.notific8s = num;
+    notificationId = "" + namespace + "-notification-" + num;
     notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n" + (buildIcon(data)) + "\n" + (buildHeading(data)) + "\n" + (buildClose(data)) + "\n" + (buildMessage(data)) + "\n</div>";
-    $notification = $(notification);
-    $container.append($notification);
-    if (data.settings.onCreate) {
-      data.settings.onCreate($notification, data);
-    }
+    container.innerHTML += notification;
     setTimeout((function() {
-      $notification.addClass("open");
+      notification = document.getElementById(notificationId);
+      notification.className += " open";
       if (!data.settings.sticky) {
         (function(n, l) {
           setTimeout((function() {
             closeNotification(n, data);
           }), l);
-        })($notification, Number(data.settings.life) + 200);
+        })(notification, Number(data.settings.life) + 200);
       }
     }), 5);
   };
   hasIcon = function(data) {
-    return data.settings.hasOwnProperty("icon") && (typeof data.settings.icon === "string");
+    return (data.settings.icon != null) && (typeof data.settings.icon === "string");
   };
   buildClose = function(data) {
     var close;
@@ -83,7 +86,7 @@ notific8 = (function() {
     return close;
   };
   buildHeading = function(data) {
-    if (data.settings.hasOwnProperty("heading") && (typeof data.settings.heading === "string")) {
+    if ((data.settings.heading != null) && (typeof data.settings.heading === "string")) {
       return "<div class=\"" + data.settings.namespace + "-heading\">\n" + data.settings.heading + "\n</div>";
     } else {
       return "";
@@ -119,13 +122,12 @@ notific8 = (function() {
   @param object data
    */
   closeNotification = function(n, data) {
-    n.removeClass("open");
-    n.height(0);
+    n.className = n.className.replace('open', '');
+    n.style.height = 0;
     setTimeout((function() {
-      n.remove();
-      if (data.settings.onClose) {
-        data.settings.onClose(n, data);
-      }
+      var container;
+      container = getContainer(data);
+      container.removeChild(n);
     }), 200);
   };
 
@@ -163,23 +165,20 @@ notific8 = (function() {
   @return object
    */
   init = function(message, options) {
-    return self.each(function() {
-      var $this, data;
-      $this = $(this);
-      data = $this.data("notific8");
-      $this.data("notific8", {
-        target: $this,
-        settings: {},
-        message: ""
-      });
-      data = $this.data("notific8");
-      data.message = message;
-      $.extend(data.settings, settings, options);
-      buildNotification($this);
-      if (data.settings.onInit) {
-        data.settings.onInit(data);
-      }
-    });
+    var data, key, option;
+    data = {
+      settings: {},
+      message: message
+    };
+    for (key in notific8Defaults) {
+      option = notific8Defaults[key];
+      data.settings[key] = option;
+    }
+    for (key in options) {
+      option = options[key];
+      data.settings[key] = option;
+    }
+    buildNotification(data);
   };
 
   /*
@@ -249,7 +248,8 @@ notific8 = (function() {
         if (document.getElementsByClassName(containerClass).length === 0) {
           initContainers(options);
         }
-        return checkEdges(options);
+        checkEdges(options);
+        init(message, options);
     }
   };
 })();
