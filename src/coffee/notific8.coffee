@@ -28,8 +28,11 @@ notific8 = do ->
   @param object options
   ###
   destroy = (options) ->
-    $(window).unbind ".notific8"
-    $(".#{options.namespace}-container").remove()
+    containerClass = "#{options.namespace}-container"
+    containers = document.getElementsByClassName(containerClass)
+    body = document.getElementsByTagName('body')[0]
+    while containers.length > 0
+      body.removeChild(containers[0])
     return
 
   ###
@@ -286,7 +289,7 @@ jQuery.notific8 takes a string message as the first parameter
       when "zindex"
         return zindex(options)
       when "destroy"
-        return methods.destroy.apply(@, [options])
+        return destroy(options)
       when "remove"
         return methods.remove.apply(@, [options])
       else

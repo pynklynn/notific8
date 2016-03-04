@@ -31,8 +31,13 @@ notific8 = (function() {
   @param object options
    */
   destroy = function(options) {
-    $(window).unbind(".notific8");
-    $("." + options.namespace + "-container").remove();
+    var body, containerClass, containers;
+    containerClass = "" + options.namespace + "-container";
+    containers = document.getElementsByClassName(containerClass);
+    body = document.getElementsByTagName('body')[0];
+    while (containers.length > 0) {
+      body.removeChild(containers[0]);
+    }
   };
 
   /*
@@ -247,7 +252,7 @@ notific8 = (function() {
       case "zindex":
         return zindex(options);
       case "destroy":
-        return methods.destroy.apply(this, [options]);
+        return destroy(options);
       case "remove":
         return methods.remove.apply(this, [options]);
       default:
