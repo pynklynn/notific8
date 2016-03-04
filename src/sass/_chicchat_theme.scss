@@ -30,7 +30,6 @@
     color: #121212;
     font-size: em(14px);
     height: 0;
-    max-height: em(100px);
     padding: 1.125em;
     transition: all 0.15s ease-in-out;
     width: em(500px);
@@ -49,11 +48,13 @@
     }
 
     .#{$notific8-ns}-icon {
+      align-items: center;
       box-sizing: border-box;
       color: #fff;
+      display: flex;
       font-size: 2em;
-      height: em(86px, 28px);
-      padding-top: 1em;
+      height: 100%;
+      justify-content: center;
       position: absolute;
       text-align: center;
       top:0;
@@ -62,7 +63,8 @@
   }
 
   &.open {
-    height: em(120px);
+    height: auto;
+    min-height: em(120px);
   }
 }
 

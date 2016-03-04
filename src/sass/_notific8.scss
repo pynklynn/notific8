@@ -45,6 +45,10 @@
       display: block;
     }
   }
+  &.has-icon {
+    align-items: center;
+    display: flex;
+  }
 }
 
 .#{$notific8-ns}-close {

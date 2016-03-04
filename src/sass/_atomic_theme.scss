@@ -29,7 +29,6 @@
     border-radius: 3px;
     font-size: em(14px);
     height: 0;
-    max-height: em(100px);
     padding: 0;
     transition: all 0.15s ease-in-out;
     width: em(500px);
@@ -55,7 +54,7 @@
       box-sizing: border-box;
       color: #fff;
       font-size: 1.25em;
-      height: em(79px, 17.5px);
+      height: 100%;
       padding-top: .375em;
       position: absolute;
       text-align: center;
@@ -64,7 +63,8 @@
     }
 
     &.open {
-      height: em(70px, 14px);
+      height: auto;
+      min-height: em(70px, 14px);
     }
   }
 }

@@ -334,6 +334,7 @@
 
 .notific8-notification { box-sizing: border-box; overflow: hidden; padding: 0.625em; position: relative; }
 .notific8-notification:hover .notific8-close { display: block; }
+.notific8-notification.has-icon { align-items: center; display: flex; }
 
 .notific8-close { cursor: pointer; display: none; position: absolute; }
 .notific8-close.sticky { display: block; position: absolute; text-align: center; }
@@ -347,8 +348,10 @@
 .bottom .notific8-notification { margin-bottom: 0.625em; }
 
 /** @author Will Steinmetz  Legacy family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2015, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
-.notific8-notification.family-legacy { border-style: solid; border-width: 2px; color: #fff; height: 5.625em; max-height: 5.625em; transition: all 0.2s ease-in-out; width: 24.375em; }
+.notific8-notification.family-legacy { border-style: solid; border-width: 2px; color: #fff; transition: all 0.2s ease-in-out; width: 24.375em; }
+.notific8-notification.family-legacy.open { min-height: 5.625em; }
 .notific8-notification.family-legacy.has-icon { width: 27.1875em; }
+.notific8-notification.family-legacy.has-icon .notific8-message-content { padding-left: 0.625em; }
 .notific8-notification.family-legacy .notific8-icon { font-size: 4.375em; line-height: 1em; margin-top: -1px; }
 .notific8-notification.family-legacy .notific8-heading { font-weight: bold; margin-bottom: 0.3125em; }
 .notific8-notification.family-legacy .notific8-message { font-size: 0.875em; }
@@ -370,12 +373,12 @@
 .left .notific8-notification.family-legacy .notific8-close.sticky { left: -3.7em; top: 3.4em; transform: rotate(270deg); }
 
 /** @author Will Steinmetz  ChicChat family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2015, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
-.notific8-notification.family-chicchat { background-color: #fff; border-radius: .25em; border-style: solid; border-width: 1px; color: #121212; font-size: 0.875em; height: 0; max-height: 6.25em; padding: 1.125em; transition: all 0.15s ease-in-out; width: 31.25em; }
+.notific8-notification.family-chicchat { background-color: #fff; border-radius: .25em; border-style: solid; border-width: 1px; color: #121212; font-size: 0.875em; height: 0; padding: 1.125em; transition: all 0.15s ease-in-out; width: 31.25em; }
 .notific8-notification.family-chicchat .notific8-heading { font-weight: bold; margin-bottom: .5em; }
 .notific8-notification.family-chicchat .notific8-close { top: .325em; }
 .notific8-notification.family-chicchat .notific8-close.sticky { font-size: .75em; text-decoration: underline; }
-.notific8-notification.family-chicchat .notific8-icon { box-sizing: border-box; color: #fff; font-size: 2em; height: 3.07143em; padding-top: 1em; position: absolute; text-align: center; top: 0; width: 1.60714em; }
-.notific8-notification.open { height: 7.5em; }
+.notific8-notification.family-chicchat .notific8-icon { align-items: center; box-sizing: border-box; color: #fff; display: flex; font-size: 2em; height: 100%; justify-content: center; position: absolute; text-align: center; top: 0; width: 1.60714em; }
+.notific8-notification.open { height: auto; min-height: 7.5em; }
 
 .right .notific8-notification.family-chicchat { border-left-width: 3.21429em; margin-right: .625em; }
 .right .notific8-notification.family-chicchat.has-icon { border-left-width: 1px; padding-left: 4.42857em; }
@@ -388,13 +391,13 @@
 .left .notific8-notification.family-chicchat .notific8-close { left: .5em; }
 
 /** @author Will Steinmetz  ChicChat family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2015, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
-.notific8-notification.family-atomic { border-radius: 3px; font-size: 0.875em; height: 0; max-height: 6.25em; padding: 0; transition: all 0.15s ease-in-out; width: 31.25em; }
+.notific8-notification.family-atomic { border-radius: 3px; font-size: 0.875em; height: 0; padding: 0; transition: all 0.15s ease-in-out; width: 31.25em; }
 .notific8-notification.family-atomic .notific8-heading { padding: .75em; }
 .notific8-notification.family-atomic .notific8-message { font-size: 0.85714em; padding: 0.75em; }
 .notific8-notification.family-atomic .notific8-close { top: .325em; }
 .notific8-notification.family-atomic .notific8-close.sticky { font-size: .75em; text-decoration: underline; }
-.notific8-notification.family-atomic .notific8-icon { box-sizing: border-box; color: #fff; font-size: 1.25em; height: 4.51429em; padding-top: .375em; position: absolute; text-align: center; top: 0; width: 1.71429em; }
-.notific8-notification.family-atomic.open { height: 5em; }
+.notific8-notification.family-atomic .notific8-icon { box-sizing: border-box; color: #fff; font-size: 1.25em; height: 100%; padding-top: .375em; position: absolute; text-align: center; top: 0; width: 1.71429em; }
+.notific8-notification.family-atomic.open { height: auto; min-height: 5em; }
 
 .right .notific8-notification.family-atomic { border-left-width: 3.21429em; margin-right: .625em; }
 .right .notific8-notification.family-atomic.has-icon { border-left-width: 1px; padding-left: 2.125em; }

@@ -26,13 +26,18 @@
     border-style: solid;
     border-width: 2px;
     color: #fff;
-    height: em(90px);
-    max-height: em(90px);
     transition: all 0.2s ease-in-out;
     width: em(390px);
 
+    &.open {
+      min-height: em(90px);
+    }
+
     &.has-icon {
       width: em(435px);
+      .#{$notific8-ns}-message-content {
+        padding-left: em(10px);
+      }
     }
 
     .#{$notific8-ns}-icon {

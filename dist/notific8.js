@@ -67,7 +67,7 @@ notific8 = (function() {
     num += 1;
     body.dataset.notific8s = num;
     notificationId = "" + namespace + "-notification-" + num;
-    notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n" + (buildIcon(data)) + "\n" + (buildHeading(data)) + "\n" + (buildClose(data)) + "\n" + (buildMessage(data)) + "\n</div>";
+    notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n  " + (buildIcon(data)) + "\n  <div class=\"" + data.settings.namespace + "-message-content\">\n    " + (buildHeading(data)) + "\n    " + (buildMessage(data)) + "\n  </div>\n  " + (buildClose(data)) + "\n</div>";
     container.innerHTML += notification;
     if (data.settings.onCreate) {
       data.settings.onCreate(notification, data);

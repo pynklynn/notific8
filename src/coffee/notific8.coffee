@@ -64,10 +64,12 @@ notific8 = do ->
     notificationId = "#{namespace}-notification-#{num}"
     notification = """
 <div class="#{notificationClasses(data).join(' ')}" id="#{notificationId}">
-#{buildIcon(data)}
-#{buildHeading(data)}
-#{buildClose(data)}
-#{buildMessage(data)}
+  #{buildIcon(data)}
+  <div class="#{data.settings.namespace}-message-content">
+    #{buildHeading(data)}
+    #{buildMessage(data)}
+  </div>
+  #{buildClose(data)}
 </div>
 """
 
