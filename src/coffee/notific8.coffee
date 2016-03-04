@@ -85,7 +85,7 @@ notific8 = do ->
       unless data.settings.sticky
         ((n, l) ->
           setTimeout (->
-            closeNotification n, data
+            closeNotification notificationId, data
             return
           ), l
           return
@@ -159,10 +159,11 @@ notific8 = do ->
 
   ###
   Close the given notification
-  @param object n
+  @param string notificationId
   @param object data
   ###
-  closeNotification = (n, data) ->
+  closeNotification = (notificationId, data) ->
+    n = document.getElementById(notificationId)
     n.className = n.className.replace('open', '')
     n.style.height = 0
     setTimeout (->
@@ -240,9 +241,8 @@ notific8 = do ->
       container.addEventListener "click", (event) ->
         target = event.target
         notification = target.parentElement
-        container = notification.parentElement
         data = JSON.parse(sessionStorage[notification.id])
-        closeNotification notification, data
+        closeNotification notification.id, data
         return
     return
 

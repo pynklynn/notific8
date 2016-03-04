@@ -79,7 +79,7 @@ notific8 = (function() {
       if (!data.settings.sticky) {
         (function(n, l) {
           setTimeout((function() {
-            closeNotification(n, data);
+            closeNotification(notificationId, data);
           }), l);
         })(notification, Number(data.settings.life) + 200);
       }
@@ -133,10 +133,12 @@ notific8 = (function() {
 
   /*
   Close the given notification
-  @param object n
+  @param string notificationId
   @param object data
    */
-  closeNotification = function(n, data) {
+  closeNotification = function(notificationId, data) {
+    var n;
+    n = document.getElementById(notificationId);
     n.className = n.className.replace('open', '');
     n.style.height = 0;
     setTimeout((function() {
@@ -231,9 +233,8 @@ notific8 = (function() {
         var data, notification, target;
         target = event.target;
         notification = target.parentElement;
-        container = notification.parentElement;
         data = JSON.parse(sessionStorage[notification.id]);
-        closeNotification(notification, data);
+        closeNotification(notification.id, data);
       });
     }
   };
