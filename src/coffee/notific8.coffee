@@ -75,7 +75,7 @@ notific8 = do ->
     container.innerHTML += notification
 
     # call the onCreate handler if it exists
-    #@TODO data.settings.onCreate notification, data if data.settings.onCreate
+    data.settings.onCreate notification, data if data.settings.onCreate
 
     # slide the message onto the screen
     setTimeout (->
@@ -169,7 +169,7 @@ notific8 = do ->
       container = getContainer(data)
       container.removeChild n
       delete sessionStorage[n.id]
-      #@TODO data.settings.onClose n, data if data.settings.onClose
+      data.settings.onClose n, data if data.settings.onClose
       return
     ), 200
 
@@ -218,7 +218,7 @@ notific8 = do ->
       data.settings[key] = option
 
     buildNotification data
-    #@TODO data.settings.onInit data if data.settings.onInit
+    data.settings.onInit data if data.settings.onInit
     return
 
   ###
@@ -265,11 +265,9 @@ notific8 = do ->
 
   # return the public method
   (message, options) ->
-    console.log "message: ", message
-    console.log "options: ", options
-    console.error """
-jQuery.notific8 takes a string message as the first parameter
-""" unless typeof message is "string"
+    unless typeof message is "string"
+      console.error "notific8 takes a string message as the first parameter"
+      throw new Error("notific8 takes a string message as the first parameter")
 
     options = {} unless options?
     unless options.hasOwnProperty('namespace') || message == 'zindex'

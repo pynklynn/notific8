@@ -69,6 +69,9 @@ notific8 = (function() {
     notificationId = "" + namespace + "-notification-" + num;
     notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n" + (buildIcon(data)) + "\n" + (buildHeading(data)) + "\n" + (buildClose(data)) + "\n" + (buildMessage(data)) + "\n</div>";
     container.innerHTML += notification;
+    if (data.settings.onCreate) {
+      data.settings.onCreate(notification, data);
+    }
     setTimeout((function() {
       notification = document.getElementById(notificationId);
       notification.className += " open";
@@ -141,6 +144,9 @@ notific8 = (function() {
       container = getContainer(data);
       container.removeChild(n);
       delete sessionStorage[n.id];
+      if (data.settings.onClose) {
+        data.settings.onClose(n, data);
+      }
     }), 200);
   };
 
@@ -197,6 +203,9 @@ notific8 = (function() {
       data.settings[key] = option;
     }
     buildNotification(data);
+    if (data.settings.onInit) {
+      data.settings.onInit(data);
+    }
   };
 
   /*
@@ -245,10 +254,9 @@ notific8 = (function() {
   };
   return function(message, options) {
     var containerClass;
-    console.log("message: ", message);
-    console.log("options: ", options);
     if (typeof message !== "string") {
-      console.error("jQuery.notific8 takes a string message as the first parameter");
+      console.error("notific8 takes a string message as the first parameter");
+      throw new Error("notific8 takes a string message as the first parameter");
     }
     if (options == null) {
       options = {};
