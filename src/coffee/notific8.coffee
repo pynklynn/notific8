@@ -81,6 +81,7 @@ notific8 = do ->
     setTimeout (->
       notification = document.getElementById(notificationId)
       notification.className += " open"
+      sessionStorage[notificationId] = JSON.stringify(data)
       unless data.settings.sticky
         ((n, l) ->
           setTimeout (->
@@ -167,6 +168,7 @@ notific8 = do ->
     setTimeout (->
       container = getContainer(data)
       container.removeChild n
+      delete sessionStorage[n.id]
       #@TODO data.settings.onClose n, data if data.settings.onClose
       return
     ), 200
@@ -235,27 +237,14 @@ notific8 = do ->
     body.innerHTML += containerStr.replace('$pos', 'bottom left')
     for container in document.getElementsByClassName(containerClass)
       container.style.zIndex = notific8Defaults.zindex
-      container.onclick = (event) ->
-        #@TODO set up on the close button
+      container.addEventListener "click", (event) ->
         target = event.target
-        #@TODO get the notification
-        #@TODO get the container
-        #@TODO get the data
-        #@TODO close notification
+        notification = target.parentElement
+        container = notification.parentElement
+        data = JSON.parse(sessionStorage[notification.id])
+        closeNotification notification, data
         return
     return
-    # $(".#{containerClass}").on(
-    #   'click'
-    #   ".#{options.namespace}-close"
-    #   (e) ->
-    #     $target = $(e.currentTarget)
-    #     $notification = $target.closest(".#{options.namespace}-notification")
-    #     $container = $notification.closest(".#{containerClass}")
-    #     data = $container.data('notific8')
-    #     closeNotification $notification, data
-    #     return
-    # )
-    # return
 
   ###
   Make sure that the edge options are ok

@@ -72,6 +72,7 @@ notific8 = (function() {
     setTimeout((function() {
       notification = document.getElementById(notificationId);
       notification.className += " open";
+      sessionStorage[notificationId] = JSON.stringify(data);
       if (!data.settings.sticky) {
         (function(n, l) {
           setTimeout((function() {
@@ -139,6 +140,7 @@ notific8 = (function() {
       var container;
       container = getContainer(data);
       container.removeChild(n);
+      delete sessionStorage[n.id];
     }), 200);
   };
 
@@ -216,10 +218,14 @@ notific8 = (function() {
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       container = _ref[_i];
       container.style.zIndex = notific8Defaults.zindex;
-      container.onclick = function(event) {
-        var target;
+      container.addEventListener("click", function(event) {
+        var data, notification, target;
         target = event.target;
-      };
+        notification = target.parentElement;
+        container = notification.parentElement;
+        data = JSON.parse(sessionStorage[notification.id]);
+        closeNotification(notification, data);
+      });
     }
   };
 
