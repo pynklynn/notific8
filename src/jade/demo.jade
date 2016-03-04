@@ -256,6 +256,15 @@ table
         |  (default, only value available for the demo)
         input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
     tr
+      td.label Use jQuery?
+      td
+        label
+          input(name="notific8UseJquery", type="radio", value="0", checked="Checked")
+          |  Vanilla JavaScript 
+        label
+          input(name="notific8UseJquery", type="radio", value="1")
+          |  jQuery
+    tr
       td.label
       td
         button#notific8Test(type='button', name='notific8Test') Test notific8

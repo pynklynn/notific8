@@ -63,7 +63,11 @@ script(type='text/javascript').
         params.closeText = $closeText.val();
       }
       // show notification
-      $.notific8(text, params);
+      if ($('input[name="notific8UseJquery"]:checked').val() == "1") {
+        $.notific8(text, params);
+      } else {
+        notific8(text, params);
+      }
     });
     $('#notific8Family').trigger('change');
   });
