@@ -158,7 +158,12 @@ notific8 = (function() {
   Remove the currently visible notifications from the screen
    */
   remove = function(options) {
-    $("." + options.namespace + "-notification").remove();
+    var notificationClass, notifications;
+    notificationClass = "" + options.namespace + "-notification";
+    notifications = document.getElementsByClassName(notificationClass);
+    while (notifications.length > 0) {
+      notifications[0].parentNode.removeChild(notifications[0]);
+    }
   };
 
   /*
@@ -254,7 +259,7 @@ notific8 = (function() {
       case "destroy":
         return destroy(options);
       case "remove":
-        return methods.remove.apply(this, [options]);
+        return remove(options);
       default:
         containerClass = "" + options.namespace + "-container";
         if (document.getElementsByClassName(containerClass).length === 0) {

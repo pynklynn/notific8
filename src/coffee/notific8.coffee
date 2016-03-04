@@ -186,7 +186,10 @@ notific8 = do ->
   Remove the currently visible notifications from the screen
   ###
   remove = (options) ->
-    $(".#{options.namespace}-notification").remove()
+    notificationClass = "#{options.namespace}-notification"
+    notifications = document.getElementsByClassName(notificationClass)
+    while notifications.length > 0
+      notifications[0].parentNode.removeChild notifications[0]
     return
 
   ###
@@ -291,7 +294,7 @@ jQuery.notific8 takes a string message as the first parameter
       when "destroy"
         return destroy(options)
       when "remove"
-        return methods.remove.apply(@, [options])
+        return remove(options)
       else
         # make sure that the stack containers exist
         containerClass = "#{options.namespace}-container"
