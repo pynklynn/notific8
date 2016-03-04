@@ -164,6 +164,7 @@ notific8 = do ->
   ###
   closeNotification = (notificationId, data) ->
     n = document.getElementById(notificationId)
+    return unless n?
     n.className = n.className.replace('open', '')
     n.style.height = 0
     setTimeout (->

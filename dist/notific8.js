@@ -139,6 +139,9 @@ notific8 = (function() {
   closeNotification = function(notificationId, data) {
     var n;
     n = document.getElementById(notificationId);
+    if (n == null) {
+      return;
+    }
     n.className = n.className.replace('open', '');
     n.style.height = 0;
     setTimeout((function() {
