@@ -2,6 +2,12 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.0.0
+
+- Released pure JavaScript version of the plug-in that is usable with any framework
+- Released a jQuery wrapper for the JavaScript (this will allow existing code to function properly)
+- Updated notifications to have flexible sizing for longer notification text
+
 ## 2.3.1
 
 - Fixing zindex setting bug
