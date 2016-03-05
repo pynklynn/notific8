@@ -55,6 +55,8 @@ Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information
 ## Future development
 
 * Add the ability to use a custom image instead of one of the built in icons
+* Close All button available when multiple notifications are on the screen at once
+* Ability to queue notifications to only show one at a time
 
 ## License
 
