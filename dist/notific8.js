@@ -23,7 +23,12 @@ notific8 = (function() {
     onInit: null,
     onCreate: null,
     onClose: null,
-    namespace: 'notific8'
+    namespace: 'notific8',
+    height: {
+      atomic: 70,
+      chicchat: 120,
+      legacy: 90
+    }
   };
 
   /*
@@ -69,6 +74,10 @@ notific8 = (function() {
     notificationId = "" + namespace + "-notification-" + num;
     notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n  " + (buildIcon(data)) + "\n  <div class=\"" + data.settings.namespace + "-message-content\">\n    " + (buildHeading(data)) + "\n    " + (buildMessage(data)) + "\n  </div>\n  " + (buildClose(data)) + "\n</div>";
     container.innerHTML += notification;
+    setTimeout((function() {
+      notification = document.getElementById(notificationId);
+      return notification.style.height = "" + data.settings.height + "px";
+    }), 1);
     if (data.settings.onCreate) {
       data.settings.onCreate(notification, data);
     }
@@ -201,11 +210,20 @@ notific8 = (function() {
     };
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
-      data.settings[key] = option;
+      if (key !== 'height') {
+        data.settings[key] = option;
+      }
     }
     for (key in options) {
       option = options[key];
       data.settings[key] = option;
+    }
+    if (data.settings.height == null) {
+      data.settings.height = notific8Defaults.height[data.settings.family];
+    }
+    data.settings.height = Number(data.settings.height);
+    if (data.settings.height < notific8Defaults.height[data.settings.family]) {
+      data.settings.height = notific8Defaults.height[data.settings.family];
     }
     buildNotification(data);
     if (data.settings.onInit) {

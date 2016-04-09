@@ -22,6 +22,10 @@ notific8 = do ->
     onCreate: null
     onClose: null
     namespace: 'notific8'
+    height:
+      atomic: 70
+      chicchat: 120
+      legacy: 90
 
   ###
   Destroy the notification
@@ -75,6 +79,10 @@ notific8 = do ->
 
     # add the notification to the stack
     container.innerHTML += notification
+    setTimeout (->
+      notification = document.getElementById(notificationId)
+      notification.style.height = "#{data.settings.height}px"
+    ), 1
 
     # call the onCreate handler if it exists
     data.settings.onCreate notification, data if data.settings.onCreate
@@ -217,9 +225,14 @@ notific8 = do ->
       settings: {}
       message: message
     for key, option of notific8Defaults
-      data.settings[key] = option
+      data.settings[key] = option unless key == 'height'
     for key, option of options
       data.settings[key] = option
+    unless data.settings.height?
+      data.settings.height = notific8Defaults.height[data.settings.family]
+    data.settings.height = Number(data.settings.height)
+    if data.settings.height < notific8Defaults.height[data.settings.family]
+      data.settings.height = notific8Defaults.height[data.settings.family]
 
     buildNotification data
     data.settings.onInit data if data.settings.onInit

@@ -3,7 +3,7 @@
  *
  * Legacy family themes for the notific8 plug-in for jQuery
  *
- * Copyright (c)2013-2015, Will Steinmetz
+ * Copyright (c)2013-2016, Will Steinmetz
  * Licensed under the BSD license.
  * http://opensource.org/licenses/BSD-3-Clause
  */
@@ -14,6 +14,7 @@
     background-color: $background-color;
     border-color: $border-color;
     color: $text-color;
+
     .#{$notific8-ns}-close {
       background-color: $close-background-color;
       color: $close-text-color;
@@ -26,15 +27,13 @@
     border-style: solid;
     border-width: 2px;
     color: #fff;
-    transition: all 0.2s ease-in-out;
+    height: em(90px);
+    transition: all .2s ease-in-out;
     width: em(390px);
-
-    &.open {
-      min-height: em(90px);
-    }
 
     &.has-icon {
       width: em(435px);
+
       .#{$notific8-ns}-message-content {
         padding-left: em(10px);
       }
@@ -42,7 +41,7 @@
 
     .#{$notific8-ns}-icon {
       font-size: em(70px);
-      line-height: 1em;
+      height: 1em;
       margin-top: -1px;
     }
 
@@ -58,8 +57,9 @@
     .#{$notific8-ns}-close {
       font-size: 1.25em;
       line-height: 1em;
-      padding: 0 0.25em;
+      padding: 0 .25em;
       top: 0;
+
       &.sticky {
         font-size: em(10px);
         line-height: em(14px, 10px);
@@ -77,18 +77,23 @@ $notific8-sides: (right: left, left: right);
     .#{$notific8-ns}-notification.family-legacy {
       margin-#{$main-dir}: em(-390px);
       padding-#{$main-dir}: em(33px);
+
       &.open {
         margin-#{$main-dir}: 0;
       }
+
       &.has-icon {
         padding-#{$second-dir}: 90px;
       }
+
       .#{$notific8-ns}-icon {
         float: #{$second-dir};
         margin-#{$second-dir}: em(-81px, 70px);
       }
+
       .#{$notific8-ns}-close {
         #{$main-dir}: -2px;
+
         &.sticky {
           #{$main-dir}: em(-37px, 10px);
           top: em(34px, 10px);

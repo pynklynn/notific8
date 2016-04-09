@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.0.1
+
+- Added a height option for each of the theme families to make sure animations function properly
+
 ## 3.0.0
 
 - Released pure JavaScript version of the plug-in that is usable with any framework

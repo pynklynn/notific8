@@ -3,7 +3,7 @@
  *
  * ChicChat family themes for the notific8 plug-in for jQuery
  *
- * Copyright (c)2013-2015, Will Steinmetz
+ * Copyright (c)2013-2016, Will Steinmetz
  * Licensed under the BSD license.
  * http://opensource.org/licenses/BSD-3-Clause
  */
@@ -14,10 +14,12 @@
     background-color: lighten($color, 30%);
     border-color: $color;
     color: $text-color;
+
     .#{$notific8-ns}-heading {
       background-color: lighten($color, 20%);
       border-bottom: solid 1px lighten($color, 10%);
     }
+
     .#{$notific8-ns}-icon {
       background-color: $color;
     }
@@ -30,7 +32,7 @@
     font-size: em(14px);
     height: 0;
     padding: 0;
-    transition: all 0.15s ease-in-out;
+    transition: all .15s ease-in-out;
     width: em(500px);
 
     .#{$notific8-ns}-heading {
@@ -44,6 +46,7 @@
 
     .#{$notific8-ns}-close {
       top: .325em;
+
       &.sticky {
         font-size: .75em;
         text-decoration: underline;
@@ -54,7 +57,7 @@
       box-sizing: border-box;
       color: #fff;
       font-size: 1.25em;
-      height: 100%;
+      height: em(79px, 17.5px);
       padding-top: .375em;
       position: absolute;
       text-align: center;
@@ -63,8 +66,7 @@
     }
 
     &.open {
-      height: auto;
-      min-height: em(70px, 14px);
+      height: em(70px, 14px);
     }
   }
 }
