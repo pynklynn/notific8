@@ -23,3 +23,8 @@ module.exports = (grunt) ->
     'copy:code'
     'watch'
   ]
+
+  grunt.registerTask 'release', [
+    'update_json'
+    'sass-convert'
+  ]
