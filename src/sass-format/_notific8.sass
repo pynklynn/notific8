@@ -55,9 +55,12 @@
     position: absolute
     text-align: center
 
-$notific8-sides: (right: left, left: right)
+$notific8-sides: (right left) (left right)
 
-@each $main-dir, $second-dir in $notific8-sides
+@for $i from 1 through length($notific8-sides)
+  $main-dir: nth(nth($notific8-sides, $i), 1)
+  $second-dir: nth(nth($notific8-sides, $i), 2)
+
   .#{$main-dir}
     .#{$notific8-ns}-notification
       clear: #{$main-dir}
