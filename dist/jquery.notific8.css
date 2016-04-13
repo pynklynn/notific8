@@ -357,19 +357,19 @@
 .notific8-notification.family-legacy .notific8-close { font-size: 1.25em; line-height: 1em; padding: 0 .25em; top: 0; }
 .notific8-notification.family-legacy .notific8-close.sticky { font-size: 0.625em; line-height: 1.4em; padding: 0.2em 0; text-transform: uppercase; width: 8.9em; }
 
-.right .notific8-notification.family-legacy { margin-right: -24.375em; padding-right: 2.0625em; }
-.right .notific8-notification.family-legacy.open { margin-right: 0; }
-.right .notific8-notification.family-legacy.has-icon { padding-left: 90px; }
-.right .notific8-notification.family-legacy .notific8-icon { float: left; margin-left: -1.15714em; }
-.right .notific8-notification.family-legacy .notific8-close { right: -2px; }
-.right .notific8-notification.family-legacy .notific8-close.sticky { right: -3.7em; top: 3.4em; transform: rotate(90deg); }
-
 .left .notific8-notification.family-legacy { margin-left: -24.375em; padding-left: 2.0625em; }
 .left .notific8-notification.family-legacy.open { margin-left: 0; }
 .left .notific8-notification.family-legacy.has-icon { padding-right: 90px; }
 .left .notific8-notification.family-legacy .notific8-icon { float: right; margin-right: -1.15714em; }
 .left .notific8-notification.family-legacy .notific8-close { left: -2px; }
 .left .notific8-notification.family-legacy .notific8-close.sticky { left: -3.7em; top: 3.4em; transform: rotate(270deg); }
+
+.right .notific8-notification.family-legacy { margin-right: -24.375em; padding-right: 2.0625em; }
+.right .notific8-notification.family-legacy.open { margin-right: 0; }
+.right .notific8-notification.family-legacy.has-icon { padding-left: 90px; }
+.right .notific8-notification.family-legacy .notific8-icon { float: left; margin-left: -1.15714em; }
+.right .notific8-notification.family-legacy .notific8-close { right: -2px; }
+.right .notific8-notification.family-legacy .notific8-close.sticky { right: -3.7em; top: 3.4em; transform: rotate(90deg); }
 
 /** @author Will Steinmetz  ChicChat family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2016, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
 .notific8-notification.family-chicchat { background-color: #fff; border-radius: .25em; border-style: solid; border-width: 1px; color: #121212; font-size: 0.875em; height: 0; padding: 1.125em; transition: all .15s ease-in-out; width: 31.25em; }

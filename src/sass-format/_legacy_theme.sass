@@ -58,35 +58,48 @@
         text-transform: uppercase
         width: em(89px, 10px)
 
-$notific8-sides: (right left) (left right)
+.left
+  .#{$notific8-ns}-notification.family-legacy
+    margin-left: em(-390px)
+    padding-left: em(33px)
 
-@for $i from 1 through length($notific8-sides)
-  $main-dir: nth(nth($notific8-sides, $i), 1)
-  $second-dir: nth(nth($notific8-sides, $i), 2)
+    &.open
+      margin-left: 0
 
-  .#{$main-dir}
-    .#{$notific8-ns}-notification.family-legacy
-      margin-#{$main-dir}: em(-390px)
-      padding-#{$main-dir}: em(33px)
+    &.has-icon
+      padding-right: 90px
 
-      &.open
-        margin-#{$main-dir}: 0
+    .#{$notific8-ns}-icon
+      float: right
+      margin-right: em(-81px, 70px)
 
-      &.has-icon
-        padding-#{$second-dir}: 90px
+    .#{$notific8-ns}-close
+      left: -2px
 
-      .#{$notific8-ns}-icon
-        float: #{$second-dir}
-        margin-#{$second-dir}: em(-81px, 70px)
+      &.sticky
+        left: em(-37px, 10px)
+        top: em(34px, 10px)
+        transform: rotate(270deg)
 
-      .#{$notific8-ns}-close
-        #{$main-dir}: -2px
+.right
+  .#{$notific8-ns}-notification.family-legacy
+    margin-right: em(-390px)
+    padding-right: em(33px)
 
-        &.sticky
-          #{$main-dir}: em(-37px, 10px)
-          top: em(34px, 10px)
+    &.open
+      margin-right: 0
 
-          @if $main-dir == left
-            transform: rotate(270deg)
-          @else
-            transform: rotate(90deg)
+    &.has-icon
+      padding-left: 90px
+
+    .#{$notific8-ns}-icon
+      float: left
+      margin-left: em(-81px, 70px)
+
+    .#{$notific8-ns}-close
+      right: -2px
+
+      &.sticky
+        right: em(-37px, 10px)
+        top: em(34px, 10px)
+        transform: rotate(90deg)

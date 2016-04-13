@@ -71,40 +71,61 @@
   }
 }
 
-$notific8-sides: (right left) (left right);
-@for $i from 1 through length($notific8-sides) {
-  $main-dir: nth(nth($notific8-sides, $i), 1);
-  $second-dir: nth(nth($notific8-sides, $i), 2);
-  .#{$main-dir} {
-    .#{$notific8-ns}-notification.family-legacy {
-      margin-#{$main-dir}: em(-390px);
-      padding-#{$main-dir}: em(33px);
+.left {
+  .#{$notific8-ns}-notification.family-legacy {
+    margin-left: em(-390px);
+    padding-left: em(33px);
 
-      &.open {
-        margin-#{$main-dir}: 0;
+    &.open {
+      margin-left: 0;
+    }
+
+    &.has-icon {
+      padding-right: 90px;
+    }
+
+    .#{$notific8-ns}-icon {
+      float: right;
+      margin-right: em(-81px, 70px);
+    }
+
+    .#{$notific8-ns}-close {
+      left: -2px;
+
+      &.sticky {
+        left: em(-37px, 10px);
+        top: em(34px, 10px);
+        transform: rotate(270deg);
       }
+    }
+  }
+}
 
-      &.has-icon {
-        padding-#{$second-dir}: 90px;
-      }
+.right {
+  .#{$notific8-ns}-notification.family-legacy {
+    margin-right: em(-390px);
+    padding-right: em(33px);
 
-      .#{$notific8-ns}-icon {
-        float: #{$second-dir};
-        margin-#{$second-dir}: em(-81px, 70px);
-      }
+    &.open {
+      margin-right: 0;
+    }
 
-      .#{$notific8-ns}-close {
-        #{$main-dir}: -2px;
+    &.has-icon {
+      padding-left: 90px;
+    }
 
-        &.sticky {
-          #{$main-dir}: em(-37px, 10px);
-          top: em(34px, 10px);
-          @if $main-dir == left {
-            transform: rotate(270deg);
-          } @else {
-            transform: rotate(90deg);
-          }
-        }
+    .#{$notific8-ns}-icon {
+      float: left;
+      margin-left: em(-81px, 70px);
+    }
+
+    .#{$notific8-ns}-close {
+      right: -2px;
+
+      &.sticky {
+        right: em(-37px, 10px);
+        top: em(34px, 10px);
+        transform: rotate(90deg);
       }
     }
   }

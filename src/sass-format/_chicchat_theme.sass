@@ -58,23 +58,32 @@
     &.open
       height: em(120px)
 
-$notific8-sides: (right left) (left right)
+.right
+  .#{$notific8-ns}-notification.family-chicchat
+    border-left-width: em(45px, 14px)
+    margin-right: .625em
 
-@for $i from 1 through length($notific8-sides)
-  $main-dir: nth(nth($notific8-sides, $i), 1)
-  $second-dir: nth(nth($notific8-sides, $i), 2)
+    &.has-icon
+      border-left-width: 1px
+      padding-left: em(62px, 14px)
 
-  .#{$main-dir}
-    .#{$notific8-ns}-notification.family-chicchat
-      border-#{$second-dir}-width: em(45px, 14px)
-      margin-#{$main-dir}: .625em
+    .#{$notific8-ns}-icon
+      left: 0
 
-      &.has-icon
-        border-#{$second-dir}-width: 1px
-        padding-#{$second-dir}: em(62px, 14px)
+    .#{$notific8-ns}-close
+      right: .5em
 
-      .#{$notific8-ns}-icon
-        #{$second-dir}: 0
+.left
+  .#{$notific8-ns}-notification.family-chicchat
+    border-right-width: em(45px, 14px)
+    margin-left: .625em
 
-      .#{$notific8-ns}-close
-        #{$main-dir}: .5em
+    &.has-icon
+      border-right-width: 1px
+      padding-right: em(62px, 14px)
+
+    .#{$notific8-ns}-icon
+      right: 0
+
+    .#{$notific8-ns}-close
+      left: .5em
