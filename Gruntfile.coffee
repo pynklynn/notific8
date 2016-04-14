@@ -26,5 +26,8 @@ module.exports = (grunt) ->
 
   grunt.registerTask 'release', [
     'update_json'
+    'clean:release'
+    'sass2stylus'
     'sass-convert'
+    'clean:stylus'
   ]

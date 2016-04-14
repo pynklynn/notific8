@@ -1,0 +1,57 @@
+/**
+ * @author Will Steinmetz
+ *
+ * Styles for the notific8 plug-in for jQuery
+ *
+ * Copyright (c)2015, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause */
+// functions
+em($px, $base = $notific8-base-font-size)
+  $px / $base * 1em
+// definitions
+.{$notific8-ns}-container
+  display: block
+  margin: 0
+  padding: 0
+  position: fixed
+  &.top
+    top: 0
+  &.bottom
+    bottom: 0
+  &.top, &.bottom
+    &.right
+      right: 0
+    &.left
+      left: 0
+.{$notific8-ns}-notification
+  box-sizing: border-box
+  overflow: hidden
+  padding: em(10px)
+  position: relative
+  &:hover
+    .{$notific8-ns}-close
+      display: block
+  &.has-icon
+    align-items: center
+    display: flex
+.{$notific8-ns}-close
+  cursor: pointer
+  display: none
+  position: absolute
+  &.sticky
+    display: block
+    position: absolute
+    text-align: center
+.right
+  .{$notific8-ns}-notification
+    clear: right
+    float: right
+.left
+  .{$notific8-ns}-notification
+    clear: left
+    float: left
+.top .{$notific8-ns}-notification
+  margin-top: em(10px)
+.bottom .{$notific8-ns}-notification
+  margin-bottom: em(10px)

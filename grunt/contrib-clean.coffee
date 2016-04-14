@@ -22,6 +22,13 @@ module.exports = (grunt) ->
       'dist/*.css'
       'dist/*.css.map'
     ]
+    release: [
+      'src/sass-format/**/*.sass'
+      'src/stylus/**/*.stylus'
+    ]
+    stylus: [
+      'src/stylus/src'
+    ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
