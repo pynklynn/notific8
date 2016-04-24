@@ -28,6 +28,10 @@ module.exports = (grunt) ->
     'update_json'
     'clean:release'
     'sass2stylus'
+    'scss2less'
+    'concat:less'
+    'replace:less'
     'sass-convert'
     'clean:stylus'
+    'clean:less'
   ]
