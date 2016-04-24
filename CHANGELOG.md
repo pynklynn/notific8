@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.1.0
+
+- Updated the release task to create versions of the styles in Sass format, Stylus, and Less
+    - Note: The project will continue to use Scss for development - this will not change, please don't open issues or pull-requests to change it
+
 ## 3.0.1
 
 - Added a height option for each of the theme families to make sure animations function properly

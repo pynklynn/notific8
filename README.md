@@ -58,6 +58,10 @@ Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information
 * Close All button available when multiple notifications are on the screen at once
 * Ability to queue notifications to only show one at a time
 
+## Styles
+
+The styles are written in Scss format and available in the `src/sass` directory. The grunt task `release` will create versions of the code in Sass format, Less, and Stylus. Development will continue in Scss only - please do not open issues or pull requests to change the default style format.
+
 ## License
 
 The jQuery notific8 plug-in is released under the BSD license.
