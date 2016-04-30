@@ -24,11 +24,11 @@ module.exports = (grunt) ->
       tasks: ['clean:js', 'coffee', 'uglify', 'copy:js']
       options:
         spawn: false
-    jade:
+    pug:
       files: [
-        'src/jade/**/*.jade'
+        'src/pug/**/*.pug'
       ]
-      tasks: ['jade']
+      tasks: ['pug']
       options:
         spawn: false
   )

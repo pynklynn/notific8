@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.1.1
+
+- Updating the templates from Jade to Pug due to Jade being forced to rename
+
 ## 3.1.0
 
 - Updated the release task to create versions of the styles in Sass format, Stylus, and Less

@@ -13,20 +13,26 @@ module.exports = (grunt) ->
 
   grunt.loadTasks 'grunt'
 
-  grunt.registerTask 'default', [
-    'clean:all'
+  grunt.registerTask 'build', [
+    'pug'
     'sass'
     'cssmin'
     'coffee'
     'uglify'
     'copy:font'
     'copy:code'
+  ]
+
+  grunt.registerTask 'default', [
+    'clean:all'
+    'build'
     'watch'
   ]
 
   grunt.registerTask 'release', [
-    'update_json'
     'clean:release'
+    'build'
+    'update_json'
     'sass2stylus'
     'scss2less'
     'concat:less'

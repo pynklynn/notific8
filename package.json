@@ -1,6 +1,6 @@
 {
   "name": "notific8",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
   "main": "dist/jquery.notific8.min.js",
   "scripts": {
@@ -27,7 +27,7 @@
     "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-cssmin": "^0.11.0",
-    "grunt-contrib-jade": "^0.15.0",
+    "grunt-contrib-pug": "^1.0.0",
     "grunt-contrib-sass": "^0.8.1",
     "grunt-contrib-uglify": "^0.7.0",
     "grunt-contrib-watch": "^0.6.1",

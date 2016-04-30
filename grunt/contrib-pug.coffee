@@ -7,10 +7,10 @@
 ###
 
 module.exports = (grunt) ->
-  grunt.config('jade',
+  grunt.config('pug',
     release:
       files:
-        'demo/index.html': 'src/jade/index.jade'
+        'demo/index.html': 'src/pug/index.pug'
   )
 
-  grunt.loadNpmTasks 'grunt-contrib-jade'
+  grunt.loadNpmTasks 'grunt-contrib-pug'
