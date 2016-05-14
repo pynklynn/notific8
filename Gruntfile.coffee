@@ -33,11 +33,13 @@ module.exports = (grunt) ->
     'clean:release'
     'build'
     'update_json'
-    'sass2stylus'
+    # for some reason this is not running properly when called from here and
+    # and has to be called separately
+    # 'sass2stylus'
     'scss2less'
     'concat:less'
     'replace:less'
     'sass-convert'
-    'clean:stylus'
+    # 'clean:stylus'
     'clean:less'
   ]

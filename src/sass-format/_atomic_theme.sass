@@ -1,11 +1,12 @@
-/**
- * @author Will Steinmetz
- *
- * ChicChat family themes for the notific8 plug-in for jQuery
- *
- * Copyright (c)2013-2016, Will Steinmetz
- * Licensed under the BSD license.
- * http://opensource.org/licenses/BSD-3-Clause
+//
+// @author Will Steinmetz
+//
+// ChicChat family themes for the notific8 plug-in for jQuery
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+//
 
 // mixins
 =notific8_atomic_theme($name, $color, $text-color: #454545)
@@ -32,6 +33,9 @@
 
     .#{$notific8-ns}-heading
       padding: .75em
+
+    .#{$notific8-ns}-message-content
+      width: 100%
 
     .#{$notific8-ns}-message
       font-size: em(12px, 14px)
@@ -73,6 +77,9 @@
     .#{$notific8-ns}-close
       right: .5em
 
+    .#{$notific8-ns}-heading
+      border-top-right-radius: 3px
+
 .left
   .#{$notific8-ns}-notification.family-atomic
     border-right-width: em(45px, 14px)
@@ -87,3 +94,6 @@
 
     .#{$notific8-ns}-close
       left: .5em
+
+    .#{$notific8-ns}-heading
+      padding-left: 2.5em

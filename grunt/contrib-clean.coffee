@@ -24,7 +24,7 @@ module.exports = (grunt) ->
     ]
     release: [
       'src/sass-format/**/*.sass'
-      'src/stylus/**/*.stylus'
+      'src/stylus/**/*.styl'
       'src/less/**/*.less'
     ]
     stylus: [

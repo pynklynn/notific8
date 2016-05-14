@@ -389,9 +389,9 @@
 .left .notific8-notification.family-chicchat .notific8-icon { right: 0; }
 .left .notific8-notification.family-chicchat .notific8-close { left: .5em; }
 
-/** @author Will Steinmetz  ChicChat family themes for the notific8 plug-in for jQuery  Copyright (c)2013-2016, Will Steinmetz Licensed under the BSD license. http://opensource.org/licenses/BSD-3-Clause */
 .notific8-notification.family-atomic { border-radius: 3px; font-size: 0.875em; height: 0; padding: 0; transition: all .15s ease-in-out; width: 31.25em; }
 .notific8-notification.family-atomic .notific8-heading { padding: .75em; }
+.notific8-notification.family-atomic .notific8-message-content { width: 100%; }
 .notific8-notification.family-atomic .notific8-message { font-size: 0.85714em; padding: 0.75em; }
 .notific8-notification.family-atomic .notific8-close { top: .325em; }
 .notific8-notification.family-atomic .notific8-close.sticky { font-size: .75em; text-decoration: underline; }
@@ -402,11 +402,13 @@
 .right .notific8-notification.family-atomic.has-icon { border-left-width: 1px; padding-left: 2.125em; }
 .right .notific8-notification.family-atomic .notific8-icon { left: 0; }
 .right .notific8-notification.family-atomic .notific8-close { right: .5em; }
+.right .notific8-notification.family-atomic .notific8-heading { border-top-right-radius: 3px; }
 
 .left .notific8-notification.family-atomic { border-right-width: 3.21429em; margin-left: .625em; }
 .left .notific8-notification.family-atomic.has-icon { border-right-width: 1px; padding-right: 2.125em; }
 .left .notific8-notification.family-atomic .notific8-icon { right: 0; }
 .left .notific8-notification.family-atomic .notific8-close { left: .5em; }
+.left .notific8-notification.family-atomic .notific8-heading { padding-left: 2.5em; }
 
 .notific8-notification.family-legacy.teal { background-color: #069; border-color: #09c; color: #fff; }
 .notific8-notification.family-legacy.teal .notific8-close { background-color: #09c; color: #fff; }
