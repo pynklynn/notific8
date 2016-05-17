@@ -64,6 +64,6 @@ The styles are written in Scss format and available in the `src/sass` directory.
 
 ## License
 
-The jQuery notific8 plug-in is released under the BSD license.
+The notific8 plug-in is released under the BSD license.
 
 (c) 2013-2016 [Ralivue](http://ralivue.com)
