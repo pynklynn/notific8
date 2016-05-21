@@ -17,9 +17,9 @@
 @import 'atomic_theme';
 
 // import the default themes
-@import 'default_legacy_themes';
-@import 'default_chicchat_themes';
-@import 'default_atomic_themes';
+@import 'default_legacy_colors';
+@import 'default_chicchat_colors';
+@import 'default_atomic_colors';
 
 // custom themes
 //@include notific8_legacy_theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color);

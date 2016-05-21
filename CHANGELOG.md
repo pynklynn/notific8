@@ -10,6 +10,9 @@ The change log was created with version 2.0. For changes, please see the commit 
     - Deprecated the family `option`
     - Added the `color` option to replace the existing `theme` option functionality
     - Changed the `theme` option to use the functionality the `theme` option formerly defined
+- Default theme color partial file names changed
+    - The theme file names have been changed from ending with `_themes` to `_colors`
+    - Sym links have been created for the original file names but will be removed in version 4.0
 
 ## 3.1.2
 
