@@ -12,8 +12,6 @@ notific8_chicchat_theme($name, $color)
     border-color: $color
     .{$notific8-ns}-close
       color: $color
-    .{$notific8-ns}-icon
-      background-color: $color
 .{$notific8-ns}-notification
   &.family-chicchat
     background-color: #fff
@@ -34,18 +32,6 @@ notific8_chicchat_theme($name, $color)
       &.sticky
         font-size: 0.75em
         text-decoration: underline
-    .{$notific8-ns}-icon
-      align-items: center
-      box-sizing: border-box
-      color: #fff
-      display: flex
-      font-size: 2em
-      height: 100%
-      justify-content: center
-      position: absolute
-      text-align: center
-      top: 0
-      width: em(45px, 28px)
     &.open
       height: em(120px)
 .right
@@ -55,8 +41,6 @@ notific8_chicchat_theme($name, $color)
     &.has-icon
       border-left-width: 1px
       padding-left: em(62px, 14px)
-    .{$notific8-ns}-icon
-      left: 0
     .{$notific8-ns}-close
       right: 0.5em
 .left
@@ -66,7 +50,5 @@ notific8_chicchat_theme($name, $color)
     &.has-icon
       border-right-width: 1px
       padding-right: em(62px, 14px)
-    .{$notific8-ns}-icon
-      right: 0
     .{$notific8-ns}-close
       left: 0.5em

@@ -16,8 +16,6 @@ notific8_atomic_theme($name, $color, $text-color = #454545)
     .{$notific8-ns}-heading
       background-color: lighten($color, 20%)
       border-bottom: solid 1px lighten($color, 10%)
-    .{$notific8-ns}-icon
-      background-color: $color
 .{$notific8-ns}-notification
   &.family-atomic
     border-radius: 3px
@@ -38,27 +36,12 @@ notific8_atomic_theme($name, $color, $text-color = #454545)
       &.sticky
         font-size: 0.75em
         text-decoration: underline
-    .{$notific8-ns}-icon
-      box-sizing: border-box
-      color: #fff
-      font-size: 1.25em
-      height: em(79px, 17.5px)
-      padding-top: 0.375em
-      position: absolute
-      text-align: center
-      top: 0
-      width: em(30px, 17.5px)
     &.open
       height: em(70px, 14px)
 .right
   .{$notific8-ns}-notification.family-atomic
     border-left-width: em(45px, 14px)
     margin-right: 0.625em
-    &.has-icon
-      border-left-width: 1px
-      padding-left: 2.125em
-    .{$notific8-ns}-icon
-      left: 0
     .{$notific8-ns}-close
       right: 0.5em
     .{$notific8-ns}-heading
@@ -67,11 +50,6 @@ notific8_atomic_theme($name, $color, $text-color = #454545)
   .{$notific8-ns}-notification.family-atomic
     border-right-width: em(45px, 14px)
     margin-left: 0.625em
-    &.has-icon
-      border-right-width: 1px
-      padding-right: 2.125em
-    .{$notific8-ns}-icon
-      right: 0
     .{$notific8-ns}-close
       left: 0.5em
     .{$notific8-ns}-heading

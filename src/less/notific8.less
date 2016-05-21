@@ -1,3 +1,15 @@
+// @author Will Steinmetz
+//
+// Styles for the notific8 JavaScript plug-in
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+@function em(@px, @base: @notific8-base-font-size) {
+  @return (@px / @base) * 1em;
+}
+
 /**
  * @author Will Steinmetz
  *
@@ -8,10 +20,19 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-// functions
-@function em(@px, @base: @notific8-base-font-size) {
-  @return (@px / @base) * 1em;
-}
+// variables
+@notific8-base-font-size: 16px;
+@notific8-ns: "notific8";
+
+/**
+ * @author Will Steinmetz
+ *
+ * Styles for the notific8 plug-in for jQuery
+ *
+ * Copyright (c)2015, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
+ */
 
 // definitions
 .@{notific8-ns}-container {
@@ -44,10 +65,6 @@
     .@{notific8-ns}-close {
       display: block;
     }
-  }
-  &.has-icon {
-    align-items: center;
-    display: flex;
   }
 }
 
@@ -83,3 +100,304 @@
 .bottom .@{notific8-ns}-notification {
   margin-bottom: em(10px);
 }
+
+/**
+ * @author Will Steinmetz
+ *
+ * Legacy family themes for the notific8 plug-in for jQuery
+ *
+ * Copyright (c)2013-2016, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
+ */
+
+// mixins
+.notific8_legacy_theme(@name, @border-color, @background-color, @close-background-color: @border-color, @text-color: #fff, @close-text-color: @text-color) {
+  .@{notific8-ns}-notification.family-legacy.@{name} {
+    background-color: @background-color;
+    border-color: @border-color;
+    color: @text-color;
+
+    .@{notific8-ns}-close {
+      background-color: @close-background-color;
+      color: @close-text-color;
+    }
+  }
+}
+
+.@{notific8-ns}-notification {
+  &.family-legacy {
+    border-style: solid;
+    border-width: 2px;
+    color: #fff;
+    height: em(90px);
+    transition: all .2s ease-in-out;
+    width: em(390px);
+
+    .@{notific8-ns}-heading {
+      font-weight: bold;
+      margin-bottom: em(5px);
+    }
+
+    .@{notific8-ns}-message {
+      font-size: em(14px);
+    }
+
+    .@{notific8-ns}-close {
+      font-size: 1.25em;
+      line-height: 1em;
+      padding: 0 .25em;
+      top: 0;
+
+      &.sticky {
+        font-size: em(10px);
+        line-height: em(14px, 10px);
+        padding: em(2px, 10px) 0;
+        text-transform: uppercase;
+        width: em(89px, 10px);
+      }
+    }
+  }
+}
+
+.left {
+  .@{notific8-ns}-notification.family-legacy {
+    margin-left: em(-390px);
+    padding-left: em(33px);
+
+    &.open {
+      margin-left: 0;
+    }
+
+    .@{notific8-ns}-close {
+      left: -2px;
+
+      &.sticky {
+        left: em(-37px, 10px);
+        top: em(34px, 10px);
+        transform: rotate(270deg);
+      }
+    }
+  }
+}
+
+.right {
+  .@{notific8-ns}-notification.family-legacy {
+    margin-right: em(-390px);
+    padding-right: em(33px);
+
+    &.open {
+      margin-right: 0;
+    }
+
+    .@{notific8-ns}-close {
+      right: -2px;
+
+      &.sticky {
+        right: em(-37px, 10px);
+        top: em(34px, 10px);
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+
+/**
+ * @author Will Steinmetz
+ *
+ * ChicChat family themes for the notific8 plug-in for jQuery
+ *
+ * Copyright (c)2013-2016, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
+ */
+
+// mixins
+.notific8_chicchat_theme(@name, @color) {
+  .@{notific8-ns}-notification.family-chicchat.@{name} {
+    border-color: @color;
+
+    .@{notific8-ns}-close {
+      color: @color;
+    }
+  }
+}
+
+.@{notific8-ns}-notification {
+  &.family-chicchat {
+    background-color: #fff;
+    border-radius: .25em;
+    border-style: solid;
+    border-width: 1px;
+    color: #121212;
+    font-size: em(14px);
+    height: 0;
+    padding: 1.125em;
+    transition: all .15s ease-in-out;
+    width: em(500px);
+
+    .@{notific8-ns}-heading {
+      font-weight: bold;
+      margin-bottom: .5em;
+    }
+
+    .@{notific8-ns}-close {
+      top: .325em;
+
+      &.sticky {
+        font-size: .75em;
+        text-decoration: underline;
+      }
+    }
+
+    &.open {
+      height: em(120px);
+    }
+  }
+}
+
+.right {
+  .@{notific8-ns}-notification.family-chicchat {
+    border-left-width: em(45px, 14px);
+    margin-right: .625em;
+
+    &.has-icon {
+      border-left-width: 1px;
+      padding-left: em(62px, 14px);
+    }
+
+    .@{notific8-ns}-close {
+      right: .5em;
+    }
+  }
+}
+
+.left {
+  .@{notific8-ns}-notification.family-chicchat {
+    border-right-width: em(45px, 14px);
+    margin-left: .625em;
+
+    &.has-icon {
+      border-right-width: 1px;
+      padding-right: em(62px, 14px);
+    }
+
+    .@{notific8-ns}-close {
+      left: .5em;
+    }
+  }
+}
+
+//
+// @author Will Steinmetz
+//
+// ChicChat family themes for the notific8 plug-in for jQuery
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+//
+
+// mixins
+.notific8_atomic_theme(@name, @color, @text-color: #454545) {
+  .@{notific8-ns}-notification.family-atomic.@{name} {
+    background-color: lighten(@color, 30%);
+    border-color: @color;
+    color: @text-color;
+
+    .@{notific8-ns}-heading {
+      background-color: lighten(@color, 20%);
+      border-bottom: solid 1px lighten(@color, 10%);
+    }
+  }
+}
+
+.@{notific8-ns}-notification {
+  &.family-atomic {
+    border-radius: 3px;
+    font-size: em(14px);
+    height: 0;
+    padding: 0;
+    transition: all .15s ease-in-out;
+    width: em(500px);
+
+    .@{notific8-ns}-heading {
+      padding: .75em;
+    }
+
+    .@{notific8-ns}-message-content {
+      width: 100%;
+    }
+
+    .@{notific8-ns}-message {
+      font-size: em(12px, 14px);
+      padding: em(10.5px, 14px);
+    }
+
+    .@{notific8-ns}-close {
+      top: .325em;
+
+      &.sticky {
+        font-size: .75em;
+        text-decoration: underline;
+      }
+    }
+
+    &.open {
+      height: em(70px, 14px);
+    }
+  }
+}
+
+.right {
+  .@{notific8-ns}-notification.family-atomic {
+    border-left-width: em(45px, 14px);
+    margin-right: .625em;
+
+    .@{notific8-ns}-close {
+      right: .5em;
+    }
+
+    .@{notific8-ns}-heading {
+      border-top-right-radius: 3px;
+    }
+  }
+}
+
+.left {
+  .@{notific8-ns}-notification.family-atomic {
+    border-right-width: em(45px, 14px);
+    margin-left: .625em;
+
+    .@{notific8-ns}-close {
+      left: .5em;
+    }
+
+    .@{notific8-ns}-heading {
+      padding-left: 2.5em;
+    }
+  }
+}
+
+// default legacy themes
+.notific8_legacy_theme("teal", #09c, #069);
+.notific8_legacy_theme("amethyst", #915faa, #5D2D77);
+.notific8_legacy_theme("ruby", #d10, #a10);
+.notific8_legacy_theme("tangerine", #ffb23f, #e88f00);
+.notific8_legacy_theme("lemon", #ffde00, #ffcc00, #ffde00, #333);
+.notific8_legacy_theme("lime", #38d315, #32b512);
+.notific8_legacy_theme("ebony", #666, #121212);
+.notific8_legacy_theme("smoke", #ababab, #efefef, #ababab, #333, #fff);
+
+// default ChicChat theme
+.notific8_chicchat_theme('cobalt', #3171B2);
+.notific8_chicchat_theme('ruby', #a10);
+.notific8_chicchat_theme('honey', darken(gold, 2.5%));
+.notific8_chicchat_theme('shamrock', darken(yellowgreen, 5%));
+
+.notific8_atomic_theme('cerulean', #4F99D3);
+.notific8_atomic_theme('tomato', #D03E41);
+.notific8_atomic_theme('mustard', #DDCE61);
+.notific8_atomic_theme('pear', #9ECC4E);
+.notific8_atomic_theme("amethyst", #5D2D77, #eee);
+.notific8_atomic_theme("onyx", #454545, #eee);

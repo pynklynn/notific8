@@ -11,15 +11,16 @@ module.exports = (grunt) ->
     less:
       src: [
         'src/less/icons.less'
+        'src/less/mixins.less'
         'src/less/variables.less'
-        'src/less/notific8.less'
+        'src/less/notific8-base.less'
         'src/less/legacy_theme.less'
         'src/less/chicchat_theme.less'
         'src/less/atomic_theme.less'
-        'src/less/default_legacy_themes.less'
-        'src/less/default_chicchat_themes.less'
-        'src/less/default_atomic_themes.less'
+        'src/less/default_legacy_colors.less'
+        'src/less/default_chicchat_colors.less'
+        'src/less/default_atomic_colors.less'
       ]
-      dest: 'src/less/jquery.notific8.less'
+      dest: 'src/less/notific8.less'
 
   grunt.loadNpmTasks 'grunt-contrib-concat'
