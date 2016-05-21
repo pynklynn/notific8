@@ -11,7 +11,7 @@ module.exports = (grunt) ->
     minify:
       expand: true
       files:
-        'dist/jquery.notific8.min.css': ['build/css/jquery.notific8.css']
+        'dist/jquery.notific8.min.css': [ 'build/css/jquery.notific8.css' ]
     add_banner:
       options:
         banner: "/**\n\
@@ -22,7 +22,7 @@ module.exports = (grunt) ->
 * http://opensource.org/licenses/BSD-3-Clause\n\
 */"
       files:
-        'dist/jquery.notific8.min.css': ['dist/jquery.notific8.min.css']
+        'dist/jquery.notific8.min.css': [ 'dist/jquery.notific8.min.css' ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
