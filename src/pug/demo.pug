@@ -3,11 +3,11 @@ p
   | notific8 is a notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple theme families built in. The Sass files can be included in a project for easy customizations.
 p Use the fields below to test the different options for the plug-in.
 p
-  | To see the 
+  | To see the
   i onInit(data)
-  | , 
+  | ,
   i onCreate(notification, data)
-  | , and 
+  | , and
   i onClose(notification, data)
   |  actions functioning, open your browser's developer tools' console view.
 table
@@ -45,7 +45,8 @@ table
         input#notific8CloseText(type='text', name='notific8CloseText', size='50', maxlength='50')
     tr
       td.label
-        label(for='notific8Icon') Icon (optional)
+        label(for='notific8Icon') Icon (optional) -
+        i  provided by module
       td
         select#notific8Icon(name='notific8Icon')
           option(value='') - None -
@@ -265,7 +266,7 @@ table
       td
         label
           input(name="notific8UseJquery", type="radio", value="0", checked="Checked")
-          |  Vanilla JavaScript 
+          |  Vanilla JavaScript
         label
           input(name="notific8UseJquery", type="radio", value="1")
           |  jQuery

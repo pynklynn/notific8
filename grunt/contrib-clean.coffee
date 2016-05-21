@@ -11,11 +11,13 @@ module.exports = (grunt) ->
     all: [
       'dist'
       'build'
+      'modules/**/build'
     ]
     js: [
       'build/js'
       'dist/*.js'
       'dist/*.js.map'
+      'modules/**/build/js'
     ]
     css: [
       'build/css'

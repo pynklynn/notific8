@@ -76,20 +76,19 @@ notific8 = do ->
 <div class="$notificationClasses" id="#{notificationId}">
 """
     for module in notific8RegisteredModules.beforeContent
-      moduleResults = module.callbackMethod()
+      moduleResults = module.callbackMethod(data)
       generatedNotificationClasses = generatedNotificationClasses.concat(
         moduleResults.classes
       )
       notification += moduleResults.html
     notification += """
-  #{buildIcon(data)}
   <div class="#{data.settings.namespace}-message-content">
     #{buildHeading(data)}
     #{buildMessage(data)}
   </div>
 """
     for module in notific8RegisteredModules.afterContent
-      moduleResults = module.callbackMethod()
+      moduleResults = module.callbackMethod(data)
       generatedNotificationClasses = generatedNotificationClasses.concat(
         moduleResults.classes
       )
@@ -132,11 +131,6 @@ notific8 = do ->
 
     return
 
-  # region: boolean checkers
-  hasIcon = (data) ->
-    data.settings.icon? and (typeof data.settings.icon is "string")
-  # end region: boolean checkers
-
   # region: generators
   buildClose = (data) ->
     close = "<div class=\"#{data.settings.namespace}-close"
@@ -159,18 +153,6 @@ notific8 = do ->
     else
       ""
 
-  buildIcon = (data) ->
-    if hasIcon(data)
-      classes = [
-        "#{data.settings.namespace}-icon"
-        "#{data.settings.namespace}-fontastic-#{data.settings.icon}"
-      ]
-      """
-<i class="#{classes.join(' ')}"></i>
-"""
-    else
-      ""
-
   buildMessage = (data) ->
     """
 <div class="#{data.settings.namespace}-message">
@@ -184,9 +166,6 @@ notific8 = do ->
       "family-#{data.settings.family}"
       data.settings.theme
     ]
-
-    if hasIcon(data)
-      classes.push "has-icon"
 
     if data.settings.sticky
       classes.push "sticky"

@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, getContainer, hasIcon, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
     family: 'legacy',
@@ -81,15 +81,15 @@ notific8 = (function() {
     _ref = notific8RegisteredModules.beforeContent;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       module = _ref[_i];
-      moduleResults = module.callbackMethod();
+      moduleResults = module.callbackMethod(data);
       generatedNotificationClasses = generatedNotificationClasses.concat(moduleResults.classes);
       notification += moduleResults.html;
     }
-    notification += "" + (buildIcon(data)) + "\n<div class=\"" + data.settings.namespace + "-message-content\">\n  " + (buildHeading(data)) + "\n  " + (buildMessage(data)) + "\n</div>";
+    notification += "<div class=\"" + data.settings.namespace + "-message-content\">\n  " + (buildHeading(data)) + "\n  " + (buildMessage(data)) + "\n</div>";
     _ref1 = notific8RegisteredModules.afterContent;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
       module = _ref1[_j];
-      moduleResults = module.callbackMethod();
+      moduleResults = module.callbackMethod(data);
       generatedNotificationClasses = generatedNotificationClasses.concat(moduleResults.classes);
       notification += moduleResults.html;
     }
@@ -116,9 +116,6 @@ notific8 = (function() {
       }
     }), 5);
   };
-  hasIcon = function(data) {
-    return (data.settings.icon != null) && (typeof data.settings.icon === "string");
-  };
   buildClose = function(data) {
     var close;
     close = "<div class=\"" + data.settings.namespace + "-close";
@@ -138,24 +135,12 @@ notific8 = (function() {
       return "";
     }
   };
-  buildIcon = function(data) {
-    var classes;
-    if (hasIcon(data)) {
-      classes = ["" + data.settings.namespace + "-icon", "" + data.settings.namespace + "-fontastic-" + data.settings.icon];
-      return "<i class=\"" + (classes.join(' ')) + "\"></i>";
-    } else {
-      return "";
-    }
-  };
   buildMessage = function(data) {
     return "<div class=\"" + data.settings.namespace + "-message\">\n" + data.message + "\n</div>";
   };
   notificationClasses = function(data) {
     var classes;
     classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.family, data.settings.theme];
-    if (hasIcon(data)) {
-      classes.push("has-icon");
-    }
     if (data.settings.sticky) {
       classes.push("sticky");
     }

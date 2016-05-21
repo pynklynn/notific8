@@ -24,6 +24,15 @@ module.exports = (grunt) ->
           'build/js/jquery.notific8.js'
         ]
         'dist/notific8.min.js': ['build/js/notific8.js']
+        'dist/notific8.full.min.js': [
+          'build/js/notific8.js'
+          'modules/**/build/js/*.js'
+        ]
+        'dist/jquery.notific8.full.min.js': [
+          'build/js/notific8.js'
+          'modules/**/build/js/*.js'
+          'build/js/jquery.notific8.js'
+        ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'
