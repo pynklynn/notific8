@@ -4,4 +4,3 @@ scss-lint.log
 build/
 .DS_Store
 src/stylus/src
-modules/*/build
