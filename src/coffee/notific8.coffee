@@ -71,16 +71,38 @@ notific8 = do ->
 
     # build the notification HTML
     notificationId = "#{namespace}-notification-#{num}"
+    generatedNotificationClasses = notificationClasses(data)
     notification = """
-<div class="#{notificationClasses(data).join(' ')}" id="#{notificationId}">
+<div class="$notificationClasses" id="#{notificationId}">
+"""
+    for module in notific8RegisteredModules.beforeContent
+      moduleResults = module.callbackMethod()
+      generatedNotificationClasses = generatedNotificationClasses.concat(
+        moduleResults.classes
+      )
+      notification += moduleResults.html
+    notification += """
   #{buildIcon(data)}
   <div class="#{data.settings.namespace}-message-content">
     #{buildHeading(data)}
     #{buildMessage(data)}
   </div>
+"""
+    for module in notific8RegisteredModules.afterContent
+      moduleResults = module.callbackMethod()
+      generatedNotificationClasses = generatedNotificationClasses.concat(
+        moduleResults.classes
+      )
+      notification += moduleResults.html
+    notification += """
   #{buildClose(data)}
 </div>
 """
+
+    notification = notification.replace(
+      '$notificationClasses'
+      generatedNotificationClasses.join(' ')
+    )
 
     # add the notification to the stack
     container.innerHTML += notification
@@ -320,7 +342,7 @@ notific8 = do ->
         throw new Error(errorMessage)
 
     # register the defaultOptions
-    for defaultValue, option in defaultOptions
+    for option, defaultValue of defaultOptions
       notific8Defaults[option] = defaultValue
 
     # add the module to the collection

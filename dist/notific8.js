@@ -68,7 +68,7 @@ notific8 = (function() {
   @param object data
    */
   buildNotification = function(data) {
-    var body, container, namespace, notification, notificationId, num;
+    var body, container, generatedNotificationClasses, module, moduleResults, namespace, notification, notificationId, num, _i, _j, _len, _len1, _ref, _ref1;
     body = document.getElementsByTagName('body')[0];
     num = Number(body.dataset.notific8s);
     namespace = data.settings.namespace;
@@ -76,7 +76,25 @@ notific8 = (function() {
     num += 1;
     body.dataset.notific8s = num;
     notificationId = "" + namespace + "-notification-" + num;
-    notification = "<div class=\"" + (notificationClasses(data).join(' ')) + "\" id=\"" + notificationId + "\">\n  " + (buildIcon(data)) + "\n  <div class=\"" + data.settings.namespace + "-message-content\">\n    " + (buildHeading(data)) + "\n    " + (buildMessage(data)) + "\n  </div>\n  " + (buildClose(data)) + "\n</div>";
+    generatedNotificationClasses = notificationClasses(data);
+    notification = "<div class=\"$notificationClasses\" id=\"" + notificationId + "\">";
+    _ref = notific8RegisteredModules.beforeContent;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      module = _ref[_i];
+      moduleResults = module.callbackMethod();
+      generatedNotificationClasses = generatedNotificationClasses.concat(moduleResults.classes);
+      notification += moduleResults.html;
+    }
+    notification += "" + (buildIcon(data)) + "\n<div class=\"" + data.settings.namespace + "-message-content\">\n  " + (buildHeading(data)) + "\n  " + (buildMessage(data)) + "\n</div>";
+    _ref1 = notific8RegisteredModules.afterContent;
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      module = _ref1[_j];
+      moduleResults = module.callbackMethod();
+      generatedNotificationClasses = generatedNotificationClasses.concat(moduleResults.classes);
+      notification += moduleResults.html;
+    }
+    notification += "" + (buildClose(data)) + "\n</div>";
+    notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
     setTimeout((function() {
       notification = document.getElementById(notificationId);
@@ -287,7 +305,7 @@ notific8 = (function() {
   @param function callbackMethod
    */
   registerModule = function(moduleName, position, defaultOptions, callbackMethod) {
-    var defaultValue, errorMessage, module, option, _i, _j, _len, _len1, _ref;
+    var defaultValue, errorMessage, module, option, _i, _len, _ref;
     if (!(typeof moduleName === 'string' && moduleName.trim() !== '')) {
       errorMessage = "moduleName should be a string";
       console.error(errorMessage);
@@ -317,7 +335,7 @@ notific8 = (function() {
         throw new Error(errorMessage);
       }
     }
-    for (option = _j = 0, _len1 = defaultOptions.length; _j < _len1; option = ++_j) {
+    for (option in defaultOptions) {
       defaultValue = defaultOptions[option];
       notific8Defaults[option] = defaultValue;
     }
