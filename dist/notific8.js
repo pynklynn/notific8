@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, getContainer, hasIcon, init, initContainers, notificationClasses, remove, zindex;
+  var buildClose, buildHeading, buildIcon, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, getContainer, hasIcon, init, initContainers, notificationClasses, registerModule, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
     family: 'legacy',
@@ -29,6 +29,10 @@ notific8 = (function() {
       chicchat: 120,
       legacy: 90
     }
+  };
+  window.notific8RegisteredModules = {
+    beforeContent: [],
+    afterContent: []
   };
 
   /*
@@ -274,11 +278,60 @@ notific8 = (function() {
       options.horizontalEdge = notific8Defaults.horizontalEdge;
     }
   };
+
+  /*
+  Register a module for use in the system
+  @param string moduleName
+  @param string position
+  @param object defaultOptions
+  @param function callbackMethod
+   */
+  registerModule = function(moduleName, position, defaultOptions, callbackMethod) {
+    var defaultValue, errorMessage, module, option, _i, _j, _len, _len1, _ref;
+    if (!(typeof moduleName === 'string' && moduleName.trim() !== '')) {
+      errorMessage = "moduleName should be a string";
+      console.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+    if (!(typeof position === 'string' && (position === 'beforeContent' || position === 'afterContent'))) {
+      errorMessage = "position should be a string";
+      console.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+    if (typeof defaultOptions !== 'object') {
+      errorMessage = "defaultOptions should be an object";
+      console.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+    if (typeof callbackMethod !== 'function') {
+      errorMessage = "callbackMethod should be an function";
+      console.error(errorMessage);
+      throw new Error(errorMessage);
+    }
+    _ref = notific8RegisteredModules[position];
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      module = _ref[_i];
+      if (module.moduleName === moduleName) {
+        errorMessage = "Module '" + moduleName + "' has already been registered";
+        console.error(errorMessage);
+        throw new Error(errorMessage);
+      }
+    }
+    for (option = _j = 0, _len1 = defaultOptions.length; _j < _len1; option = ++_j) {
+      defaultValue = defaultOptions[option];
+      notific8Defaults[option] = defaultValue;
+    }
+    return notific8RegisteredModules[position].push({
+      moduleName: moduleName,
+      callbackMethod: callbackMethod
+    });
+  };
   return function(message, options) {
-    var containerClass;
+    var callbackMethod, containerClass, defaultOptions, errorMessage, moduleName, position;
     if (typeof message !== "string") {
-      console.error("notific8 takes a string message as the first parameter");
-      throw new Error("notific8 takes a string message as the first parameter");
+      errorMessage = "notific8 takes a string message as the first parameter";
+      console.error(errorMessage);
+      throw new Error(errorMessage);
     }
     if (options == null) {
       options = {};
@@ -296,6 +349,17 @@ notific8 = (function() {
         return destroy(options);
       case "remove":
         return remove(options);
+      case "registerModule":
+        if (arguments.length !== 5) {
+          errorMessage = "Registering a module requires the parameters moduleName, position,\n defaultOptions, and callbackMethod.";
+          console.log(errorMessage);
+          throw new Error(errorMessage);
+        }
+        moduleName = arguments[1];
+        position = arguments[2];
+        defaultOptions = arguments[3];
+        callbackMethod = arguments[4];
+        return registerModule(moduleName, position, defaultOptions, callbackMethod);
       default:
         containerClass = "" + options.namespace + "-container";
         if (document.getElementsByClassName(containerClass).length === 0) {

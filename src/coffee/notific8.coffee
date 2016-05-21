@@ -27,6 +27,11 @@ notific8 = do ->
       chicchat: 120
       legacy: 90
 
+  # modules registered with the system
+  window.notific8RegisteredModules =
+    beforeContent: []
+    afterContent: []
+
   ###
   Destroy the notification
   @param object options
@@ -279,11 +284,57 @@ notific8 = do ->
       options.horizontalEdge = notific8Defaults.horizontalEdge
     return
 
+  ###
+  Register a module for use in the system
+  @param string moduleName
+  @param string position
+  @param object defaultOptions
+  @param function callbackMethod
+  ###
+  registerModule = (moduleName, position, defaultOptions, callbackMethod) ->
+    # double-check all of the values are correct
+    unless typeof moduleName == 'string' && moduleName.trim() != ''
+      errorMessage = "moduleName should be a string"
+      console.error errorMessage
+      throw new Error(errorMessage)
+    unless typeof position == 'string' && (
+      position == 'beforeContent' || position == 'afterContent'
+    )
+      errorMessage = "position should be a string"
+      console.error errorMessage
+      throw new Error(errorMessage)
+    unless typeof defaultOptions == 'object'
+      errorMessage = "defaultOptions should be an object"
+      console.error errorMessage
+      throw new Error(errorMessage)
+    unless typeof callbackMethod == 'function'
+      errorMessage = "callbackMethod should be an function"
+      console.error errorMessage
+      throw new Error(errorMessage)
+
+    # make sure the module is not registered yet
+    for module in notific8RegisteredModules[position]
+      if module.moduleName == moduleName
+        errorMessage = "Module '#{moduleName}' has already been registered"
+        console.error errorMessage
+        throw new Error(errorMessage)
+
+    # register the defaultOptions
+    for defaultValue, option in defaultOptions
+      notific8Defaults[option] = defaultValue
+
+    # add the module to the collection
+    notific8RegisteredModules[position].push {
+      moduleName
+      callbackMethod
+    }
+
   # return the public method
   (message, options) ->
     unless typeof message is "string"
-      console.error "notific8 takes a string message as the first parameter"
-      throw new Error("notific8 takes a string message as the first parameter")
+      errorMessage = "notific8 takes a string message as the first parameter"
+      console.error errorMessage
+      throw new Error(errorMessage)
 
     options = {} unless options?
     unless options.hasOwnProperty('namespace') || message == 'zindex'
@@ -298,6 +349,21 @@ notific8 = do ->
         return destroy(options)
       when "remove"
         return remove(options)
+      when "registerModule"
+        unless arguments.length == 5
+          errorMessage = """
+Registering a module requires the parameters moduleName, position,
+ defaultOptions, and callbackMethod.
+"""
+          console.log errorMessage
+          throw new Error(errorMessage)
+
+        moduleName = arguments[1]
+        position = arguments[2]
+        defaultOptions = arguments[3]
+        callbackMethod = arguments[4]
+
+        registerModule moduleName, position, defaultOptions, callbackMethod
       else
         # make sure that the stack containers exist
         containerClass = "#{options.namespace}-container"

@@ -11,6 +11,7 @@ module.exports = (grunt) ->
     dist:
       options:
         style: 'compact'
+        sourceMap: true
       files:
         'build/css/jquery.notific8.css': 'src/sass/jquery.notific8.scss'
   )
