@@ -1,6 +1,6 @@
 {
 	"version": 3,
-	"file": "jquery.notific8.css",
+	"file": "notific8.css",
 	"sources": [
 		"../../src/sass/notific8.scss",
 		"../../src/sass/_mixins.scss",

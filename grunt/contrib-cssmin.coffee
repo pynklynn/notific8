@@ -11,7 +11,8 @@ module.exports = (grunt) ->
     minify:
       expand: true
       files:
-        'dist/jquery.notific8.min.css': [ 'build/css/jquery.notific8.css' ]
+        'dist/notific8.min.css': [ 'build/css/notific8.css' ]
+        'dist/jquery.notific8.min.css': [ 'build/css/notific8.css' ]
         'dist/notific8-module.icon.min.css': [ 'build/modules/css/notific8-module.icon.css' ]
         'dist/notific8-full.min.css': [
           'build/css/jquery.notific8.css'
@@ -27,6 +28,7 @@ module.exports = (grunt) ->
 * http://opensource.org/licenses/BSD-3-Clause\n\
 */"
       files:
+        'dist/notific8.min.css': [ 'dist/notific8.min.css' ]
         'dist/jquery.notific8.min.css': [ 'dist/jquery.notific8.min.css' ]
         'dist/notific8-module.icon.min.css': [ 'dist/notific8-module.icon.min.css' ]
         'dist/notific8-full.min.css': [ 'dist/notific8-full.min.css' ]

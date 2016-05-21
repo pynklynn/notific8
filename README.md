@@ -31,6 +31,7 @@ An interactive demo page can be found in the ./demo/ directory.
 * Ability to customize close text on sticky notifications
 * Ability to set custom CSS namespace if necessary
 * Events for init, create, and close
+* Modular system to make it easier for developers to extend the plug-in
 
 ## Browser support
 
@@ -50,7 +51,10 @@ As a rule of thumb, only the most recent plus one version older of a browser is 
 
 ## Wiki
 
-Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information on the options available and how to implement them.
+Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information on:
+
+* The options available and how to implement them
+* How to create modules to extend the plug-in
 
 ## Future development
 
