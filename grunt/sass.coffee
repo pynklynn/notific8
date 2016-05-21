@@ -14,6 +14,7 @@ module.exports = (grunt) ->
         sourceMap: true
       files:
         'build/css/jquery.notific8.css': 'src/sass/jquery.notific8.scss'
+        'build/modules/css/notific8-module.icon.css': 'src/modules/icon/sass/notific8-module.icon.scss'
   )
 
   grunt.loadNpmTasks 'grunt-sass'

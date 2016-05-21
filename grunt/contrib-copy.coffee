@@ -10,7 +10,7 @@ module.exports = (grunt) ->
   grunt.config('copy',
     font:
       expand: true
-      src: ['modules/icon/src/fonts/*']
+      src: ['src/modules/icon/fonts/*']
       dest: 'dist/fonts'
       filter: 'isFile'
       flatten: true
@@ -19,6 +19,8 @@ module.exports = (grunt) ->
       src: [
         'build/css/*.css'
         'build/css/*.css.map'
+        'build/modules/css/*.css'
+        'build/modules/css/*.css.map'
       ]
       dest: 'dist'
       filter: 'isFile'
@@ -28,8 +30,8 @@ module.exports = (grunt) ->
       src: [
         'build/js/*.js'
         'build/js/*.js.map'
-        'modules/**/build/js/*.js'
-        'modules/**/build/js/*.js.map'
+        'build/modules/js/*.js'
+        'build/modules/js/*.js.map'
       ]
       dest: 'dist'
       filter: 'isFile'
@@ -41,8 +43,10 @@ module.exports = (grunt) ->
         'build/css/*.css.map'
         'build/js/*.js'
         'build/js/*.js.map'
-        'modules/**/build/js/*.js'
-        'modules/**/build/js/*.js.map'
+        'build/modules/js/*.js'
+        'build/modules/js/*.js.map'
+        'build/modules/css/*.css'
+        'build/modules/css/*.css.map'
       ]
       dest: 'dist'
       filter: 'isFile'

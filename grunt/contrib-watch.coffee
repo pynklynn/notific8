@@ -13,6 +13,7 @@ module.exports = (grunt) ->
     sass:
       files: [
         'src/sass/*.scss'
+        'src/modules/**/sass/*.scss'
       ]
       tasks: ['clean:css', 'sass', 'cssmin', 'copy:css']
       options:

@@ -1,0 +1,51 @@
+// @author Will Steinmetz
+//
+// Styles for the notific8 JavaScript plug-in
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+.#{$notific8-ns}-notification {
+  &.family-legacy {
+    &.has-icon {
+      width: em(435px);
+
+      .#{$notific8-ns}-message-content {
+        padding-left: em(10px);
+      }
+    }
+
+    .#{$notific8-ns}-icon {
+      font-size: em(70px);
+      height: 1em;
+      margin-top: -1px;
+    }
+  }
+}
+
+.left {
+  .#{$notific8-ns}-notification.family-legacy {
+    &.has-icon {
+      padding-right: 90px;
+    }
+
+    .#{$notific8-ns}-icon {
+      float: right;
+      margin-right: em(-81px, 70px);
+    }
+  }
+}
+
+.right {
+  .#{$notific8-ns}-notification.family-legacy {
+    &.has-icon {
+      padding-left: 90px;
+    }
+
+    .#{$notific8-ns}-icon {
+      float: left;
+      margin-left: em(-81px, 70px);
+    }
+  }
+}

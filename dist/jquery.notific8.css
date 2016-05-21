@@ -86,14 +86,6 @@
   height: 5.625em;
   transition: all .2s ease-in-out;
   width: 24.375em; }
-  .notific8-notification.family-legacy.has-icon {
-    width: 27.1875em; }
-    .notific8-notification.family-legacy.has-icon .notific8-message-content {
-      padding-left: 0.625em; }
-  .notific8-notification.family-legacy .notific8-icon {
-    font-size: 4.375em;
-    height: 1em;
-    margin-top: -1px; }
   .notific8-notification.family-legacy .notific8-heading {
     font-weight: bold;
     margin-bottom: 0.3125em; }
@@ -116,11 +108,6 @@
   padding-left: 2.0625em; }
   .left .notific8-notification.family-legacy.open {
     margin-left: 0; }
-  .left .notific8-notification.family-legacy.has-icon {
-    padding-right: 90px; }
-  .left .notific8-notification.family-legacy .notific8-icon {
-    float: right;
-    margin-right: -1.1571428571em; }
   .left .notific8-notification.family-legacy .notific8-close {
     left: -2px; }
     .left .notific8-notification.family-legacy .notific8-close.sticky {
@@ -133,11 +120,6 @@
   padding-right: 2.0625em; }
   .right .notific8-notification.family-legacy.open {
     margin-right: 0; }
-  .right .notific8-notification.family-legacy.has-icon {
-    padding-left: 90px; }
-  .right .notific8-notification.family-legacy .notific8-icon {
-    float: left;
-    margin-left: -1.1571428571em; }
   .right .notific8-notification.family-legacy .notific8-close {
     right: -2px; }
     .right .notific8-notification.family-legacy .notific8-close.sticky {
@@ -173,18 +155,6 @@
     .notific8-notification.family-chicchat .notific8-close.sticky {
       font-size: .75em;
       text-decoration: underline; }
-  .notific8-notification.family-chicchat .notific8-icon {
-    align-items: center;
-    box-sizing: border-box;
-    color: #fff;
-    display: flex;
-    font-size: 2em;
-    height: 100%;
-    justify-content: center;
-    position: absolute;
-    text-align: center;
-    top: 0;
-    width: 1.6071428571em; }
   .notific8-notification.family-chicchat.open {
     height: 7.5em; }
 
@@ -194,8 +164,6 @@
   .right .notific8-notification.family-chicchat.has-icon {
     border-left-width: 1px;
     padding-left: 4.4285714286em; }
-  .right .notific8-notification.family-chicchat .notific8-icon {
-    left: 0; }
   .right .notific8-notification.family-chicchat .notific8-close {
     right: .5em; }
 
@@ -205,8 +173,6 @@
   .left .notific8-notification.family-chicchat.has-icon {
     border-right-width: 1px;
     padding-right: 4.4285714286em; }
-  .left .notific8-notification.family-chicchat .notific8-icon {
-    right: 0; }
   .left .notific8-notification.family-chicchat .notific8-close {
     left: .5em; }
 
@@ -316,29 +282,21 @@
   border-color: #3171B2; }
   .notific8-notification.family-chicchat.cobalt .notific8-close {
     color: #3171B2; }
-  .notific8-notification.family-chicchat.cobalt .notific8-icon {
-    background-color: #3171B2; }
 
 .notific8-notification.family-chicchat.ruby {
   border-color: #a10; }
   .notific8-notification.family-chicchat.ruby .notific8-close {
     color: #a10; }
-  .notific8-notification.family-chicchat.ruby .notific8-icon {
-    background-color: #a10; }
 
 .notific8-notification.family-chicchat.honey {
   border-color: #f2cc00; }
   .notific8-notification.family-chicchat.honey .notific8-close {
     color: #f2cc00; }
-  .notific8-notification.family-chicchat.honey .notific8-icon {
-    background-color: #f2cc00; }
 
 .notific8-notification.family-chicchat.shamrock {
   border-color: #8bb92d; }
   .notific8-notification.family-chicchat.shamrock .notific8-close {
     color: #8bb92d; }
-  .notific8-notification.family-chicchat.shamrock .notific8-icon {
-    background-color: #8bb92d; }
 
 .notific8-notification.family-atomic.cerulean {
   background-color: #c9e0f2;
