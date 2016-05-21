@@ -10,14 +10,14 @@ notific8 = do ->
   # set up the defaults
   window.notific8Defaults =
     life: 10000
-    family: 'legacy'
-    theme: "teal"
+    theme: 'legacy'
+    color: 'teal'
     sticky: false
-    verticalEdge: "right"
-    horizontalEdge: "top"
+    verticalEdge: 'right'
+    horizontalEdge: 'top'
     zindex: 1100
     icon: false
-    closeText: "close"
+    closeText: 'close'
     onInit: null
     onCreate: null
     onClose: null
@@ -163,8 +163,8 @@ notific8 = do ->
   notificationClasses = (data) ->
     classes = [
       "#{data.settings.namespace}-notification"
-      "family-#{data.settings.family}"
-      data.settings.theme
+      "family-#{data.settings.theme}"
+      data.settings.color
     ]
 
     if data.settings.sticky
@@ -235,14 +235,32 @@ notific8 = do ->
     for key, option of options
       data.settings[key] = option
     unless data.settings.height?
-      data.settings.height = notific8Defaults.height[data.settings.family]
+      data.settings.height = notific8Defaults.height[data.settings.theme]
     data.settings.height = Number(data.settings.height)
-    if data.settings.height < notific8Defaults.height[data.settings.family]
-      data.settings.height = notific8Defaults.height[data.settings.family]
+    if data.settings.height < notific8Defaults.height[data.settings.theme]
+      data.settings.height = notific8Defaults.height[data.settings.theme]
+
+    # backwards compatibility check that will removed for version 4.0
+    checkThemeOptions data
 
     buildNotification data
     data.settings.onInit data if data.settings.onInit
     return
+
+  ###
+  Check that the theme, color, and family options are set appropriately.
+  This method will be removed for version 4.0 when the family option is removed
+  and backwards compatibility will be removed.
+  @param object data
+  ###
+  checkThemeOptions = (data) ->
+    unless ['legacy', 'atomic', 'chicchat'].indexOf(data.settings.theme) > -1
+      data.settings.color = data.settings.theme
+      data.settings.theme = data.settings.family
+      if console? && console.warn?
+        console.warn """
+The option 'theme' now references the value that was formerly used for 'family'. The option 'color' was added in version 3.2.0 to replace the former functionality of the 'theme' option. The 'family' option and backwards compatibility will be removed in version 4.0. Please update the options configuration in your code as soon as possible.
+"""
 
   ###
   Initialize the containers for the plug-in

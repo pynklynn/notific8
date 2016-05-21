@@ -2,6 +2,15 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.2.0
+
+- Added module functionality to make the plug-in more easily extensible for developers
+- Moved the icon functionality into its own module
+- Option settings changes:
+    - Deprecated the family `option`
+    - Added the `color` option to replace the existing `theme` option functionality
+    - Changed the `theme` option to use the functionality the `theme` option formerly defined
+
 ## 3.1.2
 
 - Fixing bugs with the Atomic theme

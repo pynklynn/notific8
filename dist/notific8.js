@@ -9,17 +9,17 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, checkThemeOptions, closeNotification, configure, destroy, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
-    family: 'legacy',
-    theme: "teal",
+    theme: 'legacy',
+    color: 'teal',
     sticky: false,
-    verticalEdge: "right",
-    horizontalEdge: "top",
+    verticalEdge: 'right',
+    horizontalEdge: 'top',
     zindex: 1100,
     icon: false,
-    closeText: "close",
+    closeText: 'close',
     onInit: null,
     onCreate: null,
     onClose: null,
@@ -140,7 +140,7 @@ notific8 = (function() {
   };
   notificationClasses = function(data) {
     var classes;
-    classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.family, data.settings.theme];
+    classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.theme, data.settings.color];
     if (data.settings.sticky) {
       classes.push("sticky");
     }
@@ -226,15 +226,32 @@ notific8 = (function() {
       data.settings[key] = option;
     }
     if (data.settings.height == null) {
-      data.settings.height = notific8Defaults.height[data.settings.family];
+      data.settings.height = notific8Defaults.height[data.settings.theme];
     }
     data.settings.height = Number(data.settings.height);
-    if (data.settings.height < notific8Defaults.height[data.settings.family]) {
-      data.settings.height = notific8Defaults.height[data.settings.family];
+    if (data.settings.height < notific8Defaults.height[data.settings.theme]) {
+      data.settings.height = notific8Defaults.height[data.settings.theme];
     }
+    checkThemeOptions(data);
     buildNotification(data);
     if (data.settings.onInit) {
       data.settings.onInit(data);
+    }
+  };
+
+  /*
+  Check that the theme, color, and family options are set appropriately.
+  This method will be removed for version 4.0 when the family option is removed
+  and backwards compatibility will be removed.
+  @param object data
+   */
+  checkThemeOptions = function(data) {
+    if (!(['legacy', 'atomic', 'chicchat'].indexOf(data.settings.theme) > -1)) {
+      data.settings.color = data.settings.theme;
+      data.settings.theme = data.settings.family;
+      if ((typeof console !== "undefined" && console !== null) && (console.warn != null)) {
+        return console.warn("The option 'theme' now references the value that was formerly used for 'family'. The option 'color' was added in version 3.2.0 to replace the former functionality of the 'theme' option. The 'family' option and backwards compatibility will be removed in version 4.0. Please update the options configuration in your code as soon as possible.");
+      }
     }
   };
 

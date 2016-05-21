@@ -7,26 +7,25 @@ script(type='text/javascript').
     };
     $('body').on(
       'change',
-      '#notific8Family',
+      '#notific8Theme',
       function(event) {
-        $family = $(event.currentTarget);
-        family = $family.val();
-        $theme = $('#notific8Theme');
-        $theme.find('option:selected').prop('selected', false);
-        $theme.find('option').hide();
-        $theme.find('option[data-for="' + family + '"]').show();
-        $theme.find('option[data-for="' + family + '"][data-selected]').prop('selected', true);
+        $theme = $(event.currentTarget);
+        theme = $theme.val();
+        $color = $('#notific8Color');
+        $color.find('option:selected').prop('selected', false);
+        $color.find('option').hide();
+        $color.find('option[data-for="' + theme + '"]').show();
+        $color.find('option[data-for="' + theme + '"][data-selected]').prop('selected', true);
         $height = $('#notific8Height');
-        $height.val(defaultHeights[family]);
-        $height.attr('min', defaultHeights[family]);
+        $height.val(defaultHeights[theme]);
+        $height.attr('min', defaultHeights[theme]);
       }
     );
     $('body').on('click', '#notific8Test', function (event) {
-      console.log('Clicked the test button');
       var params = {
         life: $('#notific8Life').find('option:selected').val(),
-        family: $('#notific8Family').find('option:selected').val(),
-        theme: $('#notific8Theme').val(),
+        theme: $('#notific8Theme').find('option:selected').val(),
+        color: $('#notific8Color').val(),
         sticky: $('#notific8Sticky').is(':checked'),
         horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
         verticalEdge: $('#notific8vertical').find('option:selected').val(),
@@ -78,5 +77,5 @@ script(type='text/javascript').
         notific8(text, params);
       }
     });
-    $('#notific8Family').trigger('change');
+    $('#notific8Theme').trigger('change');
   });

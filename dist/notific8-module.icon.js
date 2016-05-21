@@ -10,28 +10,49 @@ http://opensource.org/licenses/BSD-3-Clause
 (function(window) {
   var buildClasses, buildHtml, hasIcon, iconCallback, notific8Data;
   notific8Data = null;
-  hasIcon = function(data) {
-    return (data.settings.icon != null) && (typeof data.settings.icon === "string");
+
+  /*
+  Check whether or not a valid icon is set for this notification
+  @return boolean
+   */
+  hasIcon = function() {
+    return (notific8Data.settings.icon != null) && (typeof notific8Data.settings.icon === "string");
   };
-  buildHtml = function(data) {
+
+  /*
+  Build the HTML for the icon
+  @return string
+   */
+  buildHtml = function() {
     var classes;
-    if (hasIcon(data)) {
-      classes = ["" + data.settings.namespace + "-icon", "" + data.settings.namespace + "-fontastic-" + data.settings.icon];
+    if (hasIcon()) {
+      classes = ["" + notific8Data.settings.namespace + "-icon", "" + notific8Data.settings.namespace + "-fontastic-" + notific8Data.settings.icon];
       return "<i class=\"" + (classes.join(' ')) + "\"></i>";
     } else {
       return "";
     }
   };
-  buildClasses = function(data) {
-    if (hasIcon(data)) {
+
+  /*
+  Build the array of classes that need to be attached to the notification
+  @return array
+   */
+  buildClasses = function() {
+    if (hasIcon()) {
       return ["has-icon"];
     }
     return [];
   };
+
+  /*
+  Setup the callback for the notification
+  @return object
+   */
   iconCallback = function(data) {
+    notific8Data = data;
     return {
-      classes: buildClasses(data),
-      html: buildHtml(data)
+      classes: buildClasses(),
+      html: buildHtml()
     };
   };
   return notific8('registerModule', 'icon', 'beforeContent', {
