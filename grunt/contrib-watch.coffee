@@ -32,6 +32,17 @@ module.exports = (grunt) ->
       tasks: ['pug']
       options:
         spawn: false
+    spec:
+      files: [
+        'spec/**/*.coffee'
+      ]
+      tasks: [
+        'clean:spec'
+        'coffee:spec'
+        'jasmine'
+      ]
+      options:
+        spawn: false
   )
 
   grunt.loadNpmTasks 'grunt-contrib-watch'

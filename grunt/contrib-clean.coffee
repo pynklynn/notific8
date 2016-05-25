@@ -35,6 +35,9 @@ module.exports = (grunt) ->
     less: [
       'src/less/jquery.less'
     ]
+    spec: [
+      'spec/**/*.js'
+    ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
