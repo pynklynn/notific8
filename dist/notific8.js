@@ -18,7 +18,6 @@ notific8 = (function() {
     verticalEdge: 'right',
     horizontalEdge: 'top',
     zindex: 1100,
-    icon: false,
     closeText: 'close',
     onInit: null,
     onCreate: null,

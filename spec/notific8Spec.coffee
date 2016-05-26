@@ -70,11 +70,10 @@ describe 'notific8 configruation setting', ->
     verticalEdge: 'left'
     horizontalEdge: 'bottom'
     zindex: 1200
-    icon: 'pencil'
     closeText: 'exit'
-    onInit: null# @TODO
-    onCreate: null# @TODO
-    onClose: null# @TODO
+    onInit: (data) ->
+    onCreate: (notification, data) ->
+    onClose: (notification, data) ->
     namespace: 'custom'
     height:
       atomic: 80
@@ -91,11 +90,10 @@ describe 'notific8 configruation setting', ->
     expect(notific8Defaults.verticalEdge).toEqual 'left'
     expect(notific8Defaults.horizontalEdge).toEqual 'bottom'
     expect(notific8Defaults.zindex).toEqual 1200
-    expect(notific8Defaults.icon).toEqual 'pencil'
     expect(notific8Defaults.closeText).toEqual 'exit'
-    # expect(notific8Defaults.onInit).toEqual# @TODO
-    # expect(notific8Defaults.onCreate).toEqual# @TODO
-    # expect(notific8Defaults.onClose).toEqual# @TODO
+    expect(typeof notific8Defaults.onInit).toEqual 'function'
+    expect(typeof notific8Defaults.onCreate).toEqual 'function'
+    expect(typeof notific8Defaults.onClose).toEqual 'function'
     expect(notific8Defaults.namespace).toEqual 'custom'
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
@@ -113,11 +111,10 @@ describe 'notific8 configruation setting', ->
     expect(notific8Defaults.verticalEdge).toEqual 'left'
     expect(notific8Defaults.horizontalEdge).toEqual 'bottom'
     expect(notific8Defaults.zindex).toEqual 1200
-    expect(notific8Defaults.icon).toEqual 'pencil'
     expect(notific8Defaults.closeText).toEqual 'exit'
-    # expect(notific8Defaults.onInit).toEqual# @TODO
-    # expect(notific8Defaults.onCreate).toEqual# @TODO
-    # expect(notific8Defaults.onClose).toEqual# @TODO
+    expect(typeof notific8Defaults.onInit).toEqual 'function'
+    expect(typeof notific8Defaults.onCreate).toEqual 'function'
+    expect(typeof notific8Defaults.onClose).toEqual 'function'
     expect(notific8Defaults.namespace).toEqual 'custom'
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
