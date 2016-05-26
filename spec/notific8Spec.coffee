@@ -6,13 +6,7 @@
 # http://opensource.org/licenses/BSD-3-Clause
 ###
 
-describe 'notific8', ->
-  xit 'should set the configuration via the configuration method', ->
-    return
-
-  xit 'should set the configuration via the config method', ->
-    return
-
+describe 'notific8 methods', ->
   it 'should set the default z-index to 5000', ->
     notific8 'zindex', 5000
 
@@ -34,6 +28,72 @@ describe 'notific8', ->
     return
 
   xit 'should register a new module', ->
+    return
+
+  return
+
+describe 'notific8 configruation setting', ->
+  customConfig =
+    life: 20000
+    theme: 'atomic'
+    color: 'pear'
+    sticky: true
+    verticalEdge: 'left'
+    horizontalEdge: 'bottom'
+    zindex: 1200
+    icon: 'pencil'
+    closeText: 'exit'
+    onInit: null# @TODO
+    onCreate: null# @TODO
+    onClose: null# @TODO
+    namespace: 'custom'
+    height:
+      atomic: 80
+      chicchat: 80
+      legacy: 80
+
+  it 'should set the configuration via the configure method', ->
+    notific8 'configure', customConfig
+
+    expect(notific8Defaults.life).toEqual 20000
+    expect(notific8Defaults.theme).toEqual 'atomic'
+    expect(notific8Defaults.color).toEqual 'pear'
+    expect(notific8Defaults.sticky).toEqual true
+    expect(notific8Defaults.verticalEdge).toEqual 'left'
+    expect(notific8Defaults.horizontalEdge).toEqual 'bottom'
+    expect(notific8Defaults.zindex).toEqual 1200
+    expect(notific8Defaults.icon).toEqual 'pencil'
+    expect(notific8Defaults.closeText).toEqual 'exit'
+    # expect(notific8Defaults.onInit).toEqual# @TODO
+    # expect(notific8Defaults.onCreate).toEqual# @TODO
+    # expect(notific8Defaults.onClose).toEqual# @TODO
+    expect(notific8Defaults.namespace).toEqual 'custom'
+    expect(notific8Defaults.height.atomic).toEqual 80
+    expect(notific8Defaults.height.chicchat).toEqual 80
+    expect(notific8Defaults.height.legacy).toEqual 80
+
+    return
+
+  it 'should set the configuration via the config method', ->
+    notific8 'config', customConfig
+
+    expect(notific8Defaults.life).toEqual 20000
+    expect(notific8Defaults.theme).toEqual 'atomic'
+    expect(notific8Defaults.color).toEqual 'pear'
+    expect(notific8Defaults.sticky).toEqual true
+    expect(notific8Defaults.verticalEdge).toEqual 'left'
+    expect(notific8Defaults.horizontalEdge).toEqual 'bottom'
+    expect(notific8Defaults.zindex).toEqual 1200
+    expect(notific8Defaults.icon).toEqual 'pencil'
+    expect(notific8Defaults.closeText).toEqual 'exit'
+    # expect(notific8Defaults.onInit).toEqual# @TODO
+    # expect(notific8Defaults.onCreate).toEqual# @TODO
+    # expect(notific8Defaults.onClose).toEqual# @TODO
+    expect(notific8Defaults.namespace).toEqual 'custom'
+    expect(notific8Defaults.height.atomic).toEqual 80
+    expect(notific8Defaults.height.chicchat).toEqual 80
+    expect(notific8Defaults.height.legacy).toEqual 80
+
     return
 
   return
