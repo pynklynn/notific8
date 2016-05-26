@@ -22,7 +22,15 @@ module.exports = (grunt) ->
       files: [
         'src/coffee/*.coffee'
       ]
-      tasks: ['clean:js', 'coffee', 'uglify', 'copy:js']
+      tasks: [
+        'clean:js'
+        'clean:spec'
+        'clean:karma'
+        'coffee'
+        'uglify'
+        'copy:js'
+        'karma:unit'
+      ]
       options:
         spawn: false
     pug:
@@ -38,8 +46,9 @@ module.exports = (grunt) ->
       ]
       tasks: [
         'clean:spec'
+        'clean:karma'
         'coffee:spec'
-        'jasmine'
+        'karma:unit'
       ]
       options:
         spawn: false

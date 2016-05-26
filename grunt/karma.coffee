@@ -8,11 +8,10 @@
 ###
 
 module.exports = (grunt) ->
-  grunt.config('jasmine',
-    notific8:
-      src: 'dist/notific8.js'
-      options:
-        specs: 'spec/*Spec.js'
+  grunt.config('karma',
+    unit:
+      configFile: 'karma.conf.coffee'
+      singleRun: true
   )
 
-  grunt.loadNpmTasks 'grunt-contrib-jasmine'
+  grunt.loadNpmTasks 'grunt-karma'

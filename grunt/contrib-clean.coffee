@@ -38,6 +38,9 @@ module.exports = (grunt) ->
     spec: [
       'spec/**/*.js'
     ]
+    karma: [
+      'karma_tests'
+    ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
