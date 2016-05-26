@@ -36,7 +36,27 @@ describe 'notific8 methods', ->
 
     return
 
-  xit 'should register a new module', ->
+  it 'should register a new module', ->
+    notific8(
+      'registerModule'
+      'testModule'
+      'beforeContent'
+      {}
+      -> return
+    )
+
+    expect(notific8RegisteredModules.beforeContent.length).toEqual 1
+
+    notific8(
+      'registerModule'
+      'testModule'
+      'afterContent'
+      {}
+      -> return
+    )
+
+    expect(notific8RegisteredModules.afterContent.length).toEqual 1
+
     return
 
   return

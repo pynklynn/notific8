@@ -29,7 +29,12 @@ describe('notific8 methods', function() {
     notifications = document.getElementsByClassName(notificationClass);
     expect(notifications.length).toEqual(0);
   });
-  xit('should register a new module', function() {});
+  it('should register a new module', function() {
+    notific8('registerModule', 'testModule', 'beforeContent', {}, function() {});
+    expect(notific8RegisteredModules.beforeContent.length).toEqual(1);
+    notific8('registerModule', 'testModule', 'afterContent', {}, function() {});
+    expect(notific8RegisteredModules.afterContent.length).toEqual(1);
+  });
 });
 
 describe('notific8 configruation setting', function() {
