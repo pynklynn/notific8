@@ -12,6 +12,11 @@ module.exports = (grunt) ->
       'dist'
       'build'
       'modules/**/build'
+      'src/sass-format/**/*.sass'
+      'src/stylus/**/*.styl'
+      'src/less/**/*.less'
+      'spec/**/*.js'
+      'karma_tests'
     ]
     js: [
       'build/js'

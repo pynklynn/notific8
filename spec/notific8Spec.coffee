@@ -15,7 +15,6 @@ describe 'notific8 methods', ->
 
   it 'should destroy the notification containers', ->
     notific8 'hello world!'
-
     notific8 'destroy'
 
     containerClass = "#{notific8Defaults.namespace}-container"
@@ -24,7 +23,17 @@ describe 'notific8 methods', ->
     expect(containers.length).toEqual 0
     return
 
-  xit 'should remove the current notification', ->
+  it 'should remove the current notification', ->
+    notificationClass = "#{notific8Defaults.namespace}-notification"
+
+    notific8 'hello world!'
+    notifications = document.getElementsByClassName(notificationClass)
+    expect(notifications.length).toEqual 1
+
+    notific8 'remove'
+    notifications = document.getElementsByClassName(notificationClass)
+    expect(notifications.length).toEqual 0
+
     return
 
   xit 'should register a new module', ->

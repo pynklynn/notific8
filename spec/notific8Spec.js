@@ -19,7 +19,16 @@ describe('notific8 methods', function() {
     containers = document.getElementsByClassName(containerClass);
     expect(containers.length).toEqual(0);
   });
-  xit('should remove the current notification', function() {});
+  it('should remove the current notification', function() {
+    var notificationClass, notifications;
+    notificationClass = "" + notific8Defaults.namespace + "-notification";
+    notific8('hello world!');
+    notifications = document.getElementsByClassName(notificationClass);
+    expect(notifications.length).toEqual(1);
+    notific8('remove');
+    notifications = document.getElementsByClassName(notificationClass);
+    expect(notifications.length).toEqual(0);
+  });
   xit('should register a new module', function() {});
 });
 

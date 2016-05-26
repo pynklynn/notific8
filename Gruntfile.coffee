@@ -26,6 +26,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', [
     'clean:all'
     'build'
+    'karma:unit'
     'watch'
   ]
 
