@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, checkThemeOptions, closeNotification, configure, destroy, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, checkThemeOptions, closeNotification, configure, destroy, errorMessage, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
     theme: 'legacy',
@@ -307,34 +307,24 @@ notific8 = (function() {
   @param function callbackMethod
    */
   registerModule = function(moduleName, position, defaultOptions, callbackMethod) {
-    var defaultValue, errorMessage, module, option, _i, _len, _ref;
+    var defaultValue, module, option, _i, _len, _ref;
     if (!(typeof moduleName === 'string' && moduleName.trim() !== '')) {
-      errorMessage = "moduleName should be a string";
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+      errorMessage("moduleName should be a string");
     }
     if (!(typeof position === 'string' && (position === 'beforeContent' || position === 'afterContent'))) {
-      errorMessage = "position should be a string";
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+      errorMessage("position should be a string");
     }
     if (typeof defaultOptions !== 'object') {
-      errorMessage = "defaultOptions should be an object";
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+      errorMessage("defaultOptions should be an object");
     }
     if (typeof callbackMethod !== 'function') {
-      errorMessage = "callbackMethod should be an function";
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+      errorMessage("callbackMethod should be an function");
     }
     _ref = notific8RegisteredModules[position];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       module = _ref[_i];
       if (module.moduleName === moduleName) {
-        errorMessage = "Module '" + moduleName + "' has already been registered";
-        console.error(errorMessage);
-        throw new Error(errorMessage);
+        errorMessage("Module '" + moduleName + "' has already been registered");
       }
     }
     for (option in defaultOptions) {
@@ -346,12 +336,19 @@ notific8 = (function() {
       callbackMethod: callbackMethod
     });
   };
+
+  /*
+  Displays an error message to the console and throws an error
+  @param string message
+   */
+  errorMessage = function(message) {
+    console.error(message);
+    throw new Error(message);
+  };
   return function(message, options) {
-    var callbackMethod, containerClass, defaultOptions, errorMessage, moduleName, position;
+    var callbackMethod, containerClass, defaultOptions, moduleName, position;
     if (typeof message !== "string") {
-      errorMessage = "notific8 takes a string message as the first parameter";
-      console.error(errorMessage);
-      throw new Error(errorMessage);
+      errorMessage("notific8 takes a string message as the first parameter");
     }
     if (options == null) {
       options = {};

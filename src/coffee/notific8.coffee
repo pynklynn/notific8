@@ -313,30 +313,20 @@ The option 'theme' now references the value that was formerly used for 'family'.
   registerModule = (moduleName, position, defaultOptions, callbackMethod) ->
     # double-check all of the values are correct
     unless typeof moduleName == 'string' && moduleName.trim() != ''
-      errorMessage = "moduleName should be a string"
-      console.error errorMessage
-      throw new Error(errorMessage)
+      errorMessage "moduleName should be a string"
     unless typeof position == 'string' && (
       position == 'beforeContent' || position == 'afterContent'
     )
-      errorMessage = "position should be a string"
-      console.error errorMessage
-      throw new Error(errorMessage)
+      errorMessage "position should be a string"
     unless typeof defaultOptions == 'object'
-      errorMessage = "defaultOptions should be an object"
-      console.error errorMessage
-      throw new Error(errorMessage)
+      errorMessage "defaultOptions should be an object"
     unless typeof callbackMethod == 'function'
-      errorMessage = "callbackMethod should be an function"
-      console.error errorMessage
-      throw new Error(errorMessage)
+      errorMessage "callbackMethod should be an function"
 
     # make sure the module is not registered yet
     for module in notific8RegisteredModules[position]
       if module.moduleName == moduleName
-        errorMessage = "Module '#{moduleName}' has already been registered"
-        console.error errorMessage
-        throw new Error(errorMessage)
+        errorMessage "Module '#{moduleName}' has already been registered"
 
     # register the defaultOptions
     for option, defaultValue of defaultOptions
@@ -348,12 +338,18 @@ The option 'theme' now references the value that was formerly used for 'family'.
       callbackMethod
     }
 
+  ###
+  Displays an error message to the console and throws an error
+  @param string message
+  ###
+  errorMessage = (message) ->
+    console.error message
+    throw new Error(message)
+
   # return the public method
   (message, options) ->
     unless typeof message is "string"
-      errorMessage = "notific8 takes a string message as the first parameter"
-      console.error errorMessage
-      throw new Error(errorMessage)
+      errorMessage "notific8 takes a string message as the first parameter"
 
     options = {} unless options?
     unless options.hasOwnProperty('namespace') || message == 'zindex'

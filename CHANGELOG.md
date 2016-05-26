@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.3.0
+
+- Added tests to the plug-in using Jasmine and Karma
+- Minor refactoring of the code to DRY it
+
 ## 3.2.0
 
 - Added module functionality to make the plug-in more easily extensible for developers
