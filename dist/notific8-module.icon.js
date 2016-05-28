@@ -1,8 +1,7 @@
 
 /*
 @author Will Steinmetz
-Icon module for the notific8 notification plug-in initially inspired by the
-notification style of Windows 8
+Icon module for the notific8 notification plug-in
 Copyright (c)2013-2016, Will Steinmetz
 Licensed under the BSD license.
 http://opensource.org/licenses/BSD-3-Clause
