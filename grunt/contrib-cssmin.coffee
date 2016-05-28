@@ -15,7 +15,7 @@ module.exports = (grunt) ->
         'dist/jquery.notific8.min.css': [ 'build/css/notific8.css' ]
         'dist/notific8-module.icon.min.css': [ 'build/modules/css/notific8-module.icon.css' ]
         'dist/notific8-full.min.css': [
-          'build/css/jquery.notific8.css'
+          'build/css/notific8.css'
           'build/modules/css/notific8-module.icon.css'
         ]
     add_banner:

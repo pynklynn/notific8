@@ -9,6 +9,19 @@ The change log was created with version 2.0. For changes, please see the commit 
 - Added the Materialish theme
     - __Note__: This theme does not support having a heading
 
+## Files that will be removed in version 4.0
+
+Sass files (and their compiled alternate format counter parts):
+
+- src/sass/\_default_atomic_themes.scss
+- src/sass/\_default_chichat_themes.scss
+- src/sass/\_default_legacy_themes.scss
+- src/sass/jquery.notific8.scss
+
+Distribution files:
+
+- dist/jquery.notific8.min.css
+
 ## 3.2.0
 
 - Added module functionality to make the plug-in more easily extensible for developers
