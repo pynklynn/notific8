@@ -1,5 +1,7 @@
 # notific8
 
+[![Build Status](https://travis-ci.org/ralivue/notific8.svg?branch=master)](https://travis-ci.org/ralivue/notific8)
+
 Notific8 is a notification plug-in that was originally inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes (colors) and theme families (styles) and is easy to create new themes and theme families for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
 
 As of version 3.0.0, the plug-in was rewritten in pure JavaScript to be compatible with many of today's JavaScript frameworks that do not play well with jQuery. A jQuery wrapper is also provided to allow existing code to function properly with the new version. The minified version of the `jquery.notific8.min.js` has a copy of the notific8 code included so that developers only have to include one file in their project or build script. The unminified files are also available for use in custom build scripts as well.
