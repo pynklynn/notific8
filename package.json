@@ -4,7 +4,7 @@
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
   "main": "dist/notific8.min.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start --single-run"
   },
   "repository": {
     "type": "git",
