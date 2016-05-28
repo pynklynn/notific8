@@ -1,14 +1,13 @@
-h1 jQuery notific8 demo
-p
-  | notific8 is a notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple theme families built in. The Sass files can be included in a project for easy customizations.
+h1 notific8 demo
+p notific8 is a JavaScript notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple themes built in. The Sass files can be included in a project for easy customizations. It also comes with a jQuery wrapper for those who wish to use jQuery.
 p Use the fields below to test the different options for the plug-in.
 p
   | To see the
-  i onInit(data)
+  i  onInit(data)
   | ,
-  i onCreate(notification, data)
+  i  onCreate(notification, data)
   | , and
-  i onClose(notification, data)
+  i  onClose(notification, data)
   |  actions functioning, open your browser's developer tools' console view.
 table
   tbody
@@ -38,6 +37,8 @@ table
         label(for='notific8Heading') Heading (optional)
       td
         input#notific8Heading(type='text', name='notific8Heading', size='50', maxlength='50')
+        br
+        |  (not available in Materialish theme)
     tr
       td.label
         label(for='notific8CloseText') Close text (optional)
@@ -55,6 +56,7 @@ table
           option(value='lifebuoy') lifebuoy
           option(value='info-circled') info-circled
           option(value='fontawesome-webfont') fontawesome-webfont
+          option(value='github-circle') github-circle
           option(value='barcode') barcode
           option(value='book') book
           option(value='calendar') calendar
@@ -218,6 +220,7 @@ table
           option(value='legacy', selected='') legacy (default)
           option(value='chicchat') ChicChat
           option(value='atomic') Atomic
+          option(value='materialish') Materialish
     tr
       td.label
         label(for="notific8Height") Notification height
@@ -246,12 +249,24 @@ table
           option(value='onyx', data-for='atomic') onyx
           option(value='pear', data-for='atomic') pear
           option(value='tomato', data-for='atomic') tomato
+          option(value='twilight', data-for='materialish', data-selected='') twilight
+          option(value='lilrobot', data-for='materialish') lilrobot
+          option(value='cupcake', data-for='materialish') cupcake
+          option(value='eclair', data-for='materialish') eclair
+          option(value='honeycomb', data-for='materialish') honeycomb
+          option(value='lollypop', data-for='materialish') lollypop
+          option(value='marshmallow', data-for='materialish') marshmallow
+          option(value='strawberry', data-for='materialish') strawberry
+          option(value='creamsicle', data-for='materialish') creamsicle
+          option(value='purple-rain', data-for='materialish') purple-rain
+          option(value='peafowl', data-for='materialish') peafowl
     tr
       td.label Position
       td
         select#notific8horizontal(name='notific8horizontal')
           option(value='top') top (default)
           option(value='bottom') bottom
+        | &nbsp;
         select#notific8vertical(name='notific8vertical')
           option(value='right') right (default)
           option(value='left') left
@@ -266,7 +281,7 @@ table
       td
         label
           input(name="notific8UseJquery", type="radio", value="0", checked="Checked")
-          |  Vanilla JavaScript
+          |  JavaScript&nbsp;
         label
           input(name="notific8UseJquery", type="radio", value="1")
           |  jQuery

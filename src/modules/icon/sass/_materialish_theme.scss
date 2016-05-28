@@ -1,0 +1,17 @@
+//
+// @author Will Steinmetz
+//
+// Materialish theme for the notific8 JavaScript plug-in
+// This partial provides the styles for the icon module
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+//
+
+.#{$notific8-ns}-notification.family-materialish.has-icon {
+  .notific8-icon {
+    margin-left: em(24px, 14px);
+    margin-top: em(4px, 14px);
+  }
+}

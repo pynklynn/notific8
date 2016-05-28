@@ -245,7 +245,9 @@ notific8 = (function() {
   @param object data
    */
   checkThemeOptions = function(data) {
-    if (!(['legacy', 'atomic', 'chicchat'].indexOf(data.settings.theme) > -1)) {
+    var validThemes;
+    validThemes = ['legacy', 'atomic', 'chicchat', 'materialish'];
+    if (!(validThemes.indexOf(data.settings.theme) > -1)) {
       data.settings.color = data.settings.theme;
       data.settings.theme = data.settings.family;
       if ((typeof console !== "undefined" && console !== null) && (console.warn != null)) {

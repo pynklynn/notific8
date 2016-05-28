@@ -1,0 +1,46 @@
+//
+// @author Will Steinmetz
+//
+// Materialish theme for the notific8 JavaScript plug-in
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+//
+
+// mixin
+=notific8_materialish_theme($name, $color, $text-color: #eee)
+  .#{$notific8-ns}-notification.family-materialish.#{$name}
+    background-color: $color
+    color: $text-color
+
+.#{$notific8-ns}-notification.family-materialish
+  border-radius: 2px
+  font-size: em(14px)
+  height: 0
+  min-width: 288px
+  max-width: 568px
+  transition: height .1s ease-in-out
+
+  .notific8-message
+    margin: 1em em(84px, 14px) 1em em(24px, 14px)
+
+  .notific8-close
+    line-height: em(20px, 14px)
+    margin-top: em(-10px, 14px)
+    right: em(24px, 14px)
+    top: 50%
+
+  .notific8-heading
+    display: none
+
+  &.sticky
+    .notific8-message
+      line-height: em(20px, 14px)
+      margin-right: em(120px, 14px)
+
+    .notific8-close.sticky
+      text-transform: uppercase
+
+      &:hover
+        text-decoration: underline

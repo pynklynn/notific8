@@ -253,7 +253,8 @@ notific8 = do ->
   @param object data
   ###
   checkThemeOptions = (data) ->
-    unless ['legacy', 'atomic', 'chicchat'].indexOf(data.settings.theme) > -1
+    validThemes = ['legacy', 'atomic', 'chicchat', 'materialish']
+    unless validThemes.indexOf(data.settings.theme) > -1
       data.settings.color = data.settings.theme
       data.settings.theme = data.settings.family
       if console? && console.warn?

@@ -42,7 +42,6 @@
 .notific8-notification {
   box-sizing: border-box;
   overflow: hidden;
-  padding: 0.625em;
   position: relative; }
   .notific8-notification:hover .notific8-close {
     display: block; }
@@ -84,6 +83,7 @@
   border-width: 2px;
   color: #fff;
   height: 5.625em;
+  padding: 0.625em;
   transition: all .2s ease-in-out;
   width: 24.375em; }
   .notific8-notification.family-legacy .notific8-heading {
@@ -213,6 +213,30 @@
     left: .5em; }
   .left .notific8-notification.family-atomic .notific8-heading {
     padding-left: 2.5em; }
+
+.notific8-notification.family-materialish {
+  border-radius: 2px;
+  font-size: 0.875em;
+  height: 0;
+  min-width: 288px;
+  max-width: 568px;
+  transition: height .1s ease-in-out; }
+  .notific8-notification.family-materialish .notific8-message {
+    margin: 1em 6em 1em 1.7142857143em; }
+  .notific8-notification.family-materialish .notific8-close {
+    line-height: 1.4285714286em;
+    margin-top: -0.7142857143em;
+    right: 1.7142857143em;
+    top: 50%; }
+  .notific8-notification.family-materialish .notific8-heading {
+    display: none; }
+  .notific8-notification.family-materialish.sticky .notific8-message {
+    line-height: 1.4285714286em;
+    margin-right: 8.5714285714em; }
+  .notific8-notification.family-materialish.sticky .notific8-close.sticky {
+    text-transform: uppercase; }
+    .notific8-notification.family-materialish.sticky .notific8-close.sticky:hover {
+      text-decoration: underline; }
 
 .notific8-notification.family-legacy.teal {
   background-color: #069;
@@ -345,5 +369,49 @@
   .notific8-notification.family-atomic.onyx .notific8-heading {
     background-color: #787878;
     border-bottom: solid 1px #5f5f5f; }
+
+.notific8-notification.family-materialish.twilight {
+  background-color: #323232;
+  color: #eee; }
+
+.notific8-notification.family-materialish.lilrobot {
+  background-color: #A4C639;
+  color: #eee; }
+
+.notific8-notification.family-materialish.cupcake {
+  background-color: #FFBAD2;
+  color: #323232; }
+
+.notific8-notification.family-materialish.eclair {
+  background-color: #654848;
+  color: #eee; }
+
+.notific8-notification.family-materialish.honeycomb {
+  background-color: #f6e080;
+  color: #323232; }
+
+.notific8-notification.family-materialish.lollypop {
+  background-color: #54b2a9;
+  color: #eee; }
+
+.notific8-notification.family-materialish.marshmallow {
+  background-color: #fff8ed;
+  color: #323232; }
+
+.notific8-notification.family-materialish.strawberry {
+  background-color: #BE2625;
+  color: #eee; }
+
+.notific8-notification.family-materialish.creamsicle {
+  background-color: #F7BB67;
+  color: #323232; }
+
+.notific8-notification.family-materialish.purple-rain {
+  background-color: #694489;
+  color: #eee; }
+
+.notific8-notification.family-materialish.peafowl {
+  background-color: #1D7CF2;
+  color: #eee; }
 
 /*# sourceMappingURL=notific8.css.map */

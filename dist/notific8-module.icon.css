@@ -53,6 +53,9 @@
 .notific8-fontastic-fontawesome-webfont:before {
   content: "i"; }
 
+.notific8-fontastic-github-circle:before {
+  content: "i"; }
+
 .notific8-fontastic-barcode:before {
   content: "j"; }
 
@@ -589,6 +592,10 @@
 
 .left .notific8-notification.family-chicchat .notific8-icon {
   right: 0; }
+
+.notific8-notification.family-materialish.has-icon .notific8-icon {
+  margin-left: 1.7142857143em;
+  margin-top: 0.2857142857em; }
 
 .notific8-notification.family-atomic.cerulean .notific8-icon {
   background-color: #4F99D3; }
