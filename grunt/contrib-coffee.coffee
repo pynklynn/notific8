@@ -15,7 +15,7 @@ module.exports = (grunt) ->
       files:
         'build/js/jquery.notific8.js': 'src/coffee/jquery.notific8.coffee'
         'build/js/notific8.js': 'src/coffee/notific8.coffee'
-        'build/modules/js/notific8-module.icon.js': 'src/modules/icon/coffee/notific8-module.icon.coffee'
+        'build/modules/icon/js/notific8-module.icon.js': 'modules/icon/coffee/notific8-module.icon.coffee'
     spec:
       options:
         bare: true

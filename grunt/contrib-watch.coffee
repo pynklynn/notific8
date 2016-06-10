@@ -13,7 +13,7 @@ module.exports = (grunt) ->
     sass:
       files: [
         'src/sass/*.scss'
-        'src/modules/**/sass/*.scss'
+        'modules/**/sass/*.scss'
       ]
       tasks: ['clean:css', 'sass', 'cssmin', 'copy:css']
       options:
@@ -21,6 +21,7 @@ module.exports = (grunt) ->
     coffee:
       files: [
         'src/coffee/*.coffee'
+        'modules/**/coffee/*.coffee'
       ]
       tasks: [
         'clean:js'

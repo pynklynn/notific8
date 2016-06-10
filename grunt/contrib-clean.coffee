@@ -11,7 +11,6 @@ module.exports = (grunt) ->
     all: [
       'dist'
       'build'
-      'modules/**/build'
       'src/sass-format/**/*.sass'
       'src/stylus/**/*.styl'
       'src/less/**/*.less'
@@ -22,7 +21,6 @@ module.exports = (grunt) ->
       'build/js'
       'dist/*.js'
       'dist/*.js.map'
-      'modules/**/build/js'
     ]
     css: [
       'build/css'

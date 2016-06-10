@@ -21,6 +21,7 @@ module.exports = (grunt) ->
     'uglify'
     'copy:font'
     'copy:code'
+    'copy:module-icon'
   ]
 
   grunt.registerTask 'default', [

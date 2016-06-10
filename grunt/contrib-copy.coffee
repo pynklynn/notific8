@@ -17,10 +17,7 @@ module.exports = (grunt) ->
     css:
       expand: true
       src: [
-        'build/css/*.css'
-        'build/css/*.css.map'
-        'build/modules/css/*.css'
-        'build/modules/css/*.css.map'
+        'build/css/*.css*'
       ]
       dest: 'dist'
       filter: 'isFile'
@@ -28,10 +25,7 @@ module.exports = (grunt) ->
     js:
       expand: true
       src: [
-        'build/js/*.js'
-        'build/js/*.js.map'
-        'build/modules/js/*.js'
-        'build/modules/js/*.js.map'
+        'build/js/*.js*'
       ]
       dest: 'dist'
       filter: 'isFile'
@@ -39,16 +33,21 @@ module.exports = (grunt) ->
     code:
       expand: true
       src: [
-        'build/css/*.css'
-        'build/css/*.css.map'
-        'build/js/*.js'
-        'build/js/*.js.map'
-        'build/modules/js/*.js'
-        'build/modules/js/*.js.map'
-        'build/modules/css/*.css'
-        'build/modules/css/*.css.map'
+        'build/css/*.css*'
+        'build/js/*.js*'
+        'build/modules/icon/css/*.css*'
+        'build/modules/icon/js/*.js*'
       ]
       dest: 'dist'
+      filter: 'isFile'
+      flatten: true
+    'module-icon':
+      expand: true
+      src: [
+        'build/modules/icon/css/*.css*'
+        'build/modules/icon/js/*.js*'
+      ]
+      dest: 'dist/modules/icon'
       filter: 'isFile'
       flatten: true
   )
