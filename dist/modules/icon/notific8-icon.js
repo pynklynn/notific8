@@ -59,4 +59,4 @@ http://opensource.org/licenses/BSD-3-Clause
   }, iconCallback);
 })(window);
 
-//# sourceMappingURL=notific8-module.icon.js.map
+//# sourceMappingURL=notific8-icon.js.map

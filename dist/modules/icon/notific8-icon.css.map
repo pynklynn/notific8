@@ -1,8 +1,8 @@
 {
 	"version": 3,
-	"file": "notific8-module.icon.css",
+	"file": "notific8-icon.css",
 	"sources": [
-		"../../../../modules/icon/sass/notific8-module.icon.scss",
+		"../../../../modules/icon/sass/notific8-icon.scss",
 		"../../../../src/sass/_variables.scss",
 		"../../../../src/sass/_mixins.scss",
 		"../../../../modules/icon/sass/_icons.scss",

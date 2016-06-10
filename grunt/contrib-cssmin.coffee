@@ -13,7 +13,7 @@ module.exports = (grunt) ->
       files:
         'dist/notific8.min.css': [ 'build/css/notific8.css' ]
         'dist/jquery.notific8.min.css': [ 'build/css/notific8.css' ]
-        'dist/modules/icon/notific8-module.icon.min.css': [ 'build/modules/icon/css/notific8-module.icon.css' ]
+        'dist/modules/icon/notific8-icon.min.css': [ 'build/modules/icon/css/notific8-icon.css' ]
     add_banner:
       options:
         banner: "/**\n\
@@ -26,7 +26,7 @@ module.exports = (grunt) ->
       files:
         'dist/notific8.min.css': [ 'dist/notific8.min.css' ]
         'dist/jquery.notific8.min.css': [ 'dist/jquery.notific8.min.css' ]
-        'dist/modules/icon/notific8-module.icon.min.css': [ 'dist/modules/icon/notific8-module.icon.min.css' ]
+        'dist/modules/icon/notific8-icon.min.css': [ 'dist/modules/icon/notific8-icon.min.css' ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-cssmin'

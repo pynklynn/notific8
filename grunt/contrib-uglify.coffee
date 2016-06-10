@@ -24,8 +24,8 @@ module.exports = (grunt) ->
           'build/js/jquery.notific8.js'
         ]
         'dist/notific8.min.js': ['build/js/notific8.js']
-        'dist/modules/icon/notific8-module.icon.min.js': [
-          'build/modules/icon/js/notific8-module.icon.js'
+        'dist/modules/icon/notific8-icon.min.js': [
+          'build/modules/icon/js/notific8-icon.js'
         ]
   )
 
