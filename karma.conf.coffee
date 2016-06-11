@@ -4,6 +4,8 @@
 module.exports = (config) ->
   config.set
 
+    captureConsole: true
+
     # base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: ''
 

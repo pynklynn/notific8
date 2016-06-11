@@ -61,6 +61,31 @@ describe 'notific8 methods', ->
 
   return
 
+resetOptions = ->
+  # reset up the defaults
+  window.notific8Defaults =
+    life: 10000
+    theme: 'legacy'
+    color: 'teal'
+    sticky: false
+    verticalEdge: 'right'
+    horizontalEdge: 'top'
+    zindex: 1100
+    closeText: 'close'
+    onInit: null
+    onCreate: null
+    onClose: null
+    namespace: 'notific8'
+    height:
+      atomic: 70
+      chicchat: 120
+      legacy: 90
+
+  # reset modules registrations
+  window.notific8RegisteredModules =
+    beforeContent: []
+    afterContent: []
+
 describe 'notific8 configruation setting', ->
   customConfig =
     life: 20000
@@ -79,6 +104,9 @@ describe 'notific8 configruation setting', ->
       atomic: 80
       chicchat: 80
       legacy: 80
+
+  beforeAll ->
+    resetOptions()
 
   it 'should set the configuration via the configure method', ->
     notific8 'configure', customConfig
@@ -121,5 +149,60 @@ describe 'notific8 configruation setting', ->
     expect(notific8Defaults.height.legacy).toEqual 80
 
     return
+
+  return
+
+describe 'testing notification settings on notification initialization', ->
+  notificationClass = "#{notific8Defaults.namespace}-notification"
+
+  beforeEach ->
+    resetOptions()
+    notific8 'remove'
+
+  it 'should set the heading option', ->
+    notific8 'This is testing the heading option.',
+      heading: 'This is a heading'
+
+    notification = document.getElementsByClassName(notificationClass)[0]
+    notificationHeaderClass= ".#{notific8Defaults.namespace}-heading"
+    notificationHeader = notification.querySelectorAll(notificationHeaderClass)
+    expect(notificationHeader.length).toEqual 1
+
+    return
+
+  it 'should set the sticky option', ->
+    notific8 'This is testing the sticky option',
+      sticky: true
+
+    notification = document.getElementsByClassName(notificationClass)[0]
+    expect(notification.classList.contains('sticky')).toEqual true
+
+    return
+
+  it 'should set the closeText option', ->
+    notific8 'This is testing the closeText option',
+      sticky: true
+      closeText: 'exit'
+
+    notification = document.getElementsByClassName(notificationClass)[0]
+    notificationCloseClass= ".#{notific8Defaults.namespace}-close"
+    notificationClose = notification.querySelector(notificationCloseClass)
+    expect(notificationClose.innerText).toEqual 'exit'
+
+  it 'should set the theme', ->
+    notific8 'This is testing the theme option',
+      theme: 'materialish'
+
+    notification = document.getElementsByClassName(notificationClass)[0]
+    expect(notification.classList.contains('family-materialish')).toEqual true
+
+  it 'should set the theme color', ->
+    notific8 'This is testing the theme color option',
+      theme: 'materialish',
+      color: 'lilrobot'
+
+    notification = document.getElementsByClassName(notificationClass)[0]
+    expect(notification.classList.contains('family-materialish')).toEqual true
+    expect(notification.classList.contains('lilrobot')).toEqual true
 
   return
