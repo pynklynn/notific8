@@ -19,13 +19,11 @@ module.exports = (grunt) ->
     ]
     js: [
       'build/js'
-      'dist/*.js'
-      'dist/*.js.map'
+      'dist/**/*.js*'
     ]
     css: [
       'build/css'
-      'dist/*.css'
-      'dist/*.css.map'
+      'dist/**/*.css*'
     ]
     release: [
       'src/sass-format/**/*.sass'

@@ -27,6 +27,9 @@ module.exports = (grunt) ->
         'dist/modules/icon/notific8-icon.min.js': [
           'build/modules/icon/js/notific8-icon.js'
         ]
+        'dist/modules/image/notific8-image.min.js': [
+          'build/modules/image/js/notific8-image.js'
+        ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-uglify'

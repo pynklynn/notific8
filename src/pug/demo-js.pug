@@ -6,6 +6,17 @@ script(type='text/javascript').
       legacy: 90,
       materialish: 48
     };
+    $('body').on('change', '#notific8IconOrImage', function(event) {
+      $('.notific8-image input, .notific8-icon select').prop('disabled', true);
+      switch ($(this).val()) {
+        case 'image':
+          $('.notific8-image input').prop('disabled', false);
+          break;
+        case 'icon':
+          $('.notific8-icon select').prop('disabled', false);
+          break;
+      }
+    });
     $('body').on(
       'change',
       '#notific8Theme',
@@ -58,15 +69,25 @@ script(type='text/javascript').
           }
         }
       },
-      text = $('#notific8Text').val(),
-      $heading = $('#notific8Heading'),
-      $closeText = $('#notific8CloseText'),
-      $icon = $('#notific8Icon');
+        text = $('#notific8Text').val(),
+        $heading = $('#notific8Heading'),
+        $closeText = $('#notific8CloseText'),
+        $icon = $('#notific8Icon'),
+        $image = $("input[name='notific8Image']:checked");
       if ($.trim($heading.val()) !== '') {
         params.heading = $heading.val();
       }
-      if ($.trim($icon.val()) !== '') {
+      if (
+        $('#notific8IconOrImage').val() == 'icon' &&
+        $.trim($icon.val()) !== ''
+      ) {
         params.icon = $icon.val();
+      }
+      if (
+        $('#notific8IconOrImage').val() == 'image' &&
+        $image.val() !== undefined
+      ) {
+        params.image = $image.val();
       }
       if ($.trim($closeText.val()) !== '') {
         params.closeText = $closeText.val();

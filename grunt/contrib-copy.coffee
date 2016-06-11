@@ -48,6 +48,15 @@ module.exports = (grunt) ->
       dest: 'dist/modules/icon'
       filter: 'isFile'
       flatten: true
+    'module-image':
+      expand: true
+      src: [
+        'build/modules/image/css/*.css*'
+        'build/modules/image/js/*.js*'
+      ]
+      dest: 'dist/modules/image'
+      filter: 'isFile'
+      flatten: true
   )
 
   grunt.loadNpmTasks 'grunt-contrib-copy'

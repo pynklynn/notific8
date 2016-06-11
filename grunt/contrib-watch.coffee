@@ -15,7 +15,14 @@ module.exports = (grunt) ->
         'src/sass/*.scss'
         'modules/**/sass/*.scss'
       ]
-      tasks: ['clean:css', 'sass', 'cssmin', 'copy:css']
+      tasks: [
+        'clean:css'
+        'sass'
+        'cssmin'
+        'copy:css'
+        'copy:module-icon'
+        'copy:module-image'
+      ]
       options:
         spawn: false
     coffee:

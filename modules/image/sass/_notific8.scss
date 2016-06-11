@@ -1,0 +1,14 @@
+// @author Will Steinmetz
+//
+// image module styles for notific8
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+.#{$notific8-ns}-notification {
+  &.has-image {
+    align-items: center;
+    display: flex;
+  }
+}

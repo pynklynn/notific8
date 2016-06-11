@@ -13,6 +13,11 @@ module.exports = (grunt) ->
 
   grunt.loadTasks 'grunt'
 
+  grunt.registerTask 'copy:modules', [
+    'copy:module-icon'
+    'copy:module-image'
+  ]
+
   grunt.registerTask 'build', [
     'pug'
     'sass'
@@ -21,7 +26,7 @@ module.exports = (grunt) ->
     'uglify'
     'copy:font'
     'copy:code'
-    'copy:module-icon'
+    'copy:modules'
   ]
 
   grunt.registerTask 'default', [

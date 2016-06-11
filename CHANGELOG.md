@@ -5,6 +5,8 @@ The change log was created with version 2.0. For changes, please see the commit 
 ## 3.4.0
 
 - Re-arranged the location of the source files and distribution files for modules
+- NOTE: modules will be moved out of the main repository and into their own packages for version 4.0
+- Added the image module for using an image instead of the icon module
 
 ## 3.3.0
 

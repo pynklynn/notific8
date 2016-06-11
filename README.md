@@ -2,9 +2,9 @@
 
 [![Build Status](https://travis-ci.org/ralivue/notific8.svg?branch=master)](https://travis-ci.org/ralivue/notific8)
 
-Notific8 is a notification plug-in that was originally inspired by the notifications introduced in Windows 8 with some web ready restyling and customizations. Notific8 has built in themes (colors) and theme families (styles) and is easy to create new themes and theme families for. The plug-in was born from a want for a simply designed yet modern and stylish notification system. The plug-in is also designed to scale based on the page's font-size setting (it was designed for the default of 100%/16px as the default).
+Notific8 is a notification JavaScript plug-in. Notific8 has built in themes that each come with a set of built in colors. The plug-in is designed to be easy to create new themes and colors for. The plug-in was born from a want for a simply designed yet modern and stylish notification system that was easily customizable.
 
-As of version 3.0.0, the plug-in was rewritten in pure JavaScript to be compatible with many of today's JavaScript frameworks that do not play well with jQuery. A jQuery wrapper is also provided to allow existing code to function properly with the new version. The minified version of the `jquery.notific8.min.js` has a copy of the notific8 code included so that developers only have to include one file in their project or build script. The unminified files are also available for use in custom build scripts as well.
+As of version 3.0.0, the plug-in was rewritten in pure JavaScript (via CoffeeScript) to be compatible with many of today's JavaScript frameworks that do not play well with jQuery. A jQuery wrapper is also provided to allow existing code to function properly with the new version. The minified version of the jQuery wrapper `jquery.notific8.min.js` has a copy of the notific8 code included so that developers only have to include one file in their project or build script. The unminified files are also available for use in custom build scripts as well.
 
 ## Install with Bower
 
@@ -23,7 +23,6 @@ An interactive demo page can be found in the ./demo/ directory.
 * Notifications slide in and out from the upper right corner of the page
 * Configurable life span of the notification
 * Option to display a heading
-* Option to pick an icon from the including icon font
 * Built in theme options with ability to create custom themes (see CSS for built in themes)
 * Ability to make the notification sticky
 * Ability to set up custom settings for reuse without having to type them over and over
@@ -34,6 +33,11 @@ An interactive demo page can be found in the ./demo/ directory.
 * Ability to set custom CSS namespace if necessary
 * Events for init, create, and close
 * Modular system to make it easier for developers to extend the plug-in
+
+## Officially Supported modules
+
+* icon - adds the ability to select an icon to display in the notification
+* image - adds the ability to use an image in the notification
 
 ## Browser support
 
@@ -60,7 +64,6 @@ Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information
 
 ## Future development
 
-* Add the ability to use a custom image instead of one of the built in icons
 * Close All button available when multiple notifications are on the screen at once
 * Ability to queue notifications to only show one at a time
 
