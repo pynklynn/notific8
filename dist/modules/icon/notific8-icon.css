@@ -536,11 +536,15 @@
   margin-top: -1px; }
 
 .left .notific8-notification.family-legacy.has-icon {
+  flex-direction: row-reverse;
   padding-right: 90px; }
 
 .left .notific8-notification.family-legacy .notific8-icon {
   float: right;
   margin-right: -1.1571428571em; }
+
+.left .notific8-notification.family-legacy .notific8-message-content {
+  width: 100%; }
 
 .right .notific8-notification.family-legacy.has-icon {
   padding-left: 90px; }

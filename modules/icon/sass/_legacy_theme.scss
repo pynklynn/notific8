@@ -27,12 +27,17 @@
 .left {
   .#{$notific8-ns}-notification.family-legacy {
     &.has-icon {
+      flex-direction: row-reverse;
       padding-right: 90px;
     }
 
     .#{$notific8-ns}-icon {
       float: right;
       margin-right: em(-81px, 70px);
+    }
+
+    .#{$notific8-ns}-message-content {
+      width: 100%;
     }
   }
 }
