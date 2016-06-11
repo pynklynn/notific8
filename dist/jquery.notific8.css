@@ -161,18 +161,12 @@
 .right .notific8-notification.family-chicchat {
   border-left-width: 3.2142857143em;
   margin-right: .625em; }
-  .right .notific8-notification.family-chicchat.has-icon {
-    border-left-width: 1px;
-    padding-left: 4.4285714286em; }
   .right .notific8-notification.family-chicchat .notific8-close {
     right: .5em; }
 
 .left .notific8-notification.family-chicchat {
   border-right-width: 3.2142857143em;
   margin-left: .625em; }
-  .left .notific8-notification.family-chicchat.has-icon {
-    border-right-width: 1px;
-    padding-right: 4.4285714286em; }
   .left .notific8-notification.family-chicchat .notific8-close {
     left: .5em; }
 

@@ -591,8 +591,16 @@
   top: 0;
   width: 1.6071428571em; }
 
+.right .notific8-notification.family-chicchat.has-icon {
+  border-left-width: 1px;
+  padding-left: 4.4285714286em; }
+
 .right .notific8-notification.family-chicchat .notific8-icon {
   left: 0; }
+
+.left .notific8-notification.family-chicchat.has-icon {
+  border-right-width: 1px;
+  padding-right: 4.4285714286em; }
 
 .left .notific8-notification.family-chicchat .notific8-icon {
   right: 0; }

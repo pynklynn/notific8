@@ -34,6 +34,11 @@
 
 .right {
   .#{$notific8-ns}-notification.family-chicchat {
+    &.has-icon {
+      border-left-width: 1px;
+      padding-left: em(62px, 14px);
+    }
+
     .#{$notific8-ns}-icon {
       left: 0;
     }
@@ -42,6 +47,11 @@
 
 .left {
   .#{$notific8-ns}-notification.family-chicchat {
+    &.has-icon {
+      border-right-width: 1px;
+      padding-right: em(62px, 14px);
+    }
+    
     .#{$notific8-ns}-icon {
       right: 0;
     }
