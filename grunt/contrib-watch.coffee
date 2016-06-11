@@ -51,6 +51,7 @@ module.exports = (grunt) ->
     spec:
       files: [
         'spec/**/*.coffee'
+        'modules/**/spec/*.coffee'
       ]
       tasks: [
         'clean:spec'

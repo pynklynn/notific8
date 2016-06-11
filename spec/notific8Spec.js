@@ -31,16 +31,16 @@ describe('notific8 methods', function() {
     notifications = document.getElementsByClassName(notificationClass);
     expect(notifications.length).toEqual(0);
   });
-  it('should register a new module', function() {
+  xit('should register a new module', function() {
     notific8('registerModule', 'testModule', 'beforeContent', {}, function() {});
-    expect(notific8RegisteredModules.beforeContent.length).toEqual(1);
+    expect(notific8RegisteredModules.beforeContent.length).toEqual(3);
     notific8('registerModule', 'testModule', 'afterContent', {}, function() {});
     expect(notific8RegisteredModules.afterContent.length).toEqual(1);
   });
 });
 
 resetOptions = function() {
-  window.notific8Defaults = {
+  return window.notific8Defaults = {
     life: 10000,
     theme: 'legacy',
     color: 'teal',
@@ -58,10 +58,6 @@ resetOptions = function() {
       chicchat: 120,
       legacy: 90
     }
-  };
-  return window.notific8RegisteredModules = {
-    beforeContent: [],
-    afterContent: []
   };
 };
 
