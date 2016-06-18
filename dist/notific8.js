@@ -26,7 +26,8 @@ notific8 = (function() {
     height: {
       atomic: 70,
       chicchat: 120,
-      legacy: 90
+      legacy: 90,
+      materlialish: 48
     }
   };
   window.notific8RegisteredModules = {
@@ -54,11 +55,9 @@ notific8 = (function() {
   @return object
    */
   getContainer = function(data) {
-    var containerClass, hEdge, namespace, vEdge;
-    vEdge = data.settings.verticalEdge;
-    hEdge = data.settings.horizontalEdge;
-    namespace = data.settings.namespace;
-    containerClass = "" + namespace + "-container " + vEdge + " " + hEdge;
+    var containerClass, horizontalEdge, namespace, verticalEdge, _ref;
+    _ref = data.settings, verticalEdge = _ref.verticalEdge, horizontalEdge = _ref.horizontalEdge, namespace = _ref.namespace;
+    containerClass = "" + namespace + "-container " + verticalEdge + " " + horizontalEdge;
     return document.getElementsByClassName(containerClass)[0];
   };
 
@@ -184,6 +183,7 @@ notific8 = (function() {
 
   /*
   Remove the currently visible notifications from the screen
+  @param object options
    */
   remove = function(options) {
     var notificationClass, notifications;
@@ -239,6 +239,7 @@ notific8 = (function() {
   };
 
   /*
+  @TODO remove
   Check that the theme, color, and family options are set appropriately.
   This method will be removed for version 4.0 when the family option is removed
   and backwards compatibility will be removed.
@@ -261,19 +262,19 @@ notific8 = (function() {
   @param object options
    */
   initContainers = function(options) {
-    var body, container, containerClass, containerStr, parser, _i, _len, _ref;
+    var body, container, containerClass, containerStr, position, _i, _j, _len, _len1, _ref, _ref1;
     body = document.getElementsByTagName('body')[0];
     body.dataset.notific8s = 0;
     containerClass = "" + options.namespace + "-container";
     containerStr = "<div class='" + containerClass + " $pos'></div>";
-    parser = new DOMParser();
-    body.innerHTML += containerStr.replace('$pos', 'top right');
-    body.innerHTML += containerStr.replace('$pos', 'top left');
-    body.innerHTML += containerStr.replace('$pos', 'bottom right');
-    body.innerHTML += containerStr.replace('$pos', 'bottom left');
-    _ref = document.getElementsByClassName(containerClass);
+    _ref = ['top right', 'top left', 'bottom right', 'bottom left'];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      container = _ref[_i];
+      position = _ref[_i];
+      body.innerHTML += containerStr.replace('$pos', position);
+    }
+    _ref1 = document.getElementsByClassName(containerClass);
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      container = _ref1[_j];
       container.style.zIndex = notific8Defaults.zindex;
       container.addEventListener("click", function(event) {
         var data, notification, target;
@@ -369,14 +370,9 @@ notific8 = (function() {
         return remove(options);
       case "registerModule":
         if (arguments.length !== 5) {
-          errorMessage = "Registering a module requires the parameters moduleName, position,\n defaultOptions, and callbackMethod.";
-          console.log(errorMessage);
-          throw new Error(errorMessage);
+          errorMessage("Registering a module requires the parameters moduleName, position, defaultOptions, and callbackMethod.");
         }
-        moduleName = arguments[1];
-        position = arguments[2];
-        defaultOptions = arguments[3];
-        callbackMethod = arguments[4];
+        message = arguments[0], moduleName = arguments[1], position = arguments[2], defaultOptions = arguments[3], callbackMethod = arguments[4];
         return registerModule(moduleName, position, defaultOptions, callbackMethod);
       default:
         containerClass = "" + options.namespace + "-container";

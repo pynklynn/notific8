@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.4.1
+
+- Adding missing theme default height for Materialish
+- Slight refactoring of code
+
 ## 3.4.0
 
 - Re-arranged the location of the source files and distribution files for modules
