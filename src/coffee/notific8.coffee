@@ -25,6 +25,7 @@ notific8 = do ->
       atomic: 70
       chicchat: 120
       legacy: 90
+      materlialish: 48
 
   # modules registered with the system
   window.notific8RegisteredModules =
@@ -49,10 +50,8 @@ notific8 = do ->
   @return object
   ###
   getContainer = (data) ->
-    vEdge = data.settings.verticalEdge
-    hEdge = data.settings.horizontalEdge
-    namespace = data.settings.namespace
-    containerClass = "#{namespace}-container #{vEdge} #{hEdge}"
+    { verticalEdge, horizontalEdge, namespace } = data.settings
+    containerClass = "#{namespace}-container #{verticalEdge} #{horizontalEdge}"
     document.getElementsByClassName(containerClass)[0]
 
   ###
@@ -203,6 +202,7 @@ notific8 = do ->
 
   ###
   Remove the currently visible notifications from the screen
+  @param object options
   ###
   remove = (options) ->
     notificationClass = "#{options.namespace}-notification"
@@ -247,6 +247,7 @@ notific8 = do ->
     return
 
   ###
+  @TODO remove
   Check that the theme, color, and family options are set appropriately.
   This method will be removed for version 4.0 when the family option is removed
   and backwards compatibility will be removed.
@@ -258,9 +259,12 @@ notific8 = do ->
       data.settings.color = data.settings.theme
       data.settings.theme = data.settings.family
       if console? && console.warn?
-        console.warn """
-The option 'theme' now references the value that was formerly used for 'family'. The option 'color' was added in version 3.2.0 to replace the former functionality of the 'theme' option. The 'family' option and backwards compatibility will be removed in version 4.0. Please update the options configuration in your code as soon as possible.
-"""
+        console.warn "The option 'theme' now references the value that was \
+          formerly used for 'family'. The option 'color' was added in version \
+          3.2.0 to replace the former functionality of the 'theme' option. The \
+          'family' option and backwards compatibility will be removed in \
+          version 4.0. Please update the options configuration in your code as \
+          soon as possible."
 
   ###
   Initialize the containers for the plug-in
@@ -271,11 +275,8 @@ The option 'theme' now references the value that was formerly used for 'family'.
     body.dataset.notific8s = 0
     containerClass= "#{options.namespace}-container"
     containerStr = "<div class='#{containerClass} $pos'></div>"
-    parser = new DOMParser()
-    body.innerHTML += containerStr.replace('$pos', 'top right')
-    body.innerHTML += containerStr.replace('$pos', 'top left')
-    body.innerHTML += containerStr.replace('$pos', 'bottom right')
-    body.innerHTML += containerStr.replace('$pos', 'bottom left')
+    for position in [ 'top right', 'top left', 'bottom right', 'bottom left' ]
+      body.innerHTML += containerStr.replace('$pos', position)
     for container in document.getElementsByClassName(containerClass)
       container.style.zIndex = notific8Defaults.zindex
       container.addEventListener "click", (event) ->
@@ -333,10 +334,7 @@ The option 'theme' now references the value that was formerly used for 'family'.
       notific8Defaults[option] = defaultValue
 
     # add the module to the collection
-    notific8RegisteredModules[position].push {
-      moduleName
-      callbackMethod
-    }
+    notific8RegisteredModules[position].push { moduleName, callbackMethod }
 
   ###
   Displays an error message to the console and throws an error
@@ -366,17 +364,13 @@ The option 'theme' now references the value that was formerly used for 'family'.
         return remove(options)
       when "registerModule"
         unless arguments.length == 5
-          errorMessage = """
-Registering a module requires the parameters moduleName, position,
- defaultOptions, and callbackMethod.
-"""
-          console.log errorMessage
-          throw new Error(errorMessage)
-
-        moduleName = arguments[1]
-        position = arguments[2]
-        defaultOptions = arguments[3]
-        callbackMethod = arguments[4]
+          errorMessage "Registering a module requires the parameters \
+            moduleName, position, defaultOptions, and callbackMethod."
+        [ message
+          moduleName
+          position
+          defaultOptions
+          callbackMethod ] = arguments
 
         registerModule moduleName, position, defaultOptions, callbackMethod
       else

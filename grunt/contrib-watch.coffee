@@ -38,6 +38,8 @@ module.exports = (grunt) ->
         'uglify'
         'copy:js'
         'karma:unit'
+        'copy:module-icon'
+        'copy:module-image'
       ]
       options:
         spawn: false
