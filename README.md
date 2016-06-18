@@ -71,6 +71,10 @@ Please view the [wiki](https://github.com/ralivue/notific8/wiki) for information
 
 The styles are written in Scss format and available in the `src/sass` directory. The grunt task `release` will create versions of the code in Sass format, Less, and Stylus. Development will continue in Scss only - please do not open issues or pull requests to change the default style format.
 
+## Contributing
+
+When contributing, create a feature branch from `develop`. Ensure that all existing tests are still passing. If appropriate, be sure to write new tests. When a pull request is created, ensure that it is requested to go into `develop` and not `master`.
+
 ## License
 
 The notific8 plug-in is released under the BSD license.
