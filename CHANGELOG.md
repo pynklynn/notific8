@@ -2,6 +2,11 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.5.0
+
+- Added the queuing option
+- Updated text in the demo
+
 ## 3.4.1
 
 - Adding missing theme default height for Materialish
@@ -20,7 +25,7 @@ The change log was created with version 2.0. For changes, please see the commit 
 - Added the Materialish theme
     - __Note__: This theme does not support having a heading
 
-## Files that will be removed in version 4.0
+### Files that will be removed in version 4.0
 
 Sass files (and their compiled alternate format counter parts):
 

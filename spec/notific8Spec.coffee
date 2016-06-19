@@ -76,10 +76,12 @@ resetOptions = ->
     onCreate: null
     onClose: null
     namespace: 'notific8'
+    queue: false
     height:
       atomic: 70
       chicchat: 120
       legacy: 90
+      materlialish: 48
 
   # # reset modules registrations
   # window.notific8RegisteredModules =
@@ -100,10 +102,12 @@ describe 'notific8 configruation setting', ->
     onCreate: (notification, data) ->
     onClose: (notification, data) ->
     namespace: 'custom'
+    queue: true
     height:
       atomic: 80
       chicchat: 80
       legacy: 80
+      materialish: 80
 
   beforeAll ->
     resetOptions()
@@ -123,9 +127,11 @@ describe 'notific8 configruation setting', ->
     expect(typeof notific8Defaults.onCreate).toEqual 'function'
     expect(typeof notific8Defaults.onClose).toEqual 'function'
     expect(notific8Defaults.namespace).toEqual 'custom'
+    expect(notific8Defaults.queue).toEqual true
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
     expect(notific8Defaults.height.legacy).toEqual 80
+    expect(notific8Defaults.height.materialish).toEqual 80
 
     return
 
@@ -144,9 +150,11 @@ describe 'notific8 configruation setting', ->
     expect(typeof notific8Defaults.onCreate).toEqual 'function'
     expect(typeof notific8Defaults.onClose).toEqual 'function'
     expect(notific8Defaults.namespace).toEqual 'custom'
+    expect(notific8Defaults.queue).toEqual true
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
     expect(notific8Defaults.height.legacy).toEqual 80
+    expect(notific8Defaults.height.materialish).toEqual 80
 
     return
 
@@ -204,5 +212,10 @@ describe 'testing notification settings on notification initialization', ->
     notification = document.getElementsByClassName(notificationClass)[0]
     expect(notification.classList.contains('family-materialish')).toEqual true
     expect(notification.classList.contains('lilrobot')).toEqual true
+
+  it 'should set the queue configuration option to true', ->
+    expect(notific8Defaults.queue).toEqual false
+    notific8 'config', queue: true
+    expect(notific8Defaults.queue).toEqual true
 
   return

@@ -23,17 +23,19 @@ notific8 = (function() {
     onCreate: null,
     onClose: null,
     namespace: 'notific8',
+    queue: false,
     height: {
       atomic: 70,
       chicchat: 120,
       legacy: 90,
-      materlialish: 48
+      materialish: 48
     }
   };
   window.notific8RegisteredModules = {
     beforeContent: [],
     afterContent: []
   };
+  window.notific8Queue = [];
 
   /*
   Destroy the notification
@@ -159,12 +161,16 @@ notific8 = (function() {
     n.className = n.className.replace('open', '');
     n.style.height = 0;
     setTimeout((function() {
-      var container;
+      var container, next;
       container = getContainer(data);
       container.removeChild(n);
       delete sessionStorage[n.id];
       if (data.settings.onClose) {
         data.settings.onClose(n, data);
+      }
+      if (notific8Defaults.queue && notific8Queue.length) {
+        next = notific8Queue.shift();
+        notific8(next.message, next.options);
       }
     }), 200);
   };
@@ -224,6 +230,7 @@ notific8 = (function() {
       option = options[key];
       data.settings[key] = option;
     }
+    delete data.settings.queue;
     if (data.settings.height == null) {
       data.settings.height = notific8Defaults.height[data.settings.theme];
     }
@@ -348,7 +355,7 @@ notific8 = (function() {
     throw new Error(message);
   };
   return function(message, options) {
-    var callbackMethod, containerClass, defaultOptions, moduleName, position;
+    var callbackMethod, containerClass, defaultOptions, moduleName, notificationClass, num, position;
     if (typeof message !== "string") {
       errorMessage("notific8 takes a string message as the first parameter");
     }
@@ -380,7 +387,16 @@ notific8 = (function() {
           initContainers(options);
         }
         checkEdges(options);
-        init(message, options);
+        notificationClass = "" + options.namespace + "-notification";
+        num = document.getElementsByClassName(notificationClass).length;
+        if (!notific8Defaults.queue || num === 0) {
+          init(message, options);
+        } else {
+          notific8Queue.push({
+            message: message,
+            options: options
+          });
+        }
     }
   };
 })();
