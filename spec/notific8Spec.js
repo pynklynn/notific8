@@ -53,6 +53,7 @@ resetOptions = function() {
     onCreate: null,
     onClose: null,
     namespace: 'notific8',
+    queue: false,
     height: {
       atomic: 70,
       chicchat: 120,
@@ -77,6 +78,7 @@ describe('notific8 configruation setting', function() {
     onCreate: function(notification, data) {},
     onClose: function(notification, data) {},
     namespace: 'custom',
+    queue: true,
     height: {
       atomic: 80,
       chicchat: 80,
@@ -101,6 +103,7 @@ describe('notific8 configruation setting', function() {
     expect(typeof notific8Defaults.onCreate).toEqual('function');
     expect(typeof notific8Defaults.onClose).toEqual('function');
     expect(notific8Defaults.namespace).toEqual('custom');
+    expect(notific8Defaults.queue).toEqual(true);
     expect(notific8Defaults.height.atomic).toEqual(80);
     expect(notific8Defaults.height.chicchat).toEqual(80);
     expect(notific8Defaults.height.legacy).toEqual(80);
@@ -120,6 +123,7 @@ describe('notific8 configruation setting', function() {
     expect(typeof notific8Defaults.onCreate).toEqual('function');
     expect(typeof notific8Defaults.onClose).toEqual('function');
     expect(notific8Defaults.namespace).toEqual('custom');
+    expect(notific8Defaults.queue).toEqual(true);
     expect(notific8Defaults.height.atomic).toEqual(80);
     expect(notific8Defaults.height.chicchat).toEqual(80);
     expect(notific8Defaults.height.legacy).toEqual(80);
@@ -180,5 +184,12 @@ describe('testing notification settings on notification initialization', functio
     notification = document.getElementsByClassName(notificationClass)[0];
     expect(notification.classList.contains('family-materialish')).toEqual(true);
     return expect(notification.classList.contains('lilrobot')).toEqual(true);
+  });
+  it('should set the queue configuration option to true', function() {
+    expect(notific8Defaults.queue).toEqual(false);
+    notific8('config', {
+      queue: true
+    });
+    return expect(notific8Defaults.queue).toEqual(true);
   });
 });

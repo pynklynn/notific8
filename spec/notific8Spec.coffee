@@ -76,6 +76,7 @@ resetOptions = ->
     onCreate: null
     onClose: null
     namespace: 'notific8'
+    queue: false
     height:
       atomic: 70
       chicchat: 120
@@ -101,6 +102,7 @@ describe 'notific8 configruation setting', ->
     onCreate: (notification, data) ->
     onClose: (notification, data) ->
     namespace: 'custom'
+    queue: true
     height:
       atomic: 80
       chicchat: 80
@@ -125,6 +127,7 @@ describe 'notific8 configruation setting', ->
     expect(typeof notific8Defaults.onCreate).toEqual 'function'
     expect(typeof notific8Defaults.onClose).toEqual 'function'
     expect(notific8Defaults.namespace).toEqual 'custom'
+    expect(notific8Defaults.queue).toEqual true
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
     expect(notific8Defaults.height.legacy).toEqual 80
@@ -147,6 +150,7 @@ describe 'notific8 configruation setting', ->
     expect(typeof notific8Defaults.onCreate).toEqual 'function'
     expect(typeof notific8Defaults.onClose).toEqual 'function'
     expect(notific8Defaults.namespace).toEqual 'custom'
+    expect(notific8Defaults.queue).toEqual true
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
     expect(notific8Defaults.height.legacy).toEqual 80
@@ -208,5 +212,10 @@ describe 'testing notification settings on notification initialization', ->
     notification = document.getElementsByClassName(notificationClass)[0]
     expect(notification.classList.contains('family-materialish')).toEqual true
     expect(notification.classList.contains('lilrobot')).toEqual true
+
+  it 'should set the queue configuration option to true', ->
+    expect(notific8Defaults.queue).toEqual false
+    notific8 'config', queue: true
+    expect(notific8Defaults.queue).toEqual true
 
   return

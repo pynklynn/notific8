@@ -21,6 +21,7 @@ notific8 = do ->
     onCreate: null
     onClose: null
     namespace: 'notific8'
+    queue: false
     height:
       atomic: 70
       chicchat: 120
@@ -31,6 +32,9 @@ notific8 = do ->
   window.notific8RegisteredModules =
     beforeContent: []
     afterContent: []
+
+  # queue for keeping track of animations
+  window.notific8Queue = []
 
   ###
   Destroy the notification
@@ -186,6 +190,11 @@ notific8 = do ->
       container.removeChild n
       delete sessionStorage[n.id]
       data.settings.onClose n, data if data.settings.onClose
+
+      if notific8Defaults.queue && notific8Queue.length
+        next = notific8Queue.shift()
+        notific8 next.message, next.options
+
       return
     ), 200
 
@@ -233,6 +242,7 @@ notific8 = do ->
       data.settings[key] = option unless key == 'height'
     for key, option of options
       data.settings[key] = option
+    delete data.settings.queue # queue is handled as part of the defaults
     unless data.settings.height?
       data.settings.height = notific8Defaults.height[data.settings.theme]
     data.settings.height = Number(data.settings.height)
@@ -382,5 +392,11 @@ notific8 = do ->
         # make sure the edge settings exist
         checkEdges options
 
-        init message, options
+        notificationClass = "#{options.namespace}-notification"
+        num = document.getElementsByClassName(notificationClass).length
+        if !notific8Defaults.queue || num == 0
+          init message, options
+        else
+          notific8Queue.push { message, options }
+
         return

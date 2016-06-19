@@ -17,6 +17,9 @@ script(type='text/javascript').
           break;
       }
     });
+    $('body').on('change', '#notific8Queue', function(event) {
+      notific8('config', { queue: $(this).is(':checked') });
+    });
     $('body').on(
       'change',
       '#notific8Theme',

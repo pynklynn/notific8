@@ -1,5 +1,5 @@
 h1 notific8 demo
-p notific8 is a JavaScript notification plug-in that was initially inspired by the notification style introduced in Windows 8. It is highly customizable and comes with multiple themes built in. The Sass files can be included in a project for easy customizations. It also comes with a jQuery wrapper for those who wish to use jQuery.
+p notific8 is a highly customizable JavaScript notification plug-in. It comes with multiple themes built in. The Sass files can be included in a project for easy customizations. The plug-in also includes a jQuery wrapper for those who wish to use jQuery.
 p Use the fields below to test the different options for the plug-in.
 p
   | To see the
@@ -12,10 +12,17 @@ p
 table
   tbody
     tr
+      td.label &nbsp;
+      td
+        label(for='notific8Queue')
+          input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
+          |  Queue notifications
+        p Note: queuing is set for the plug-in settings and not passed in as an option on the notification.
+    tr
       td.label
         label(for='notific8Text') Notification text
       td
-        input#notific8Text(type='text', name='notific8Text', size='50', maxlength='300', value='notific8 was inspired by Windows 8 notifications')
+        input#notific8Text(type='text', name='notific8Text', size='50', maxlength='300', value='Test notific8 notification')
     tr
       td.label
         label(for='notific8Sticky') Sticky
