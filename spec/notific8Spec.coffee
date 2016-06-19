@@ -80,6 +80,7 @@ resetOptions = ->
       atomic: 70
       chicchat: 120
       legacy: 90
+      materlialish: 48
 
   # # reset modules registrations
   # window.notific8RegisteredModules =
@@ -104,6 +105,7 @@ describe 'notific8 configruation setting', ->
       atomic: 80
       chicchat: 80
       legacy: 80
+      materialish: 80
 
   beforeAll ->
     resetOptions()
@@ -126,6 +128,7 @@ describe 'notific8 configruation setting', ->
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
     expect(notific8Defaults.height.legacy).toEqual 80
+    expect(notific8Defaults.height.materialish).toEqual 80
 
     return
 
@@ -147,6 +150,7 @@ describe 'notific8 configruation setting', ->
     expect(notific8Defaults.height.atomic).toEqual 80
     expect(notific8Defaults.height.chicchat).toEqual 80
     expect(notific8Defaults.height.legacy).toEqual 80
+    expect(notific8Defaults.height.materialish).toEqual 80
 
     return
 

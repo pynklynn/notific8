@@ -25,7 +25,7 @@ notific8 = do ->
       atomic: 70
       chicchat: 120
       legacy: 90
-      materlialish: 48
+      materialish: 48
 
   # modules registered with the system
   window.notific8RegisteredModules =

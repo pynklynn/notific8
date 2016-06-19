@@ -27,7 +27,7 @@ notific8 = (function() {
       atomic: 70,
       chicchat: 120,
       legacy: 90,
-      materlialish: 48
+      materialish: 48
     }
   };
   window.notific8RegisteredModules = {

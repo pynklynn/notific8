@@ -56,7 +56,8 @@ resetOptions = function() {
     height: {
       atomic: 70,
       chicchat: 120,
-      legacy: 90
+      legacy: 90,
+      materlialish: 48
     }
   };
 };
@@ -79,7 +80,8 @@ describe('notific8 configruation setting', function() {
     height: {
       atomic: 80,
       chicchat: 80,
-      legacy: 80
+      legacy: 80,
+      materialish: 80
     }
   };
   beforeAll(function() {
@@ -102,6 +104,7 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.height.atomic).toEqual(80);
     expect(notific8Defaults.height.chicchat).toEqual(80);
     expect(notific8Defaults.height.legacy).toEqual(80);
+    expect(notific8Defaults.height.materialish).toEqual(80);
   });
   it('should set the configuration via the config method', function() {
     notific8('config', customConfig);
@@ -120,6 +123,7 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.height.atomic).toEqual(80);
     expect(notific8Defaults.height.chicchat).toEqual(80);
     expect(notific8Defaults.height.legacy).toEqual(80);
+    expect(notific8Defaults.height.materialish).toEqual(80);
   });
 });
 
