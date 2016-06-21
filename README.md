@@ -33,6 +33,8 @@ An interactive demo page can be found in the ./demo/ directory.
 * Ability to set custom CSS namespace if necessary
 * Events for init, create, and close
 * Modular system to make it easier for developers to extend the plug-in
+* Ability to queue notifications
+* Ability to show a __Close All__ button for each stack
 
 ## Officially Supported modules
 

@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.6.0
+
+- Added the _closeAll_ and _closeAllText_ options
+
 ## 3.5.0
 
 - Added the queuing option
