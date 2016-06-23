@@ -49,9 +49,9 @@ resetOptions = function() {
     horizontalEdge: 'top',
     zindex: 1100,
     closeText: 'close',
-    onInit: null,
-    onCreate: null,
-    onClose: null,
+    onInit: [],
+    onCreate: [],
+    onClose: [],
     namespace: 'notific8',
     queue: false,
     height: {
@@ -74,9 +74,9 @@ describe('notific8 configruation setting', function() {
     horizontalEdge: 'bottom',
     zindex: 1200,
     closeText: 'exit',
-    onInit: function(data) {},
-    onCreate: function(notification, data) {},
-    onClose: function(notification, data) {},
+    onInit: [function(data) {}],
+    onCreate: [function(notification, data) {}],
+    onClose: [function(notification, data) {}],
     namespace: 'custom',
     queue: true,
     height: {
@@ -99,9 +99,9 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.horizontalEdge).toEqual('bottom');
     expect(notific8Defaults.zindex).toEqual(1200);
     expect(notific8Defaults.closeText).toEqual('exit');
-    expect(typeof notific8Defaults.onInit).toEqual('function');
-    expect(typeof notific8Defaults.onCreate).toEqual('function');
-    expect(typeof notific8Defaults.onClose).toEqual('function');
+    expect(typeof notific8Defaults.onInit).toEqual('object');
+    expect(typeof notific8Defaults.onCreate).toEqual('object');
+    expect(typeof notific8Defaults.onClose).toEqual('object');
     expect(notific8Defaults.namespace).toEqual('custom');
     expect(notific8Defaults.queue).toEqual(true);
     expect(notific8Defaults.height.atomic).toEqual(80);
@@ -119,9 +119,9 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.horizontalEdge).toEqual('bottom');
     expect(notific8Defaults.zindex).toEqual(1200);
     expect(notific8Defaults.closeText).toEqual('exit');
-    expect(typeof notific8Defaults.onInit).toEqual('function');
-    expect(typeof notific8Defaults.onCreate).toEqual('function');
-    expect(typeof notific8Defaults.onClose).toEqual('function');
+    expect(typeof notific8Defaults.onInit).toEqual('object');
+    expect(typeof notific8Defaults.onCreate).toEqual('object');
+    expect(typeof notific8Defaults.onClose).toEqual('object');
     expect(notific8Defaults.namespace).toEqual('custom');
     expect(notific8Defaults.queue).toEqual(true);
     expect(notific8Defaults.height.atomic).toEqual(80);
