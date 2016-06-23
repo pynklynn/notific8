@@ -22,8 +22,6 @@ notific8 = do ->
     onClose: null
     namespace: 'notific8'
     queue: false
-    closeAll: false
-    closeAllText: 'Close All'
     height:
       atomic: 70
       chicchat: 120
@@ -244,9 +242,7 @@ notific8 = do ->
       data.settings[key] = option unless key == 'height'
     for key, option of options
       data.settings[key] = option
-    # options that are handled by defaults
-    for key in [ 'queue', 'closeAll', 'closeAllText' ]
-      delete data.settings[key]
+    delete data.settings.queue # queue is handled as part of the defaults
     unless data.settings.height?
       data.settings.height = notific8Defaults.height[data.settings.theme]
     data.settings.height = Number(data.settings.height)
@@ -288,14 +284,7 @@ notific8 = do ->
     body = document.getElementsByTagName('body')[0]
     body.dataset.notific8s = 0
     containerClass = "#{options.namespace}-container"
-    closeAllButtonClass = "#{options.namespace}-close-all"
-    closeAllButton = "<a href=\"javascript: void(0);\" \
-      class=\"closeAllButtonClass\">\
-      #{notific8Defaults.closeAllText}\
-    </a>"
-    containerStr = "<div class='#{containerClass} $pos'>\
-      #{closeAllButton}
-    \</div>"
+    containerStr = "<div class='#{containerClass} $pos'></div>"
     for position in [ 'top right', 'top left', 'bottom right', 'bottom left' ]
       body.innerHTML += containerStr.replace('$pos', position)
     for container in document.getElementsByClassName(containerClass)

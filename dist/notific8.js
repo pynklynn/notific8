@@ -24,8 +24,6 @@ notific8 = (function() {
     onClose: null,
     namespace: 'notific8',
     queue: false,
-    closeAll: false,
-    closeAllText: 'Close All',
     height: {
       atomic: 70,
       chicchat: 120,
@@ -217,7 +215,7 @@ notific8 = (function() {
   @return object
    */
   init = function(message, options) {
-    var data, key, option, _i, _len, _ref;
+    var data, key, option;
     data = {
       settings: {},
       message: message
@@ -232,11 +230,7 @@ notific8 = (function() {
       option = options[key];
       data.settings[key] = option;
     }
-    _ref = ['queue', 'closeAll', 'closeAllText'];
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      key = _ref[_i];
-      delete data.settings[key];
-    }
+    delete data.settings.queue;
     if (data.settings.height == null) {
       data.settings.height = notific8Defaults.height[data.settings.theme];
     }
@@ -275,13 +269,11 @@ notific8 = (function() {
   @param object options
    */
   initContainers = function(options) {
-    var body, closeAllButton, closeAllButtonClass, container, containerClass, containerStr, position, _i, _j, _len, _len1, _ref, _ref1;
+    var body, container, containerClass, containerStr, position, _i, _j, _len, _len1, _ref, _ref1;
     body = document.getElementsByTagName('body')[0];
     body.dataset.notific8s = 0;
     containerClass = "" + options.namespace + "-container";
-    closeAllButtonClass = "" + options.namespace + "-close-all";
-    closeAllButton = "<a href=\"javascript: void(0);\" class=\"closeAllButtonClass\">" + notific8Defaults.closeAllText + "</a>";
-    containerStr = "<div class='" + containerClass + " $pos'>" + closeAllButton + " \</div>";
+    containerStr = "<div class='" + containerClass + " $pos'></div>";
     _ref = ['top right', 'top left', 'bottom right', 'bottom left'];
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       position = _ref[_i];
