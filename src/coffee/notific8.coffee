@@ -20,6 +20,9 @@ notific8 = do ->
     onInit: []
     onCreate: []
     onClose: []
+    onBeforeContainer: []
+    onAfterContainer: []
+    onInsideContainer: []
     namespace: 'notific8'
     queue: false
     height:
@@ -242,7 +245,14 @@ notific8 = do ->
     data =
       settings: {}
       message: message
-    arrayKeys = [ 'onInit', 'onCreate', 'onClose', ]
+    arrayKeys = [
+      'onInit'
+      'onCreate'
+      'onClose'
+      'onBeforeContainer'
+      'onAfterContainer'
+      'onInsideContainer'
+    ]
     for key, option of notific8Defaults
       data.settings[key] = option unless key == 'height'
     for key, option of options
@@ -298,7 +308,15 @@ notific8 = do ->
     body = document.getElementsByTagName('body')[0]
     body.dataset.notific8s = 0
     containerClass = "#{options.namespace}-container"
-    containerStr = "<div class='#{containerClass} $pos'></div>"
+    containerStr = ""
+    for onBeforeContainer in notific8Defaults.onBeforeContainer
+      containerStr += onBeforeContainer(data)
+    containerStr += "<div class='#{containerClass} $pos'>"
+    for onInsideContainer in notific8Defaults.onInsideContainer
+      containerStr += onInsideContainer(data)
+    containerStr += "</div>"
+    for onAfterContainer in notific8Defaults.onAfterContainer
+      containerStr += onAfterContainer(data)
     for position in [ 'top right', 'top left', 'bottom right', 'bottom left' ]
       body.innerHTML += containerStr.replace('$pos', position)
     for container in document.getElementsByClassName(containerClass)

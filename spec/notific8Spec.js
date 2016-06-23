@@ -52,6 +52,9 @@ resetOptions = function() {
     onInit: [],
     onCreate: [],
     onClose: [],
+    onBeforeContainer: [],
+    onAfterContainer: [],
+    onInsideContainer: [],
     namespace: 'notific8',
     queue: false,
     height: {
@@ -77,6 +80,9 @@ describe('notific8 configruation setting', function() {
     onInit: [function(data) {}],
     onCreate: [function(notification, data) {}],
     onClose: [function(notification, data) {}],
+    onBeforeContainer: [function(defaults) {}],
+    onAfterContainer: [function(defaults) {}],
+    onInsideContainer: [function(defaults) {}],
     namespace: 'custom',
     queue: true,
     height: {
@@ -99,9 +105,12 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.horizontalEdge).toEqual('bottom');
     expect(notific8Defaults.zindex).toEqual(1200);
     expect(notific8Defaults.closeText).toEqual('exit');
-    expect(typeof notific8Defaults.onInit).toEqual('object');
-    expect(typeof notific8Defaults.onCreate).toEqual('object');
-    expect(typeof notific8Defaults.onClose).toEqual('object');
+    expect(notific8Defaults.onInit.length).toEqual(1);
+    expect(notific8Defaults.onCreate.length).toEqual(1);
+    expect(notific8Defaults.onClose.length).toEqual(1);
+    expect(notific8Defaults.onBeforeContainer.length).toEqual(1);
+    expect(notific8Defaults.onAfterContainer.length).toEqual(1);
+    expect(notific8Defaults.onInsideContainer.length).toEqual(1);
     expect(notific8Defaults.namespace).toEqual('custom');
     expect(notific8Defaults.queue).toEqual(true);
     expect(notific8Defaults.height.atomic).toEqual(80);
@@ -119,9 +128,12 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.horizontalEdge).toEqual('bottom');
     expect(notific8Defaults.zindex).toEqual(1200);
     expect(notific8Defaults.closeText).toEqual('exit');
-    expect(typeof notific8Defaults.onInit).toEqual('object');
-    expect(typeof notific8Defaults.onCreate).toEqual('object');
-    expect(typeof notific8Defaults.onClose).toEqual('object');
+    expect(notific8Defaults.onInit.length).toEqual(1);
+    expect(notific8Defaults.onCreate.length).toEqual(1);
+    expect(notific8Defaults.onClose.length).toEqual(1);
+    expect(notific8Defaults.onBeforeContainer.length).toEqual(1);
+    expect(notific8Defaults.onAfterContainer.length).toEqual(1);
+    expect(notific8Defaults.onInsideContainer.length).toEqual(1);
     expect(notific8Defaults.namespace).toEqual('custom');
     expect(notific8Defaults.queue).toEqual(true);
     expect(notific8Defaults.height.atomic).toEqual(80);

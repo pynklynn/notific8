@@ -22,6 +22,9 @@ notific8 = (function() {
     onInit: [],
     onCreate: [],
     onClose: [],
+    onBeforeContainer: [],
+    onAfterContainer: [],
+    onInsideContainer: [],
     namespace: 'notific8',
     queue: false,
     height: {
@@ -228,7 +231,7 @@ notific8 = (function() {
       settings: {},
       message: message
     };
-    arrayKeys = ['onInit', 'onCreate', 'onClose'];
+    arrayKeys = ['onInit', 'onCreate', 'onClose', 'onBeforeContainer', 'onAfterContainer', 'onInsideContainer'];
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
       if (key !== 'height') {
@@ -292,19 +295,36 @@ notific8 = (function() {
   @param object options
    */
   initContainers = function(options) {
-    var body, container, containerClass, containerStr, position, _i, _j, _len, _len1, _ref, _ref1;
+    var body, container, containerClass, containerStr, onAfterContainer, onBeforeContainer, onInsideContainer, position, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4;
     body = document.getElementsByTagName('body')[0];
     body.dataset.notific8s = 0;
     containerClass = "" + options.namespace + "-container";
-    containerStr = "<div class='" + containerClass + " $pos'></div>";
-    _ref = ['top right', 'top left', 'bottom right', 'bottom left'];
+    containerStr = "";
+    _ref = notific8Defaults.onBeforeContainer;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      position = _ref[_i];
+      onBeforeContainer = _ref[_i];
+      containerStr += onBeforeContainer(data);
+    }
+    containerStr += "<div class='" + containerClass + " $pos'>";
+    _ref1 = notific8Defaults.onInsideContainer;
+    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+      onInsideContainer = _ref1[_j];
+      containerStr += onInsideContainer(data);
+    }
+    containerStr += "</div>";
+    _ref2 = notific8Defaults.onAfterContainer;
+    for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+      onAfterContainer = _ref2[_k];
+      containerStr += onAfterContainer(data);
+    }
+    _ref3 = ['top right', 'top left', 'bottom right', 'bottom left'];
+    for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
+      position = _ref3[_l];
       body.innerHTML += containerStr.replace('$pos', position);
     }
-    _ref1 = document.getElementsByClassName(containerClass);
-    for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-      container = _ref1[_j];
+    _ref4 = document.getElementsByClassName(containerClass);
+    for (_m = 0, _len4 = _ref4.length; _m < _len4; _m++) {
+      container = _ref4[_m];
       container.style.zIndex = notific8Defaults.zindex;
       container.addEventListener("click", function(event) {
         var data, notification, target;
