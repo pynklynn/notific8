@@ -19,9 +19,9 @@ notific8 = (function() {
     horizontalEdge: 'top',
     zindex: 1100,
     closeText: 'close',
-    onInit: null,
-    onCreate: null,
-    onClose: null,
+    onInit: [],
+    onCreate: [],
+    onClose: [],
     namespace: 'notific8',
     queue: false,
     height: {
@@ -68,7 +68,7 @@ notific8 = (function() {
   @param object data
    */
   buildNotification = function(data) {
-    var body, container, generatedNotificationClasses, module, moduleResults, namespace, notification, notificationId, num, _i, _j, _len, _len1, _ref, _ref1;
+    var body, container, generatedNotificationClasses, module, moduleResults, namespace, notification, notificationId, num, onCreate, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
     body = document.getElementsByTagName('body')[0];
     num = Number(body.dataset.notific8s);
     namespace = data.settings.namespace;
@@ -100,8 +100,12 @@ notific8 = (function() {
       notification = document.getElementById(notificationId);
       return notification.style.height = "" + data.settings.height + "px";
     }), 1);
-    if (data.settings.onCreate) {
-      data.settings.onCreate(notification, data);
+    if (data.settings.onCreate.length) {
+      _ref2 = data.settings.onCreate;
+      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+        onCreate = _ref2[_k];
+        onCreate(notification, data);
+      }
     }
     setTimeout((function() {
       notification = document.getElementById(notificationId);
@@ -161,12 +165,16 @@ notific8 = (function() {
     n.className = n.className.replace('open', '');
     n.style.height = 0;
     setTimeout((function() {
-      var container, next;
+      var container, next, onClose, _i, _len, _ref;
       container = getContainer(data);
       container.removeChild(n);
       delete sessionStorage[n.id];
-      if (data.settings.onClose) {
-        data.settings.onClose(n, data);
+      if (data.settings.onClose.length) {
+        _ref = data.settings.onClose;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          onClose = _ref[_i];
+          onClose(n, data);
+        }
       }
       if (notific8Defaults.queue && notific8Queue.length) {
         next = notific8Queue.shift();
@@ -215,11 +223,12 @@ notific8 = (function() {
   @return object
    */
   init = function(message, options) {
-    var data, key, option;
+    var arrayKeys, data, handler, key, onInit, option, _i, _j, _len, _len1, _ref;
     data = {
       settings: {},
       message: message
     };
+    arrayKeys = ['onInit', 'onCreate', 'onClose'];
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
       if (key !== 'height') {
@@ -228,7 +237,17 @@ notific8 = (function() {
     }
     for (key in options) {
       option = options[key];
-      data.settings[key] = option;
+      if (arrayKeys.indexOf(key) > -1) {
+        if (typeof option === 'function') {
+          option = [option];
+        }
+        for (_i = 0, _len = option.length; _i < _len; _i++) {
+          handler = option[_i];
+          data.settings[key].push(handler);
+        }
+      } else {
+        data.settings[key] = option;
+      }
     }
     delete data.settings.queue;
     if (data.settings.height == null) {
@@ -240,8 +259,12 @@ notific8 = (function() {
     }
     checkThemeOptions(data);
     buildNotification(data);
-    if (data.settings.onInit) {
-      data.settings.onInit(data);
+    if (data.settings.onInit.length) {
+      _ref = data.settings.onInit;
+      for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+        onInit = _ref[_j];
+        onInit(data);
+      }
     }
   };
 

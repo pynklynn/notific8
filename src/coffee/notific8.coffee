@@ -17,9 +17,9 @@ notific8 = do ->
     horizontalEdge: 'top'
     zindex: 1100
     closeText: 'close'
-    onInit: null
-    onCreate: null
-    onClose: null
+    onInit: []
+    onCreate: []
+    onClose: []
     namespace: 'notific8'
     queue: false
     height:
@@ -112,8 +112,10 @@ notific8 = do ->
       notification.style.height = "#{data.settings.height}px"
     ), 1
 
-    # call the onCreate handler if it exists
-    data.settings.onCreate notification, data if data.settings.onCreate
+    # call the onCreate handlers if any exists
+    if data.settings.onCreate.length
+      for onCreate in data.settings.onCreate
+        onCreate notification, data
 
     # slide the message onto the screen
     setTimeout (->
@@ -189,7 +191,9 @@ notific8 = do ->
       container = getContainer(data)
       container.removeChild n
       delete sessionStorage[n.id]
-      data.settings.onClose n, data if data.settings.onClose
+      if data.settings.onClose.length
+        for onClose in data.settings.onClose
+          onClose n, data
 
       if notific8Defaults.queue && notific8Queue.length
         next = notific8Queue.shift()
@@ -238,10 +242,16 @@ notific8 = do ->
     data =
       settings: {}
       message: message
+    arrayKeys = [ 'onInit', 'onCreate', 'onClose', ]
     for key, option of notific8Defaults
       data.settings[key] = option unless key == 'height'
     for key, option of options
-      data.settings[key] = option
+      if arrayKeys.indexOf(key) > -1
+        option = [ option ] if typeof option == 'function'
+        for handler in option
+          data.settings[key].push handler
+      else
+        data.settings[key] = option
     delete data.settings.queue # queue is handled as part of the defaults
     unless data.settings.height?
       data.settings.height = notific8Defaults.height[data.settings.theme]
@@ -253,7 +263,11 @@ notific8 = do ->
     checkThemeOptions data
 
     buildNotification data
-    data.settings.onInit data if data.settings.onInit
+
+    if data.settings.onInit.length
+      for onInit in data.settings.onInit
+        onInit data
+
     return
 
   ###
