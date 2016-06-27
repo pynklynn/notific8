@@ -39,6 +39,7 @@ module.exports = (grunt) ->
         'copy:js'
         'copy:module-icon'
         'copy:module-image'
+        'copy:module-closeall'
         'karma:unit'
       ]
       options:

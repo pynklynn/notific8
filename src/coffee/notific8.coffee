@@ -20,9 +20,6 @@ notific8 = do ->
     onInit: []
     onCreate: []
     onClose: []
-    onBeforeContainer: []
-    onAfterContainer: []
-    onInsideContainer: []
     namespace: 'notific8'
     queue: false
     height:
@@ -35,6 +32,9 @@ notific8 = do ->
   window.notific8RegisteredModules =
     beforeContent: []
     afterContent: []
+    beforeContainer: []
+    afterContainer: []
+    insideContainer: []
 
   # queue for keeping track of animations
   window.notific8Queue = []
@@ -249,9 +249,6 @@ notific8 = do ->
       'onInit'
       'onCreate'
       'onClose'
-      'onBeforeContainer'
-      'onAfterContainer'
-      'onInsideContainer'
     ]
     for key, option of notific8Defaults
       data.settings[key] = option unless key == 'height'
@@ -307,19 +304,33 @@ notific8 = do ->
   initContainers = (options) ->
     body = document.getElementsByTagName('body')[0]
     body.dataset.notific8s = 0
-    containerClass = "#{options.namespace}-container"
+    containerClasses = [ "#{options.namespace}-container" ]
     containerStr = ""
-    for onBeforeContainer in notific8Defaults.onBeforeContainer
-      containerStr += onBeforeContainer(data)
-    containerStr += "<div class='#{containerClass} $pos'>"
-    for onInsideContainer in notific8Defaults.onInsideContainer
-      containerStr += onInsideContainer(data)
+    for module in notific8RegisteredModules.beforeContainer
+      moduleResults = module.callbackMethod(notific8Defaults)
+      containerClasses = containerClasses.concat(
+        moduleResults.classes
+      )
+      containerStr += moduleResults.html
+    containerStr += "<div class=\"$classes $pos\">"
+    for module in notific8RegisteredModules.insideContainer
+      moduleResults = module.callbackMethod(notific8Defaults)
+      containerClasses = containerClasses.concat(
+        moduleResults.classes
+      )
+      containerStr += moduleResults.html
     containerStr += "</div>"
-    for onAfterContainer in notific8Defaults.onAfterContainer
-      containerStr += onAfterContainer(data)
+    for module in notific8RegisteredModules.afterContainer
+      moduleResults = module.callbackMethod(notific8Defaults)
+      containerClasses = containerClasses.concat(
+        moduleResults.classes
+      )
+      containerStr += moduleResults.html
     for position in [ 'top right', 'top left', 'bottom right', 'bottom left' ]
-      body.innerHTML += containerStr.replace('$pos', position)
-    for container in document.getElementsByClassName(containerClass)
+      body.innerHTML += containerStr
+        .replace('$pos', position)
+        .replace('$classes', containerClasses.join(' '))
+    for container in document.getElementsByClassName(containerClasses[0])
       container.style.zIndex = notific8Defaults.zindex
       container.addEventListener "click", (event) ->
         target = event.target
@@ -357,9 +368,14 @@ notific8 = do ->
     # double-check all of the values are correct
     unless typeof moduleName == 'string' && moduleName.trim() != ''
       errorMessage "moduleName should be a string"
-    unless typeof position == 'string' && (
-      position == 'beforeContent' || position == 'afterContent'
-    )
+    validPositions = [
+      'beforeContent'
+      'afterContent'
+      'beforeContainer'
+      'afterContainer'
+      'insideContainer'
+    ]
+    unless typeof position == 'string' && validPositions.indexOf(position) > -1
       errorMessage "position should be a string"
     unless typeof defaultOptions == 'object'
       errorMessage "defaultOptions should be an object"

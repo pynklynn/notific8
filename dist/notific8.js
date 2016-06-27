@@ -22,9 +22,6 @@ notific8 = (function() {
     onInit: [],
     onCreate: [],
     onClose: [],
-    onBeforeContainer: [],
-    onAfterContainer: [],
-    onInsideContainer: [],
     namespace: 'notific8',
     queue: false,
     height: {
@@ -36,7 +33,10 @@ notific8 = (function() {
   };
   window.notific8RegisteredModules = {
     beforeContent: [],
-    afterContent: []
+    afterContent: [],
+    beforeContainer: [],
+    afterContainer: [],
+    insideContainer: []
   };
   window.notific8Queue = [];
 
@@ -231,7 +231,7 @@ notific8 = (function() {
       settings: {},
       message: message
     };
-    arrayKeys = ['onInit', 'onCreate', 'onClose', 'onBeforeContainer', 'onAfterContainer', 'onInsideContainer'];
+    arrayKeys = ['onInit', 'onCreate', 'onClose'];
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
       if (key !== 'height') {
@@ -295,34 +295,40 @@ notific8 = (function() {
   @param object options
    */
   initContainers = function(options) {
-    var body, container, containerClass, containerStr, onAfterContainer, onBeforeContainer, onInsideContainer, position, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4;
+    var body, container, containerClasses, containerStr, module, moduleResults, position, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _m, _ref, _ref1, _ref2, _ref3, _ref4;
     body = document.getElementsByTagName('body')[0];
     body.dataset.notific8s = 0;
-    containerClass = "" + options.namespace + "-container";
+    containerClasses = ["" + options.namespace + "-container"];
     containerStr = "";
-    _ref = notific8Defaults.onBeforeContainer;
+    _ref = notific8RegisteredModules.beforeContainer;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      onBeforeContainer = _ref[_i];
-      containerStr += onBeforeContainer(data);
+      module = _ref[_i];
+      moduleResults = module.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(moduleResults.classes);
+      containerStr += moduleResults.html;
     }
-    containerStr += "<div class='" + containerClass + " $pos'>";
-    _ref1 = notific8Defaults.onInsideContainer;
+    containerStr += "<div class=\"$classes $pos\">";
+    _ref1 = notific8RegisteredModules.insideContainer;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-      onInsideContainer = _ref1[_j];
-      containerStr += onInsideContainer(data);
+      module = _ref1[_j];
+      moduleResults = module.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(moduleResults.classes);
+      containerStr += moduleResults.html;
     }
     containerStr += "</div>";
-    _ref2 = notific8Defaults.onAfterContainer;
+    _ref2 = notific8RegisteredModules.afterContainer;
     for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-      onAfterContainer = _ref2[_k];
-      containerStr += onAfterContainer(data);
+      module = _ref2[_k];
+      moduleResults = module.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(moduleResults.classes);
+      containerStr += moduleResults.html;
     }
     _ref3 = ['top right', 'top left', 'bottom right', 'bottom left'];
     for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
       position = _ref3[_l];
-      body.innerHTML += containerStr.replace('$pos', position);
+      body.innerHTML += containerStr.replace('$pos', position).replace('$classes', containerClasses.join(' '));
     }
-    _ref4 = document.getElementsByClassName(containerClass);
+    _ref4 = document.getElementsByClassName(containerClasses[0]);
     for (_m = 0, _len4 = _ref4.length; _m < _len4; _m++) {
       container = _ref4[_m];
       container.style.zIndex = notific8Defaults.zindex;
@@ -359,11 +365,12 @@ notific8 = (function() {
   @param function callbackMethod
    */
   registerModule = function(moduleName, position, defaultOptions, callbackMethod) {
-    var defaultValue, module, option, _i, _len, _ref;
+    var defaultValue, module, option, validPositions, _i, _len, _ref;
     if (!(typeof moduleName === 'string' && moduleName.trim() !== '')) {
       errorMessage("moduleName should be a string");
     }
-    if (!(typeof position === 'string' && (position === 'beforeContent' || position === 'afterContent'))) {
+    validPositions = ['beforeContent', 'afterContent', 'beforeContainer', 'afterContainer', 'insideContainer'];
+    if (!(typeof position === 'string' && validPositions.indexOf(position) > -1)) {
       errorMessage("position should be a string");
     }
     if (typeof defaultOptions !== 'object') {
