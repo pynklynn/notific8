@@ -4,7 +4,12 @@ The change log was created with version 2.0. For changes, please see the commit 
 
 ## 3.6.0
 
-- Added the _closeAll_ and _closeAllText_ options
+- Added the closeAll module
+    - Provides the following configuration options:
+        - _closeAll_
+        - _closeAllText_
+        - _closeAllTheme_
+        - _closeAllColor_
 
 ## 3.5.0
 

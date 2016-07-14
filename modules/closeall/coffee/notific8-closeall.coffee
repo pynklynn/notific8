@@ -15,8 +15,13 @@ do (window) ->
   ###
   buildHtml = () ->
     if notific8Data.closeAll
+      closeAllClasses = [
+        "#{notific8Data.namespace}-closeall-button"
+        notific8Data.closeAllTheme
+        notific8Data.closeAllColor
+      ]
       """
-<a class="#{notific8Data.namespace}-closeall"
+<a class="#{closeAllClasses.join(' ')}"
   href="javascript:void(0);">
   #{notific8Data.closeAllText}
 </a>
@@ -51,6 +56,8 @@ do (window) ->
     {
       closeAll: false
       closeAllText: 'Close All'
+      closeAllTheme: 'legacy'
+      closeAllColor: 'teal'
     }
     closeAllCallback
   )

@@ -1,0 +1,45 @@
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - Legacy theme
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+@mixin notific8_legacy_theme_closeall($name, $border-color, $color, $text-color: #fff) {
+  .#{$notific8-ns}-closeall-button.legacy.#{$name} {
+    background-color: rgba($color, .85);
+    border: solid 2px rgba($border-color, .85);
+    color: $text-color;
+
+    &:hover {
+      background-color: $color;
+      border: solid 2px $border-color;
+    }
+  }
+}
+
+.#{$notific8-ns}-closeall {
+  .#{$notific8-ns}-closeall-button.legacy {
+    padding: em(8px) 1em;
+    min-width: em(390px);
+    transition: all .15s ease-in-out;
+    width: 100%;
+  }
+
+  &.top .#{$notific8-ns}-closeall-button.legacy {
+    bottom: -3em;
+  }
+
+  &.bottom .#{$notific8-ns}-closeall-button.legacy {
+    top: -3em;
+  }
+
+  &.right .#{$notific8-ns}-closeall-button.legacy {
+    right: 0;
+  }
+
+  &.left .#{$notific8-ns}-closeall-button.legacy {
+    left: 0;
+  }
+}

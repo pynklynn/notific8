@@ -1,0 +1,23 @@
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - master import file
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+// parent partials
+@import '../../../src/sass/variables';
+@import '../../../src/sass/mixins';
+
+// base styles
+@import 'notific8';
+
+// theme styles
+@import 'legacy_theme';
+@import 'atomic_theme';
+@import 'chicchat_theme';
+@import 'materialish_theme';
+@import 'default_legacy_colors';
+@import 'default_atomic_colors';
+//@import 'default_chicchat_colors';

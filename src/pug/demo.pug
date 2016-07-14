@@ -323,6 +323,64 @@ table
         |  (default, only value available for the demo)
         input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
     tr
+      td.label
+        label Close All Text
+      td
+        b Close All
+        |  (default, only value available for the demo)
+        p
+          i provided by module
+    tr
+      td.label
+        label(for='notific8CloseAllTheme') Theme
+      td
+        select#notific8CloseAllTheme(name='notific8CloseAllTheme')
+          option(value='legacy', selected='') legacy (default)
+          option(value='chicchat') ChicChat
+          option(value='atomic') Atomic
+          option(value='materialish') Materialish
+    tr
+      td.label
+        label(for='notific8CloseAllColor') Color
+      td
+        select#notific8CloseAllColor(name='notific8CloseAllColor')
+          option(value='teal', data-for='legacy', data-selected='') teal
+          option(value='amethyst', data-for='legacy') amethyst
+          option(value='ruby', data-for='legacy') ruby
+          option(value='tangerine', data-for='legacy') tangerine
+          option(value='lemon', data-for='legacy') lemon
+          option(value='lime', data-for='legacy') lime
+          option(value='ebony', data-for='legacy') ebony
+          option(value='smoke', data-for='legacy') smoke
+          option(value='cobalt', data-for='chicchat', data-selected='') cobalt
+          option(value='ruby', data-for='chicchat') ruby
+          option(value='honey', data-for='chicchat') honey
+          option(value='shamrock', data-for='chicchat') shamrock
+          option(value='amethyst', data-for='atomic', data-selected='') amethyst
+          option(value='cerulean', data-for='atomic') cerulean
+          option(value='mustard', data-for='atomic') mustard
+          option(value='onyx', data-for='atomic') onyx
+          option(value='pear', data-for='atomic') pear
+          option(value='tomato', data-for='atomic') tomato
+          option(value='twilight', data-for='materialish', data-selected='') twilight
+          option(value='lilrobot', data-for='materialish') lilrobot
+          option(value='cupcake', data-for='materialish') cupcake
+          option(value='eclair', data-for='materialish') eclair
+          option(value='honeycomb', data-for='materialish') honeycomb
+          option(value='lollypop', data-for='materialish') lollypop
+          option(value='marshmallow', data-for='materialish') marshmallow
+          option(value='strawberry', data-for='materialish') strawberry
+          option(value='creamsicle', data-for='materialish') creamsicle
+          option(value='purple-rain', data-for='materialish') purple-rain
+          option(value='peafowl', data-for='materialish') peafowl
+    tr
+      td.label &nbsp;
+      td
+        label
+          input#notific8CloseAll(name='notific8CloseAll', type='checkbox')
+          |  Close All -
+          i  provided by module - options from above are used
+    tr
       td.label Use jQuery?
       td
         label

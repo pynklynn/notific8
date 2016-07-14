@@ -15,8 +15,10 @@ http://opensource.org/licenses/BSD-3-Clause
   @return string
    */
   buildHtml = function() {
+    var closeAllClasses;
     if (notific8Data.closeAll) {
-      return "<a class=\"" + notific8Data.namespace + "-closeall\"\n  href=\"javascript:void(0);\">\n  " + notific8Data.closeAllText + "\n</a>";
+      closeAllClasses = ["" + notific8Data.namespace + "-closeall-button", notific8Data.closeAllTheme, notific8Data.closeAllColor];
+      return "<a class=\"" + (closeAllClasses.join(' ')) + "\"\n  href=\"javascript:void(0);\">\n  " + notific8Data.closeAllText + "\n</a>";
     } else {
       return "";
     }
@@ -47,7 +49,9 @@ http://opensource.org/licenses/BSD-3-Clause
   };
   return notific8('registerModule', 'closeall', 'insideContainer', {
     closeAll: false,
-    closeAllText: 'Close All'
+    closeAllText: 'Close All',
+    closeAllTheme: 'legacy',
+    closeAllColor: 'teal'
   }, closeAllCallback);
 })(window);
 

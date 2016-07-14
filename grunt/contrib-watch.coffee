@@ -22,6 +22,7 @@ module.exports = (grunt) ->
         'copy:css'
         'copy:module-icon'
         'copy:module-image'
+        'copy:module-closeall'
       ]
       options:
         spawn: false
