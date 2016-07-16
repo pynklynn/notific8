@@ -79,6 +79,27 @@
 .notific8-closeall.left .notific8-closeall-button.chicchat {
   left: 0.6666666667em; }
 
+.notific8-closeall .notific8-closeall-button.materialish {
+  border-radius: 2px;
+  font-size: 0.875em;
+  height: 38px;
+  min-width: 288px;
+  max-width: 568px;
+  padding-top: 10px;
+  transition: all .1s ease-in-out; }
+
+.notific8-closeall.top .notific8-closeall-button.materialish {
+  bottom: -3.5em; }
+
+.notific8-closeall.bottom .notific8-closeall-button.materialish {
+  top: -3.5em; }
+
+.notific8-closeall.right .notific8-closeall-button.materialish {
+  right: 0; }
+
+.notific8-closeall.left .notific8-closeall-button.materialish {
+  left: 0; }
+
 .notific8-closeall-button.legacy.teal {
   background-color: rgba(0, 102, 153, 0.85);
   border: solid 2px rgba(0, 153, 204, 0.85);
@@ -190,5 +211,71 @@
 
 .notific8-closeall-button.chicchat.shamrock {
   border-color: #8bb92d; }
+
+.notific8-closeall-button.materialish.twilight {
+  background-color: rgba(50, 50, 50, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.twilight:hover {
+    background-color: #323232; }
+
+.notific8-closeall-button.materialish.lilrobot {
+  background-color: rgba(164, 198, 57, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.lilrobot:hover {
+    background-color: #A4C639; }
+
+.notific8-closeall-button.materialish.cupcake {
+  background-color: rgba(255, 186, 210, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.cupcake:hover {
+    background-color: #FFBAD2; }
+
+.notific8-closeall-button.materialish.eclair {
+  background-color: rgba(101, 72, 72, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.eclair:hover {
+    background-color: #654848; }
+
+.notific8-closeall-button.materialish.honeycomb {
+  background-color: rgba(246, 224, 128, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.honeycomb:hover {
+    background-color: #f6e080; }
+
+.notific8-closeall-button.materialish.lollypop {
+  background-color: rgba(84, 178, 169, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.lollypop:hover {
+    background-color: #54b2a9; }
+
+.notific8-closeall-button.materialish.marshmallow {
+  background-color: rgba(255, 248, 237, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.marshmallow:hover {
+    background-color: #fff8ed; }
+
+.notific8-closeall-button.materialish.strawberry {
+  background-color: rgba(190, 38, 37, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.strawberry:hover {
+    background-color: #BE2625; }
+
+.notific8-closeall-button.materialish.creamsicle {
+  background-color: rgba(247, 187, 103, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.creamsicle:hover {
+    background-color: #F7BB67; }
+
+.notific8-closeall-button.materialish.purple-rain {
+  background-color: rgba(105, 68, 137, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.purple-rain:hover {
+    background-color: #694489; }
+
+.notific8-closeall-button.materialish.peafowl {
+  background-color: rgba(29, 124, 242, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.peafowl:hover {
+    background-color: #1D7CF2; }
 
 /*# sourceMappingURL=notific8-closeall.css.map */

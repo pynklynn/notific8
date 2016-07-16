@@ -1,0 +1,48 @@
+//
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - Materialish theme
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+//
+
+@mixin notific8_materialish_theme_closeall($name, $color, $text-color: #eee) {
+  .#{$notific8-ns}-closeall-button.materialish.#{$name} {
+    background-color: rgba($color, 0.85);
+    color: $text-color;
+
+    &:hover {
+      background-color: $color;
+    }
+  }
+}
+
+.#{$notific8-ns}-closeall {
+  .#{$notific8-ns}-closeall-button.materialish {
+    border-radius: 2px;
+    font-size: em(14px);
+    height: 38px;
+    min-width: 288px;
+    max-width: 568px;
+    padding-top: 10px;
+    transition: all .1s ease-in-out;
+  }
+
+  &.top .#{$notific8-ns}-closeall-button.materialish {
+    bottom: -3.5em;
+  }
+
+  &.bottom .#{$notific8-ns}-closeall-button.materialish {
+    top: -3.5em;
+  }
+
+  &.right .#{$notific8-ns}-closeall-button.materialish {
+    right: 0;
+  }
+
+  &.left .#{$notific8-ns}-closeall-button.materialish {
+    left: 0;
+  }
+}
