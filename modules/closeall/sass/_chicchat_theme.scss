@@ -1,0 +1,42 @@
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - ChicChat theme
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+@mixin notific8_chicchat_theme_closeall($name, $color) {
+  .#{$notific8-ns}-closeall-button.chicchat.#{$name} {
+    border-color: $color;
+  }
+}
+
+.#{$notific8-ns}-closeall {
+  .#{$notific8-ns}-closeall-button.chicchat {
+    background-color: #fff;
+    border-radius: .25em;
+    border-style: solid;
+    border-width: 1px;
+    color: #121212;
+    font-size: em(14px);
+    padding: .75em;
+    width: em(499px);
+  }
+
+  &.top .#{$notific8-ns}-closeall-button.chicchat {
+    bottom: -3.5em;
+  }
+
+  &.bottom .#{$notific8-ns}-closeall-button.chicchat {
+    top: -3.5em;
+  }
+
+  &.right .#{$notific8-ns}-closeall-button.chicchat {
+    right: em(8px, 12px);
+  }
+
+  &.left .#{$notific8-ns}-closeall-button.chicchat {
+    left: em(8px, 12px);
+  }
+}

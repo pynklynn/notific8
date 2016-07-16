@@ -57,6 +57,28 @@
 .notific8-closeall.left .notific8-closeall-button.atomic {
   left: 0.7291666667em; }
 
+.notific8-closeall .notific8-closeall-button.chicchat {
+  background-color: #fff;
+  border-radius: .25em;
+  border-style: solid;
+  border-width: 1px;
+  color: #121212;
+  font-size: 0.875em;
+  padding: .75em;
+  width: 31.1875em; }
+
+.notific8-closeall.top .notific8-closeall-button.chicchat {
+  bottom: -3.5em; }
+
+.notific8-closeall.bottom .notific8-closeall-button.chicchat {
+  top: -3.5em; }
+
+.notific8-closeall.right .notific8-closeall-button.chicchat {
+  right: 0.6666666667em; }
+
+.notific8-closeall.left .notific8-closeall-button.chicchat {
+  left: 0.6666666667em; }
+
 .notific8-closeall-button.legacy.teal {
   background-color: rgba(0, 102, 153, 0.85);
   border: solid 2px rgba(0, 153, 204, 0.85);
@@ -156,5 +178,17 @@
   color: #eee; }
   .notific8-closeall-button.atomic.onyx:hover {
     background-color: #929292; }
+
+.notific8-closeall-button.chicchat.cobalt {
+  border-color: #3171B2; }
+
+.notific8-closeall-button.chicchat.ruby {
+  border-color: #a10; }
+
+.notific8-closeall-button.chicchat.honey {
+  border-color: #f2cc00; }
+
+.notific8-closeall-button.chicchat.shamrock {
+  border-color: #8bb92d; }
 
 /*# sourceMappingURL=notific8-closeall.css.map */

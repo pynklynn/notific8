@@ -1,0 +1,13 @@
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - ChicChat theme default colors
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+// default ChicChat colors
+@include notific8_chicchat_theme_closeall('cobalt', #3171B2);
+@include notific8_chicchat_theme_closeall('ruby', #a10);
+@include notific8_chicchat_theme_closeall('honey', darken(gold, 2.5%));
+@include notific8_chicchat_theme_closeall('shamrock', darken(yellowgreen, 5%));
