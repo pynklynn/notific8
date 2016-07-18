@@ -128,9 +128,9 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.horizontalEdge).toEqual('bottom');
     expect(notific8Defaults.zindex).toEqual(1200);
     expect(notific8Defaults.closeText).toEqual('exit');
-    expect(notific8Defaults.onInit.length).toEqual(1);
-    expect(notific8Defaults.onCreate.length).toEqual(1);
-    expect(notific8Defaults.onClose.length).toEqual(1);
+    expect(notific8Defaults.onInit.length).toEqual(2);
+    expect(notific8Defaults.onCreate.length).toEqual(2);
+    expect(notific8Defaults.onClose.length).toEqual(2);
     expect(notific8Defaults.onBeforeContainer.length).toEqual(1);
     expect(notific8Defaults.onAfterContainer.length).toEqual(1);
     expect(notific8Defaults.onInsideContainer.length).toEqual(1);

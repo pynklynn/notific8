@@ -39,6 +39,13 @@ notific8 = do ->
   # queue for keeping track of animations
   window.notific8Queue = []
 
+  # data store for notifications since session storage can't handle functions
+  window.notific8DataStore = {}
+
+  # handlers for the container events
+  window.notific8ContainerHandlers =
+    onContainerCreate: []
+
   ###
   Destroy the notification
   @param object options
@@ -58,8 +65,10 @@ notific8 = do ->
   ###
   getContainer = (data) ->
     { verticalEdge, horizontalEdge, namespace } = data.settings
-    containerClass = "#{namespace}-container #{verticalEdge} #{horizontalEdge}"
-    document.getElementsByClassName(containerClass)[0]
+    # containerClass = "#{namespace}-container #{verticalEdge} #{horizontalEdge}"
+    containerClass = ".#{namespace}-container.#{verticalEdge}.#{horizontalEdge}"
+    # document.getElementsByClassName(containerClass)[0]
+    document.querySelector(containerClass)
 
   ###
   Build the notification and add it to the screen's stack
@@ -124,7 +133,8 @@ notific8 = do ->
     setTimeout (->
       notification = document.getElementById(notificationId)
       notification.className += " open"
-      sessionStorage[notificationId] = JSON.stringify(data)
+      # sessionStorage[notificationId] = JSON.stringify(data)
+      notific8DataStore[notificationId] = data
       unless data.settings.sticky
         ((n, l) ->
           setTimeout (->
@@ -192,8 +202,13 @@ notific8 = do ->
     n.style.height = 0
     setTimeout (->
       container = getContainer(data)
+      console.log notificationId
+      console.log container
+      console.log n
+      # container = n.parentElement
       container.removeChild n
-      delete sessionStorage[n.id]
+      # delete sessionStorage[n.id]
+      delete notific8DataStore[n.id]
       if data.settings.onClose.length
         for onClose in data.settings.onClose
           onClose n, data
@@ -213,7 +228,19 @@ notific8 = do ->
   ###
   configure = (options) ->
     for key, option of options
-      notific8Defaults[key] = option
+      if ['onInit', 'onCreate', 'onClose'].indexOf(key) > -1
+        if typeof option == 'function'
+          notific8Defaults[key].push option
+        else
+          notific8Defaults[key] = notific8Defaults[key].concat(option)
+      else if key == 'onContainerCreate'
+        if typeof option == 'function'
+          notific8ContainerHandlers.onContainerCreate.push option
+        else
+          notific8ContainerHandlers.onContainerCreate =
+            notific8ContainerHandlers.onContainerCreate.concat(option)
+      else
+        notific8Defaults[key] = option
     return
 
   ###
@@ -259,7 +286,12 @@ notific8 = do ->
           data.settings[key].push handler
       else
         data.settings[key] = option
-    delete data.settings.queue # queue is handled as part of the defaults
+
+    # remove properties that are handled by the defaults
+    # delete data.settings.queue # queue is handled as part of the defaults
+    propertiesToRemove = [ 'onContainerCreate', 'queue' ]
+    delete data.settings[prop] for prop in propertiesToRemove
+
     unless data.settings.height?
       data.settings.height = notific8Defaults.height[data.settings.theme]
     data.settings.height = Number(data.settings.height)
@@ -332,10 +364,16 @@ notific8 = do ->
         .replace('$classes', containerClasses.join(' '))
     for container in document.getElementsByClassName(containerClasses[0])
       container.style.zIndex = notific8Defaults.zindex
+      for handler in notific8ContainerHandlers.onContainerCreate
+        handler container, options
       container.addEventListener "click", (event) ->
         target = event.target
         notification = target.parentElement
-        data = JSON.parse(sessionStorage[notification.id])
+        notificationClass = "#{options.namespace}-notification"
+        if notification.className.split(' ').indexOf(notificationClass) == -1
+          return
+        # data = JSON.parse(sessionStorage[notification.id])
+        data = notific8DataStore[notification.id]
         closeNotification notification.id, data
         return
     return

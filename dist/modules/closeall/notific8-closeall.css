@@ -9,7 +9,7 @@
  */
 .notific8-closeall .notific8-closeall-button {
   box-sizing: border-box;
-  display: block;
+  display: none;
   text-align: center;
   text-decoration: none; }
 

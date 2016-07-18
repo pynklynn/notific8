@@ -23,6 +23,7 @@ module.exports = (grunt) ->
         'copy:module-icon'
         'copy:module-image'
         'copy:module-closeall'
+        'replace:maps'
       ]
       options:
         spawn: false
@@ -41,6 +42,7 @@ module.exports = (grunt) ->
         'copy:module-icon'
         'copy:module-image'
         'copy:module-closeall'
+        'replace:maps'
         'karma:unit'
       ]
       options:

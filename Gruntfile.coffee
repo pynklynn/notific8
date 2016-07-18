@@ -28,6 +28,7 @@ module.exports = (grunt) ->
     'copy:font'
     'copy:code'
     'copy:modules'
+    'replace:maps'
   ]
 
   grunt.registerTask 'default', [

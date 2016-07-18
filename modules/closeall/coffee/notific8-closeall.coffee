@@ -22,7 +22,7 @@ do (window) ->
       ]
       """
 <a class="#{closeAllClasses.join(' ')}"
-  href="javascript:void(0);">
+  href="#">
   #{notific8Data.closeAllText}
 </a>
 """
@@ -49,6 +49,36 @@ do (window) ->
     classes: buildClasses()
     html: buildHtml()
 
+  ###
+  Get the container that the notification is inside of
+  @params object data
+  @return object
+  ###
+  getContainer = (data) ->
+    { verticalEdge, horizontalEdge, namespace } = data.settings
+    containerClass = ".#{namespace}-container.#{verticalEdge}.#{horizontalEdge}"
+    document.querySelector(containerClass)
+
+  ###
+  Get the number of notifications in the container
+  @params object data
+  @return number
+  ###
+  getNumberOfNotifications = (data) ->
+    container = getContainer(data)
+    { namespace } = data.settings
+    container.querySelectorAll(".#{namespace}-notification.open").length
+
+  ###
+  Get the close all button
+  @params object data
+  @return object
+  ###
+  getCloseAllButton = (data) ->
+    container = getContainer(data)
+    { namespace } = data.settings
+    container.querySelector(".#{namespace}-closeall-button")
+
   notific8(
     'registerModule'
     'closeall'
@@ -60,4 +90,56 @@ do (window) ->
       closeAllColor: 'teal'
     }
     closeAllCallback
+  )
+
+  notific8(
+    'configure'
+    onCreate: (notification, data) ->
+      return unless notific8Defaults.closeAll
+      if getNumberOfNotifications(data) > 0
+        closeButton = getCloseAllButton(data)
+        closeButton.style.display = 'block'
+  )
+
+  notific8(
+    'configure'
+    onClose: (notification, data) ->
+      return unless notific8Defaults.closeAll
+      if getNumberOfNotifications(data) <= 1
+        closeButton = getCloseAllButton(data)
+        closeButton.style.display = 'none'
+  )
+
+  notific8(
+    'configure'
+    onContainerCreate: (container, options) ->
+      containerPosition = ''
+      containerClasses = container.className.split(' ')
+      containerPosition += if containerClasses.indexOf('top') > -1
+        'top'
+      else
+        'bottom'
+      containerPosition += if containerClasses.indexOf('right') > -1
+        'Right'
+      else
+        'Left'
+
+      container.addEventListener "click", (event) ->
+        event.preventDefault()
+
+        target = event.target
+        { namespace } = options
+        closeAllButtonClass = "#{namespace}-closeall-button"
+        if target.className.split(' ').indexOf(closeAllButtonClass) == -1
+          return
+
+        notificationClass = ".#{namespace}-notification.open"
+        notifications = container.querySelectorAll(notificationClass)
+        for notification in notifications
+          console.log 'close all is on ', notification.id
+          setTimeout ->
+            notification.querySelector(".#{namespace}-close").click()
+          # , 5
+          , 100
+        return
   )
