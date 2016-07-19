@@ -20,6 +20,13 @@ script(type='text/javascript').
     $('body').on('change', '#notific8Queue', function(event) {
       notific8('config', { queue: $(this).is(':checked') });
     });
+    $('body').on('change', '#notific8CloseAll', function(event) {
+      notific8('config', {
+        closeAll: $(this).is(':checked'),
+        closeAllTheme: $('#notific8CloseAllTheme option:selected').val(),
+        closeAllColor: $('#notific8CloseAllColor option:selected').val()
+      });
+    });
     $('body').on(
       'change',
       '#notific8Theme',
@@ -36,6 +43,19 @@ script(type='text/javascript').
         $height.attr('min', defaultHeights[theme]);
       }
     );
+    $('body').on(
+      'change',
+      '#notific8CloseAllTheme',
+      function(event) {
+        $theme = $(event.currentTarget);
+        theme = $theme.val();
+        $color = $('#notific8CloseAllColor');
+        $color.find('option:selected').prop('selected', false);
+        $color.find('option').hide();
+        $color.find('option[data-for="' + theme + '"]').show();
+        $color.find('option[data-for="' + theme + '"][data-selected]').prop('selected', true);
+      }
+    );
     $('body').on('click', '#notific8Test', function (event) {
       var params = {
         life: $('#notific8Life').find('option:selected').val(),
@@ -46,31 +66,31 @@ script(type='text/javascript').
         verticalEdge: $('#notific8vertical').find('option:selected').val(),
         namespace: $('#notific8Namespace').val(),
         height: $('#notific8Height').val(),
-        onInit: function(data) {
-          if (window.console) {
-            console.log('--onInit--');
-            console.log('data:');
-            console.log(data);
-          }
-        },
-        onCreate: function(notification, data) {
-          if (window.console) {
-            console.log('--onCreate--');
-            console.log('notification:');
-            console.log(notification);
-            console.log('data:');
-            console.log(data);
-          }
-        },
-        onClose: function(notification, data) {
-          if (window.console) {
-            console.log('--onClose--');
-            console.log('notification:');
-            console.log(notification);
-            console.log('data:');
-            console.log(data);
-          }
-        }
+        //- onInit: function(data) {
+        //-   if (window.console) {
+        //-     console.log('--onInit--');
+        //-     console.log('data:');
+        //-     console.log(data);
+        //-   }
+        //- },
+        //- onCreate: function(notification, data) {
+        //-   if (window.console) {
+        //-     console.log('--onCreate--');
+        //-     console.log('notification:');
+        //-     console.log(notification);
+        //-     console.log('data:');
+        //-     console.log(data);
+        //-   }
+        //- },
+        //- onClose: function(notification, data) {
+        //-   if (window.console) {
+        //-     console.log('--onClose--');
+        //-     console.log('notification:');
+        //-     console.log(notification);
+        //-     console.log('data:');
+        //-     console.log(data);
+        //-   }
+        //- }
       },
         text = $('#notific8Text').val(),
         $heading = $('#notific8Heading'),
@@ -103,4 +123,5 @@ script(type='text/javascript').
       }
     });
     $('#notific8Theme').trigger('change');
+    $('#notific8CloseAllTheme').trigger('change');
   });

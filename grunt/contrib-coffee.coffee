@@ -19,6 +19,8 @@ module.exports = (grunt) ->
           'modules/icon/coffee/notific8-icon.coffee'
         'build/modules/image/js/notific8-image.js':
           'modules/image/coffee/notific8-image.coffee'
+        'build/modules/closeall/js/notific8-closeall.js':
+          'modules/closeall/coffee/notific8-closeall.coffee'
     spec:
       options:
         bare: true
@@ -29,6 +31,8 @@ module.exports = (grunt) ->
           'modules/image/spec/notific8-imageSpec.coffee'
         'modules/icon/spec/notific8-iconSpec.js':
           'modules/icon/spec/notific8-iconSpec.coffee'
+        'modules/closeall/spec/notific8-closeallSpec.js':
+          'modules/closeall/spec/notific8-closeallSpec.coffee'
   )
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'

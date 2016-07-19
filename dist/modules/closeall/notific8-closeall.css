@@ -1,0 +1,281 @@
+/**
+ * @author Will Steinmetz
+ *
+ * Style variables for the notific8 JavaScript plug-in
+ *
+ * Copyright (c)2013-2016, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
+ */
+.notific8-closeall .notific8-closeall-button {
+  box-sizing: border-box;
+  display: none;
+  text-align: center;
+  text-decoration: none; }
+
+.notific8-closeall.top .notific8-closeall-button {
+  position: absolute; }
+
+.notific8-closeall.bottom .notific8-closeall-button {
+  position: absolute; }
+
+.notific8-closeall .notific8-closeall-button.legacy {
+  padding: 0.5em 1em;
+  min-width: 24.375em;
+  transition: all .15s ease-in-out;
+  width: 100%; }
+
+.notific8-closeall.top .notific8-closeall-button.legacy {
+  bottom: -3em; }
+
+.notific8-closeall.bottom .notific8-closeall-button.legacy {
+  top: -3em; }
+
+.notific8-closeall.right .notific8-closeall-button.legacy {
+  right: 0; }
+
+.notific8-closeall.left .notific8-closeall-button.legacy {
+  left: 0; }
+
+.notific8-closeall .notific8-closeall-button.atomic {
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 0.875em;
+  padding: 0.75em;
+  transition: all .15s ease-in-out;
+  width: 31.125em; }
+
+.notific8-closeall.top .notific8-closeall-button.atomic {
+  bottom: -3.375em; }
+
+.notific8-closeall.bottom .notific8-closeall-button.atomic {
+  top: -3.375em; }
+
+.notific8-closeall.right .notific8-closeall-button.atomic {
+  right: 0.7291666667em; }
+
+.notific8-closeall.left .notific8-closeall-button.atomic {
+  left: 0.7291666667em; }
+
+.notific8-closeall .notific8-closeall-button.chicchat {
+  background-color: #fff;
+  border-radius: .25em;
+  border-style: solid;
+  border-width: 1px;
+  color: #121212;
+  font-size: 0.875em;
+  padding: .75em;
+  width: 31.1875em; }
+
+.notific8-closeall.top .notific8-closeall-button.chicchat {
+  bottom: -3.5em; }
+
+.notific8-closeall.bottom .notific8-closeall-button.chicchat {
+  top: -3.5em; }
+
+.notific8-closeall.right .notific8-closeall-button.chicchat {
+  right: 0.6666666667em; }
+
+.notific8-closeall.left .notific8-closeall-button.chicchat {
+  left: 0.6666666667em; }
+
+.notific8-closeall .notific8-closeall-button.materialish {
+  border-radius: 2px;
+  font-size: 0.875em;
+  height: 38px;
+  min-width: 288px;
+  max-width: 568px;
+  padding-top: 10px;
+  transition: all .1s ease-in-out; }
+
+.notific8-closeall.top .notific8-closeall-button.materialish {
+  bottom: -3.5em; }
+
+.notific8-closeall.bottom .notific8-closeall-button.materialish {
+  top: -3.5em; }
+
+.notific8-closeall.right .notific8-closeall-button.materialish {
+  right: 0; }
+
+.notific8-closeall.left .notific8-closeall-button.materialish {
+  left: 0; }
+
+.notific8-closeall-button.legacy.teal {
+  background-color: rgba(0, 102, 153, 0.85);
+  border: solid 2px rgba(0, 153, 204, 0.85);
+  color: #fff; }
+  .notific8-closeall-button.legacy.teal:hover {
+    background-color: #069;
+    border: solid 2px #09c; }
+
+.notific8-closeall-button.legacy.amethyst {
+  background-color: rgba(93, 45, 119, 0.85);
+  border: solid 2px rgba(145, 95, 170, 0.85);
+  color: #fff; }
+  .notific8-closeall-button.legacy.amethyst:hover {
+    background-color: #5D2D77;
+    border: solid 2px #915faa; }
+
+.notific8-closeall-button.legacy.ruby {
+  background-color: rgba(170, 17, 0, 0.85);
+  border: solid 2px rgba(221, 17, 0, 0.85);
+  color: #fff; }
+  .notific8-closeall-button.legacy.ruby:hover {
+    background-color: #a10;
+    border: solid 2px #d10; }
+
+.notific8-closeall-button.legacy.tangerine {
+  background-color: rgba(232, 143, 0, 0.85);
+  border: solid 2px rgba(255, 178, 63, 0.85);
+  color: #fff; }
+  .notific8-closeall-button.legacy.tangerine:hover {
+    background-color: #e88f00;
+    border: solid 2px #ffb23f; }
+
+.notific8-closeall-button.legacy.lemon {
+  background-color: rgba(255, 204, 0, 0.85);
+  border: solid 2px rgba(255, 222, 0, 0.85);
+  color: #333; }
+  .notific8-closeall-button.legacy.lemon:hover {
+    background-color: #ffcc00;
+    border: solid 2px #ffde00; }
+
+.notific8-closeall-button.legacy.lime {
+  background-color: rgba(50, 181, 18, 0.85);
+  border: solid 2px rgba(56, 211, 21, 0.85);
+  color: #fff; }
+  .notific8-closeall-button.legacy.lime:hover {
+    background-color: #32b512;
+    border: solid 2px #38d315; }
+
+.notific8-closeall-button.legacy.ebony {
+  background-color: rgba(18, 18, 18, 0.85);
+  border: solid 2px rgba(102, 102, 102, 0.85);
+  color: #fff; }
+  .notific8-closeall-button.legacy.ebony:hover {
+    background-color: #121212;
+    border: solid 2px #666; }
+
+.notific8-closeall-button.legacy.smoke {
+  background-color: rgba(239, 239, 239, 0.85);
+  border: solid 2px rgba(171, 171, 171, 0.85);
+  color: #333; }
+  .notific8-closeall-button.legacy.smoke:hover {
+    background-color: #efefef;
+    border: solid 2px #ababab; }
+
+.notific8-closeall-button.atomic.cerulean {
+  background-color: rgba(201, 224, 242, 0.85);
+  color: #454545; }
+  .notific8-closeall-button.atomic.cerulean:hover {
+    background-color: #c9e0f2; }
+
+.notific8-closeall-button.atomic.tomato {
+  background-color: rgba(238, 185, 186, 0.85);
+  color: #454545; }
+  .notific8-closeall-button.atomic.tomato:hover {
+    background-color: #eeb9ba; }
+
+.notific8-closeall-button.atomic.mustard {
+  background-color: rgba(248, 245, 223, 0.85);
+  color: #454545; }
+  .notific8-closeall-button.atomic.mustard:hover {
+    background-color: #f8f5df; }
+
+.notific8-closeall-button.atomic.pear {
+  background-color: rgba(223, 238, 197, 0.85);
+  color: #454545; }
+  .notific8-closeall-button.atomic.pear:hover {
+    background-color: #dfeec5; }
+
+.notific8-closeall-button.atomic.amethyst {
+  background-color: rgba(171, 115, 202, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.atomic.amethyst:hover {
+    background-color: #ab73ca; }
+
+.notific8-closeall-button.atomic.onyx {
+  background-color: rgba(146, 146, 146, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.atomic.onyx:hover {
+    background-color: #929292; }
+
+.notific8-closeall-button.chicchat.cobalt {
+  border-color: #3171B2; }
+
+.notific8-closeall-button.chicchat.ruby {
+  border-color: #a10; }
+
+.notific8-closeall-button.chicchat.honey {
+  border-color: #f2cc00; }
+
+.notific8-closeall-button.chicchat.shamrock {
+  border-color: #8bb92d; }
+
+.notific8-closeall-button.materialish.twilight {
+  background-color: rgba(50, 50, 50, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.twilight:hover {
+    background-color: #323232; }
+
+.notific8-closeall-button.materialish.lilrobot {
+  background-color: rgba(164, 198, 57, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.lilrobot:hover {
+    background-color: #A4C639; }
+
+.notific8-closeall-button.materialish.cupcake {
+  background-color: rgba(255, 186, 210, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.cupcake:hover {
+    background-color: #FFBAD2; }
+
+.notific8-closeall-button.materialish.eclair {
+  background-color: rgba(101, 72, 72, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.eclair:hover {
+    background-color: #654848; }
+
+.notific8-closeall-button.materialish.honeycomb {
+  background-color: rgba(246, 224, 128, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.honeycomb:hover {
+    background-color: #f6e080; }
+
+.notific8-closeall-button.materialish.lollypop {
+  background-color: rgba(84, 178, 169, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.lollypop:hover {
+    background-color: #54b2a9; }
+
+.notific8-closeall-button.materialish.marshmallow {
+  background-color: rgba(255, 248, 237, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.marshmallow:hover {
+    background-color: #fff8ed; }
+
+.notific8-closeall-button.materialish.strawberry {
+  background-color: rgba(190, 38, 37, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.strawberry:hover {
+    background-color: #BE2625; }
+
+.notific8-closeall-button.materialish.creamsicle {
+  background-color: rgba(247, 187, 103, 0.85);
+  color: #323232; }
+  .notific8-closeall-button.materialish.creamsicle:hover {
+    background-color: #F7BB67; }
+
+.notific8-closeall-button.materialish.purple-rain {
+  background-color: rgba(105, 68, 137, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.purple-rain:hover {
+    background-color: #694489; }
+
+.notific8-closeall-button.materialish.peafowl {
+  background-color: rgba(29, 124, 242, 0.85);
+  color: #eee; }
+  .notific8-closeall-button.materialish.peafowl:hover {
+    background-color: #1D7CF2; }
+
+/*# sourceMappingURL=notific8-closeall.css.map */

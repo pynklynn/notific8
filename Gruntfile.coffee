@@ -16,6 +16,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'copy:modules', [
     'copy:module-icon'
     'copy:module-image'
+    'copy:module-closeall'
   ]
 
   grunt.registerTask 'build', [
@@ -27,6 +28,7 @@ module.exports = (grunt) ->
     'copy:font'
     'copy:code'
     'copy:modules'
+    'replace:maps'
   ]
 
   grunt.registerTask 'default', [

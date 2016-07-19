@@ -1,7 +1,7 @@
 {
   "version": 3,
   "file": "notific8-icon.js",
-  "sourceRoot": "../../../../modules/icon/coffee/",
+  "sourceRoot": "../../../modules/icon/coffee/",
   "sources": [
     "notific8-icon.coffee"
   ],

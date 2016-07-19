@@ -1,0 +1,14 @@
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - Atomic theme default colors
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+@include notific8_atomic_theme_closeall('cerulean', #4F99D3);
+@include notific8_atomic_theme_closeall('tomato', #D03E41);
+@include notific8_atomic_theme_closeall('mustard', #DDCE61);
+@include notific8_atomic_theme_closeall('pear', #9ECC4E);
+@include notific8_atomic_theme_closeall("amethyst", #5D2D77, #eee);
+@include notific8_atomic_theme_closeall("onyx", #454545, #eee);

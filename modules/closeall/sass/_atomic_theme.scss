@@ -1,0 +1,45 @@
+// @author Will Steinmetz
+//
+// closeall module styles for notific8 - Atomic theme
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+
+@mixin notific8_atomic_theme_closeall($name, $color, $text-color: #454545) {
+  .#{$notific8-ns}-closeall-button.atomic.#{$name} {
+    background-color: rgba(lighten($color, 30%), .85);
+    color: $text-color;
+
+    &:hover {
+      background-color: lighten($color, 30%);
+    }
+  }
+}
+
+.#{$notific8-ns}-closeall {
+  .#{$notific8-ns}-closeall-button.atomic {
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: em(14px);
+    padding: em(10.5px, 14px);
+    transition: all .15s ease-in-out;
+    width: em(498px);
+  }
+
+  &.top .#{$notific8-ns}-closeall-button.atomic {
+    bottom: -3.375em;
+  }
+
+  &.bottom .#{$notific8-ns}-closeall-button.atomic {
+    top: -3.375em;
+  }
+
+  &.right .#{$notific8-ns}-closeall-button.atomic {
+    right: em(8.75px, 12px);
+  }
+
+  &.left .#{$notific8-ns}-closeall-button.atomic {
+    left: em(8.75px, 12px);
+  }
+}

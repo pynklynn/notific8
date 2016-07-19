@@ -19,9 +19,9 @@ notific8 = (function() {
     horizontalEdge: 'top',
     zindex: 1100,
     closeText: 'close',
-    onInit: null,
-    onCreate: null,
-    onClose: null,
+    onInit: [],
+    onCreate: [],
+    onClose: [],
     namespace: 'notific8',
     queue: false,
     height: {
@@ -33,9 +33,16 @@ notific8 = (function() {
   };
   window.notific8RegisteredModules = {
     beforeContent: [],
-    afterContent: []
+    afterContent: [],
+    beforeContainer: [],
+    afterContainer: [],
+    insideContainer: []
   };
   window.notific8Queue = [];
+  window.notific8DataStore = {};
+  window.notific8ContainerHandlers = {
+    onContainerCreate: []
+  };
 
   /*
   Destroy the notification
@@ -59,8 +66,8 @@ notific8 = (function() {
   getContainer = function(data) {
     var containerClass, horizontalEdge, namespace, verticalEdge, _ref;
     _ref = data.settings, verticalEdge = _ref.verticalEdge, horizontalEdge = _ref.horizontalEdge, namespace = _ref.namespace;
-    containerClass = "" + namespace + "-container " + verticalEdge + " " + horizontalEdge;
-    return document.getElementsByClassName(containerClass)[0];
+    containerClass = "." + namespace + "-container." + verticalEdge + "." + horizontalEdge;
+    return document.querySelector(containerClass);
   };
 
   /*
@@ -68,7 +75,7 @@ notific8 = (function() {
   @param object data
    */
   buildNotification = function(data) {
-    var body, container, generatedNotificationClasses, module, moduleResults, namespace, notification, notificationId, num, _i, _j, _len, _len1, _ref, _ref1;
+    var body, container, generatedNotificationClasses, module, moduleResults, namespace, notification, notificationId, num, onCreate, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2;
     body = document.getElementsByTagName('body')[0];
     num = Number(body.dataset.notific8s);
     namespace = data.settings.namespace;
@@ -100,13 +107,17 @@ notific8 = (function() {
       notification = document.getElementById(notificationId);
       return notification.style.height = "" + data.settings.height + "px";
     }), 1);
-    if (data.settings.onCreate) {
-      data.settings.onCreate(notification, data);
+    if (data.settings.onCreate.length) {
+      _ref2 = data.settings.onCreate;
+      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+        onCreate = _ref2[_k];
+        onCreate(notification, data);
+      }
     }
     setTimeout((function() {
       notification = document.getElementById(notificationId);
       notification.className += " open";
-      sessionStorage[notificationId] = JSON.stringify(data);
+      notific8DataStore[notificationId] = data;
       if (!data.settings.sticky) {
         (function(n, l) {
           setTimeout((function() {
@@ -160,19 +171,23 @@ notific8 = (function() {
     }
     n.className = n.className.replace('open', '');
     n.style.height = 0;
-    setTimeout((function() {
-      var container, next;
+    (function(notification, notificationId) {
+      var container, next, onClose, _i, _len, _ref;
       container = getContainer(data);
-      container.removeChild(n);
-      delete sessionStorage[n.id];
-      if (data.settings.onClose) {
-        data.settings.onClose(n, data);
+      container.removeChild(notification);
+      delete notific8DataStore[notificationId];
+      if (data.settings.onClose.length) {
+        _ref = data.settings.onClose;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          onClose = _ref[_i];
+          onClose(notification, data);
+        }
       }
       if (notific8Defaults.queue && notific8Queue.length) {
         next = notific8Queue.shift();
         notific8(next.message, next.options);
       }
-    }), 200);
+    })(n, notificationId);
   };
 
   /*
@@ -183,7 +198,21 @@ notific8 = (function() {
     var key, option;
     for (key in options) {
       option = options[key];
-      notific8Defaults[key] = option;
+      if (['onInit', 'onCreate', 'onClose'].indexOf(key) > -1) {
+        if (typeof option === 'function') {
+          notific8Defaults[key].push(option);
+        } else {
+          notific8Defaults[key] = notific8Defaults[key].concat(option);
+        }
+      } else if (key === 'onContainerCreate') {
+        if (typeof option === 'function') {
+          notific8ContainerHandlers.onContainerCreate.push(option);
+        } else {
+          notific8ContainerHandlers.onContainerCreate = notific8ContainerHandlers.onContainerCreate.concat(option);
+        }
+      } else {
+        notific8Defaults[key] = option;
+      }
     }
   };
 
@@ -215,11 +244,12 @@ notific8 = (function() {
   @return object
    */
   init = function(message, options) {
-    var data, key, option;
+    var arrayKeys, data, handler, key, onInit, option, prop, propertiesToRemove, _i, _j, _k, _len, _len1, _len2, _ref;
     data = {
       settings: {},
       message: message
     };
+    arrayKeys = ['onInit', 'onCreate', 'onClose'];
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
       if (key !== 'height') {
@@ -228,9 +258,23 @@ notific8 = (function() {
     }
     for (key in options) {
       option = options[key];
-      data.settings[key] = option;
+      if (arrayKeys.indexOf(key) > -1) {
+        if (typeof option === 'function') {
+          option = [option];
+        }
+        for (_i = 0, _len = option.length; _i < _len; _i++) {
+          handler = option[_i];
+          data.settings[key].push(handler);
+        }
+      } else {
+        data.settings[key] = option;
+      }
     }
-    delete data.settings.queue;
+    propertiesToRemove = ['onContainerCreate', 'queue'];
+    for (_j = 0, _len1 = propertiesToRemove.length; _j < _len1; _j++) {
+      prop = propertiesToRemove[_j];
+      delete data.settings[prop];
+    }
     if (data.settings.height == null) {
       data.settings.height = notific8Defaults.height[data.settings.theme];
     }
@@ -240,8 +284,12 @@ notific8 = (function() {
     }
     checkThemeOptions(data);
     buildNotification(data);
-    if (data.settings.onInit) {
-      data.settings.onInit(data);
+    if (data.settings.onInit.length) {
+      _ref = data.settings.onInit;
+      for (_k = 0, _len2 = _ref.length; _k < _len2; _k++) {
+        onInit = _ref[_k];
+        onInit(data);
+      }
     }
   };
 
@@ -269,25 +317,57 @@ notific8 = (function() {
   @param object options
    */
   initContainers = function(options) {
-    var body, container, containerClass, containerStr, position, _i, _j, _len, _len1, _ref, _ref1;
+    var body, container, containerClasses, containerStr, handler, module, moduleResults, position, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _m, _n, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
     body = document.getElementsByTagName('body')[0];
     body.dataset.notific8s = 0;
-    containerClass = "" + options.namespace + "-container";
-    containerStr = "<div class='" + containerClass + " $pos'></div>";
-    _ref = ['top right', 'top left', 'bottom right', 'bottom left'];
+    containerClasses = ["" + options.namespace + "-container"];
+    containerStr = "";
+    _ref = notific8RegisteredModules.beforeContainer;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      position = _ref[_i];
-      body.innerHTML += containerStr.replace('$pos', position);
+      module = _ref[_i];
+      moduleResults = module.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(moduleResults.classes);
+      containerStr += moduleResults.html;
     }
-    _ref1 = document.getElementsByClassName(containerClass);
+    containerStr += "<div class=\"$classes $pos\">";
+    _ref1 = notific8RegisteredModules.insideContainer;
     for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-      container = _ref1[_j];
+      module = _ref1[_j];
+      moduleResults = module.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(moduleResults.classes);
+      containerStr += moduleResults.html;
+    }
+    containerStr += "</div>";
+    _ref2 = notific8RegisteredModules.afterContainer;
+    for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+      module = _ref2[_k];
+      moduleResults = module.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(moduleResults.classes);
+      containerStr += moduleResults.html;
+    }
+    _ref3 = ['top right', 'top left', 'bottom right', 'bottom left'];
+    for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
+      position = _ref3[_l];
+      body.innerHTML += containerStr.replace('$pos', position).replace('$classes', containerClasses.join(' '));
+    }
+    _ref4 = document.getElementsByClassName(containerClasses[0]);
+    for (_m = 0, _len4 = _ref4.length; _m < _len4; _m++) {
+      container = _ref4[_m];
       container.style.zIndex = notific8Defaults.zindex;
+      _ref5 = notific8ContainerHandlers.onContainerCreate;
+      for (_n = 0, _len5 = _ref5.length; _n < _len5; _n++) {
+        handler = _ref5[_n];
+        handler(container, options);
+      }
       container.addEventListener("click", function(event) {
-        var data, notification, target;
+        var data, notification, notificationClass, target;
         target = event.target;
         notification = target.parentElement;
-        data = JSON.parse(sessionStorage[notification.id]);
+        notificationClass = "" + options.namespace + "-notification";
+        if (notification.className.split(' ').indexOf(notificationClass) === -1) {
+          return;
+        }
+        data = notific8DataStore[notification.id];
         closeNotification(notification.id, data);
       });
     }
@@ -316,11 +396,12 @@ notific8 = (function() {
   @param function callbackMethod
    */
   registerModule = function(moduleName, position, defaultOptions, callbackMethod) {
-    var defaultValue, module, option, _i, _len, _ref;
+    var defaultValue, module, option, validPositions, _i, _len, _ref;
     if (!(typeof moduleName === 'string' && moduleName.trim() !== '')) {
       errorMessage("moduleName should be a string");
     }
-    if (!(typeof position === 'string' && (position === 'beforeContent' || position === 'afterContent'))) {
+    validPositions = ['beforeContent', 'afterContent', 'beforeContainer', 'afterContainer', 'insideContainer'];
+    if (!(typeof position === 'string' && validPositions.indexOf(position) > -1)) {
       errorMessage("position should be a string");
     }
     if (typeof defaultOptions !== 'object') {
