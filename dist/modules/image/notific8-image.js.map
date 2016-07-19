@@ -1,7 +1,7 @@
 {
   "version": 3,
   "file": "notific8-image.js",
-  "sourceRoot": "../../../../modules/image/coffee/",
+  "sourceRoot": "../../../modules/image/coffee/",
   "sources": [
     "notific8-image.coffee"
   ],

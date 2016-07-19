@@ -19,6 +19,8 @@ module.exports = (grunt) ->
           'modules/icon/sass/notific8-icon.scss'
         'build/modules/image/css/notific8-image.css':
           'modules/image/sass/notific8-image.scss'
+        'build/modules/closeall/css/notific8-closeall.css':
+          'modules/closeall/sass/notific8-closeall.scss'
   )
 
   grunt.loadNpmTasks 'grunt-sass'

@@ -2,6 +2,18 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.6.0
+
+- Added the closeAll module
+    - Provides the following configuration options:
+        - _closeAll_
+        - _closeAllText_
+        - _closeAllTheme_
+        - _closeAllColor_
+- Added the _onContainerCreate_ event to the project
+- Fixed bugs that prevented event handlers for notifications from being stored
+    - Storage is now stored in a variable in the window space instead of session storage since we can't stringify functions
+
 ## 3.5.0
 
 - Added the queuing option

@@ -13,8 +13,12 @@ module.exports = (grunt) ->
       files:
         'dist/notific8.min.css': [ 'build/css/notific8.css' ]
         'dist/jquery.notific8.min.css': [ 'build/css/notific8.css' ]
-        'dist/modules/icon/notific8-icon.min.css': [ 'build/modules/icon/css/notific8-icon.css' ]
-        'dist/modules/image/notific8-image.min.css': [ 'build/modules/image/css/notific8-image.css' ]
+        'dist/modules/icon/notific8-icon.min.css':
+          [ 'build/modules/icon/css/notific8-icon.css' ]
+        'dist/modules/image/notific8-image.min.css':
+          [ 'build/modules/image/css/notific8-image.css' ]
+        'dist/modules/closeall/notific8-closeall.min.css':
+          [ 'build/modules/closeall/css/notific8-closeall.css' ]
     add_banner:
       options:
         banner: "/**\n\
@@ -27,8 +31,12 @@ module.exports = (grunt) ->
       files:
         'dist/notific8.min.css': [ 'dist/notific8.min.css' ]
         'dist/jquery.notific8.min.css': [ 'dist/jquery.notific8.min.css' ]
-        'dist/modules/icon/notific8-icon.min.css': [ 'dist/modules/icon/notific8-icon.min.css' ]
-        'dist/modules/image/notific8-image.min.css': [ 'dist/modules/image/notific8-image.min.css' ]
+        'dist/modules/icon/notific8-icon.min.css':
+          [ 'dist/modules/icon/notific8-icon.min.css' ]
+        'dist/modules/image/notific8-image.min.css':
+          [ 'dist/modules/image/notific8-image.min.css' ]
+        'dist/modules/closeall/notific8-closeall.min.css':
+          [ 'dist/modules/closeall/notific8-closeall.min.css' ]
   )
 
   grunt.loadNpmTasks 'grunt-contrib-cssmin'

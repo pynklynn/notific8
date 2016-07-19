@@ -17,9 +17,9 @@ notific8 = do ->
     horizontalEdge: 'top'
     zindex: 1100
     closeText: 'close'
-    onInit: null
-    onCreate: null
-    onClose: null
+    onInit: []
+    onCreate: []
+    onClose: []
     namespace: 'notific8'
     queue: false
     height:
@@ -32,9 +32,19 @@ notific8 = do ->
   window.notific8RegisteredModules =
     beforeContent: []
     afterContent: []
+    beforeContainer: []
+    afterContainer: []
+    insideContainer: []
 
   # queue for keeping track of animations
   window.notific8Queue = []
+
+  # data store for notifications since session storage can't handle functions
+  window.notific8DataStore = {}
+
+  # handlers for the container events
+  window.notific8ContainerHandlers =
+    onContainerCreate: []
 
   ###
   Destroy the notification
@@ -55,8 +65,8 @@ notific8 = do ->
   ###
   getContainer = (data) ->
     { verticalEdge, horizontalEdge, namespace } = data.settings
-    containerClass = "#{namespace}-container #{verticalEdge} #{horizontalEdge}"
-    document.getElementsByClassName(containerClass)[0]
+    containerClass = ".#{namespace}-container.#{verticalEdge}.#{horizontalEdge}"
+    document.querySelector(containerClass)
 
   ###
   Build the notification and add it to the screen's stack
@@ -112,14 +122,16 @@ notific8 = do ->
       notification.style.height = "#{data.settings.height}px"
     ), 1
 
-    # call the onCreate handler if it exists
-    data.settings.onCreate notification, data if data.settings.onCreate
+    # call the onCreate handlers if any exists
+    if data.settings.onCreate.length
+      for onCreate in data.settings.onCreate
+        onCreate notification, data
 
     # slide the message onto the screen
     setTimeout (->
       notification = document.getElementById(notificationId)
       notification.className += " open"
-      sessionStorage[notificationId] = JSON.stringify(data)
+      notific8DataStore[notificationId] = data
       unless data.settings.sticky
         ((n, l) ->
           setTimeout (->
@@ -185,18 +197,20 @@ notific8 = do ->
     return unless n?
     n.className = n.className.replace('open', '')
     n.style.height = 0
-    setTimeout (->
+    ((notification, notificationId) ->
       container = getContainer(data)
-      container.removeChild n
-      delete sessionStorage[n.id]
-      data.settings.onClose n, data if data.settings.onClose
+      container.removeChild notification
+      delete notific8DataStore[notificationId]
+      if data.settings.onClose.length
+        for onClose in data.settings.onClose
+          onClose notification, data
 
       if notific8Defaults.queue && notific8Queue.length
         next = notific8Queue.shift()
         notific8 next.message, next.options
 
       return
-    ), 200
+    )(n, notificationId)
 
     return
 
@@ -206,7 +220,19 @@ notific8 = do ->
   ###
   configure = (options) ->
     for key, option of options
-      notific8Defaults[key] = option
+      if ['onInit', 'onCreate', 'onClose'].indexOf(key) > -1
+        if typeof option == 'function'
+          notific8Defaults[key].push option
+        else
+          notific8Defaults[key] = notific8Defaults[key].concat(option)
+      else if key == 'onContainerCreate'
+        if typeof option == 'function'
+          notific8ContainerHandlers.onContainerCreate.push option
+        else
+          notific8ContainerHandlers.onContainerCreate =
+            notific8ContainerHandlers.onContainerCreate.concat(option)
+      else
+        notific8Defaults[key] = option
     return
 
   ###
@@ -238,11 +264,26 @@ notific8 = do ->
     data =
       settings: {}
       message: message
+    arrayKeys = [
+      'onInit'
+      'onCreate'
+      'onClose'
+    ]
     for key, option of notific8Defaults
       data.settings[key] = option unless key == 'height'
     for key, option of options
-      data.settings[key] = option
-    delete data.settings.queue # queue is handled as part of the defaults
+      if arrayKeys.indexOf(key) > -1
+        option = [ option ] if typeof option == 'function'
+        for handler in option
+          data.settings[key].push handler
+      else
+        data.settings[key] = option
+
+    # remove properties that are handled by the defaults
+    # delete data.settings.queue # queue is handled as part of the defaults
+    propertiesToRemove = [ 'onContainerCreate', 'queue' ]
+    delete data.settings[prop] for prop in propertiesToRemove
+
     unless data.settings.height?
       data.settings.height = notific8Defaults.height[data.settings.theme]
     data.settings.height = Number(data.settings.height)
@@ -253,7 +294,11 @@ notific8 = do ->
     checkThemeOptions data
 
     buildNotification data
-    data.settings.onInit data if data.settings.onInit
+
+    if data.settings.onInit.length
+      for onInit in data.settings.onInit
+        onInit data
+
     return
 
   ###
@@ -283,16 +328,43 @@ notific8 = do ->
   initContainers = (options) ->
     body = document.getElementsByTagName('body')[0]
     body.dataset.notific8s = 0
-    containerClass= "#{options.namespace}-container"
-    containerStr = "<div class='#{containerClass} $pos'></div>"
+    containerClasses = [ "#{options.namespace}-container" ]
+    containerStr = ""
+    for module in notific8RegisteredModules.beforeContainer
+      moduleResults = module.callbackMethod(notific8Defaults)
+      containerClasses = containerClasses.concat(
+        moduleResults.classes
+      )
+      containerStr += moduleResults.html
+    containerStr += "<div class=\"$classes $pos\">"
+    for module in notific8RegisteredModules.insideContainer
+      moduleResults = module.callbackMethod(notific8Defaults)
+      containerClasses = containerClasses.concat(
+        moduleResults.classes
+      )
+      containerStr += moduleResults.html
+    containerStr += "</div>"
+    for module in notific8RegisteredModules.afterContainer
+      moduleResults = module.callbackMethod(notific8Defaults)
+      containerClasses = containerClasses.concat(
+        moduleResults.classes
+      )
+      containerStr += moduleResults.html
     for position in [ 'top right', 'top left', 'bottom right', 'bottom left' ]
-      body.innerHTML += containerStr.replace('$pos', position)
-    for container in document.getElementsByClassName(containerClass)
+      body.innerHTML += containerStr
+        .replace('$pos', position)
+        .replace('$classes', containerClasses.join(' '))
+    for container in document.getElementsByClassName(containerClasses[0])
       container.style.zIndex = notific8Defaults.zindex
+      for handler in notific8ContainerHandlers.onContainerCreate
+        handler container, options
       container.addEventListener "click", (event) ->
         target = event.target
         notification = target.parentElement
-        data = JSON.parse(sessionStorage[notification.id])
+        notificationClass = "#{options.namespace}-notification"
+        if notification.className.split(' ').indexOf(notificationClass) == -1
+          return
+        data = notific8DataStore[notification.id]
         closeNotification notification.id, data
         return
     return
@@ -325,9 +397,14 @@ notific8 = do ->
     # double-check all of the values are correct
     unless typeof moduleName == 'string' && moduleName.trim() != ''
       errorMessage "moduleName should be a string"
-    unless typeof position == 'string' && (
-      position == 'beforeContent' || position == 'afterContent'
-    )
+    validPositions = [
+      'beforeContent'
+      'afterContent'
+      'beforeContainer'
+      'afterContainer'
+      'insideContainer'
+    ]
+    unless typeof position == 'string' && validPositions.indexOf(position) > -1
       errorMessage "position should be a string"
     unless typeof defaultOptions == 'object'
       errorMessage "defaultOptions should be an object"
