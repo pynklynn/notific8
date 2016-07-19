@@ -65,9 +65,7 @@ notific8 = do ->
   ###
   getContainer = (data) ->
     { verticalEdge, horizontalEdge, namespace } = data.settings
-    # containerClass = "#{namespace}-container #{verticalEdge} #{horizontalEdge}"
     containerClass = ".#{namespace}-container.#{verticalEdge}.#{horizontalEdge}"
-    # document.getElementsByClassName(containerClass)[0]
     document.querySelector(containerClass)
 
   ###
@@ -133,7 +131,6 @@ notific8 = do ->
     setTimeout (->
       notification = document.getElementById(notificationId)
       notification.className += " open"
-      # sessionStorage[notificationId] = JSON.stringify(data)
       notific8DataStore[notificationId] = data
       unless data.settings.sticky
         ((n, l) ->
@@ -200,25 +197,20 @@ notific8 = do ->
     return unless n?
     n.className = n.className.replace('open', '')
     n.style.height = 0
-    setTimeout (->
+    ((notification, notificationId) ->
       container = getContainer(data)
-      console.log notificationId
-      console.log container
-      console.log n
-      # container = n.parentElement
-      container.removeChild n
-      # delete sessionStorage[n.id]
-      delete notific8DataStore[n.id]
+      container.removeChild notification
+      delete notific8DataStore[notificationId]
       if data.settings.onClose.length
         for onClose in data.settings.onClose
-          onClose n, data
+          onClose notification, data
 
       if notific8Defaults.queue && notific8Queue.length
         next = notific8Queue.shift()
         notific8 next.message, next.options
 
       return
-    ), 200
+    )(n, notificationId)
 
     return
 
@@ -372,7 +364,6 @@ notific8 = do ->
         notificationClass = "#{options.namespace}-notification"
         if notification.className.split(' ').indexOf(notificationClass) == -1
           return
-        # data = JSON.parse(sessionStorage[notification.id])
         data = notific8DataStore[notification.id]
         closeNotification notification.id, data
         return

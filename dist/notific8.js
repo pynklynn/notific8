@@ -171,26 +171,23 @@ notific8 = (function() {
     }
     n.className = n.className.replace('open', '');
     n.style.height = 0;
-    setTimeout((function() {
+    (function(notification, notificationId) {
       var container, next, onClose, _i, _len, _ref;
       container = getContainer(data);
-      console.log(notificationId);
-      console.log(container);
-      console.log(n);
-      container.removeChild(n);
-      delete notific8DataStore[n.id];
+      container.removeChild(notification);
+      delete notific8DataStore[notificationId];
       if (data.settings.onClose.length) {
         _ref = data.settings.onClose;
         for (_i = 0, _len = _ref.length; _i < _len; _i++) {
           onClose = _ref[_i];
-          onClose(n, data);
+          onClose(notification, data);
         }
       }
       if (notific8Defaults.queue && notific8Queue.length) {
         next = notific8Queue.shift();
         notific8(next.message, next.options);
       }
-    }), 200);
+    })(n, notificationId);
   };
 
   /*

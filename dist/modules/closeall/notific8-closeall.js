@@ -83,12 +83,6 @@ http://opensource.org/licenses/BSD-3-Clause
     namespace = data.settings.namespace;
     return container.querySelector("." + namespace + "-closeall-button");
   };
-  notific8('registerModule', 'closeall', 'insideContainer', {
-    closeAll: false,
-    closeAllText: 'Close All',
-    closeAllTheme: 'legacy',
-    closeAllColor: 'teal'
-  }, closeAllCallback);
   notific8('configure', {
     onCreate: function(notification, data) {
       var closeButton;
@@ -113,7 +107,7 @@ http://opensource.org/licenses/BSD-3-Clause
       }
     }
   });
-  return notific8('configure', {
+  notific8('configure', {
     onContainerCreate: function(container, options) {
       var containerClasses, containerPosition;
       containerPosition = '';
@@ -121,7 +115,7 @@ http://opensource.org/licenses/BSD-3-Clause
       containerPosition += containerClasses.indexOf('top') > -1 ? 'top' : 'bottom';
       containerPosition += containerClasses.indexOf('right') > -1 ? 'Right' : 'Left';
       return container.addEventListener("click", function(event) {
-        var closeAllButtonClass, namespace, notification, notificationClass, notifications, target, _i, _len;
+        var closeAllButtonClass, namespace, notification, notificationClass, notifications, target, _fn, _i, _len;
         event.preventDefault();
         target = event.target;
         namespace = options.namespace;
@@ -131,16 +125,22 @@ http://opensource.org/licenses/BSD-3-Clause
         }
         notificationClass = "." + namespace + "-notification.open";
         notifications = container.querySelectorAll(notificationClass);
+        _fn = function(n, namespace) {
+          return n.querySelector("." + namespace + "-close").click();
+        };
         for (_i = 0, _len = notifications.length; _i < _len; _i++) {
           notification = notifications[_i];
-          console.log('close all is on ', notification.id);
-          setTimeout(function() {
-            return notification.querySelector("." + namespace + "-close").click();
-          }, 100);
+          _fn(notification, namespace);
         }
       });
     }
   });
+  return notific8('registerModule', 'closeall', 'insideContainer', {
+    closeAll: false,
+    closeAllText: 'Close All',
+    closeAllTheme: 'legacy',
+    closeAllColor: 'teal'
+  }, closeAllCallback);
 })(window);
 
 //# sourceMappingURL=notific8-closeall.js.map

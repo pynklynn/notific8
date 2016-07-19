@@ -79,19 +79,7 @@ do (window) ->
     { namespace } = data.settings
     container.querySelector(".#{namespace}-closeall-button")
 
-  notific8(
-    'registerModule'
-    'closeall'
-    'insideContainer'
-    {
-      closeAll: false
-      closeAllText: 'Close All'
-      closeAllTheme: 'legacy'
-      closeAllColor: 'teal'
-    }
-    closeAllCallback
-  )
-
+  # configure the onCreate event handler
   notific8(
     'configure'
     onCreate: (notification, data) ->
@@ -101,6 +89,7 @@ do (window) ->
         closeButton.style.display = 'block'
   )
 
+  # configure the onClose event handler
   notific8(
     'configure'
     onClose: (notification, data) ->
@@ -110,6 +99,7 @@ do (window) ->
         closeButton.style.display = 'none'
   )
 
+  # configure the onContainerCreate event handler
   notific8(
     'configure'
     onContainerCreate: (container, options) ->
@@ -135,11 +125,24 @@ do (window) ->
 
         notificationClass = ".#{namespace}-notification.open"
         notifications = container.querySelectorAll(notificationClass)
+
         for notification in notifications
-          console.log 'close all is on ', notification.id
-          setTimeout ->
-            notification.querySelector(".#{namespace}-close").click()
-          # , 5
-          , 100
+          ((n, namespace) ->
+            n.querySelector(".#{namespace}-close").click()
+          )(notification, namespace)
         return
+  )
+
+  # register the closeAll module
+  notific8(
+    'registerModule'
+    'closeall'
+    'insideContainer'
+    {
+      closeAll: false
+      closeAllText: 'Close All'
+      closeAllTheme: 'legacy'
+      closeAllColor: 'teal'
+    }
+    closeAllCallback
   )
