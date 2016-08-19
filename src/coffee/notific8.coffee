@@ -351,9 +351,12 @@ notific8 = do ->
       )
       containerStr += moduleResults.html
     for position in [ 'top right', 'top left', 'bottom right', 'bottom left' ]
-      body.innerHTML += containerStr
+      modifiedContainerStr = containerStr
         .replace('$pos', position)
         .replace('$classes', containerClasses.join(' '))
+      tempDoc = document.implementation.createHTMLDocument('tempDoc')
+      tempDoc.body.innerHTML = modifiedContainerStr
+      document.body.appendChild tempDoc.body.firstChild
     for container in document.getElementsByClassName(containerClasses[0])
       container.style.zIndex = notific8Defaults.zindex
       for handler in notific8ContainerHandlers.onContainerCreate

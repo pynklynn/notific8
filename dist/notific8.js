@@ -317,7 +317,7 @@ notific8 = (function() {
   @param object options
    */
   initContainers = function(options) {
-    var body, container, containerClasses, containerStr, handler, module, moduleResults, position, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _m, _n, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+    var body, container, containerClasses, containerStr, handler, modifiedContainerStr, module, moduleResults, position, tempDoc, _i, _j, _k, _l, _len, _len1, _len2, _len3, _len4, _len5, _m, _n, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
     body = document.getElementsByTagName('body')[0];
     body.dataset.notific8s = 0;
     containerClasses = ["" + options.namespace + "-container"];
@@ -348,7 +348,10 @@ notific8 = (function() {
     _ref3 = ['top right', 'top left', 'bottom right', 'bottom left'];
     for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
       position = _ref3[_l];
-      body.innerHTML += containerStr.replace('$pos', position).replace('$classes', containerClasses.join(' '));
+      modifiedContainerStr = containerStr.replace('$pos', position).replace('$classes', containerClasses.join(' '));
+      tempDoc = document.implementation.createHTMLDocument('tempDoc');
+      tempDoc.body.innerHTML = modifiedContainerStr;
+      document.body.appendChild(tempDoc.body.firstChild);
     }
     _ref4 = document.getElementsByClassName(containerClasses[0]);
     for (_m = 0, _len4 = _ref4.length; _m < _len4; _m++) {
