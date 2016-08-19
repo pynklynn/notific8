@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.6.1
+
+- Fixing bug that causes ng-click in Angular to unbind after first call to notific8
+
 ## 3.6.0
 
 - Added the closeAll module
