@@ -18,10 +18,7 @@ module.exports = (config) ->
     # list of files / patterns to load in the browser
     files: [
       'dist/notific8.js'
-      'dist/modules/image/notific8-image.js'
-      'dist/modules/icon/notific8-icon.js'
       'spec/*Spec.js'
-      'modules/**/spec/*Spec.js'
     ]
 
 
