@@ -66,31 +66,31 @@ script(type='text/javascript').
         verticalEdge: $('#notific8vertical').find('option:selected').val(),
         namespace: $('#notific8Namespace').val(),
         height: $('#notific8Height').val(),
-        //- onInit: function(data) {
-        //-   if (window.console) {
-        //-     console.log('--onInit--');
-        //-     console.log('data:');
-        //-     console.log(data);
-        //-   }
-        //- },
-        //- onCreate: function(notification, data) {
-        //-   if (window.console) {
-        //-     console.log('--onCreate--');
-        //-     console.log('notification:');
-        //-     console.log(notification);
-        //-     console.log('data:');
-        //-     console.log(data);
-        //-   }
-        //- },
-        //- onClose: function(notification, data) {
-        //-   if (window.console) {
-        //-     console.log('--onClose--');
-        //-     console.log('notification:');
-        //-     console.log(notification);
-        //-     console.log('data:');
-        //-     console.log(data);
-        //-   }
-        //- }
+        onInit: function(data) {
+          if (window.console) {
+            console.log('--onInit--');
+            console.log('data:');
+            console.log(data);
+          }
+        },
+        onCreate: function(notification, data) {
+          if (window.console) {
+            console.log('--onCreate--');
+            console.log('notification:');
+            console.log(notification);
+            console.log('data:');
+            console.log(data);
+          }
+        },
+        onClose: function(notification, data) {
+          if (window.console) {
+            console.log('--onClose--');
+            console.log('notification:');
+            console.log(notification);
+            console.log('data:');
+            console.log(data);
+          }
+        }
       },
         text = $('#notific8Text').val(),
         $heading = $('#notific8Heading'),

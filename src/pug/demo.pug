@@ -9,17 +9,15 @@ p
   | , and
   i  onClose(notification, data)
   |  actions functioning, open your browser's developer tools' console view.
+
+hr
+
 p
-  b NOTE: The demo page will be heavily refactored in version 3.7.0. It is currently not optimal but will be greatly improved in the next version as part of the lead up to version 4.0.0.
-table
-  tbody
-    tr
-      td.label &nbsp;
-      td
-        label(for='notific8Queue')
-          input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
-          |  Queue notifications
-        p Note: queuing is set for the plug-in settings and not passed in as an option on the notification.
+  input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
+  label(for='notific8Queue')  Queue notifications
+div
+  em Note: queuing is set for the plug-in settings and not passed in as an option on the notification.
+br
     //- tr
     //-   td.label
     //-     label Close All Text
@@ -81,39 +79,34 @@ table
     //- tr
     //-   td.label &nbsp;
     //-   td Note: The close all module settings are only set in the first notification call
-    tr
-      td.label
-        label(for='notific8Text') Notification text
-      td
-        input#notific8Text(type='text', name='notific8Text', size='50', maxlength='300', value='Test notific8 notification')
-    tr
-      td.label Sticky
-      td
-        label
-          input#notific8Sticky(type='checkbox', name='notific8Sticky')
-          |  (if checked, setting life below will be ignored)
-    tr
-      td.label
-        label(for='notific8Life') Life
-      td
-        select#notific8Life(name='notific8Life')
-          option(value='1000') 1 second
-          option(value='5000') 5 seconds
-          option(value='10000', selected='selected') 10 seconds (default)
-          option(value='25000') 25 seconds
-          option(value='60000') 60 seconds
-    tr
-      td.label
-        label(for='notific8Heading') Heading (optional)
-      td
-        input#notific8Heading(type='text', name='notific8Heading', size='50', maxlength='50')
-        br
-        |  (not available in Materialish theme)
-    tr
-      td.label
-        label(for='notific8CloseText') Close text (optional)
-      td
-        input#notific8CloseText(type='text', name='notific8CloseText', size='50', maxlength='50')
+.input-field
+  label(for='notific8Text') Notification text
+  input#notific8Text(type='text', name='notific8Text', size='50', maxlength='300', value='Test notific8 notification')
+
+p
+  input#notific8Sticky(type='checkbox', name='notific8Sticky')
+  label(for='notific8Sticky')  Sticky (if checked, setting life below will be ignored)
+br
+
+.input-field
+  select#notific8Life(name='notific8Life')
+    option(value='1000') 1 second
+    option(value='5000') 5 seconds
+    option(value='10000', selected='selected') 10 seconds (default)
+    option(value='25000') 25 seconds
+    option(value='60000') 60 seconds
+  label(for='notific8Life') Life
+
+.input-field
+  label(for='notific8Heading') Heading (optional)
+  input#notific8Heading(type='text', name='notific8Heading', size='50', maxlength='50')
+  br
+div
+  em (not available in Materialish theme)
+
+.input-field
+  label(for='notific8CloseText') Close text (optional)
+  input#notific8CloseText(type='text', name='notific8CloseText', size='50', maxlength='50')
     //- tr
     //-   td.label
     //-     label(for='notific8IconOrImage') Use an icon or image?
@@ -321,80 +314,79 @@ table
     //-         | &nbsp;
     //-         img(src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPnNxdWlycmVsPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ic3F1aXJyZWwiPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik0yNS4zNDgtMjMuMTExYy05LjgyMiwwLTE3Ljc3OCw1LjgyMy0xNy43NzgsMTIuOTc4YzAsOC42MjIsMi4yMjMsMTMuNDY4LDAsMjcuMDIyDQoJCQljMC0yMC0xMi4zMTEtMjguMTc3LTE3Ljc3OC0yOC4xNzdjMC4yMjItMi4yMjItMi4xMzMtMi45MzQtMi4xMzMtMi45MzRzLTAuOTc5LDAuNDg4LTEuMzMyLDEuNTFjLTEuMi0xLjM3Ni0yLjQ4OS0xLjItMi40ODktMS4yDQoJCQlsLTAuNTgsMi41NzhjMCwwLTguMTMxLDIuODQ1LTguMjIsMTQuMzEyYzAuODg3LDEuNDY3LDYuNzk5LDIuNjY1LDEwLjk3NywxLjkxYzMuOTU2LDAuMjIzLDIuOTc3LDMuNTExLDIuMDksNC40MDENCgkJCUMtMTUuNjMxLDEzLjAyMS0xOS4wOTcsOC0yMy41NDIsOGMtNC40NDUsMC00LjQ0NSw0LjQ0NCwwLDQuNDQ0YzQuNDQ0LDAsNC40NDQsNC40NDQsMTMuMzMzLDQuNDQ0DQoJCQljLTEzLjczMiw1LjMzNCwwLDE3Ljc3OCwwLDE3Ljc3OGgtNC40NDRjLTQuNDQ0LDAtNC40NDQsNC40NDQtNC40NDQsNC40NDRINy41NjljMTMuMzMzLDAsMjIuMjIzLTQuNDQ0LDIyLjIyMy0xNS40MjENCgkJCWMwLTMuNzgtMS45MS03Ljk1Ni00LjQ0NC0xMS4yNDZjLTQuOTMxLTYuNDg5LDEuMDIzLTExLjkxMiw0LjQ0NC04Ljg4OUMzMy4yMTIsNi41NzksNDMuMTI1LDgsNDMuMTI1LTUuMzMzDQoJCQlDNDMuMTI1LTE1LjE1NSwzNS4xNjktMjMuMTExLDI1LjM0OC0yMy4xMTFMMjUuMzQ4LTIzLjExMXogTS0xNi44NzUtMC44ODljLTEuMjQ0LDAtMi4yMjItMC45NzctMi4yMjItMi4yMjMNCgkJCWMwLTEuMjQ2LDAuOTc5LTIuMjIyLDIuMjIyLTIuMjIyczIuMjIyLDAuOTc3LDIuMjIyLDIuMjIyQy0xNC42NTMtMS44NjUtMTUuNjMxLTAuODg5LTE2Ljg3NS0wLjg4OUwtMTYuODc1LTAuODg5eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K', style="width: 40px; height: 40px;", alt='squirrel')
     //-     p Images are SVG files that are part of GitHub's <a href="https://octicons.github.com/", target="_blank">Octicon</a> icon set
-    tr
-      td.label
-        label(for='notific8Theme') Theme
-      td
-        select#notific8Theme(name='notific8Theme')
-          option(value='legacy', selected='') legacy (default)
-          option(value='chicchat') ChicChat
-          option(value='atomic') Atomic
-          option(value='materialish') Materialish
-    tr
-      td.label
-        label(for="notific8Height") Notification height
-      td
-        input(type="number", min="90", max="500", value="90")#notific8Height
-    tr
-      td.label
-        label(for='notific8Color') Color
-      td
-        select#notific8Color(name='notific8Color')
-          option(value='teal', data-for='legacy', data-selected='') teal
-          option(value='amethyst', data-for='legacy') amethyst
-          option(value='ruby', data-for='legacy') ruby
-          option(value='tangerine', data-for='legacy') tangerine
-          option(value='lemon', data-for='legacy') lemon
-          option(value='lime', data-for='legacy') lime
-          option(value='ebony', data-for='legacy') ebony
-          option(value='smoke', data-for='legacy') smoke
-          option(value='cobalt', data-for='chicchat', data-selected='') cobalt
-          option(value='ruby', data-for='chicchat') ruby
-          option(value='honey', data-for='chicchat') honey
-          option(value='shamrock', data-for='chicchat') shamrock
-          option(value='amethyst', data-for='atomic', data-selected='') amethyst
-          option(value='cerulean', data-for='atomic') cerulean
-          option(value='mustard', data-for='atomic') mustard
-          option(value='onyx', data-for='atomic') onyx
-          option(value='pear', data-for='atomic') pear
-          option(value='tomato', data-for='atomic') tomato
-          option(value='twilight', data-for='materialish', data-selected='') twilight
-          option(value='lilrobot', data-for='materialish') lilrobot
-          option(value='cupcake', data-for='materialish') cupcake
-          option(value='eclair', data-for='materialish') eclair
-          option(value='honeycomb', data-for='materialish') honeycomb
-          option(value='lollypop', data-for='materialish') lollypop
-          option(value='marshmallow', data-for='materialish') marshmallow
-          option(value='strawberry', data-for='materialish') strawberry
-          option(value='creamsicle', data-for='materialish') creamsicle
-          option(value='purple-rain', data-for='materialish') purple-rain
-          option(value='peafowl', data-for='materialish') peafowl
-    tr
-      td.label Position
-      td
-        select#notific8horizontal(name='notific8horizontal')
-          option(value='top') top (default)
-          option(value='bottom') bottom
-        | &nbsp;
-        select#notific8vertical(name='notific8vertical')
-          option(value='right') right (default)
-          option(value='left') left
-    tr
-      td.label CSS Namespace
-      td
-        b notific8
-        |  (default, only value available for the demo)
-        input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
-    tr
-      td.label Use jQuery?
-      td
-        label
-          input(name="notific8UseJquery", type="radio", value="0", checked="Checked")
-          |  JavaScript&nbsp;
-        label
-          input(name="notific8UseJquery", type="radio", value="1")
-          |  jQuery
-    tr
-      td.label
-      td
-        button#notific8Test(type='button', name='notific8Test') Test notific8
+.input-field
+  select#notific8Theme(name='notific8Theme')
+    option(value='legacy', selected='') legacy (default)
+    option(value='chicchat') ChicChat
+    option(value='atomic') Atomic
+    option(value='materialish') Materialish
+  label(for='notific8Theme') Theme
+br
+
+.input-field
+  label(for="notific8Height") Notification height
+  input(type="number", min="90", max="500", value="90")#notific8Height
+
+.input-field
+  select#notific8Color(name='notific8Color')
+    option(value='teal', data-for='legacy', data-selected='') teal
+    option(value='amethyst', data-for='legacy') amethyst
+    option(value='ruby', data-for='legacy') ruby
+    option(value='tangerine', data-for='legacy') tangerine
+    option(value='lemon', data-for='legacy') lemon
+    option(value='lime', data-for='legacy') lime
+    option(value='ebony', data-for='legacy') ebony
+    option(value='smoke', data-for='legacy') smoke
+    option(value='cobalt', data-for='chicchat', data-selected='') cobalt
+    option(value='ruby', data-for='chicchat') ruby
+    option(value='honey', data-for='chicchat') honey
+    option(value='shamrock', data-for='chicchat') shamrock
+    option(value='amethyst', data-for='atomic', data-selected='') amethyst
+    option(value='cerulean', data-for='atomic') cerulean
+    option(value='mustard', data-for='atomic') mustard
+    option(value='onyx', data-for='atomic') onyx
+    option(value='pear', data-for='atomic') pear
+    option(value='tomato', data-for='atomic') tomato
+    option(value='twilight', data-for='materialish', data-selected='') twilight
+    option(value='lilrobot', data-for='materialish') lilrobot
+    option(value='cupcake', data-for='materialish') cupcake
+    option(value='eclair', data-for='materialish') eclair
+    option(value='honeycomb', data-for='materialish') honeycomb
+    option(value='lollypop', data-for='materialish') lollypop
+    option(value='marshmallow', data-for='materialish') marshmallow
+    option(value='strawberry', data-for='materialish') strawberry
+    option(value='creamsicle', data-for='materialish') creamsicle
+    option(value='purple-rain', data-for='materialish') purple-rain
+    option(value='peafowl', data-for='materialish') peafowl
+  label(for='notific8Color') Color
+
+.row
+  .col.s12.m6
+    .input-field
+      select#notific8horizontal(name='notific8horizontal')
+        option(value='top') top (default)
+        option(value='bottom') bottom
+      label(for='notific8horizontal') Notification horizontal edge
+
+  .col.s12.m6
+    .input-field
+      select#notific8vertical(name='notific8vertical')
+        option(value='right') right (default)
+        option(value='left') left
+      label(for='notific8vertical') Notification vertical edge
+
+.input-field
+  label(for='notific8Namespace') CSS Namespace
+  input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
+  input#notific8NamespaceText(type='text', name='notific8Namespace', value='notific8', disabled='disable')
+div
+  em (default, only value available for the demo)
+
+p
+  input(name="notific8UseJquery", type="radio", value="0", checked="Checked")#notific8UseJavascript
+  label(for='notific8UseJavascript')  JavaScript&nbsp;
+  input(name="notific8UseJquery", type="radio", value="1")#notific8UseJquery
+  label(for='notific8UseJquery')  jQuery
+
+.input-field
+  button.btn#notific8Test(type='button', name='notific8Test') Test notific8

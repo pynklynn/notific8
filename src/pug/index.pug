@@ -3,28 +3,22 @@ html
   head
     meta(charset='UTF-8')
     title notific8 demo
-    link(rel='stylesheet', href='http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css', media='screen')
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css")
     link(rel='stylesheet', href='../dist/notific8.css', media='screen')
-    style.
-      table td {
-      padding: 0.5em;
-      }
-      table td.label {
-      font-weight: bold;
-      text-align: right;
-      }
-      #notific8Color option {
-      display: none;
-      }
-      .container { max-width: 70%; margin: 0 auto; }
-      .flex-center { display: flex; align-items: center; }
+
   body
     .container
       include demo.pug
 
-    // script includes
+    //- script includes
     script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js")
     script(src='../dist/notific8.js')
     script(src='../dist/jquery.notific8.js')
+
+    script(type='text/javascript').
+      $(document).ready(function() {
+        $('select').material_select();
+      });
 
     include demo-js.pug
