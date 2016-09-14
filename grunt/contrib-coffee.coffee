@@ -15,12 +15,6 @@ module.exports = (grunt) ->
       files:
         'build/js/jquery.notific8.js': 'src/coffee/jquery.notific8.coffee'
         'build/js/notific8.js': 'src/coffee/notific8.coffee'
-    spec:
-      options:
-        bare: true
-        sourceMap: false
-      files:
-        'spec/notific8Spec.js': 'spec/notific8Spec.coffee'
   )
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'

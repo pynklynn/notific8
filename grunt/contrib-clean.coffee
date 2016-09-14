@@ -14,7 +14,6 @@ module.exports = (grunt) ->
       'src/sass-format/**/*.sass'
       'src/stylus/**/*.styl'
       'src/less/**/*.less'
-      'spec/**/*.js'
       'karma_tests'
     ]
     js: [
@@ -35,9 +34,6 @@ module.exports = (grunt) ->
     ]
     less: [
       'src/less/jquery.less'
-    ]
-    spec: [
-      'spec/**/*.js'
     ]
     karma: [
       'karma_tests'

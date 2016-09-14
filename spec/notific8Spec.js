@@ -13,6 +13,7 @@ describe('notific8 methods', function() {
     notific8('zindex', 5000);
     expect(notific8Defaults.zindex).toEqual(5000);
   });
+
   it('should destroy the notification containers', function() {
     var containerClass, containers;
     notific8('hello world!');
@@ -21,6 +22,7 @@ describe('notific8 methods', function() {
     containers = document.getElementsByClassName(containerClass);
     expect(containers.length).toEqual(0);
   });
+
   it('should remove the current notification', function() {
     var notificationClass, notifications;
     notificationClass = "" + notific8Defaults.namespace + "-notification";
@@ -31,6 +33,7 @@ describe('notific8 methods', function() {
     notifications = document.getElementsByClassName(notificationClass);
     expect(notifications.length).toEqual(0);
   });
+
   xit('should register a new module', function() {
     notific8('registerModule', 'testModule', 'beforeContent', {}, function() {});
     expect(notific8RegisteredModules.beforeContent.length).toEqual(3);
@@ -67,8 +70,7 @@ resetOptions = function() {
 };
 
 describe('notific8 configruation setting', function() {
-  var customConfig;
-  customConfig = {
+  var customConfig = {
     life: 20000,
     theme: 'atomic',
     color: 'pear',
@@ -92,9 +94,11 @@ describe('notific8 configruation setting', function() {
       materialish: 80
     }
   };
+
   beforeAll(function() {
     return resetOptions();
   });
+
   it('should set the configuration via the configure method', function() {
     notific8('configure', customConfig);
     expect(notific8Defaults.life).toEqual(20000);
@@ -118,6 +122,7 @@ describe('notific8 configruation setting', function() {
     expect(notific8Defaults.height.legacy).toEqual(80);
     expect(notific8Defaults.height.materialish).toEqual(80);
   });
+
   it('should set the configuration via the config method', function() {
     notific8('config', customConfig);
     expect(notific8Defaults.life).toEqual(20000);
@@ -144,12 +149,12 @@ describe('notific8 configruation setting', function() {
 });
 
 describe('testing notification settings on notification initialization', function() {
-  var notificationClass;
-  notificationClass = "" + notific8Defaults.namespace + "-notification";
+  var notificationClass = "" + notific8Defaults.namespace + "-notification";
   beforeEach(function() {
     resetOptions();
     return notific8('remove');
   });
+
   it('should set the heading option', function() {
     var notification, notificationHeader, notificationHeaderClass;
     notific8('This is testing the heading option.', {
@@ -160,6 +165,7 @@ describe('testing notification settings on notification initialization', functio
     notificationHeader = notification.querySelectorAll(notificationHeaderClass);
     expect(notificationHeader.length).toEqual(1);
   });
+
   it('should set the sticky option', function() {
     var notification;
     notific8('This is testing the sticky option', {
@@ -168,6 +174,7 @@ describe('testing notification settings on notification initialization', functio
     notification = document.getElementsByClassName(notificationClass)[0];
     expect(notification.classList.contains('sticky')).toEqual(true);
   });
+
   it('should set the closeText option', function() {
     var notification, notificationClose, notificationCloseClass;
     notific8('This is testing the closeText option', {
@@ -179,6 +186,7 @@ describe('testing notification settings on notification initialization', functio
     notificationClose = notification.querySelector(notificationCloseClass);
     return expect(notificationClose.innerText).toEqual('exit');
   });
+
   it('should set the theme', function() {
     var notification;
     notific8('This is testing the theme option', {
@@ -187,6 +195,7 @@ describe('testing notification settings on notification initialization', functio
     notification = document.getElementsByClassName(notificationClass)[0];
     return expect(notification.classList.contains('family-materialish')).toEqual(true);
   });
+
   it('should set the theme color', function() {
     var notification;
     notific8('This is testing the theme color option', {
@@ -197,6 +206,7 @@ describe('testing notification settings on notification initialization', functio
     expect(notification.classList.contains('family-materialish')).toEqual(true);
     return expect(notification.classList.contains('lilrobot')).toEqual(true);
   });
+
   it('should set the queue configuration option to true', function() {
     expect(notific8Defaults.queue).toEqual(false);
     notific8('config', {
