@@ -290,9 +290,6 @@ notific8 = do ->
     if data.settings.height < notific8Defaults.height[data.settings.theme]
       data.settings.height = notific8Defaults.height[data.settings.theme]
 
-    # backwards compatibility check that will removed for version 4.0
-    checkThemeOptions data
-
     buildNotification data
 
     if data.settings.onInit.length
@@ -300,26 +297,6 @@ notific8 = do ->
         onInit data
 
     return
-
-  ###
-  @TODO remove
-  Check that the theme, color, and family options are set appropriately.
-  This method will be removed for version 4.0 when the family option is removed
-  and backwards compatibility will be removed.
-  @param object data
-  ###
-  checkThemeOptions = (data) ->
-    validThemes = ['legacy', 'atomic', 'chicchat', 'materialish']
-    unless validThemes.indexOf(data.settings.theme) > -1
-      data.settings.color = data.settings.theme
-      data.settings.theme = data.settings.family
-      if console? && console.warn?
-        console.warn "The option 'theme' now references the value that was \
-          formerly used for 'family'. The option 'color' was added in version \
-          3.2.0 to replace the former functionality of the 'theme' option. The \
-          'family' option and backwards compatibility will be removed in \
-          version 4.0. Please update the options configuration in your code as \
-          soon as possible."
 
   ###
   Initialize the containers for the plug-in

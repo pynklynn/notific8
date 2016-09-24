@@ -30,7 +30,6 @@ module.exports = {
     ],
     tasks: [
       'clean:js',
-      'clean:spec',
       'clean:karma',
       'coffee',
       'uglify',
