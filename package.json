@@ -1,6 +1,6 @@
 {
   "name": "notific8",
-  "version": "3.7.0",
+  "version": "4.0.0",
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
   "main": "dist/notific8.js",
   "scripts": {
@@ -43,7 +43,9 @@
     "karma-htmlfile-reporter": "^0.2.2",
     "karma-jasmine": "^1.0.2",
     "karma-phantomjs-launcher": "^1.0.0",
+    "load-grunt-config": "^0.19.2",
     "node-static": "^0.7.8",
-    "phantomjs-prebuilt": "^2.1.7"
+    "phantomjs-prebuilt": "^2.1.7",
+    "time-grunt": "^1.4.0"
   }
 }
