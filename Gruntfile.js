@@ -8,44 +8,7 @@
  */
 
 module.exports = function(grunt) {
-  grunt.initConfig({
-    pkg: require('./package.json')
-  });
+  require('time-grunt')(grunt);
 
-  grunt.loadTasks('grunt');
-
-  grunt.registerTask('build', [
-    'pug',
-    'sass',
-    'cssmin',
-    'coffee',
-    'uglify',
-    'copy:code',
-    'replace:maps'
-  ]);
-
-  grunt.registerTask('default', [
-    'clean:all',
-    'build',
-    'karma:unit',
-    'watch'
-  ]);
-
-  grunt.registerTask('release', [
-    'clean:release',
-    'build',
-    'update_json'
-  ]);
-
-  grunt.registerTask('alternate-styles', [
-    // for some reason this is not running properly when called from here and
-    // and has to be called separately
-    // 'sass2stylus',
-    'scss2less',
-    'concat:less',
-    'replace:less',
-    'sass-convert',
-    // 'clean:stylus',
-    'clean:less'
-  ]);
+  require('load-grunt-config')(grunt);
 };
