@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, checkThemeOptions, closeNotification, configure, destroy, errorMessage, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
     theme: 'legacy',
@@ -282,32 +282,12 @@ notific8 = (function() {
     if (data.settings.height < notific8Defaults.height[data.settings.theme]) {
       data.settings.height = notific8Defaults.height[data.settings.theme];
     }
-    checkThemeOptions(data);
     buildNotification(data);
     if (data.settings.onInit.length) {
       _ref = data.settings.onInit;
       for (_k = 0, _len2 = _ref.length; _k < _len2; _k++) {
         onInit = _ref[_k];
         onInit(data);
-      }
-    }
-  };
-
-  /*
-  @TODO remove
-  Check that the theme, color, and family options are set appropriately.
-  This method will be removed for version 4.0 when the family option is removed
-  and backwards compatibility will be removed.
-  @param object data
-   */
-  checkThemeOptions = function(data) {
-    var validThemes;
-    validThemes = ['legacy', 'atomic', 'chicchat', 'materialish'];
-    if (!(validThemes.indexOf(data.settings.theme) > -1)) {
-      data.settings.color = data.settings.theme;
-      data.settings.theme = data.settings.family;
-      if ((typeof console !== "undefined" && console !== null) && (console.warn != null)) {
-        return console.warn("The option 'theme' now references the value that was formerly used for 'family'. The option 'color' was added in version 3.2.0 to replace the former functionality of the 'theme' option. The 'family' option and backwards compatibility will be removed in version 4.0. Please update the options configuration in your code as soon as possible.");
       }
     }
   };
