@@ -71,9 +71,9 @@ All planned features can be viewed by visiting the [issues page](https://github.
 
 ## Styles
 
-The styles are written in Scss format and available in the `src/sass` directory. The grunt task `release` will create versions of the code in Sass format, Less, and Stylus. Development will continue in Scss only - please do not open issues or pull requests to change the default style format.
+The styles are written in Scss format and available in the `src/sass` directory. Development will continue in Scss only - please do not open issues or pull requests to change the default style format. Contributions containing styles must be in Scss format.
 
-__NOTE: the automatic generation of alternate styles via the `release` task will be removed from the base release in version 4.0.0. At this time, the alternate styles will still be available for transpiling through Grunt tasks.__
+The grunt task `alternate-styles` will create versions of the code in Sass format, Less, and Stylus. These files are not generated automatically.
 
 ## Contributing
 
