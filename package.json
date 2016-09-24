@@ -1,6 +1,6 @@
 {
   "name": "notific8",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
   "main": "dist/notific8.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:ralivue/notific8.git"
+    "url": "git@github.com:willsteinmetz/notific8.git"
   },
   "keywords": [
     "javascript",
