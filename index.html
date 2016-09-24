@@ -7,57 +7,46 @@
     chicchat: 120,
     legacy: 90,
     materialish: 48
-  };
-  //- $('body').on('change', '#notific8IconOrImage', function(event) {
-  //-   $('.notific8-image input, .notific8-icon select').prop('disabled', true);
-  //-   switch ($(this).val()) {
-  //-     case 'image':
-  //-       $('.notific8-image input').prop('disabled', false);
-  //-       break;
-  //-     case 'icon':
-  //-       $('.notific8-icon select').prop('disabled', false);
-  //-       break;
-  //-   }
-  //- });
+  },
+    notific8ThemeColors = {
+      legacy: [],
+      chicchat: [],
+      atomic: [],
+      materialish: []
+    };
+
+  // update the theme color lists
+  $('#notific8Color').find('option').each(function(index, item) {
+    var $item = $(item);
+    notific8ThemeColors[$item.data('for')].push($item.val());
+  });
+
   $('body').on('change', '#notific8Queue', function(event) {
     notific8('config', { queue: $(this).is(':checked') });
   });
-  //- $('body').on('change', '#notific8CloseAll', function(event) {
-  //-   notific8('config', {
-  //-     closeAll: $(this).is(':checked'),
-  //-     closeAllTheme: $('#notific8CloseAllTheme option:selected').val(),
-  //-     closeAllColor: $('#notific8CloseAllColor option:selected').val()
-  //-   });
-  //- });
   $('body').on(
     'change',
     '#notific8Theme',
     function(event) {
       $theme = $(event.currentTarget);
-      theme = $theme.val();
+      var theme = $theme.val();
       $color = $('#notific8Color');
-      $color.find('option:selected').prop('selected', false);
-      $color.find('option').hide();
-      $color.find('option[data-for="' + theme + '"]').show();
-      $color.find('option[data-for="' + theme + '"][data-selected]').prop('selected', true);
+      $color.find('option').each(function(index, item) {
+        $(item).remove();
+      });
+      for (var i in notific8ThemeColors[theme]) {
+        if (notific8ThemeColors[theme].hasOwnProperty(i)) {
+          var color = notific8ThemeColors[theme][i];
+          $color.append($('<option value="' + color + '">' + color + '</option>'));
+        }
+      }
+      $color.material_select();
+
       $height = $('#notific8Height');
       $height.val(defaultHeights[theme]);
       $height.attr('min', defaultHeights[theme]);
     }
   );
-  //- $('body').on(
-  //-   'change',
-  //-   '#notific8CloseAllTheme',
-  //-   function(event) {
-  //-     $theme = $(event.currentTarget);
-  //-     theme = $theme.val();
-  //-     $color = $('#notific8CloseAllColor');
-  //-     $color.find('option:selected').prop('selected', false);
-  //-     $color.find('option').hide();
-  //-     $color.find('option[data-for="' + theme + '"]').show();
-  //-     $color.find('option[data-for="' + theme + '"][data-selected]').prop('selected', true);
-  //-   }
-  //- );
   $('body').on('click', '#notific8Test', function (event) {
     var params = {
       life: $('#notific8Life').find('option:selected').val(),
@@ -96,27 +85,14 @@
     },
       text = $('#notific8Text').val(),
       $heading = $('#notific8Heading'),
-      $closeText = $('#notific8CloseText');//,
-      //- $icon = $('#notific8Icon'),
-      //- $image = $("input[name='notific8Image']:checked");
-    //- if ($.trim($heading.val()) !== '') {
-    //-   params.heading = $heading.val();
-    //- }
-    //- if (
-    //-   $('#notific8IconOrImage').val() == 'icon' &&
-    //-   $.trim($icon.val()) !== ''
-    //- ) {
-    //-   params.icon = $icon.val();
-    //- }
-    //- if (
-    //-   $('#notific8IconOrImage').val() == 'image' &&
-    //-   $image.val() !== undefined
-    //- ) {
-    //-   params.image = $image.val();
-    //- }
-    //- if ($.trim($closeText.val()) !== '') {
-    //-   params.closeText = $closeText.val();
-    //- }
+      $closeText = $('#notific8CloseText');
+    if (window.notific8ModuleOptions) {
+      for (var i in window.notific8ModuleOptions) {
+        if (window.notific8ModuleOptions.hasOwnProperty(i)) {
+          params[i] = window.notific8ModuleOptions[i];
+        }
+      }
+    }
     // show notification
     if ($('input[name="notific8UseJquery"]:checked').val() == "1") {
       $.notific8(text, params);
