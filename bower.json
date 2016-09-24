@@ -1,6 +1,10 @@
 {
   "name": "notific8",
-  "version": "4.0.1",
+  "version": "4.0.2",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/willsteinmetz/notific8.git"
+  },
   "authors": [
     "Will Steinmetz <willsteinmetz@users.noreply.github.com>"
   ],
@@ -18,7 +22,7 @@
     "jquery-plugin"
   ],
   "license": "BSD-3-Clause",
-  "homepage": "https://github.com/ralivue/notific8",
+  "homepage": "https://github.com/willsteinmetz/notific8",
   "ignore": [
     "**/.*",
     "node_modules",
