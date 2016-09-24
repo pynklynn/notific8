@@ -10,7 +10,7 @@ module.exports = (grunt) ->
   grunt.config('pug',
     release:
       files:
-        'demo/index.html': 'src/pug/index.pug'
+        'index.html': 'src/pug/index.pug'
   )
 
   grunt.loadNpmTasks 'grunt-contrib-pug'

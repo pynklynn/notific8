@@ -20,9 +20,6 @@ module.exports = (grunt) ->
         'sass'
         'cssmin'
         'copy:css'
-        'copy:module-icon'
-        'copy:module-image'
-        'copy:module-closeall'
         'replace:maps'
       ]
       options:
@@ -39,9 +36,6 @@ module.exports = (grunt) ->
         'coffee'
         'uglify'
         'copy:js'
-        'copy:module-icon'
-        'copy:module-image'
-        'copy:module-closeall'
         'replace:maps'
         'karma:unit'
       ]

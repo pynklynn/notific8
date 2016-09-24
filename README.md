@@ -16,7 +16,7 @@ As of version 3.0.0, the plug-in was rewritten in pure JavaScript (via CoffeeScr
 
 ## Demo page
 
-An interactive demo page can be found in the ./demo/ directory.
+An interactive demo page can be found in the root directory. It can be launched by running `npm start demo` after installing the node modules required for development.
 
 ## Features
 
@@ -37,9 +37,10 @@ An interactive demo page can be found in the ./demo/ directory.
 
 ## Officially Supported modules
 
-* icon - adds the ability to select an icon to display in the notification
-* image - adds the ability to use an image in the notification
-* closeAll - adds a "Close All" button to the container if more than one notification is visible
+* [image](https://github.com/willsteinmetz/notific8-image) - adds the ability to use an image in the notification
+* [closeAll](https://github.com/willsteinmetz/notific8-closeall) - adds a "Close All" button to the container if more than one notification is visible
+* [icon](https://github.com/willsteinmetz/notific8-icon) [deprecated] - adds the ability to select an icon to display in the notification
+    * This module is deprecated. Consider using the image module instead to reduce the size of resources required.
 
 ## Browser support
 
@@ -82,4 +83,4 @@ When contributing, create a feature branch from `develop`. Ensure that all exist
 
 The notific8 plug-in is released under the BSD license.
 
-(c) 2013-2016 [Ralivue](http://ralivue.com)
+(c) 2013-2016 [Will Steinmetz](http://willsteinmetz.net)

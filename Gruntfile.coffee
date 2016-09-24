@@ -13,21 +13,13 @@ module.exports = (grunt) ->
 
   grunt.loadTasks 'grunt'
 
-  grunt.registerTask 'copy:modules', [
-    'copy:module-icon'
-    'copy:module-image'
-    'copy:module-closeall'
-  ]
-
   grunt.registerTask 'build', [
     'pug'
     'sass'
     'cssmin'
     'coffee'
     'uglify'
-    'copy:font'
     'copy:code'
-    'copy:modules'
     'replace:maps'
   ]
 

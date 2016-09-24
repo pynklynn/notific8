@@ -2,6 +2,14 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 3.7.0
+
+- Moved all modules into their own repos - see the readme for links
+- Refactor the demo page
+    - Updates the theme of the demo page
+    - Updates the demo with blocks to enable building of the demo page for modules
+- Added a demo server script
+
 ## 3.6.1
 
 - Fixing bug that causes ng-click in Angular to unbind after first call to notific8

@@ -1,4 +1,5 @@
-h1 notific8 demo
+block notific8DemoTitle
+  h1 notific8 demo
 p notific8 is a highly customizable JavaScript notification plug-in. It comes with multiple themes built in. The Sass files can be included in a project for easy customizations. The plug-in also includes a jQuery wrapper for those who wish to use jQuery.
 p Use the fields below to test the different options for the plug-in.
 p
@@ -9,392 +10,121 @@ p
   | , and
   i  onClose(notification, data)
   |  actions functioning, open your browser's developer tools' console view.
+
+hr
+
 p
-  b NOTE: The demo page will be heavily refactored in version 3.7.0. It is currently not optimal but will be greatly improved in the next version as part of the lead up to version 4.0.0.
-table
-  tbody
-    tr
-      td.label &nbsp;
-      td
-        label(for='notific8Queue')
-          input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
-          |  Queue notifications
-        p Note: queuing is set for the plug-in settings and not passed in as an option on the notification.
-    tr
-      td.label
-        label Close All Text
-      td
-        b Close All
-        |  (default, only value available for the demo)
-        p
-          i provided by module
-    tr
-      td.label
-        label(for='notific8CloseAllTheme') Theme
-      td
-        select#notific8CloseAllTheme(name='notific8CloseAllTheme')
-          option(value='legacy', selected='') legacy (default)
-          option(value='chicchat') ChicChat
-          option(value='atomic') Atomic
-          option(value='materialish') Materialish
-    tr
-      td.label
-        label(for='notific8CloseAllColor') Color
-      td
-        select#notific8CloseAllColor(name='notific8CloseAllColor')
-          option(value='teal', data-for='legacy', data-selected='') teal
-          option(value='amethyst', data-for='legacy') amethyst
-          option(value='ruby', data-for='legacy') ruby
-          option(value='tangerine', data-for='legacy') tangerine
-          option(value='lemon', data-for='legacy') lemon
-          option(value='lime', data-for='legacy') lime
-          option(value='ebony', data-for='legacy') ebony
-          option(value='smoke', data-for='legacy') smoke
-          option(value='cobalt', data-for='chicchat', data-selected='') cobalt
-          option(value='ruby', data-for='chicchat') ruby
-          option(value='honey', data-for='chicchat') honey
-          option(value='shamrock', data-for='chicchat') shamrock
-          option(value='amethyst', data-for='atomic', data-selected='') amethyst
-          option(value='cerulean', data-for='atomic') cerulean
-          option(value='mustard', data-for='atomic') mustard
-          option(value='onyx', data-for='atomic') onyx
-          option(value='pear', data-for='atomic') pear
-          option(value='tomato', data-for='atomic') tomato
-          option(value='twilight', data-for='materialish', data-selected='') twilight
-          option(value='lilrobot', data-for='materialish') lilrobot
-          option(value='cupcake', data-for='materialish') cupcake
-          option(value='eclair', data-for='materialish') eclair
-          option(value='honeycomb', data-for='materialish') honeycomb
-          option(value='lollypop', data-for='materialish') lollypop
-          option(value='marshmallow', data-for='materialish') marshmallow
-          option(value='strawberry', data-for='materialish') strawberry
-          option(value='creamsicle', data-for='materialish') creamsicle
-          option(value='purple-rain', data-for='materialish') purple-rain
-          option(value='peafowl', data-for='materialish') peafowl
-    tr
-      td.label &nbsp;
-      td
-        label
-          input#notific8CloseAll(name='notific8CloseAll', type='checkbox')
-          |  Close All -
-          i  provided by module - options from above are used
-    tr
-      td.label &nbsp;
-      td Note: The close all module settings are only set in the first notification call
-    tr
-      td.label
-        label(for='notific8Text') Notification text
-      td
-        input#notific8Text(type='text', name='notific8Text', size='50', maxlength='300', value='Test notific8 notification')
-    tr
-      td.label Sticky
-      td
-        label
-          input#notific8Sticky(type='checkbox', name='notific8Sticky')
-          |  (if checked, setting life below will be ignored)
-    tr
-      td.label
-        label(for='notific8Life') Life
-      td
-        select#notific8Life(name='notific8Life')
-          option(value='1000') 1 second
-          option(value='5000') 5 seconds
-          option(value='10000', selected='selected') 10 seconds (default)
-          option(value='25000') 25 seconds
-          option(value='60000') 60 seconds
-    tr
-      td.label
-        label(for='notific8Heading') Heading (optional)
-      td
-        input#notific8Heading(type='text', name='notific8Heading', size='50', maxlength='50')
-        br
-        |  (not available in Materialish theme)
-    tr
-      td.label
-        label(for='notific8CloseText') Close text (optional)
-      td
-        input#notific8CloseText(type='text', name='notific8CloseText', size='50', maxlength='50')
-    tr
-      td.label
-        label(for='notific8IconOrImage') Use an icon or image?
-      td
-        select#notific8IconOrImage(name='notific8IconOrImage')
-          option neither
-          option(value='icon') icon
-          option(value='image') image
-    tr.notific8-icon
-      td.label
-        label(for='notific8Icon') Icon (optional) -
-        i  provided by module
-      td
-        select#notific8Icon(name='notific8Icon', disabled='')
-          option(value='') - None -
-          option(value='trash-bin') trash-bin
-          option(value='pencil') pencil
-          option(value='lifebuoy') lifebuoy
-          option(value='info-circled') info-circled
-          option(value='fontawesome-webfont') fontawesome-webfont
-          option(value='github-circle') github-circle
-          option(value='barcode') barcode
-          option(value='book') book
-          option(value='calendar') calendar
-          option(value='briefcase-case-two') briefcase-case-two
-          option(value='camera-retro') camera-retro
-          option(value='chat-bubble-two') chat-bubble-two
-          option(value='check-mark-2') check-mark-2
-          option(value='cloud') cloud
-          option(value='cloud-download') cloud-download
-          option(value='cloud-upload') cloud-upload
-          option(value='code') code
-          option(value='code-fork') code-fork
-          option(value='cog-gear') cog-gear
-          option(value='css3') css3
-          option(value='cut-scissor') cut-scissor
-          option(value='dropbox') dropbox
-          option(value='facebook-square') facebook-square
-          option(value='file-document') file-document
-          option(value='files') files
-          option(value='filmstrip') filmstrip
-          option(value='flag') flag
-          option(value='folder2') folder2
-          option(value='globe-world') globe-world
-          option(value='google-plus') google-plus
-          option(value='group') group
-          option(value='heart') heart
-          option(value='instagram') instagram
-          option(value='html5') html5
-          option(value='like-filled') like-filled
-          option(value='linkedin-square') linkedin-square
-          option(value='link') link
-          option(value='log-in') log-in
-          option(value='log-out') log-out
-          option(value='male') male
-          option(value='pinterest-square') pinterest-square
-          option(value='photo') photo
-          option(value='qrcode') qrcode
-          option(value='power-off') power-off
-          option(value='random') random
-          option(value='repeat-redo') repeat-redo
-          option(value='reply-all') reply-all
-          option(value='reply-mail') reply-mail
-          option(value='retweet') retweet
-          option(value='rss') rss
-          option(value='save-disk') save-disk
-          option(value='science-laboratory') science-laboratory
-          option(value='stackoverflow') stackoverflow
-          option(value='skype') skype
-          option(value='star') star
-          option(value='star-half') star-half
-          option(value='star-half-1') star-half-1
-          option(value='star-two') star-two
-          option(value='tachometer') tachometer
-          option(value='tag-2') tag-2
-          option(value='ticket') ticket
-          option(value='talk-chat-2') talk-chat-2
-          option(value='talk-chat') talk-chat
-          option(value='tumblr-square') tumblr-square
-          option(value='twitter-square') twitter-square
-          option(value='umbrella') umbrella
-          option(value='user') user
-          option(value='video-camera') video-camera
-          option(value='volume-down') volume-down
-          option(value='volume-down-1') volume-down-1
-          option(value='volume-up') volume-up
-          option(value='window-list') window-list
-          option(value='windows') windows
-          option(value='youtube-square') youtube-square
-          option(value='linux') linux
-          option(value='android') android
-          option(value='apple') apple
-          option(value='bar-chart') bar-chart
-          option(value='bitbucket') bitbucket
-          option(value='box-inbox') box-inbox
-          option(value='bullhorn') bullhorn
-          option(value='bug') bug
-          option(value='compass') compass
-          option(value='credit-card') credit-card
-          option(value='cutlery') cutlery
-          option(value='dollar') dollar
-          option(value='euro') euro
-          option(value='bitcoin') bitcoin
-          option(value='exclamation-triangle') exclamation-triangle
-          option(value='external-link') external-link
-          option(value='eye') eye
-          option(value='eye-slash-close') eye-slash-close
-          option(value='facebook') facebook
-          option(value='file-text') file-text
-          option(value='filter') filter
-          option(value='folder-open') folder-open
-          option(value='google-plus-1') google-plus-1
-          option(value='github-square') github-square
-          option(value='github') github
-          option(value='gears-setting') gears-setting
-          option(value='gamepad') gamepad
-          option(value='harddrive') harddrive
-          option(value='home') home
-          option(value='leaf') leaf
-          option(value='location-arrow') location-arrow
-          option(value='magic-wand') magic-wand
-          option(value='mail-forward') mail-forward
-          option(value='mic') mic
-          option(value='mic-no') mic-no
-          option(value='moon-sleep') moon-sleep
-          option(value='minus-circle') minus-circle
-          option(value='paper-clip') paper-clip
-          option(value='pin-map') pin-map
-          option(value='pin-map-2') pin-map-2
-          option(value='pinterest') pinterest
-          option(value='plane-airport') plane-airport
-          option(value='pound') pound
-          option(value='present-gift') present-gift
-          option(value='ptint') ptint
-          option(value='refresh') refresh
-          option(value='road') road
-          option(value='rss-two') rss-two
-          option(value='rupee') rupee
-          option(value='shield') shield
-          option(value='sitemap') sitemap
-          option(value='smile') smile
-          option(value='smiley-frown') smiley-frown
-          option(value='smiley-meh') smiley-meh
-          option(value='tablet') tablet
-          option(value='tag') tag
-          option(value='tags') tags
-          option(value='tasks') tasks
-          option(value='thumbnails') thumbnails
-          option(value='thumbnails-large') thumbnails-large
-          option(value='undo') undo
-          option(value='tumblr') tumblr
-          option(value='twitter') twitter
-          option(value='tint') tint
-          option(value='won') won
-          option(value='wrench') wrench
-          option(value='yen') yen
-          option(value='youtube') youtube
-          option(value='youtube-play') youtube-play
-          option(value='unlock') unlock
-          option(value='unlock-2') unlock-2
-          option(value='amazon') amazon
-          option(value='app-store') app-store
-          option(value='basecamp') basecamp
-          option(value='blogger') blogger
-          option(value='evernote') evernote
-          option(value='dropbox-1') dropbox-1
-          option(value='digg') digg
-          option(value='pandora') pandora
-          option(value='reddit') reddit
-          option(value='steam') steam
-          option(value='stumbleupon') stumbleupon
-          option(value='vimeo') vimeo
-          option(value='ie') ie
-          option(value='chrome') chrome
-          option(value='firefox') firefox
-          option(value='safari') safari
-    tr.notific8-image
-      td.label
-        label Image (optional) -
-        i  provided by module
-      td
-        div(style='display: flex;')
-          label.flex-center
-            input(type='radio', name='notific8Image', disabled='', value='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPm1hcmstZ2l0aHViPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ibWFyay1naXRodWIiPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik04LTI2LjMzM2MtMTkuMzM3LDAtMzUsMTUuNjYzLTM1LDM1YzAsMTUuNDg4LDEwLjAxOSwyOC41NywyMy45MzIsMzMuMjA2YzEuNzUsMC4zMDgsMi40MDUtMC43NDMsMi40MDUtMS42NjINCgkJCWMwLTAuODMzLTAuMDQ0LTMuNTg1LTAuMDQ0LTYuNTJDLTkuNSwzNS4zMS0xMS43NzUsMzEuNTUtMTIuNDc2LDI5LjU4Yy0wLjM5My0xLjAwOS0yLjEtNC4xMTQtMy41ODctNC45NDMNCgkJCWMtMS4yMjQtMC42NTgtMi45NzYtMi4yNzctMC4wNDMtMi4zMmMyLjc1Ni0wLjA0Nyw0LjcyNCwyLjUzOCw1LjM4MSwzLjU4NWMzLjE0OSw1LjI5OCw4LjE4LDMuODEyLDEwLjE5MiwyLjg4OQ0KCQkJYzAuMzA4LTIuMjczLDEuMjI3LTMuODAzLDIuMjMyLTQuNjc5Yy03Ljc4OS0wLjg3Ni0xNS45MjYtMy44OTMtMTUuOTI2LTE3LjI4MmMwLTMuODA3LDEuMzU3LTYuOTU2LDMuNTg5LTkuNDA2DQoJCQljLTAuMzUtMC44NzYtMS41NzYtNC40NjIsMC4zNDktOS4yNzVjMCwwLDIuOTMzLTAuOTE5LDkuNjI1LDMuNTg2YzIuODAxLTAuNzg2LDUuNzc0LTEuMTgxLDguNzUtMS4xODENCgkJCWMyLjk3NiwwLDUuOTUsMC4zOTUsOC43NDksMS4xODFjNi42OTQtNC41NSw5LjYzLTMuNTg2LDkuNjMtMy41ODZjMS45MjMsNC44MTMsMC42OTYsOC4zOTksMC4zNDYsOS4yNzUNCgkJCWMyLjIzNCwyLjQ1LDMuNTg5LDUuNTU2LDMuNTg5LDkuNDA2YzAsMTMuNDMzLTguMTgyLDE2LjQwNi0xNS45NjYsMTcuMjgyYzEuMjY1LDEuMDk0LDIuMzU4LDMuMTkxLDIuMzU4LDYuNDczDQoJCQljMCw0LjY4My0wLjA0Myw4LjQ0Mi0wLjA0Myw5LjYyNmMwLDAuOTE5LDAuNjU4LDIuMDEzLDIuNDA1LDEuNjYyQzMyLjk4MSwzNy4yMzYsNDMsMjQuMTExLDQzLDguNjY2DQoJCQlDNDMtMTAuNjcxLDI3LjMzNy0yNi4zMzMsOC0yNi4zMzNMOC0yNi4zMzN6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=')
-            | &nbsp;
-            img(src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPm1hcmstZ2l0aHViPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ibWFyay1naXRodWIiPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik04LTI2LjMzM2MtMTkuMzM3LDAtMzUsMTUuNjYzLTM1LDM1YzAsMTUuNDg4LDEwLjAxOSwyOC41NywyMy45MzIsMzMuMjA2YzEuNzUsMC4zMDgsMi40MDUtMC43NDMsMi40MDUtMS42NjINCgkJCWMwLTAuODMzLTAuMDQ0LTMuNTg1LTAuMDQ0LTYuNTJDLTkuNSwzNS4zMS0xMS43NzUsMzEuNTUtMTIuNDc2LDI5LjU4Yy0wLjM5My0xLjAwOS0yLjEtNC4xMTQtMy41ODctNC45NDMNCgkJCWMtMS4yMjQtMC42NTgtMi45NzYtMi4yNzctMC4wNDMtMi4zMmMyLjc1Ni0wLjA0Nyw0LjcyNCwyLjUzOCw1LjM4MSwzLjU4NWMzLjE0OSw1LjI5OCw4LjE4LDMuODEyLDEwLjE5MiwyLjg4OQ0KCQkJYzAuMzA4LTIuMjczLDEuMjI3LTMuODAzLDIuMjMyLTQuNjc5Yy03Ljc4OS0wLjg3Ni0xNS45MjYtMy44OTMtMTUuOTI2LTE3LjI4MmMwLTMuODA3LDEuMzU3LTYuOTU2LDMuNTg5LTkuNDA2DQoJCQljLTAuMzUtMC44NzYtMS41NzYtNC40NjIsMC4zNDktOS4yNzVjMCwwLDIuOTMzLTAuOTE5LDkuNjI1LDMuNTg2YzIuODAxLTAuNzg2LDUuNzc0LTEuMTgxLDguNzUtMS4xODENCgkJCWMyLjk3NiwwLDUuOTUsMC4zOTUsOC43NDksMS4xODFjNi42OTQtNC41NSw5LjYzLTMuNTg2LDkuNjMtMy41ODZjMS45MjMsNC44MTMsMC42OTYsOC4zOTksMC4zNDYsOS4yNzUNCgkJCWMyLjIzNCwyLjQ1LDMuNTg5LDUuNTU2LDMuNTg5LDkuNDA2YzAsMTMuNDMzLTguMTgyLDE2LjQwNi0xNS45NjYsMTcuMjgyYzEuMjY1LDEuMDk0LDIuMzU4LDMuMTkxLDIuMzU4LDYuNDczDQoJCQljMCw0LjY4My0wLjA0Myw4LjQ0Mi0wLjA0Myw5LjYyNmMwLDAuOTE5LDAuNjU4LDIuMDEzLDIuNDA1LDEuNjYyQzMyLjk4MSwzNy4yMzYsNDMsMjQuMTExLDQzLDguNjY2DQoJCQlDNDMtMTAuNjcxLDI3LjMzNy0yNi4zMzMsOC0yNi4zMzNMOC0yNi4zMzN6Ii8+DQoJPC9nPg0KPC9nPg0KPC9zdmc+DQo=', style="width: 40px; height: 40px;", alt='mark-github')
-            | &nbsp;
-          label.flex-center
-            input(type='radio', name='notific8Image', disabled='', value='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPm1hcmtkb3duPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ibWFya2Rvd24iPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik0zOC4wMDEtMTMuODg4aC01OS45NzJjLTIuNzU3LDAtNS4wMzQsMi4yNzYtNS4wMzQsNS4wMzRWMjQuODFjMCwyLjgwNSwyLjI3Niw1LjA3OSw1LjAzNCw1LjA3OWg1OS45Mw0KCQkJYzIuODA0LDAsNS4wMzUtMi4yNzQsNS4wMzUtNS4wMzZWLTguODU0QzQzLjAzNy0xMS42MTIsNDAuNzYzLTEzLjg4OCwzOC4wMDEtMTMuODg4TDM4LjAwMS0xMy44ODh6IE0xMi4zOTQsMjEuMTMzSDMuNjM5VjgNCgkJCWwtNi41NjYsOC40MDRMLTkuNDk0LDh2MTMuMTMzaC04Ljc1NVYtNS4xMzNoOC43NTVsNi41NjYsOC43NTVsNi41NjYtOC43NTVoOC43NTVWMjEuMTMzTDEyLjM5NCwyMS4xMzN6IE0yNS40ODQsMjMuMzIxTDE0LjU4Myw4DQoJCQloNi41NjZWLTUuMTMzaDguNzU1VjhoNi41NjZMMjUuNDg0LDIzLjMyMUwyNS40ODQsMjMuMzIxeiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K')
-            | &nbsp;
-            img(src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPm1hcmtkb3duPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ibWFya2Rvd24iPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik0zOC4wMDEtMTMuODg4aC01OS45NzJjLTIuNzU3LDAtNS4wMzQsMi4yNzYtNS4wMzQsNS4wMzRWMjQuODFjMCwyLjgwNSwyLjI3Niw1LjA3OSw1LjAzNCw1LjA3OWg1OS45Mw0KCQkJYzIuODA0LDAsNS4wMzUtMi4yNzQsNS4wMzUtNS4wMzZWLTguODU0QzQzLjAzNy0xMS42MTIsNDAuNzYzLTEzLjg4OCwzOC4wMDEtMTMuODg4TDM4LjAwMS0xMy44ODh6IE0xMi4zOTQsMjEuMTMzSDMuNjM5VjgNCgkJCWwtNi41NjYsOC40MDRMLTkuNDk0LDh2MTMuMTMzaC04Ljc1NVYtNS4xMzNoOC43NTVsNi41NjYsOC43NTVsNi41NjYtOC43NTVoOC43NTVWMjEuMTMzTDEyLjM5NCwyMS4xMzN6IE0yNS40ODQsMjMuMzIxTDE0LjU4Myw4DQoJCQloNi41NjZWLTUuMTMzaDguNzU1VjhoNi41NjZMMjUuNDg0LDIzLjMyMUwyNS40ODQsMjMuMzIxeiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K', style="width: 40px; height: 40px;", alt='markdown')
-            | &nbsp;
-          label.flex-center
-            input(type='radio', name='notific8Image', disabled='', value='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjkgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yOSAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPnBhaW50Y2FuPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0icGFpbnRjYW4iPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik02LTI3LjVjLTE1LjQ0NywwLTI4LDEyLjU1My0yOCwyOHY0LjY2N2MwLDIuNTY2LDIuMTAxLDQuNjY3LDQuNjY3LDQuNjY3djIzLjMzNA0KCQkJQy0xNy4zMzMsMzguMjk4LTYuODc5LDQyLjUsNiw0Mi41czIzLjMzMy00LjIwMiwyMy4zMzMtOS4zMzNWOS44MzNDMzEuODk5LDkuODMzLDM0LDcuNzMyLDM0LDUuMTY3VjAuNQ0KCQkJQzM0LTE0Ljk0NywyMS40NDktMjcuNSw2LTI3LjVMNi0yNy41eiBNMjAsMTkuMTY3VjIxLjVjMCwxLjMwOC0xLjAzLDIuMzMzLTIuMzMzLDIuMzMzYy0xLjMwNCwwLTIuMzM0LTEuMDI1LTIuMzM0LTIuMzMzdi0yLjMzMw0KCQkJYzAtMS4zMDktMS4wMjktMi4zMzQtMi4zMzMtMi4zMzRzLTIuMzMzLDEuMDI1LTIuMzMzLDIuMzM0djExLjY2NmMwLDEuMzA5LTEuMDMsMi4zMzQtMi4zMzQsMi4zMzQNCgkJCUM3LjAyNywzMy4xNjcsNiwzMi4xNDIsNiwzMC44MzNWMjEuNWMwLTEuMzA4LTEuMDI4LTIuMzMzLTIuMzMzLTIuMzMzUzEuMzMzLDIwLjE5MiwxLjMzMywyMS41djIuMzMzDQoJCQljMCwyLjU2Ni0yLjEwMSw0LjY2Ny00LjY2Nyw0LjY2N0MtNS44OTksMjguNS04LDI2LjM5OS04LDIzLjgzM3YtNC42NjZjLTIuNTY2LDAtNC42NjctMi4xMDItNC42NjctNC42NjdWNi4xMDENCgkJCUMtOC40MTksOC4zODYtMS42NTQsOS44MzMsNiw5LjgzM2M3LjY1NiwwLDE0LjQxOS0xLjQ0NywxOC42NjctMy43MzJWMTQuNUMyNC42NjcsMTcuMDY1LDIyLjU2NSwxOS4xNjcsMjAsMTkuMTY3TDIwLDE5LjE2N3oNCgkJCSBNNiw1LjE2N2MtNy44NDEsMC0xNC41NjEtMS45MTQtMTcuMzEzLTQuNjY3Qy04LjU2MS0yLjI1Mi0xLjg0MS00LjE2Nyw2LTQuMTY3YzcuODM5LDAsMTQuNTYxLDEuOTE0LDE3LjMxMyw0LjY2Nw0KCQkJQzIwLjU2MSwzLjI1MiwxMy44MzksNS4xNjcsNiw1LjE2N0w2LDUuMTY3eiBNNi04LjgzM2MtMTIuODc5LDAtMjMuMzMzLDQuMTU0LTIzLjMzMyw5LjMzM2wwLDANCgkJCWMwLTEyLjg3OSwxMC40NTUtMjMuMzMzLDIzLjMzMy0yMy4zMzNTMjkuMzMzLTEyLjM3OSwyOS4zMzMsMC41QzI5LjMzMy00LjYzNCwxOC44NzktOC44MzMsNi04LjgzM0w2LTguODMzeiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K')
-            | &nbsp;
-            img(src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjkgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yOSAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPnBhaW50Y2FuPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0icGFpbnRjYW4iPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik02LTI3LjVjLTE1LjQ0NywwLTI4LDEyLjU1My0yOCwyOHY0LjY2N2MwLDIuNTY2LDIuMTAxLDQuNjY3LDQuNjY3LDQuNjY3djIzLjMzNA0KCQkJQy0xNy4zMzMsMzguMjk4LTYuODc5LDQyLjUsNiw0Mi41czIzLjMzMy00LjIwMiwyMy4zMzMtOS4zMzNWOS44MzNDMzEuODk5LDkuODMzLDM0LDcuNzMyLDM0LDUuMTY3VjAuNQ0KCQkJQzM0LTE0Ljk0NywyMS40NDktMjcuNSw2LTI3LjVMNi0yNy41eiBNMjAsMTkuMTY3VjIxLjVjMCwxLjMwOC0xLjAzLDIuMzMzLTIuMzMzLDIuMzMzYy0xLjMwNCwwLTIuMzM0LTEuMDI1LTIuMzM0LTIuMzMzdi0yLjMzMw0KCQkJYzAtMS4zMDktMS4wMjktMi4zMzQtMi4zMzMtMi4zMzRzLTIuMzMzLDEuMDI1LTIuMzMzLDIuMzM0djExLjY2NmMwLDEuMzA5LTEuMDMsMi4zMzQtMi4zMzQsMi4zMzQNCgkJCUM3LjAyNywzMy4xNjcsNiwzMi4xNDIsNiwzMC44MzNWMjEuNWMwLTEuMzA4LTEuMDI4LTIuMzMzLTIuMzMzLTIuMzMzUzEuMzMzLDIwLjE5MiwxLjMzMywyMS41djIuMzMzDQoJCQljMCwyLjU2Ni0yLjEwMSw0LjY2Ny00LjY2Nyw0LjY2N0MtNS44OTksMjguNS04LDI2LjM5OS04LDIzLjgzM3YtNC42NjZjLTIuNTY2LDAtNC42NjctMi4xMDItNC42NjctNC42NjdWNi4xMDENCgkJCUMtOC40MTksOC4zODYtMS42NTQsOS44MzMsNiw5LjgzM2M3LjY1NiwwLDE0LjQxOS0xLjQ0NywxOC42NjctMy43MzJWMTQuNUMyNC42NjcsMTcuMDY1LDIyLjU2NSwxOS4xNjcsMjAsMTkuMTY3TDIwLDE5LjE2N3oNCgkJCSBNNiw1LjE2N2MtNy44NDEsMC0xNC41NjEtMS45MTQtMTcuMzEzLTQuNjY3Qy04LjU2MS0yLjI1Mi0xLjg0MS00LjE2Nyw2LTQuMTY3YzcuODM5LDAsMTQuNTYxLDEuOTE0LDE3LjMxMyw0LjY2Nw0KCQkJQzIwLjU2MSwzLjI1MiwxMy44MzksNS4xNjcsNiw1LjE2N0w2LDUuMTY3eiBNNi04LjgzM2MtMTIuODc5LDAtMjMuMzMzLDQuMTU0LTIzLjMzMyw5LjMzM2wwLDANCgkJCWMwLTEyLjg3OSwxMC40NTUtMjMuMzMzLDIzLjMzMy0yMy4zMzNTMjkuMzMzLTEyLjM3OSwyOS4zMzMsMC41QzI5LjMzMy00LjYzNCwxOC44NzktOC44MzMsNi04LjgzM0w2LTguODMzeiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K', style="width: 40px; height: 40px;", alt='paintcan')
-            | &nbsp;
-          label.flex-center
-            input(type='radio', name='notific8Image', disabled='', value='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjggLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yOCAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPmlzc3VlLW9wZW5lZDwvdGl0bGU+DQo8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCjxnIGlkPSJPY3RpY29ucyI+DQoJPGcgaWQ9Imlzc3VlLW9wZW5lZCI+DQoJCTxwYXRoIGlkPSJTaGFwZSIgZD0iTTctMjAuNTAxYzE1LjcwMywwLDI4LjUwMSwxMi44LDI4LjUwMSwyOC41MDFjMCwxNS43MDMtMTIuNzk4LDI4LjUwMS0yOC41MDEsMjguNTAxDQoJCQlDLTguNzAxLDM2LjUwMS0yMS41MDEsMjMuNzAzLTIxLjUwMSw4Qy0yMS41MDEtNy43MDEtOC43MDEtMjAuNTAxLDctMjAuNTAxTDctMjAuNTAxeiBNNy0yN2MtMTkuMjk5LDAtMzUsMTUuNzAxLTM1LDM1DQoJCQljMCwxOS4yOTcsMTUuNzAxLDM1LDM1LDM1YzE5LjI5NywwLDM1LTE1LjcwMywzNS0zNUM0Mi0xMS4yOTksMjYuMjk3LTI3LDctMjdMNy0yN3ogTTEyLTEySDJ2MjVoMTBWLTEyTDEyLTEyeiBNMTIsMThIMnYxMGgxMFYxOA0KCQkJTDEyLDE4eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K')
-            | &nbsp;
-            img(src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjggLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yOCAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPmlzc3VlLW9wZW5lZDwvdGl0bGU+DQo8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4NCjxnIGlkPSJPY3RpY29ucyI+DQoJPGcgaWQ9Imlzc3VlLW9wZW5lZCI+DQoJCTxwYXRoIGlkPSJTaGFwZSIgZD0iTTctMjAuNTAxYzE1LjcwMywwLDI4LjUwMSwxMi44LDI4LjUwMSwyOC41MDFjMCwxNS43MDMtMTIuNzk4LDI4LjUwMS0yOC41MDEsMjguNTAxDQoJCQlDLTguNzAxLDM2LjUwMS0yMS41MDEsMjMuNzAzLTIxLjUwMSw4Qy0yMS41MDEtNy43MDEtOC43MDEtMjAuNTAxLDctMjAuNTAxTDctMjAuNTAxeiBNNy0yN2MtMTkuMjk5LDAtMzUsMTUuNzAxLTM1LDM1DQoJCQljMCwxOS4yOTcsMTUuNzAxLDM1LDM1LDM1YzE5LjI5NywwLDM1LTE1LjcwMywzNS0zNUM0Mi0xMS4yOTksMjYuMjk3LTI3LDctMjdMNy0yN3ogTTEyLTEySDJ2MjVoMTBWLTEyTDEyLTEyeiBNMTIsMThIMnYxMGgxMFYxOA0KCQkJTDEyLDE4eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K', style="width: 40px; height: 40px;", alt='issue-opened')
-            | &nbsp;
-          label.flex-center
-            input(type='radio', name='notific8Image', disabled='', value='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPnNxdWlycmVsPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ic3F1aXJyZWwiPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik0yNS4zNDgtMjMuMTExYy05LjgyMiwwLTE3Ljc3OCw1LjgyMy0xNy43NzgsMTIuOTc4YzAsOC42MjIsMi4yMjMsMTMuNDY4LDAsMjcuMDIyDQoJCQljMC0yMC0xMi4zMTEtMjguMTc3LTE3Ljc3OC0yOC4xNzdjMC4yMjItMi4yMjItMi4xMzMtMi45MzQtMi4xMzMtMi45MzRzLTAuOTc5LDAuNDg4LTEuMzMyLDEuNTFjLTEuMi0xLjM3Ni0yLjQ4OS0xLjItMi40ODktMS4yDQoJCQlsLTAuNTgsMi41NzhjMCwwLTguMTMxLDIuODQ1LTguMjIsMTQuMzEyYzAuODg3LDEuNDY3LDYuNzk5LDIuNjY1LDEwLjk3NywxLjkxYzMuOTU2LDAuMjIzLDIuOTc3LDMuNTExLDIuMDksNC40MDENCgkJCUMtMTUuNjMxLDEzLjAyMS0xOS4wOTcsOC0yMy41NDIsOGMtNC40NDUsMC00LjQ0NSw0LjQ0NCwwLDQuNDQ0YzQuNDQ0LDAsNC40NDQsNC40NDQsMTMuMzMzLDQuNDQ0DQoJCQljLTEzLjczMiw1LjMzNCwwLDE3Ljc3OCwwLDE3Ljc3OGgtNC40NDRjLTQuNDQ0LDAtNC40NDQsNC40NDQtNC40NDQsNC40NDRINy41NjljMTMuMzMzLDAsMjIuMjIzLTQuNDQ0LDIyLjIyMy0xNS40MjENCgkJCWMwLTMuNzgtMS45MS03Ljk1Ni00LjQ0NC0xMS4yNDZjLTQuOTMxLTYuNDg5LDEuMDIzLTExLjkxMiw0LjQ0NC04Ljg4OUMzMy4yMTIsNi41NzksNDMuMTI1LDgsNDMuMTI1LTUuMzMzDQoJCQlDNDMuMTI1LTE1LjE1NSwzNS4xNjktMjMuMTExLDI1LjM0OC0yMy4xMTFMMjUuMzQ4LTIzLjExMXogTS0xNi44NzUtMC44ODljLTEuMjQ0LDAtMi4yMjItMC45NzctMi4yMjItMi4yMjMNCgkJCWMwLTEuMjQ2LDAuOTc5LTIuMjIyLDIuMjIyLTIuMjIyczIuMjIyLDAuOTc3LDIuMjIyLDIuMjIyQy0xNC42NTMtMS44NjUtMTUuNjMxLTAuODg5LTE2Ljg3NS0wLjg4OUwtMTYuODc1LTAuODg5eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K')
-            | &nbsp;
-            img(src='data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNzBweCIgaGVpZ2h0PSI3MHB4IiB2aWV3Qm94PSItMjcgLTI3IDcwIDcwIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC0yNyAtMjcgNzAgNzAiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHRpdGxlPnNxdWlycmVsPC90aXRsZT4NCjxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPg0KPGcgaWQ9Ik9jdGljb25zIj4NCgk8ZyBpZD0ic3F1aXJyZWwiPg0KCQk8cGF0aCBpZD0iU2hhcGUiIGQ9Ik0yNS4zNDgtMjMuMTExYy05LjgyMiwwLTE3Ljc3OCw1LjgyMy0xNy43NzgsMTIuOTc4YzAsOC42MjIsMi4yMjMsMTMuNDY4LDAsMjcuMDIyDQoJCQljMC0yMC0xMi4zMTEtMjguMTc3LTE3Ljc3OC0yOC4xNzdjMC4yMjItMi4yMjItMi4xMzMtMi45MzQtMi4xMzMtMi45MzRzLTAuOTc5LDAuNDg4LTEuMzMyLDEuNTFjLTEuMi0xLjM3Ni0yLjQ4OS0xLjItMi40ODktMS4yDQoJCQlsLTAuNTgsMi41NzhjMCwwLTguMTMxLDIuODQ1LTguMjIsMTQuMzEyYzAuODg3LDEuNDY3LDYuNzk5LDIuNjY1LDEwLjk3NywxLjkxYzMuOTU2LDAuMjIzLDIuOTc3LDMuNTExLDIuMDksNC40MDENCgkJCUMtMTUuNjMxLDEzLjAyMS0xOS4wOTcsOC0yMy41NDIsOGMtNC40NDUsMC00LjQ0NSw0LjQ0NCwwLDQuNDQ0YzQuNDQ0LDAsNC40NDQsNC40NDQsMTMuMzMzLDQuNDQ0DQoJCQljLTEzLjczMiw1LjMzNCwwLDE3Ljc3OCwwLDE3Ljc3OGgtNC40NDRjLTQuNDQ0LDAtNC40NDQsNC40NDQtNC40NDQsNC40NDRINy41NjljMTMuMzMzLDAsMjIuMjIzLTQuNDQ0LDIyLjIyMy0xNS40MjENCgkJCWMwLTMuNzgtMS45MS03Ljk1Ni00LjQ0NC0xMS4yNDZjLTQuOTMxLTYuNDg5LDEuMDIzLTExLjkxMiw0LjQ0NC04Ljg4OUMzMy4yMTIsNi41NzksNDMuMTI1LDgsNDMuMTI1LTUuMzMzDQoJCQlDNDMuMTI1LTE1LjE1NSwzNS4xNjktMjMuMTExLDI1LjM0OC0yMy4xMTFMMjUuMzQ4LTIzLjExMXogTS0xNi44NzUtMC44ODljLTEuMjQ0LDAtMi4yMjItMC45NzctMi4yMjItMi4yMjMNCgkJCWMwLTEuMjQ2LDAuOTc5LTIuMjIyLDIuMjIyLTIuMjIyczIuMjIyLDAuOTc3LDIuMjIyLDIuMjIyQy0xNC42NTMtMS44NjUtMTUuNjMxLTAuODg5LTE2Ljg3NS0wLjg4OUwtMTYuODc1LTAuODg5eiIvPg0KCTwvZz4NCjwvZz4NCjwvc3ZnPg0K', style="width: 40px; height: 40px;", alt='squirrel')
-        p Images are SVG files that are part of GitHub's <a href="https://octicons.github.com/", target="_blank">Octicon</a> icon set
-    tr
-      td.label
-        label(for='notific8Theme') Theme
-      td
-        select#notific8Theme(name='notific8Theme')
-          option(value='legacy', selected='') legacy (default)
-          option(value='chicchat') ChicChat
-          option(value='atomic') Atomic
-          option(value='materialish') Materialish
-    tr
-      td.label
-        label(for="notific8Height") Notification height
-      td
-        input(type="number", min="90", max="500", value="90")#notific8Height
-    tr
-      td.label
-        label(for='notific8Color') Color
-      td
-        select#notific8Color(name='notific8Color')
-          option(value='teal', data-for='legacy', data-selected='') teal
-          option(value='amethyst', data-for='legacy') amethyst
-          option(value='ruby', data-for='legacy') ruby
-          option(value='tangerine', data-for='legacy') tangerine
-          option(value='lemon', data-for='legacy') lemon
-          option(value='lime', data-for='legacy') lime
-          option(value='ebony', data-for='legacy') ebony
-          option(value='smoke', data-for='legacy') smoke
-          option(value='cobalt', data-for='chicchat', data-selected='') cobalt
-          option(value='ruby', data-for='chicchat') ruby
-          option(value='honey', data-for='chicchat') honey
-          option(value='shamrock', data-for='chicchat') shamrock
-          option(value='amethyst', data-for='atomic', data-selected='') amethyst
-          option(value='cerulean', data-for='atomic') cerulean
-          option(value='mustard', data-for='atomic') mustard
-          option(value='onyx', data-for='atomic') onyx
-          option(value='pear', data-for='atomic') pear
-          option(value='tomato', data-for='atomic') tomato
-          option(value='twilight', data-for='materialish', data-selected='') twilight
-          option(value='lilrobot', data-for='materialish') lilrobot
-          option(value='cupcake', data-for='materialish') cupcake
-          option(value='eclair', data-for='materialish') eclair
-          option(value='honeycomb', data-for='materialish') honeycomb
-          option(value='lollypop', data-for='materialish') lollypop
-          option(value='marshmallow', data-for='materialish') marshmallow
-          option(value='strawberry', data-for='materialish') strawberry
-          option(value='creamsicle', data-for='materialish') creamsicle
-          option(value='purple-rain', data-for='materialish') purple-rain
-          option(value='peafowl', data-for='materialish') peafowl
-    tr
-      td.label Position
-      td
-        select#notific8horizontal(name='notific8horizontal')
-          option(value='top') top (default)
-          option(value='bottom') bottom
-        | &nbsp;
-        select#notific8vertical(name='notific8vertical')
-          option(value='right') right (default)
-          option(value='left') left
-    tr
-      td.label CSS Namespace
-      td
-        b notific8
-        |  (default, only value available for the demo)
-        input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
-    tr
-      td.label Use jQuery?
-      td
-        label
-          input(name="notific8UseJquery", type="radio", value="0", checked="Checked")
-          |  JavaScript&nbsp;
-        label
-          input(name="notific8UseJquery", type="radio", value="1")
-          |  jQuery
-    tr
-      td.label
-      td
-        button#notific8Test(type='button', name='notific8Test') Test notific8
+  input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
+  label(for='notific8Queue')  Queue notifications
+div
+  em Note: queuing is set for the plug-in settings and not passed in as an option on the notification.
+br
+
+block upperConfig
+
+.input-field
+  label(for='notific8Text') Notification text
+  input#notific8Text(type='text', name='notific8Text', size='50', maxlength='300', value='Test notific8 notification')
+
+p
+  input#notific8Sticky(type='checkbox', name='notific8Sticky')
+  label(for='notific8Sticky')  Sticky (if checked, setting life below will be ignored)
+br
+
+.input-field
+  select#notific8Life(name='notific8Life')
+    option(value='1000') 1 second
+    option(value='5000') 5 seconds
+    option(value='10000', selected='selected') 10 seconds (default)
+    option(value='25000') 25 seconds
+    option(value='60000') 60 seconds
+  label(for='notific8Life') Life
+
+.input-field
+  label(for='notific8Heading') Heading (optional)
+  input#notific8Heading(type='text', name='notific8Heading', size='50', maxlength='50')
+  br
+div
+  em (not available in Materialish theme)
+
+.input-field
+  label(for='notific8CloseText') Close text (optional)
+  input#notific8CloseText(type='text', name='notific8CloseText', size='50', maxlength='50')
+
+block lowerConfig
+
+.input-field
+  select#notific8Theme(name='notific8Theme')
+    option(value='legacy', selected='') legacy (default)
+    option(value='chicchat') ChicChat
+    option(value='atomic') Atomic
+    option(value='materialish') Materialish
+  label(for='notific8Theme') Theme
+
+.input-field
+  select#notific8Color(name='notific8Color')
+    option(value='teal', data-for='legacy', data-selected='') teal
+    option(value='amethyst', data-for='legacy') amethyst
+    option(value='ruby', data-for='legacy') ruby
+    option(value='tangerine', data-for='legacy') tangerine
+    option(value='lemon', data-for='legacy') lemon
+    option(value='lime', data-for='legacy') lime
+    option(value='ebony', data-for='legacy') ebony
+    option(value='smoke', data-for='legacy') smoke
+    option(value='cobalt', data-for='chicchat', data-selected='') cobalt
+    option(value='ruby', data-for='chicchat') ruby
+    option(value='honey', data-for='chicchat') honey
+    option(value='shamrock', data-for='chicchat') shamrock
+    option(value='amethyst', data-for='atomic', data-selected='') amethyst
+    option(value='cerulean', data-for='atomic') cerulean
+    option(value='mustard', data-for='atomic') mustard
+    option(value='onyx', data-for='atomic') onyx
+    option(value='pear', data-for='atomic') pear
+    option(value='tomato', data-for='atomic') tomato
+    option(value='twilight', data-for='materialish', data-selected='') twilight
+    option(value='lilrobot', data-for='materialish') lilrobot
+    option(value='cupcake', data-for='materialish') cupcake
+    option(value='eclair', data-for='materialish') eclair
+    option(value='honeycomb', data-for='materialish') honeycomb
+    option(value='lollypop', data-for='materialish') lollypop
+    option(value='marshmallow', data-for='materialish') marshmallow
+    option(value='strawberry', data-for='materialish') strawberry
+    option(value='creamsicle', data-for='materialish') creamsicle
+    option(value='purple-rain', data-for='materialish') purple-rain
+    option(value='peafowl', data-for='materialish') peafowl
+  label(for='notific8Color') Color
+
+.input-field
+  label(for="notific8Height") Notification height
+  input(type="number", min="90", max="500", value="90")#notific8Height
+
+.row
+  .col.s12.m6
+    .input-field
+      select#notific8horizontal(name='notific8horizontal')
+        option(value='top') top (default)
+        option(value='bottom') bottom
+      label(for='notific8horizontal') Notification horizontal edge
+
+  .col.s12.m6
+    .input-field
+      select#notific8vertical(name='notific8vertical')
+        option(value='right') right (default)
+        option(value='left') left
+      label(for='notific8vertical') Notification vertical edge
+
+.input-field
+  label(for='notific8Namespace') CSS Namespace
+  input#notific8Namespace(type='hidden', name='notific8Namespace', value='notific8')
+  input#notific8NamespaceText(type='text', name='notific8Namespace', value='notific8', disabled='disable')
+div
+  em (default, only value available for the demo)
+
+p
+  input(name="notific8UseJquery", type="radio", value="0", checked="Checked")#notific8UseJavascript
+  label(for='notific8UseJavascript')  JavaScript&nbsp;
+  input(name="notific8UseJquery", type="radio", value="1")#notific8UseJquery
+  label(for='notific8UseJquery')  jQuery
+
+.input-field
+  button.btn#notific8Test(type='button', name='notific8Test') Test notific8
