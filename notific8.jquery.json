@@ -10,7 +10,7 @@
     "themable",
     "alert"
   ],
-  "version": "4.0.0",
+  "version": "4.0.1",
   "author": {
     "name": "Will Steinmetz",
     "url": "http://willsteinmetz.net/"
@@ -27,10 +27,10 @@
       "url": "http://opensource.org/licenses/BSD-3-Clause"
     }
   ],
-  "bugs": "https://github.com/ralivue/notific8/issues",
-  "homepage": "https://github.com/ralivue/notific8",
-  "docs": "https://github.com/ralivue/notific8",
-  "download": "https://github.com/ralivue/notific8/tags",
+  "bugs": "https://github.com/willsteinmetz/notific8/issues",
+  "homepage": "https://github.com/willsteinmetz/notific8",
+  "docs": "https://github.com/willsteinmetz/notific8",
+  "download": "https://github.com/willsteinmetz/notific8/tags",
   "dependencies": {
     "jquery": ">=1.4"
   }
