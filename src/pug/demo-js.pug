@@ -93,6 +93,12 @@ script(type='text/javascript').
           }
         }
       }
+      if ($heading.val()) {
+        params.heading = $heading.val();
+      }
+      if ($closeText.val()) {
+        params.closeText = $closeText.val();
+      }
       // show notification
       if ($('input[name="notific8UseJquery"]:checked').val() == "1") {
         $.notific8(text, params);
