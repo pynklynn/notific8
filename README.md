@@ -1,6 +1,6 @@
 # notific8
 
-[![Build Status](https://travis-ci.org/ralivue/notific8.svg?branch=master)](https://travis-ci.org/ralivue/notific8)
+[![Build Status](https://travis-ci.org/willsteinmetz/notific8.svg?branch=master)](https://travis-ci.org/willsteinmetz/notific8)
 
 Notific8 is a notification JavaScript plug-in. Notific8 has built in themes that each come with a set of built in colors. The plug-in is designed to be easy to create new themes and colors for. The plug-in was born from a want for a simply designed yet modern and stylish notification system that was easily customizable.
 
