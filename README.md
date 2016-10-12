@@ -52,7 +52,7 @@ Currently supported and testing:
 * IE 10+
 * Edge
 
-While not tested, this plug-in should work on Opera versions released after the rewrite on the blink rendering engine.
+While not tested, this plug-in should work on Opera versions released after the rewrite on the blink rendering engine. As the adoption rate of Windows 10 increases, compatibility with Internet Explorer will be reconsidered periodically.
 
 ### Browser version support
 
@@ -74,6 +74,15 @@ All planned features can be viewed by visiting the [issues page](https://github.
 The styles are written in Scss format and available in the `src/sass` directory. Development will continue in Scss only - please do not open issues or pull requests to change the default style format. Contributions containing styles must be in Scss format.
 
 The grunt task `alternate-styles` will create versions of the code in Sass format, Less, and Stylus. These files are not generated automatically.
+
+## Bug Reports
+
+When filing a bug report, please be sure to include enough detail to reproduce the error including (but not limited to):
+
+* Browsers where the bug occurs including version numbers
+* Frameworks being used on site (both JavaScript and CSS) that is making use of notific8
+* Screenshots for visual bugs
+* Console output including line numbers
 
 ## Contributing
 
