@@ -75,18 +75,9 @@ The styles are written in Scss format and available in the `src/sass` directory.
 
 The grunt task `alternate-styles` will create versions of the code in Sass format, Less, and Stylus. These files are not generated automatically.
 
-## Bug Reports
+## Want to help?
 
-When filing a bug report, please be sure to include enough detail to reproduce the error including (but not limited to):
-
-* Browsers where the bug occurs including version numbers
-* Frameworks being used on site (both JavaScript and CSS) that is making use of notific8
-* Screenshots for visual bugs
-* Console output including line numbers
-
-## Contributing
-
-When contributing, create a feature branch from `develop`. Ensure that all existing tests are still passing. If appropriate, be sure to write new tests. When a pull request is created, ensure that it is requested to go into `develop` and not `master`.
+Want to file a bug report or contribute some code? That's most awesome! Please view the guidelines for [contributing](http://github.com/willsteinmetz/notific8/blob/master/CONTRIBUTING.md) before opening an issue or pull request.
 
 ## License
 

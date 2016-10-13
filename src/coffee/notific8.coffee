@@ -119,6 +119,7 @@ notific8 = do ->
     container.innerHTML += notification
     setTimeout (->
       notification = document.getElementById(notificationId)
+      return unless notification
       notification.style.height = "#{data.settings.height}px"
     ), 1
 
@@ -130,6 +131,7 @@ notific8 = do ->
     # slide the message onto the screen
     setTimeout (->
       notification = document.getElementById(notificationId)
+      return unless notification
       notification.className += " open"
       notific8DataStore[notificationId] = data
       unless data.settings.sticky
