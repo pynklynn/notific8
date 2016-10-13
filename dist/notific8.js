@@ -105,6 +105,9 @@ notific8 = (function() {
     container.innerHTML += notification;
     setTimeout((function() {
       notification = document.getElementById(notificationId);
+      if (!notification) {
+        return;
+      }
       return notification.style.height = "" + data.settings.height + "px";
     }), 1);
     if (data.settings.onCreate.length) {
@@ -116,6 +119,9 @@ notific8 = (function() {
     }
     setTimeout((function() {
       notification = document.getElementById(notificationId);
+      if (!notification) {
+        return;
+      }
       notification.className += " open";
       notific8DataStore[notificationId] = data;
       if (!data.settings.sticky) {

@@ -52,7 +52,7 @@ Currently supported and testing:
 * IE 10+
 * Edge
 
-While not tested, this plug-in should work on Opera versions released after the rewrite on the blink rendering engine.
+While not tested, this plug-in should work on Opera versions released after the rewrite on the blink rendering engine. As the adoption rate of Windows 10 increases, compatibility with Internet Explorer will be reconsidered periodically.
 
 ### Browser version support
 
@@ -75,9 +75,9 @@ The styles are written in Scss format and available in the `src/sass` directory.
 
 The grunt task `alternate-styles` will create versions of the code in Sass format, Less, and Stylus. These files are not generated automatically.
 
-## Contributing
+## Want to help?
 
-When contributing, create a feature branch from `develop`. Ensure that all existing tests are still passing. If appropriate, be sure to write new tests. When a pull request is created, ensure that it is requested to go into `develop` and not `master`.
+Want to file a bug report or contribute some code? That's most awesome! Please view the guidelines for [contributing](http://github.com/willsteinmetz/notific8/blob/master/CONTRIBUTING.md) before opening an issue or pull request.
 
 ## License
 

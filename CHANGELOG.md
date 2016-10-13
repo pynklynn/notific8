@@ -2,6 +2,16 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 4.0.4
+
+- Updated README to include note about issues
+- Added CONTRIBUTING.md file with notes for contributing
+- Fixed issue #71 that could cause 'Uncaught TypeError: Cannot read property 'style' of null' when removing a notification too soon after creating it
+
+## 4.0.0
+
+- Removed deprecated code
+
 ## 3.7.0
 
 - Moved all modules into their own repos - see the readme for links
