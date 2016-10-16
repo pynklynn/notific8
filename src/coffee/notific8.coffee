@@ -36,7 +36,7 @@ notific8 = do ->
     afterContainer: []
     insideContainer: []
 
-  # queue for keeping track of animations
+  # queue for keeping track of notifications
   window.notific8Queue = []
 
   # data store for notifications since session storage can't handle functions
@@ -413,6 +413,22 @@ notific8 = do ->
     console.error message
     throw new Error(message)
 
+  ###
+  Generates a unique name to assocate with the notification
+  Solution found as an answer on StackOverflow:
+  http://stackoverflow.com/a/2117523/5870787
+  @return string
+  ###
+  generateUniqueId = ->
+    'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+      /[xy]/g
+      (c) ->
+        r = Math.random() * 16|0
+        v = if c == 'x' then r else (r&0x3|0x8)
+
+        return v.toString(16)
+    )
+
   # return the public method
   (message, options) ->
     unless typeof message is "string"
@@ -453,9 +469,11 @@ notific8 = do ->
 
         notificationClass = "#{options.namespace}-notification"
         num = document.getElementsByClassName(notificationClass).length
+        unless options.notificationName
+          options.notificationName = generateUniqueId()
         if !notific8Defaults.queue || num == 0
           init message, options
         else
           notific8Queue.push { message, options }
 
-        return
+        return options.notificationName

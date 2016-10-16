@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, generateUniqueId, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
   window.notific8Defaults = {
     life: 10000,
     theme: 'legacy',
@@ -424,6 +424,21 @@ notific8 = (function() {
     console.error(message);
     throw new Error(message);
   };
+
+  /*
+  Generates a unique name to assocate with the notification
+  Solution found as an answer on StackOverflow:
+  http://stackoverflow.com/a/2117523/5870787
+  @return string
+   */
+  generateUniqueId = function() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r, v;
+      r = Math.random() * 16 | 0;
+      v = c === 'x' ? r : r & 0x3 | 0x8;
+      return v.toString(16);
+    });
+  };
   return function(message, options) {
     var callbackMethod, containerClass, defaultOptions, moduleName, notificationClass, num, position;
     if (typeof message !== "string") {
@@ -459,6 +474,9 @@ notific8 = (function() {
         checkEdges(options);
         notificationClass = "" + options.namespace + "-notification";
         num = document.getElementsByClassName(notificationClass).length;
+        if (!options.notificationName) {
+          options.notificationName = generateUniqueId();
+        }
         if (!notific8Defaults.queue || num === 0) {
           init(message, options);
         } else {
@@ -467,6 +485,7 @@ notific8 = (function() {
             options: options
           });
         }
+        return options.notificationName;
     }
   };
 })();
