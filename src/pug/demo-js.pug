@@ -85,7 +85,8 @@ script(type='text/javascript').
       },
         text = $('#notific8Text').val(),
         $heading = $('#notific8Heading'),
-        $closeText = $('#notific8CloseText');
+        $closeText = $('#notific8CloseText'),
+        $notificationName = $('#notific8QueueName');
       if (window.notific8ModuleOptions) {
         for (var i in window.notific8ModuleOptions) {
           if (window.notific8ModuleOptions.hasOwnProperty(i)) {
@@ -99,12 +100,16 @@ script(type='text/javascript').
       if ($closeText.val()) {
         params.closeText = $closeText.val();
       }
+      if ($notificationName.val()) {
+        params.notificationName = $notificationName.val();
+      }
       // show notification
       if ($('input[name="notific8UseJquery"]:checked').val() == "1") {
         $.notific8(text, params);
       } else {
         notific8(text, params);
       }
+      $('#notific8Queue').prop('disabled', true);
     });
     $('#notific8Theme').trigger('change');
     $('#notific8CloseAllTheme').trigger('change');

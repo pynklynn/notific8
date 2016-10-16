@@ -13,11 +13,18 @@ p
 
 hr
 
-p
-  input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
-  label(for='notific8Queue')  Queue notifications
-div
-  em Note: queuing is set for the plug-in settings and not passed in as an option on the notification.
+fieldset
+  legend Notification Queue
+  p
+    input#notific8Queue(type='checkbox', name='notific8Queue', value='1')
+    label(for='notific8Queue')  Queue notifications
+  div
+    em Note: queuing is set for the plug-in settings and not passed in as an option on the notification. It will only be process in the first notification call.
+  .input-field
+    label(for='notific8QueueName') Notification Name
+    input#notific8QueueName(type='text', name='notific8QueueName', size='50', maxlength='50')
+  div
+    em The notification name is only used when notifications are queued. If no name is passed in, the generated HTML ID is used. The notification name is returned when a notification is created or queued.
 br
 
 block upperConfig
