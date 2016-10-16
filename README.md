@@ -33,7 +33,10 @@ An interactive demo page can be found in the root directory. It can be launched 
 * Ability to set custom CSS namespace if necessary
 * Events for init, create, and close
 * Modular system to make it easier for developers to extend the plug-in
+* Ability to add a unique name to notifications or allow the plug-in to generate one
+    * All notification names are returned when a notification is shown (when no queue) or queued
 * Ability to queue notifications
+    * Queued notifications can be removed by name
 
 ## Officially Supported modules
 
