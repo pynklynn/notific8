@@ -161,6 +161,9 @@ notific8 = (function() {
     if (data.settings.sticky) {
       classes.push("sticky");
     }
+    if (data.settings.heading != null) {
+      classes.push("has-heading");
+    }
     return classes;
   };
 

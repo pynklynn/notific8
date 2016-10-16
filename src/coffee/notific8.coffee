@@ -188,6 +188,8 @@ notific8 = do ->
 
     if data.settings.sticky
       classes.push "sticky"
+    if data.settings.heading?
+      classes.push "has-heading"
 
     classes
   # end region: generators
