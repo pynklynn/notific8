@@ -2,6 +2,13 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 4.1.0
+
+- Added the ability to name a notification
+    - If a name isn't given, one is automatically generated
+- Added the ability to remove a notification from the queue by name
+- Added the heading to the Materialish theme
+
 ## 4.0.4
 
 - Updated README to include note about issues
