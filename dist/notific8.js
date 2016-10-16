@@ -84,7 +84,7 @@ notific8 = (function() {
     body.dataset.notific8s = num;
     notificationId = "" + namespace + "-notification-" + num;
     generatedNotificationClasses = notificationClasses(data);
-    notification = "<div class=\"$notificationClasses\" id=\"" + notificationId + "\">";
+    notification = "<div\n  class=\"$notificationClasses\"\n  id=\"" + notificationId + "\"\n  data-name=\"" + data.settings.notificationName + "\">";
     _ref = notific8RegisteredModules.beforeContent;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       module = _ref[_i];

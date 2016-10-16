@@ -85,7 +85,10 @@ notific8 = do ->
     notificationId = "#{namespace}-notification-#{num}"
     generatedNotificationClasses = notificationClasses(data)
     notification = """
-<div class="$notificationClasses" id="#{notificationId}">
+<div
+  class="$notificationClasses"
+  id="#{notificationId}"
+  data-name="#{data.settings.notificationName}">
 """
     for module in notific8RegisteredModules.beforeContent
       moduleResults = module.callbackMethod(data)
