@@ -36,7 +36,7 @@ notific8 = do ->
     afterContainer: []
     insideContainer: []
 
-  # queue for keeping track of animations
+  # queue for keeping track of notifications
   window.notific8Queue = []
 
   # data store for notifications since session storage can't handle functions
@@ -85,7 +85,10 @@ notific8 = do ->
     notificationId = "#{namespace}-notification-#{num}"
     generatedNotificationClasses = notificationClasses(data)
     notification = """
-<div class="$notificationClasses" id="#{notificationId}">
+<div
+  class="$notificationClasses"
+  id="#{notificationId}"
+  data-name="#{data.settings.notificationName}">
 """
     for module in notific8RegisteredModules.beforeContent
       moduleResults = module.callbackMethod(data)
@@ -185,6 +188,8 @@ notific8 = do ->
 
     if data.settings.sticky
       classes.push "sticky"
+    if data.settings.heading?
+      classes.push "has-heading"
 
     classes
   # end region: generators
@@ -247,6 +252,20 @@ notific8 = do ->
     while notifications.length > 0
       notifications[0].parentNode.removeChild notifications[0]
     return
+
+  ###
+  Remove the given notification names from the queue
+  @param string/array notificationNames
+  ###
+  removeFromQueue = (notificationNames) ->
+    unless typeof notificationNames == "object"
+      notificationNames = [ notificationNames ]
+
+    for notification in notificationNames
+      for key, item of notific8Queue
+        if notific8Queue[key].options.notificationName == notification
+          delete notific8Queue[key]
+          break
 
   ###
   Set up the z-index
@@ -413,6 +432,22 @@ notific8 = do ->
     console.error message
     throw new Error(message)
 
+  ###
+  Generates a unique name to assocate with the notification
+  Solution found as an answer on StackOverflow:
+  http://stackoverflow.com/a/2117523/5870787
+  @return string
+  ###
+  generateUniqueId = ->
+    'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(
+      /[xy]/g
+      (c) ->
+        r = Math.random() * 16|0
+        v = if c == 'x' then r else (r&0x3|0x8)
+
+        return v.toString(16)
+    )
+
   # return the public method
   (message, options) ->
     unless typeof message is "string"
@@ -431,6 +466,8 @@ notific8 = do ->
         return destroy(options)
       when "remove"
         return remove(options)
+      when "removeFromQueue"
+        return removeFromQueue(options)
       when "registerModule"
         unless arguments.length == 5
           errorMessage "Registering a module requires the parameters \
@@ -453,9 +490,11 @@ notific8 = do ->
 
         notificationClass = "#{options.namespace}-notification"
         num = document.getElementsByClassName(notificationClass).length
+        unless options.notificationName
+          options.notificationName = generateUniqueId()
         if !notific8Defaults.queue || num == 0
           init message, options
         else
           notific8Queue.push { message, options }
 
-        return
+        return options.notificationName

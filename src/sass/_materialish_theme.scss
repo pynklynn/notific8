@@ -28,6 +28,11 @@
     margin: 1em em(84px, 14px) 1em em(24px, 14px);
   }
 
+  &.has-heading .notific8-message {
+    margin-bottom: .25em;
+    margin-top: .25em;
+  }
+
   .notific8-close {
     line-height: em(20px, 14px);
     margin-top: em(-10px, 14px);
@@ -36,7 +41,10 @@
   }
 
   .notific8-heading {
-    display: none;
+    font-size: em(11px, 14px);
+    font-weight: 100;
+    margin-left: em(24px, 11px);
+    margin-top: em(5px, 11px);
   }
 
   &.sticky {

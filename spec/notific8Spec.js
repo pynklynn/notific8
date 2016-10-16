@@ -40,6 +40,26 @@ describe('notific8 methods', function() {
     notific8('registerModule', 'testModule', 'afterContent', {}, function() {});
     expect(notific8RegisteredModules.afterContent.length).toEqual(1);
   });
+
+  it('should remove the named notifications from the queue', function() {
+    notific8('configure', { queue: true });
+    notific8('test1', { notificationName: 'test1', sticky: true });
+    notific8('test2', { notificationName: 'test2', sticky: true });
+    notific8('test3', { notificationName: 'test3', sticky: true });
+    notific8('test4', { notificationName: 'test4', sticky: true });
+    notific8('test5', { notificationName: 'test5', sticky: true });
+    expect(notific8Queue.length).toEqual(4);
+    notific8('removeFromQueue', 'test2');
+    setTimeout(function() {
+      expect(notific8Queue.length).toEqual(3);
+    }, 100);
+    setTimeout(function() {
+      notific8('removeFromQueue', [ 'test4', 'test5' ]);
+    }, 200);
+    setTimeout(function() {
+      expect(notific8Queue.length).toEqual(1);
+    }, 300);
+  });
 });
 
 resetOptions = function() {

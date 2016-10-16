@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, generateUniqueId, getContainer, init, initContainers, notificationClasses, registerModule, remove, removeFromQueue, zindex;
   window.notific8Defaults = {
     life: 10000,
     theme: 'legacy',
@@ -84,7 +84,7 @@ notific8 = (function() {
     body.dataset.notific8s = num;
     notificationId = "" + namespace + "-notification-" + num;
     generatedNotificationClasses = notificationClasses(data);
-    notification = "<div class=\"$notificationClasses\" id=\"" + notificationId + "\">";
+    notification = "<div\n  class=\"$notificationClasses\"\n  id=\"" + notificationId + "\"\n  data-name=\"" + data.settings.notificationName + "\">";
     _ref = notific8RegisteredModules.beforeContent;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       module = _ref[_i];
@@ -161,6 +161,9 @@ notific8 = (function() {
     if (data.settings.sticky) {
       classes.push("sticky");
     }
+    if (data.settings.heading != null) {
+      classes.push("has-heading");
+    }
     return classes;
   };
 
@@ -233,6 +236,36 @@ notific8 = (function() {
     while (notifications.length > 0) {
       notifications[0].parentNode.removeChild(notifications[0]);
     }
+  };
+
+  /*
+  Remove the given notification names from the queue
+  @param string/array notificationNames
+   */
+  removeFromQueue = function(notificationNames) {
+    var item, key, notification, _i, _len, _results;
+    if (typeof notificationNames !== "object") {
+      notificationNames = [notificationNames];
+    }
+    _results = [];
+    for (_i = 0, _len = notificationNames.length; _i < _len; _i++) {
+      notification = notificationNames[_i];
+      _results.push((function() {
+        var _results1;
+        _results1 = [];
+        for (key in notific8Queue) {
+          item = notific8Queue[key];
+          if (notific8Queue[key].options.notificationName === notification) {
+            delete notific8Queue[key];
+            break;
+          } else {
+            _results1.push(void 0);
+          }
+        }
+        return _results1;
+      })());
+    }
+    return _results;
   };
 
   /*
@@ -424,6 +457,21 @@ notific8 = (function() {
     console.error(message);
     throw new Error(message);
   };
+
+  /*
+  Generates a unique name to assocate with the notification
+  Solution found as an answer on StackOverflow:
+  http://stackoverflow.com/a/2117523/5870787
+  @return string
+   */
+  generateUniqueId = function() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r, v;
+      r = Math.random() * 16 | 0;
+      v = c === 'x' ? r : r & 0x3 | 0x8;
+      return v.toString(16);
+    });
+  };
   return function(message, options) {
     var callbackMethod, containerClass, defaultOptions, moduleName, notificationClass, num, position;
     if (typeof message !== "string") {
@@ -445,6 +493,8 @@ notific8 = (function() {
         return destroy(options);
       case "remove":
         return remove(options);
+      case "removeFromQueue":
+        return removeFromQueue(options);
       case "registerModule":
         if (arguments.length !== 5) {
           errorMessage("Registering a module requires the parameters moduleName, position, defaultOptions, and callbackMethod.");
@@ -459,6 +509,9 @@ notific8 = (function() {
         checkEdges(options);
         notificationClass = "" + options.namespace + "-notification";
         num = document.getElementsByClassName(notificationClass).length;
+        if (!options.notificationName) {
+          options.notificationName = generateUniqueId();
+        }
         if (!notific8Defaults.queue || num === 0) {
           init(message, options);
         } else {
@@ -467,6 +520,7 @@ notific8 = (function() {
             options: options
           });
         }
+        return options.notificationName;
     }
   };
 })();

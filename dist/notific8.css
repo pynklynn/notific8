@@ -218,13 +218,19 @@
   transition: height .1s ease-in-out; }
   .notific8-notification.family-materialish .notific8-message {
     margin: 1em 6em 1em 1.7142857143em; }
+  .notific8-notification.family-materialish.has-heading .notific8-message {
+    margin-bottom: .25em;
+    margin-top: .25em; }
   .notific8-notification.family-materialish .notific8-close {
     line-height: 1.4285714286em;
     margin-top: -0.7142857143em;
     right: 1.7142857143em;
     top: 50%; }
   .notific8-notification.family-materialish .notific8-heading {
-    display: none; }
+    font-size: 0.7857142857em;
+    font-weight: 100;
+    margin-left: 2.1818181818em;
+    margin-top: 0.4545454545em; }
   .notific8-notification.family-materialish.sticky .notific8-message {
     line-height: 1.4285714286em;
     margin-right: 8.5714285714em; }
