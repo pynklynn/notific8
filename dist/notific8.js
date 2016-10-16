@@ -9,7 +9,7 @@ http://opensource.org/licenses/BSD-3-Clause
 var notific8;
 
 notific8 = (function() {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, generateUniqueId, getContainer, init, initContainers, notificationClasses, registerModule, remove, zindex;
+  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, generateUniqueId, getContainer, init, initContainers, notificationClasses, registerModule, remove, removeFromQueue, zindex;
   window.notific8Defaults = {
     life: 10000,
     theme: 'legacy',
@@ -233,6 +233,36 @@ notific8 = (function() {
     while (notifications.length > 0) {
       notifications[0].parentNode.removeChild(notifications[0]);
     }
+  };
+
+  /*
+  Remove the given notification names from the queue
+  @param string/array notificationNames
+   */
+  removeFromQueue = function(notificationNames) {
+    var item, key, notification, _i, _len, _results;
+    if (typeof notificationNames !== "object") {
+      notificationNames = [notificationNames];
+    }
+    _results = [];
+    for (_i = 0, _len = notificationNames.length; _i < _len; _i++) {
+      notification = notificationNames[_i];
+      _results.push((function() {
+        var _results1;
+        _results1 = [];
+        for (key in notific8Queue) {
+          item = notific8Queue[key];
+          if (notific8Queue[key].options.notificationName === notification) {
+            delete notific8Queue[key];
+            break;
+          } else {
+            _results1.push(void 0);
+          }
+        }
+        return _results1;
+      })());
+    }
+    return _results;
   };
 
   /*
@@ -460,6 +490,8 @@ notific8 = (function() {
         return destroy(options);
       case "remove":
         return remove(options);
+      case "removeFromQueue":
+        return removeFromQueue(options);
       case "registerModule":
         if (arguments.length !== 5) {
           errorMessage("Registering a module requires the parameters moduleName, position, defaultOptions, and callbackMethod.");

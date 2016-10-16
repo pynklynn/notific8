@@ -252,6 +252,20 @@ notific8 = do ->
     return
 
   ###
+  Remove the given notification names from the queue
+  @param string/array notificationNames
+  ###
+  removeFromQueue = (notificationNames) ->
+    unless typeof notificationNames == "object"
+      notificationNames = [ notificationNames ]
+
+    for notification in notificationNames
+      for key, item of notific8Queue
+        if notific8Queue[key].options.notificationName == notification
+          delete notific8Queue[key]
+          break
+
+  ###
   Set up the z-index
   @param int z
   ###
@@ -450,6 +464,8 @@ notific8 = do ->
         return destroy(options)
       when "remove"
         return remove(options)
+      when "removeFromQueue"
+        return removeFromQueue(options)
       when "registerModule"
         unless arguments.length == 5
           errorMessage "Registering a module requires the parameters \
