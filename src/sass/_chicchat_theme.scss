@@ -1,16 +1,17 @@
-/**
- * @author Will Steinmetz
- *
- * ChicChat family themes for the notific8 JavaScript plug-in
- *
- * Copyright (c)2013-2016, Will Steinmetz
- * Licensed under the BSD license.
- * http://opensource.org/licenses/BSD-3-Clause
- */
+//
+// @author Will Steinmetz
+//
+// ChicChat family themes for the notific8 JavaScript plug-in
+//
+// Copyright (c)2013-2016, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
+//
 
 // mixins
 @mixin notific8_chicchat_theme($name, $color) {
-  .#{$notific8-ns}-notification.family-chicchat.#{$name} {
+  .#{$notific8-ns}-notification.family-chicchat.#{$name},//deprecated
+  .#{$notific8-ns}-notification.chicchat.#{$name} {
     border-color: $color;
 
     .#{$notific8-ns}-close {
@@ -19,57 +20,54 @@
   }
 }
 
-.#{$notific8-ns}-notification {
-  &.family-chicchat {
-    background-color: #fff;
-    border-radius: .25em;
-    border-style: solid;
-    border-width: 1px;
-    color: #121212;
-    font-size: em(14px);
-    height: 0;
-    padding: 1.125em;
-    transition: all .15s ease-in-out;
-    width: em(500px);
+.#{$notific8-ns}-notification.family-chicchat,//deprecated
+.#{$notific8-ns}-notification.chicchat {
+  background-color: #fff;
+  border-radius: .25em;
+  border-style: solid;
+  border-width: 1px;
+  color: #121212;
+  font-size: em(14px);
+  height: 0;
+  padding: 1.125em;
+  transition: all .15s ease-in-out;
+  width: em(500px);
 
-    .#{$notific8-ns}-heading {
-      font-weight: bold;
-      margin-bottom: .5em;
+  .#{$notific8-ns}-heading {
+    font-weight: bold;
+    margin-bottom: .5em;
+  }
+
+  .#{$notific8-ns}-close {
+    top: .325em;
+
+    &.sticky {
+      font-size: .75em;
+      text-decoration: underline;
     }
+  }
 
-    .#{$notific8-ns}-close {
-      top: .325em;
-
-      &.sticky {
-        font-size: .75em;
-        text-decoration: underline;
-      }
-    }
-
-    &.open {
-      height: em(120px);
-    }
+  &.open {
+    height: em(120px);
   }
 }
 
-.right {
-  .#{$notific8-ns}-notification.family-chicchat {
-    border-left-width: em(45px, 14px);
-    margin-right: .625em;
+.right .#{$notific8-ns}-notification.family-chicchat,//deprecated
+.right .#{$notific8-ns}-notification.chicchat {
+  border-left-width: em(45px, 14px);
+  margin-right: .625em;
 
-    .#{$notific8-ns}-close {
-      right: .5em;
-    }
+  .#{$notific8-ns}-close {
+    right: .5em;
   }
 }
 
-.left {
-  .#{$notific8-ns}-notification.family-chicchat {
-    border-right-width: em(45px, 14px);
-    margin-left: .625em;
+.left .#{$notific8-ns}-notification.family-chicchat,//deprecated
+.left .#{$notific8-ns}-notification.chicchat {
+  border-right-width: em(45px, 14px);
+  margin-left: .625em;
 
-    .#{$notific8-ns}-close {
-      left: .5em;
-    }
+  .#{$notific8-ns}-close {
+    left: .5em;
   }
 }

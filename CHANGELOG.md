@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 4.2.0
+
+- Working to remove the word __family__ from theme selectors
+
 ## 4.1.0
 
 - Added the ability to name a notification

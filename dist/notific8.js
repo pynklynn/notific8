@@ -157,7 +157,7 @@ notific8 = (function() {
   };
   notificationClasses = function(data) {
     var classes;
-    classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.theme, data.settings.color];
+    classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.theme, data.settings.theme, data.settings.color];
     if (data.settings.sticky) {
       classes.push("sticky");
     }

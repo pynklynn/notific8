@@ -183,6 +183,7 @@ notific8 = do ->
     classes = [
       "#{data.settings.namespace}-notification"
       "family-#{data.settings.theme}"
+      data.settings.theme
       data.settings.color
     ]
 
