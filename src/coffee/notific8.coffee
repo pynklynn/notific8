@@ -10,7 +10,7 @@ notific8 = do ->
   # set up the defaults
   window.notific8Defaults =
     life: 10000
-    theme: 'legacy'
+    theme: 'ocho'
     color: 'teal'
     sticky: false
     verticalEdge: 'right'
@@ -25,7 +25,7 @@ notific8 = do ->
     height:
       atomic: 70
       chicchat: 120
-      legacy: 90
+      ocho: 90
       materialish: 48
 
   # modules registered with the system
@@ -180,6 +180,10 @@ notific8 = do ->
 """
 
   notificationClasses = (data) ->
+    # @TODO deprecated check for legacy theme renamed ocho
+    # will be removed in 5.0.0
+    if data.settings.theme.toLowerCase() == 'legacy'
+      data.settings.theme = 'ocho'
     classes = [
       "#{data.settings.namespace}-notification"
       "family-#{data.settings.theme}"

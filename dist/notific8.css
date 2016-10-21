@@ -70,7 +70,8 @@
   margin-bottom: 0.625em; }
 
 .notific8-notification.family-legacy,
-.notific8-notification.legacy {
+.notific8-notification.legacy,
+.notific8-notification.ocho {
   border-style: solid;
   border-width: 2px;
   color: #fff;
@@ -80,20 +81,24 @@
   transition: all .2s ease-in-out;
   width: 24.375em; }
   .notific8-notification.family-legacy .notific8-heading,
-  .notific8-notification.legacy .notific8-heading {
+  .notific8-notification.legacy .notific8-heading,
+  .notific8-notification.ocho .notific8-heading {
     font-weight: bold;
     margin-bottom: 0.3125em; }
   .notific8-notification.family-legacy .notific8-message,
-  .notific8-notification.legacy .notific8-message {
+  .notific8-notification.legacy .notific8-message,
+  .notific8-notification.ocho .notific8-message {
     font-size: 0.875em; }
   .notific8-notification.family-legacy .notific8-close,
-  .notific8-notification.legacy .notific8-close {
+  .notific8-notification.legacy .notific8-close,
+  .notific8-notification.ocho .notific8-close {
     font-size: 1.25em;
     line-height: 1em;
     padding: 0 .25em;
     top: 0; }
     .notific8-notification.family-legacy .notific8-close.sticky,
-    .notific8-notification.legacy .notific8-close.sticky {
+    .notific8-notification.legacy .notific8-close.sticky,
+    .notific8-notification.ocho .notific8-close.sticky {
       font-size: 0.625em;
       line-height: 1.4em;
       padding: 0.2em 0;
@@ -101,33 +106,41 @@
       width: 8.9em; }
 
 .left .notific8-notification.family-legacy,
-.left .notific8-notification.legacy {
+.left .notific8-notification.legacy,
+.left .notific8-notification.ocho {
   margin-left: -24.375em;
   padding-left: 2.0625em; }
   .left .notific8-notification.family-legacy.open,
-  .left .notific8-notification.legacy.open {
+  .left .notific8-notification.legacy.open,
+  .left .notific8-notification.ocho.open {
     margin-left: 0; }
   .left .notific8-notification.family-legacy .notific8-close,
-  .left .notific8-notification.legacy .notific8-close {
+  .left .notific8-notification.legacy .notific8-close,
+  .left .notific8-notification.ocho .notific8-close {
     left: -2px; }
     .left .notific8-notification.family-legacy .notific8-close.sticky,
-    .left .notific8-notification.legacy .notific8-close.sticky {
+    .left .notific8-notification.legacy .notific8-close.sticky,
+    .left .notific8-notification.ocho .notific8-close.sticky {
       left: -3.7em;
       top: 3.4em;
       transform: rotate(270deg); }
 
 .right .notific8-notification.family-legacy,
-.right .notific8-notification.legacy {
+.right .notific8-notification.legacy,
+.right .notific8-notification.ocho {
   margin-right: -24.375em;
   padding-right: 2.0625em; }
   .right .notific8-notification.family-legacy.open,
-  .right .notific8-notification.legacy.open {
+  .right .notific8-notification.legacy.open,
+  .right .notific8-notification.ocho.open {
     margin-right: 0; }
   .right .notific8-notification.family-legacy .notific8-close,
-  .right .notific8-notification.legacy .notific8-close {
+  .right .notific8-notification.legacy .notific8-close,
+  .right .notific8-notification.ocho .notific8-close {
     right: -2px; }
     .right .notific8-notification.family-legacy .notific8-close.sticky,
-    .right .notific8-notification.legacy .notific8-close.sticky {
+    .right .notific8-notification.legacy .notific8-close.sticky,
+    .right .notific8-notification.ocho .notific8-close.sticky {
       right: -3.7em;
       top: 3.4em;
       transform: rotate(90deg); }
@@ -265,82 +278,98 @@
       text-decoration: underline; }
 
 .notific8-notification.family-legacy.teal,
-.notific8-notification.legacy.teal {
+.notific8-notification.legacy.teal,
+.notific8-notification.ocho.teal {
   background-color: #069;
   border-color: #09c;
   color: #fff; }
   .notific8-notification.family-legacy.teal .notific8-close,
-  .notific8-notification.legacy.teal .notific8-close {
+  .notific8-notification.legacy.teal .notific8-close,
+  .notific8-notification.ocho.teal .notific8-close {
     background-color: #09c;
     color: #fff; }
 
 .notific8-notification.family-legacy.amethyst,
-.notific8-notification.legacy.amethyst {
+.notific8-notification.legacy.amethyst,
+.notific8-notification.ocho.amethyst {
   background-color: #5D2D77;
   border-color: #915faa;
   color: #fff; }
   .notific8-notification.family-legacy.amethyst .notific8-close,
-  .notific8-notification.legacy.amethyst .notific8-close {
+  .notific8-notification.legacy.amethyst .notific8-close,
+  .notific8-notification.ocho.amethyst .notific8-close {
     background-color: #915faa;
     color: #fff; }
 
 .notific8-notification.family-legacy.ruby,
-.notific8-notification.legacy.ruby {
+.notific8-notification.legacy.ruby,
+.notific8-notification.ocho.ruby {
   background-color: #a10;
   border-color: #d10;
   color: #fff; }
   .notific8-notification.family-legacy.ruby .notific8-close,
-  .notific8-notification.legacy.ruby .notific8-close {
+  .notific8-notification.legacy.ruby .notific8-close,
+  .notific8-notification.ocho.ruby .notific8-close {
     background-color: #d10;
     color: #fff; }
 
 .notific8-notification.family-legacy.tangerine,
-.notific8-notification.legacy.tangerine {
+.notific8-notification.legacy.tangerine,
+.notific8-notification.ocho.tangerine {
   background-color: #e88f00;
   border-color: #ffb23f;
   color: #fff; }
   .notific8-notification.family-legacy.tangerine .notific8-close,
-  .notific8-notification.legacy.tangerine .notific8-close {
+  .notific8-notification.legacy.tangerine .notific8-close,
+  .notific8-notification.ocho.tangerine .notific8-close {
     background-color: #ffb23f;
     color: #fff; }
 
 .notific8-notification.family-legacy.lemon,
-.notific8-notification.legacy.lemon {
+.notific8-notification.legacy.lemon,
+.notific8-notification.ocho.lemon {
   background-color: #ffcc00;
   border-color: #ffde00;
   color: #333; }
   .notific8-notification.family-legacy.lemon .notific8-close,
-  .notific8-notification.legacy.lemon .notific8-close {
+  .notific8-notification.legacy.lemon .notific8-close,
+  .notific8-notification.ocho.lemon .notific8-close {
     background-color: #ffde00;
     color: #333; }
 
 .notific8-notification.family-legacy.lime,
-.notific8-notification.legacy.lime {
+.notific8-notification.legacy.lime,
+.notific8-notification.ocho.lime {
   background-color: #32b512;
   border-color: #38d315;
   color: #fff; }
   .notific8-notification.family-legacy.lime .notific8-close,
-  .notific8-notification.legacy.lime .notific8-close {
+  .notific8-notification.legacy.lime .notific8-close,
+  .notific8-notification.ocho.lime .notific8-close {
     background-color: #38d315;
     color: #fff; }
 
 .notific8-notification.family-legacy.ebony,
-.notific8-notification.legacy.ebony {
+.notific8-notification.legacy.ebony,
+.notific8-notification.ocho.ebony {
   background-color: #121212;
   border-color: #666;
   color: #fff; }
   .notific8-notification.family-legacy.ebony .notific8-close,
-  .notific8-notification.legacy.ebony .notific8-close {
+  .notific8-notification.legacy.ebony .notific8-close,
+  .notific8-notification.ocho.ebony .notific8-close {
     background-color: #666;
     color: #fff; }
 
 .notific8-notification.family-legacy.smoke,
-.notific8-notification.legacy.smoke {
+.notific8-notification.legacy.smoke,
+.notific8-notification.ocho.smoke {
   background-color: #efefef;
   border-color: #ababab;
   color: #333; }
   .notific8-notification.family-legacy.smoke .notific8-close,
-  .notific8-notification.legacy.smoke .notific8-close {
+  .notific8-notification.legacy.smoke .notific8-close,
+  .notific8-notification.ocho.smoke .notific8-close {
     background-color: #ababab;
     color: #fff; }
 

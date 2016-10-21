@@ -5,6 +5,9 @@ The change log was created with version 2.0. For changes, please see the commit 
 ## 4.2.0
 
 - Working to remove the word __family__ from theme selectors
+    - References to __family__ will be removed for 5.0.0
+- Renaming Legacy theme to Ocho
+    - References to __legacy__ will be removed for 5.0.0
 
 ## 4.1.0
 

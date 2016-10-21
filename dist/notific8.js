@@ -12,7 +12,7 @@ notific8 = (function() {
   var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, generateUniqueId, getContainer, init, initContainers, notificationClasses, registerModule, remove, removeFromQueue, zindex;
   window.notific8Defaults = {
     life: 10000,
-    theme: 'legacy',
+    theme: 'ocho',
     color: 'teal',
     sticky: false,
     verticalEdge: 'right',
@@ -27,7 +27,7 @@ notific8 = (function() {
     height: {
       atomic: 70,
       chicchat: 120,
-      legacy: 90,
+      ocho: 90,
       materialish: 48
     }
   };
@@ -157,6 +157,9 @@ notific8 = (function() {
   };
   notificationClasses = function(data) {
     var classes;
+    if (data.settings.theme.toLowerCase() === 'legacy') {
+      data.settings.theme = 'ocho';
+    }
     classes = ["" + data.settings.namespace + "-notification", "family-" + data.settings.theme, data.settings.theme, data.settings.color];
     if (data.settings.sticky) {
       classes.push("sticky");
