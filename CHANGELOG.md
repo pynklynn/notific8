@@ -8,6 +8,7 @@ The change log was created with version 2.0. For changes, please see the commit 
     - References to __family__ will be removed for 5.0.0
 - Renaming Legacy theme to Ocho
     - References to __legacy__ will be removed for 5.0.0
+- Swapped from Coffeescript to ES2015!
 
 ## 4.1.0
 
