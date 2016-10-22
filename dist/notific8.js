@@ -2,17 +2,37 @@
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-/*
-@author Will Steinmetz
-notific8 Javascript plug-in
-Copyright (c)2013-2016, Will Steinmetz
-Licensed under the BSD license.
-http://opensource.org/licenses/BSD-3-Clause
+/**
+ * @author Will Steinmetz
+ * notific8 Javascript plug-in
+ * Copyright (c)2013-2016, Will Steinmetz
+ * Licensed under the BSD license.
+ * http://opensource.org/licenses/BSD-3-Clause
  */
 var notific8;
 
 notific8 = function () {
-  var buildClose, buildHeading, buildMessage, buildNotification, checkEdges, closeNotification, configure, destroy, errorMessage, generateUniqueId, getContainer, init, initContainers, notificationClasses, registerModule, remove, removeFromQueue, zindex;
+  // var buildClose,
+  // buildHeading,
+  // buildMessage,
+  var buildNotification = void 0,
+
+  // checkEdges,
+  // closeNotification,
+  // configure,
+  destroy = void 0,
+
+  // errorMessage,
+  // generateUniqueId,
+  // getContainer,
+  initContainers = void 0,
+
+  // notificationClasses,
+  // registerModule,
+  // remove,
+  removeFromQueue = void 0; //,
+  // zindex;
+
   window.notific8Defaults = {
     life: 10000,
     theme: 'ocho',
@@ -47,9 +67,9 @@ notific8 = function () {
     onContainerCreate: []
   };
 
-  /*
-  Destroy the notification
-  @param object options
+  /**
+   * Destroy the notification
+   * @param object options
    */
   destroy = function destroy(options) {
     var body, containerClass, containers;
@@ -61,21 +81,85 @@ notific8 = function () {
     }
   };
 
-  /*
-  Get the container that the notification is inside of
-  @params object data
-  @return object
+  /**
+   * Get the container that the notification is inside of
+   * @params {Object} data object defining the settings of the notification
+   * @return {Object}      html DOM object for the container
    */
-  getContainer = function getContainer(data) {
-    var containerClass, horizontalEdge, namespace, ref, verticalEdge;
-    ref = data.settings, verticalEdge = ref.verticalEdge, horizontalEdge = ref.horizontalEdge, namespace = ref.namespace;
-    containerClass = "." + namespace + "-container." + verticalEdge + "." + horizontalEdge;
+  function getContainer(data) {
+    var _data$settings = data.settings;
+    var verticalEdge = _data$settings.verticalEdge;
+    var horizontalEdge = _data$settings.horizontalEdge;
+    var namespace = _data$settings.namespace;
+    var containerClass = '.' + namespace + '-container.' + verticalEdge + '.' + horizontalEdge;
+
     return document.querySelector(containerClass);
   };
 
-  /*
-  Build the notification and add it to the screen's stack
-  @param object data
+  /**
+   * Build the notification close HTML
+   * @param  {Object} data object defining the settings of the notification
+   * @return {String}      HTML for rendering the close button of the notification
+   */
+  function buildClose(data) {
+    var closeClasses = [data.settings.namespace + '-close'],
+        closeText = '&times;';
+
+    if (data.settings.sticky) {
+      closeClasses.push('sticky');
+      closeText = data.settings.closeText;
+    }
+
+    return '<div class="' + closeClasses.join(' ') + '">' + closeText + '</div>';
+  };
+
+  /**
+   * Build the HTML for the heading if it is there
+   * @param  {Object} data object defining the settings of the notification
+   * @return {String}      HTML for the heading part of the notification
+   */
+  function buildHeading(data) {
+    if (data.settings.heading !== null && typeof data.settings.heading === "string") {
+      return '<div class="' + data.settings.namespace + '-heading">' + data.settings.heading + '</div>';
+    } else {
+      return "";
+    }
+  };
+
+  /**
+   * Build the message HTML for the notification
+   * @param  {Object} data object defining the settings of the notification
+   * @return {String}      HTML for the message part of the notification
+   */
+  function buildMessage(data) {
+    return '<div class="' + data.settings.namespace + '-message">' + data.message + '</div>';
+  };
+
+  /**
+   * Build the list of notification classes to apply
+   * @param  {Object} data object defining the settings of the notification
+   * @return {Array}       array of classes to assign to the notification
+   */
+  function notificationClasses(data) {
+    var classes = void 0;
+
+    // @TODO remove for 5.0.0 - deprecated
+    if (data.settings.theme.toLowerCase() === 'legacy') {
+      data.settings.theme = 'ocho';
+    }
+    classes = [data.settings.namespace + '-notification', 'family-' + data.settings.theme, data.settings.theme, data.settings.color];
+    if (data.settings.sticky) {
+      classes.push("sticky");
+    }
+    if (data.settings.heading !== null) {
+      classes.push("has-heading");
+    }
+    return classes;
+  };
+
+  /**
+   * Build the notification and add it to the screen's stack
+   * @param object data
    */
   buildNotification = function buildNotification(data) {
     var body, container, generatedNotificationClasses, i, j, k, len, len1, len2, module, moduleResults, namespace, notification, notificationId, num, onCreate, ref, ref1, ref2;
@@ -136,68 +220,45 @@ notific8 = function () {
       }
     }, 5);
   };
-  buildClose = function buildClose(data) {
-    var close;
-    close = "<div class=\"" + data.settings.namespace + "-close";
-    if (data.settings.sticky) {
-      close += ' sticky">';
-      close += "" + data.settings.closeText;
-    } else {
-      close += '">&times;';
-    }
-    close += '</div>';
-    return close;
-  };
-  buildHeading = function buildHeading(data) {
-    if (data.settings.heading != null && typeof data.settings.heading === "string") {
-      return "<div class=\"" + data.settings.namespace + "-heading\">\n" + data.settings.heading + "\n</div>";
-    } else {
-      return "";
-    }
-  };
-  buildMessage = function buildMessage(data) {
-    return "<div class=\"" + data.settings.namespace + "-message\">\n" + data.message + "\n</div>";
-  };
-  notificationClasses = function notificationClasses(data) {
-    var classes;
-    if (data.settings.theme.toLowerCase() === 'legacy') {
-      data.settings.theme = 'ocho';
-    }
-    classes = [data.settings.namespace + "-notification", "family-" + data.settings.theme, data.settings.theme, data.settings.color];
-    if (data.settings.sticky) {
-      classes.push("sticky");
-    }
-    if (data.settings.heading != null) {
-      classes.push("has-heading");
-    }
-    return classes;
-  };
 
-  /*
-  Close the given notification
-  @param string notificationId
-  @param object data
+  /**
+   * Close the given notification
+   * @param string notificationId
+   * @param object data
    */
-  closeNotification = function closeNotification(notificationId, data) {
-    var n;
-    n = document.getElementById(notificationId);
-    if (n == null) {
+  function closeNotification(notificationId, data) {
+    var n = document.getElementById(notificationId);
+
+    // if something happened to cause the notifcation to be removed from the
+    // screen before this method is called (such as with remove), we need to
+    // return so that there isn't an error in the console
+    if (n === null) {
       return;
     }
+
     n.className = n.className.replace('open', '');
     n.style.height = 0;
+
+    // it's possible this method may be called in quick succession so we need
+    // to isolate scope to this notification
     (function (notification, notificationId) {
-      var container, i, len, next, onClose, ref;
-      container = getContainer(data);
+      var container = getContainer(data),
+          next = void 0,
+          onClose = void 0,
+          onCloseCallbacks = void 0;
+
       container.removeChild(notification);
       delete notific8DataStore[notificationId];
+
       if (data.settings.onClose.length) {
-        ref = data.settings.onClose;
-        for (i = 0, len = ref.length; i < len; i++) {
-          onClose = ref[i];
+        onCloseCallbacks = data.settings.onClose;
+        for (var i = 0, len = onCloseCallbacks.length; i < len; i++) {
+          onClose = onCloseCallbacks[i];
           onClose(notification, data);
         }
       }
+
+      // call the next notification in the queue
       if (notific8Defaults.queue && notific8Queue.length) {
         next = notific8Queue.shift();
         notific8(next.message, next.options);
@@ -205,12 +266,14 @@ notific8 = function () {
     })(n, notificationId);
   };
 
-  /*
-  Set up the configuration settings
-  @param object options
+  /**
+   * Set up the configuration settings
+   * @param object options
    */
-  configure = function configure(options) {
-    var key, option;
+  function configure(options) {
+    var key = void 0,
+        option = void 0;
+
     for (key in options) {
       option = options[key];
       if (['onInit', 'onCreate', 'onClose'].indexOf(key) > -1) {
@@ -231,22 +294,22 @@ notific8 = function () {
     }
   };
 
-  /*
-  Remove the currently visible notifications from the screen
-  @param object options
+  /**
+   * Remove the currently visible notifications from the screen
+   * @param object options
    */
-  remove = function remove(options) {
-    var notificationClass, notifications;
-    notificationClass = options.namespace + "-notification";
-    notifications = document.getElementsByClassName(notificationClass);
+  function remove(options) {
+    var notificationClass = options.namespace + '-notification',
+        notifications = document.getElementsByClassName(notificationClass);
+
     while (notifications.length > 0) {
       notifications[0].parentNode.removeChild(notifications[0]);
     }
   };
 
-  /*
-  Remove the given notification names from the queue
-  @param string/array notificationNames
+  /**
+   * Remove the given notification names from the queue
+   * @param string/array notificationNames
    */
   removeFromQueue = function removeFromQueue(notificationNames) {
     var i, item, key, len, notification, results;
@@ -274,21 +337,21 @@ notific8 = function () {
     return results;
   };
 
-  /*
-  Set up the z-index
-  @param int z
+  /**
+   * Set up the z-index
+   * @param int z
    */
-  zindex = function zindex(z) {
+  function zindex(z) {
     notific8Defaults.zindex = z;
   };
 
-  /*
-  Initialize the plug-in
-  @param string message
-  @param object options
-  @return object
+  /**
+   * Initialize the plug-in
+   * @param string message
+   * @param object options
+   * @return object
    */
-  init = function init(message, options) {
+  function init(message, options) {
     var arrayKeys, data, handler, i, j, k, key, len, len1, len2, onInit, option, prop, propertiesToRemove, ref;
     data = {
       settings: {},
@@ -337,9 +400,9 @@ notific8 = function () {
     }
   };
 
-  /*
-  Initialize the containers for the plug-in
-  @param object options
+  /**
+   * Initialize the containers for the plug-in
+   * @param object options
    */
   initContainers = function initContainers(options) {
     var body, container, containerClasses, containerStr, handler, i, j, k, len, len1, len2, len3, len4, len5, m, modifiedContainerStr, module, moduleResults, o, p, position, ref, ref1, ref2, ref3, ref4, ref5, tempDoc;
@@ -401,35 +464,49 @@ notific8 = function () {
     }
   };
 
-  /*
-  Make sure that the edge options are ok
-  @param object options
+  /**
+   * Make sure that the edge options are ok
+   * @param object options
    */
-  checkEdges = function checkEdges(options) {
+  function checkEdges(options) {
     options.verticalEdge = (options.verticalEdge || notific8Defaults.verticalEdge).toLowerCase();
     options.horizontalEdge = (options.horizontalEdge || notific8Defaults.horizontalEdge).toLowerCase();
-    if (options.verticalEdge !== "right" && options.verticalEdge !== "left") {
+    if (['left', 'right'].indexOf(options.verticalEdge) === -1) {
       options.verticalEdge = notific8Defaults.verticalEdge;
     }
-    if (options.horizontalEdge !== "top" && options.horizontalEdge !== "bottom") {
+    if (['top', 'bottom'].indexOf(options.horizontalEdge) === -1) {
       options.horizontalEdge = notific8Defaults.horizontalEdge;
     }
   };
 
-  /*
-  Register a module for use in the system
-  @param string moduleName
-  @param string position
-  @param object defaultOptions
-  @param function callbackMethod
+  /**
+   * Displays an error message to the console and throws an error
+   * @param string message
    */
-  registerModule = function registerModule(moduleName, position, defaultOptions, callbackMethod) {
-    var defaultValue, i, len, module, option, ref, validPositions;
-    if (!(typeof moduleName === 'string' && moduleName.trim() !== '')) {
+  function errorMessage(message) {
+    console.error(message);
+    throw new Error(message);
+  };
+
+  /**
+   * Register a module for use in the system
+   * @param string moduleName
+   * @param string position
+   * @param object defaultOptions
+   * @param function callbackMethod
+   */
+  function registerModule(moduleName, position, defaultOptions, callbackMethod) {
+    var defaultValue = void 0,
+        module = void 0,
+        option = void 0,
+        modulesRegisteredToPosition = void 0,
+        validPositions = void 0;
+
+    if (typeof moduleName !== 'string' || moduleName.trim() === '') {
       errorMessage("moduleName should be a string");
     }
     validPositions = ['beforeContent', 'afterContent', 'beforeContainer', 'afterContainer', 'insideContainer'];
-    if (!(typeof position === 'string' && validPositions.indexOf(position) > -1)) {
+    if (typeof position !== 'string' || validPositions.indexOf(position) > -1) {
       errorMessage("position should be a string");
     }
     if ((typeof defaultOptions === 'undefined' ? 'undefined' : _typeof(defaultOptions)) !== 'object') {
@@ -438,11 +515,11 @@ notific8 = function () {
     if (typeof callbackMethod !== 'function') {
       errorMessage("callbackMethod should be an function");
     }
-    ref = notific8RegisteredModules[position];
-    for (i = 0, len = ref.length; i < len; i++) {
-      module = ref[i];
+    modulesRegisteredToPosition = notific8RegisteredModules[position];
+    for (var i = 0, len = modulesRegisteredToPosition.length; i < len; i++) {
+      module = modulesRegisteredToPosition[i];
       if (module.moduleName === moduleName) {
-        errorMessage("Module '" + moduleName + "' has already been registered");
+        errorMessage('Module \'' + moduleName + '\' has already been registered');
       }
     }
     for (option in defaultOptions) {
@@ -455,40 +532,42 @@ notific8 = function () {
     });
   };
 
-  /*
-  Displays an error message to the console and throws an error
-  @param string message
+  /**
+   * Generates a unique name to assocate with the notification
+   * Solution found as an answer on StackOverflow:
+   * http://stackoverflow.com/a/2117523/5870787
+   * @return string
    */
-  errorMessage = function errorMessage(message) {
-    console.error(message);
-    throw new Error(message);
-  };
-
-  /*
-  Generates a unique name to assocate with the notification
-  Solution found as an answer on StackOverflow:
-  http://stackoverflow.com/a/2117523/5870787
-  @return string
-   */
-  generateUniqueId = function generateUniqueId() {
+  function generateUniqueId() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r, v;
+      var r = void 0,
+          v = void 0;
       r = Math.random() * 16 | 0;
       v = c === 'x' ? r : r & 0x3 | 0x8;
+
       return v.toString(16);
     });
   };
+
   return function (message, options) {
-    var callbackMethod, containerClass, defaultOptions, moduleName, notificationClass, num, position;
+    var callbackMethod = void 0,
+        containerClass = void 0,
+        defaultOptions = void 0,
+        moduleName = void 0,
+        notificationClass = void 0,
+        num = void 0,
+        position = void 0;
+
     if (typeof message !== "string") {
       errorMessage("notific8 takes a string message as the first parameter");
     }
-    if (options == null) {
+    if (options === undefined) {
       options = {};
     }
-    if (!(options.hasOwnProperty('namespace') || message === 'zindex')) {
+    if ((typeof options === 'undefined' ? 'undefined' : _typeof(options)) === 'object' && !options.hasOwnProperty('namespace') && message !== 'zindex') {
       options.namespace = 'notific8';
     }
+
     switch (message) {
       case "configure":
       case "config":
@@ -505,7 +584,15 @@ notific8 = function () {
         if (arguments.length !== 5) {
           errorMessage("Registering a module requires the parameters moduleName, position, defaultOptions, and callbackMethod.");
         }
-        message = arguments[0], moduleName = arguments[1], position = arguments[2], defaultOptions = arguments[3], callbackMethod = arguments[4];
+        message = arguments[0];
+
+        var _arguments = Array.prototype.slice.call(arguments);
+
+        moduleName = _arguments[1];
+        position = _arguments[2];
+        defaultOptions = _arguments[3];
+        callbackMethod = _arguments[4];
+
         return registerModule(moduleName, position, defaultOptions, callbackMethod);
       default:
         containerClass = options.namespace + "-container";
