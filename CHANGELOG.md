@@ -9,6 +9,7 @@ The change log was created with version 2.0. For changes, please see the commit 
 - Renaming Legacy theme to Ocho
     - References to __legacy__ will be removed for 5.0.0
 - Swapped from Coffeescript to ES2015!
+- Refactored build process to reduce the number of steps in the build process and speed it up
 
 ## 4.1.0
 

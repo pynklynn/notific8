@@ -13,7 +13,7 @@ module.exports = {
       sourceMap: true
     },
     files: {
-      'build/css/notific8.css': 'src/sass/notific8.scss'
+      'dist/notific8.css': 'src/sass/notific8.scss'
     }
   }
 };

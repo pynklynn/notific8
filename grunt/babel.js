@@ -7,14 +7,14 @@
  */
 
 module.exports = {
-  compile: {
-    options: {
-      sourceMap: true,
-      bare: true
-    },
+  options: {
+    sourceMap: true,
+    presets: [ 'es2015' ]
+  },
+  build: {
     files: {
-      'build/js/jquery.notific8.js': 'src/coffee/jquery.notific8.coffee',
-      'build/js/notific8.js': 'src/coffee/notific8.coffee'
+      'dist/jquery.notific8.js': 'src/js/jquery.notific8.js',
+      'dist/notific8.js': 'src/js/notific8.js'
     }
   }
 };

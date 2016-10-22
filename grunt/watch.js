@@ -14,27 +14,20 @@ module.exports = {
     ],
     tasks: [
       'clean:css',
-      'sass',
-      'cssmin',
-      'copy:css',
-      'replace:maps'
+      'sass'
     ],
     options: {
       spawn: false
     }
   },
-  coffee: {
+  js: {
     files: [
-      'src/coffee/*.coffee',
-      'modules/**/coffee/*.coffee'
+      'src/js/*.js'
     ],
     tasks: [
       'clean:js',
       'clean:karma',
-      'coffee',
-      'uglify',
-      'copy:js',
-      'replace:maps',
+      'babel:build',
       'karma:unit'
     ],
     options: {
@@ -52,13 +45,11 @@ module.exports = {
   },
   spec: {
     files: [
-      'spec/**/*.coffee',
-      'modules/**/spec/*.coffee'
+      'spec/**/*.js'
     ],
     tasks: [
       'clean:spec',
       'clean:karma',
-      'coffee:spec',
       'karma:unit'
     ],
     options: {

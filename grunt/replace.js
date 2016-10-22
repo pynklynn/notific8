@@ -14,13 +14,5 @@ module.exports = {
       from: /~"@notific8-ns"/g,
       to: '@{notific8-ns}'
     }]
-  },
-  maps: {
-    src: [ 'dist/**/*.map' ],
-    overwrite: true,
-    replacements: [{
-      from: /..\/..\/..\/..\//g,
-      to: '../../../'
-    }]
   }
 };

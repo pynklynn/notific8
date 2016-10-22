@@ -16,16 +16,14 @@ module.exports = {
   'build': [
     'pug',
     'sass',
-    'cssmin',
-    'coffee',
-    'uglify',
-    'copy:code',
-    'replace:maps'
+    'babel:build'
   ],
   'release': [
     'clean:release',
     'build',
-    'update_json'
+    'update_json',
+    'uglify',
+    'cssmin'
   ],
   'alternate-styles': [
     // for some reason this is not running properly when called from here and
