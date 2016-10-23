@@ -12,27 +12,6 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var notific8;
 
 notific8 = function () {
-  // var buildClose,
-  // buildHeading,
-  // buildMessage,
-  var buildNotification = void 0,
-
-  // checkEdges,
-  // closeNotification,
-  // configure,
-  destroy = void 0,
-
-  // errorMessage,
-  // generateUniqueId,
-  // getContainer,
-  initContainers = void 0,
-
-  // notificationClasses,
-  // registerModule,
-  // remove,
-  removeFromQueue = void 0; //,
-  // zindex;
-
   window.notific8Defaults = {
     life: 10000,
     theme: 'ocho',
@@ -69,17 +48,17 @@ notific8 = function () {
 
   /**
    * Destroy the notification
-   * @param object options
+   * @param {Object} options object defining the settings of the notification
    */
-  destroy = function destroy(options) {
-    var body, containerClass, containers;
-    containerClass = options.namespace + "-container";
-    containers = document.getElementsByClassName(containerClass);
-    body = document.getElementsByTagName('body')[0];
+  function destroy(options) {
+    var containerClass = options.namespace + "-container",
+        containers = document.getElementsByClassName(containerClass),
+        body = document.getElementsByTagName('body')[0];
+
     while (containers.length > 0) {
       body.removeChild(containers[0]);
     }
-  };
+  }
 
   /**
    * Get the container that the notification is inside of
@@ -94,7 +73,7 @@ notific8 = function () {
     var containerClass = '.' + namespace + '-container.' + verticalEdge + '.' + horizontalEdge;
 
     return document.querySelector(containerClass);
-  };
+  }
 
   /**
    * Build the notification close HTML
@@ -111,7 +90,7 @@ notific8 = function () {
     }
 
     return '<div class="' + closeClasses.join(' ') + '">' + closeText + '</div>';
-  };
+  }
 
   /**
    * Build the HTML for the heading if it is there
@@ -124,7 +103,7 @@ notific8 = function () {
     } else {
       return "";
     }
-  };
+  }
 
   /**
    * Build the message HTML for the notification
@@ -133,7 +112,7 @@ notific8 = function () {
    */
   function buildMessage(data) {
     return '<div class="' + data.settings.namespace + '-message">' + data.message + '</div>';
-  };
+  }
 
   /**
    * Build the list of notification classes to apply
@@ -155,60 +134,65 @@ notific8 = function () {
       classes.push("has-heading");
     }
     return classes;
-  };
+  }
 
   /**
    * Build the notification and add it to the screen's stack
-   * @param object data
+   * @param {Object} data object defining the data for building the notification
    */
-  buildNotification = function buildNotification(data) {
-    var body, container, generatedNotificationClasses, i, j, k, len, len1, len2, module, moduleResults, namespace, notification, notificationId, num, onCreate, ref, ref1, ref2;
-    body = document.getElementsByTagName('body')[0];
-    num = Number(body.dataset.notific8s);
-    namespace = data.settings.namespace;
-    container = getContainer(data);
-    num += 1;
+  function buildNotification(data) {
+    var body = document.getElementsByTagName('body')[0],
+        container = getContainer(data),
+        generatedNotificationClasses = notificationClasses(data),
+        namespace = data.settings.namespace,
+        num = Number(body.dataset.notific8s) + 1,
+        notificationId = namespace + '-notification-' + num,
+        notification = '<div class="$notificationClasses" id="' + notificationId + '" data-name="' + data.settings.notificationName + '">',
+        beforeContentModules = notific8RegisteredModules.beforeContent,
+        afterContentModules = notific8RegisteredModules.afterContent,
+        onCreateHandlers = data.settings.onCreate;
+
     body.dataset.notific8s = num;
-    notificationId = namespace + "-notification-" + num;
-    generatedNotificationClasses = notificationClasses(data);
-    notification = "<div\n  class=\"$notificationClasses\"\n  id=\"" + notificationId + "\"\n  data-name=\"" + data.settings.notificationName + "\">";
-    ref = notific8RegisteredModules.beforeContent;
-    for (i = 0, len = ref.length; i < len; i++) {
-      module = ref[i];
-      moduleResults = module.callbackMethod(data);
+    for (var i = 0, len = beforeContentModules.length; i < len; i++) {
+      var module = beforeContentModules[i],
+          moduleResults = module.callbackMethod(data);
       generatedNotificationClasses = generatedNotificationClasses.concat(moduleResults.classes);
       notification += moduleResults.html;
     }
-    notification += "<div class=\"" + data.settings.namespace + "-message-content\">\n  " + buildHeading(data) + "\n  " + buildMessage(data) + "\n</div>";
-    ref1 = notific8RegisteredModules.afterContent;
-    for (j = 0, len1 = ref1.length; j < len1; j++) {
-      module = ref1[j];
-      moduleResults = module.callbackMethod(data);
-      generatedNotificationClasses = generatedNotificationClasses.concat(moduleResults.classes);
-      notification += moduleResults.html;
+
+    notification += '<div class="' + data.settings.namespace + '-message-content">' + buildHeading(data) + ' ' + buildMessage(data) + '</div>';
+    for (var j = 0, _len = afterContentModules.length; j < _len; j++) {
+      var _module = afterContentModules[j],
+          _moduleResults = _module.callbackMethod(data);
+      generatedNotificationClasses = generatedNotificationClasses.concat(_moduleResults.classes);
+      notification += _moduleResults.html;
     }
-    notification += buildClose(data) + "\n</div>";
+
+    notification += buildClose(data) + '</div>';
     notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
     setTimeout(function () {
-      notification = document.getElementById(notificationId);
+      var notification = document.getElementById(notificationId);
       if (!notification) {
         return;
       }
       return notification.style.height = data.settings.height + "px";
     }, 1);
-    if (data.settings.onCreate.length) {
-      ref2 = data.settings.onCreate;
-      for (k = 0, len2 = ref2.length; k < len2; k++) {
-        onCreate = ref2[k];
-        onCreate(notification, data);
-      }
+
+    for (var k = 0, _len2 = onCreateHandlers.length; k < _len2; k++) {
+      var onCreate = onCreateHandlers[k];
+      onCreate(notification, data);
     }
+
     setTimeout(function () {
-      notification = document.getElementById(notificationId);
+      var notification = document.getElementById(notificationId);
+
+      // need to make sure the notification still exists in case of a race
+      // condition due to calling the remove method several times
       if (!notification) {
         return;
       }
+
       notification.className += " open";
       notific8DataStore[notificationId] = data;
       if (!data.settings.sticky) {
@@ -223,8 +207,8 @@ notific8 = function () {
 
   /**
    * Close the given notification
-   * @param string notificationId
-   * @param object data
+   * @param {String} notificationId notification ID to look for
+   * @param {Object} data           object defining the data for building the notification
    */
   function closeNotification(notificationId, data) {
     var n = document.getElementById(notificationId);
@@ -264,11 +248,11 @@ notific8 = function () {
         notific8(next.message, next.options);
       }
     })(n, notificationId);
-  };
+  }
 
   /**
    * Set up the configuration settings
-   * @param object options
+   * @param {Object} options object containing the options to configure as the defaults
    */
   function configure(options) {
     var key = void 0,
@@ -292,11 +276,11 @@ notific8 = function () {
         notific8Defaults[key] = option;
       }
     }
-  };
+  }
 
   /**
    * Remove the currently visible notifications from the screen
-   * @param object options
+   * @param {Object} options object containing the options that build the notifications
    */
   function remove(options) {
     var notificationClass = options.namespace + '-notification',
@@ -305,59 +289,56 @@ notific8 = function () {
     while (notifications.length > 0) {
       notifications[0].parentNode.removeChild(notifications[0]);
     }
-  };
+  }
 
   /**
    * Remove the given notification names from the queue
-   * @param string/array notificationNames
+   * @param {Mixed} notificationNames list of notifications
    */
-  removeFromQueue = function removeFromQueue(notificationNames) {
-    var i, item, key, len, notification, results;
+  function removeFromQueue(notificationNames) {
+    var key = void 0,
+        notification = void 0;
+
     if ((typeof notificationNames === 'undefined' ? 'undefined' : _typeof(notificationNames)) !== "object") {
       notificationNames = [notificationNames];
     }
-    results = [];
-    for (i = 0, len = notificationNames.length; i < len; i++) {
+
+    for (var i = 0, len = notificationNames.length; i < len; i++) {
       notification = notificationNames[i];
-      results.push(function () {
-        var results1;
-        results1 = [];
-        for (key in notific8Queue) {
-          item = notific8Queue[key];
-          if (notific8Queue[key].options.notificationName === notification) {
-            delete notific8Queue[key];
-            break;
-          } else {
-            results1.push(void 0);
-          }
+      for (key in notific8Queue) {
+        if (notific8Queue[key].options.notificationName === notification) {
+          notific8Queue.splice(key, 1);
+          break;
         }
-        return results1;
-      }());
+      }
     }
-    return results;
-  };
+  }
 
   /**
    * Set up the z-index
-   * @param int z
+   * @param {Integer} z the z-index to set as the default
    */
   function zindex(z) {
     notific8Defaults.zindex = z;
-  };
+  }
 
   /**
    * Initialize the plug-in
-   * @param string message
-   * @param object options
-   * @return object
+   * @param {String} message string representing the message for the notification
+   * @param {Object} options options to build the notification with
    */
   function init(message, options) {
-    var arrayKeys, data, handler, i, j, k, key, len, len1, len2, onInit, option, prop, propertiesToRemove, ref;
-    data = {
+    var arrayKeys = ['onInit', 'onCreate', 'onClose'],
+        data = {
       settings: {},
       message: message
-    };
-    arrayKeys = ['onInit', 'onCreate', 'onClose'];
+    },
+        key = void 0,
+        onInit = void 0,
+        option = void 0,
+        propertiesToRemove = void 0,
+        onInitHandlers = void 0;
+
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
       if (key !== 'height') {
@@ -370,103 +351,119 @@ notific8 = function () {
         if (typeof option === 'function') {
           option = [option];
         }
-        for (i = 0, len = option.length; i < len; i++) {
-          handler = option[i];
-          data.settings[key].push(handler);
+        for (var i = 0, len = option.length; i < len; i++) {
+          data.settings[key].push(option[i]);
         }
       } else {
         data.settings[key] = option;
       }
     }
+
     propertiesToRemove = ['onContainerCreate', 'queue'];
-    for (j = 0, len1 = propertiesToRemove.length; j < len1; j++) {
-      prop = propertiesToRemove[j];
-      delete data.settings[prop];
+    for (var j = 0, _len3 = propertiesToRemove.length; j < _len3; j++) {
+      delete data.settings[propertiesToRemove[j]];
     }
-    if (data.settings.height == null) {
+
+    if (data.settings.height === undefined) {
       data.settings.height = notific8Defaults.height[data.settings.theme];
     }
     data.settings.height = Number(data.settings.height);
     if (data.settings.height < notific8Defaults.height[data.settings.theme]) {
       data.settings.height = notific8Defaults.height[data.settings.theme];
     }
+
     buildNotification(data);
     if (data.settings.onInit.length) {
-      ref = data.settings.onInit;
-      for (k = 0, len2 = ref.length; k < len2; k++) {
-        onInit = ref[k];
+      onInitHandlers = data.settings.onInit;
+      for (var k = 0, _len4 = onInitHandlers.length; k < _len4; k++) {
+        onInit = onInitHandlers[k];
         onInit(data);
       }
     }
-  };
+  }
 
   /**
    * Initialize the containers for the plug-in
-   * @param object options
+   * @param {Object} options to associate with the notification containers
    */
-  initContainers = function initContainers(options) {
-    var body, container, containerClasses, containerStr, handler, i, j, k, len, len1, len2, len3, len4, len5, m, modifiedContainerStr, module, moduleResults, o, p, position, ref, ref1, ref2, ref3, ref4, ref5, tempDoc;
-    body = document.getElementsByTagName('body')[0];
+  function initContainers(options) {
+    var body = document.getElementsByTagName('body')[0],
+        containerClasses = [options.namespace + '-container'],
+        containerStr = "",
+        beforeContainerModules,
+        insideContainerModules,
+        afterContainerModules,
+        containerPositions,
+        containers,
+        onContainerCreateHandlers;
+
     body.dataset.notific8s = 0;
-    containerClasses = [options.namespace + "-container"];
-    containerStr = "";
-    ref = notific8RegisteredModules.beforeContainer;
-    for (i = 0, len = ref.length; i < len; i++) {
-      module = ref[i];
-      moduleResults = module.callbackMethod(notific8Defaults);
+
+    beforeContainerModules = notific8RegisteredModules.beforeContainer;
+    for (var i = 0, len = beforeContainerModules.length; i < len; i++) {
+      var module = beforeContainerModules[i],
+          moduleResults = module.callbackMethod(notific8Defaults);
       containerClasses = containerClasses.concat(moduleResults.classes);
       containerStr += moduleResults.html;
     }
-    containerStr += "<div class=\"$classes $pos\">";
-    ref1 = notific8RegisteredModules.insideContainer;
-    for (j = 0, len1 = ref1.length; j < len1; j++) {
-      module = ref1[j];
-      moduleResults = module.callbackMethod(notific8Defaults);
-      containerClasses = containerClasses.concat(moduleResults.classes);
-      containerStr += moduleResults.html;
+
+    containerStr += '<div class="$classes $pos">';
+    insideContainerModules = notific8RegisteredModules.insideContainer;
+    for (var j = 0, _len5 = insideContainerModules.length; j < _len5; j++) {
+      var _module2 = insideContainerModules[j],
+          _moduleResults2 = _module2.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(_moduleResults2.classes);
+      containerStr += _moduleResults2.html;
     }
-    containerStr += "</div>";
-    ref2 = notific8RegisteredModules.afterContainer;
-    for (k = 0, len2 = ref2.length; k < len2; k++) {
-      module = ref2[k];
-      moduleResults = module.callbackMethod(notific8Defaults);
-      containerClasses = containerClasses.concat(moduleResults.classes);
-      containerStr += moduleResults.html;
+    containerStr += '</div>';
+
+    afterContainerModules = notific8RegisteredModules.afterContainer;
+    for (var k = 0, _len6 = afterContainerModules.length; k < _len6; k++) {
+      var _module3 = afterContainerModules[k],
+          _moduleResults3 = _module3.callbackMethod(notific8Defaults);
+      containerClasses = containerClasses.concat(_moduleResults3.classes);
+      containerStr += _moduleResults3.html;
     }
-    ref3 = ['top right', 'top left', 'bottom right', 'bottom left'];
-    for (m = 0, len3 = ref3.length; m < len3; m++) {
-      position = ref3[m];
-      modifiedContainerStr = containerStr.replace('$pos', position).replace('$classes', containerClasses.join(' '));
-      tempDoc = document.implementation.createHTMLDocument('tempDoc');
+
+    containerPositions = ['top right', 'top left', 'bottom right', 'bottom left'];
+    for (var m = 0, _len7 = containerPositions.length; m < _len7; m++) {
+      var position = containerPositions[m],
+          modifiedContainerStr = containerStr.replace('$pos', position).replace('$classes', containerClasses.join(' ')),
+          tempDoc = document.implementation.createHTMLDocument('tempDoc');
       tempDoc.body.innerHTML = modifiedContainerStr;
       document.body.appendChild(tempDoc.body.firstChild);
     }
-    ref4 = document.getElementsByClassName(containerClasses[0]);
-    for (o = 0, len4 = ref4.length; o < len4; o++) {
-      container = ref4[o];
+
+    containers = document.getElementsByClassName(containerClasses[0]);
+    for (var o = 0, _len8 = containers.length; o < _len8; o++) {
+      var container = containers[o];
       container.style.zIndex = notific8Defaults.zindex;
-      ref5 = notific8ContainerHandlers.onContainerCreate;
-      for (p = 0, len5 = ref5.length; p < len5; p++) {
-        handler = ref5[p];
+
+      onContainerCreateHandlers = notific8ContainerHandlers.onContainerCreate;
+      for (var p = 0, _len9 = onContainerCreateHandlers.length; p < _len9; p++) {
+        var handler = onContainerCreateHandlers[p];
         handler(container, options);
       }
+
       container.addEventListener("click", function (event) {
-        var data, notification, notificationClass, target;
-        target = event.target;
-        notification = target.parentElement;
-        notificationClass = options.namespace + "-notification";
+        var data = void 0,
+            target = event.target,
+            notification = target.parentElement,
+            notificationClass = options.namespace + '-notification';
+
         if (notification.className.split(' ').indexOf(notificationClass) === -1) {
           return;
         }
+
         data = notific8DataStore[notification.id];
         closeNotification(notification.id, data);
       });
     }
-  };
+  }
 
   /**
    * Make sure that the edge options are ok
-   * @param object options
+   * @param {Object} options options for building the notification
    */
   function checkEdges(options) {
     options.verticalEdge = (options.verticalEdge || notific8Defaults.verticalEdge).toLowerCase();
@@ -477,23 +474,23 @@ notific8 = function () {
     if (['top', 'bottom'].indexOf(options.horizontalEdge) === -1) {
       options.horizontalEdge = notific8Defaults.horizontalEdge;
     }
-  };
+  }
 
   /**
    * Displays an error message to the console and throws an error
-   * @param string message
+   * @param {String} message the error message to display
    */
   function errorMessage(message) {
     console.error(message);
     throw new Error(message);
-  };
+  }
 
   /**
    * Register a module for use in the system
-   * @param string moduleName
-   * @param string position
-   * @param object defaultOptions
-   * @param function callbackMethod
+   * @param {String} moduleName       name of the module to register
+   * @param {String} position         position of the module's excution
+   * @param {Object} defaultOptions   default options for the module
+   * @param {Function} callbackMethod method to call for the module
    */
   function registerModule(moduleName, position, defaultOptions, callbackMethod) {
     var defaultValue = void 0,
@@ -530,13 +527,13 @@ notific8 = function () {
       moduleName: moduleName,
       callbackMethod: callbackMethod
     });
-  };
+  }
 
   /**
    * Generates a unique name to assocate with the notification
    * Solution found as an answer on StackOverflow:
    * http://stackoverflow.com/a/2117523/5870787
-   * @return string
+   * @return {String} string generateiond for the notification
    */
   function generateUniqueId() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -547,8 +544,14 @@ notific8 = function () {
 
       return v.toString(16);
     });
-  };
+  }
 
+  /**
+   * Public method for the notification that drives the plug-in
+   * @param  {String} message  message for the notification or notific8 method to call
+   * @param  {Options} options options for the notification or notific8 method called
+   * @return {Mixed}
+   */
   return function (message, options) {
     var callbackMethod = void 0,
         containerClass = void 0,
