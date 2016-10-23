@@ -503,7 +503,7 @@ notific8 = function () {
       errorMessage("moduleName should be a string");
     }
     validPositions = ['beforeContent', 'afterContent', 'beforeContainer', 'afterContainer', 'insideContainer'];
-    if (typeof position !== 'string' || validPositions.indexOf(position) > -1) {
+    if (typeof position !== 'string' || validPositions.indexOf(position) === -1) {
       errorMessage("position should be a string");
     }
     if ((typeof defaultOptions === 'undefined' ? 'undefined' : _typeof(defaultOptions)) !== 'object') {
