@@ -1,6 +1,6 @@
 {
   "name": "notific8",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
   "main": "dist/notific8.js",
   "scripts": {
@@ -12,7 +12,6 @@
   },
   "keywords": [
     "javascript",
-    "coffeescript",
     "jquery",
     "css",
     "sass",
@@ -21,11 +20,11 @@
   "author": "Will Steinmetz <willsteinmetz@users.noreply.github.com>",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "babel-preset-es2015": "^6.16.0",
     "grunt": "^0.4.5",
+    "grunt-babel": "^6.0.0",
     "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-coffee": "^0.12.0",
     "grunt-contrib-concat": "^1.0.1",
-    "grunt-contrib-copy": "^0.7.0",
     "grunt-contrib-cssmin": "^0.11.0",
     "grunt-contrib-pug": "^1.0.0",
     "grunt-contrib-uglify": "^0.7.0",

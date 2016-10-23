@@ -10,18 +10,20 @@
 
 // mixin
 @mixin notific8_materialish_theme($name, $color, $text-color: #eee) {
-  .#{$notific8-ns}-notification.family-materialish.#{$name} {
+  .#{$notific8-ns}-notification.family-materialish.#{$name},// deprecated
+  .#{$notific8-ns}-notification.materialish.#{$name} {
     background-color: $color;
     color: $text-color;
   }
 }
 
-.#{$notific8-ns}-notification.family-materialish {
+.#{$notific8-ns}-notification.family-materialish,// deprecated
+.#{$notific8-ns}-notification.materialish {
   border-radius: 2px;
   font-size: em(14px);
   height: 0;
-  min-width: 288px;
   max-width: 568px;
+  min-width: 288px;
   transition: height .1s ease-in-out;
 
   .notific8-message {

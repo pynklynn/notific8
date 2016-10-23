@@ -8,7 +8,7 @@
 
 module.exports = {
   unit: {
-    configFile: 'karma.conf.coffee',
+    configFile: 'karma.conf.js',
     singleRun: true
   }
 };

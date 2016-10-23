@@ -10,7 +10,7 @@ module.exports = {
   minify: {
     expand: true,
     files: {
-      'dist/notific8.min.css': [ 'build/css/notific8.css' ]
+      'dist/notific8.min.css': [ 'dist/notific8.css' ]
     }
   },
   add_banner: {

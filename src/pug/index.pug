@@ -7,8 +7,39 @@ html
     link(rel='stylesheet', href='../dist/notific8.css', media='screen')
     style.
       /* override to make sure materialize teal theme doesn't trump the notific8 demo */
-      .notific8-notification.family-legacy.teal {
+      .notific8-notification.ocho.teal {
         background-color: #069 !important;
+      }
+
+      [type="radio"]:checked + label:after,
+      [type="radio"].with-gap:checked + label:before,
+      [type="radio"].with-gap:checked + label:after {
+        border: 2px solid #c2185b;
+      }
+
+      [type="radio"]:checked + label:after,
+      [type="radio"].with-gap:checked + label:after {
+        background-color: #c2185b;
+        z-index: 0;
+      }
+
+      [type="checkbox"]:checked + label:before {
+        border-right: 2px solid #c2185b;
+        border-bottom: 2px solid #c2185b;
+      }
+
+      [type="checkbox"]:indeterminate + label:before {
+        border-right: 2px solid #c2185b;
+      }
+
+      .dropdown-content li>span {
+        color: #c2185b;
+      }
+
+      input[type=text]:focus:not([readonly]),
+      input[type=number]:focus:not([readonly]) {
+        border-bottom-color: #c2185b;
+        box-shadow: 0 1px 0 0 #c2185b;
       }
 
   body

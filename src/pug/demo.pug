@@ -62,7 +62,7 @@ block lowerConfig
 
 .input-field
   select#notific8Theme(name='notific8Theme')
-    option(value='legacy', selected='') legacy (default)
+    option(value='ocho', selected='') Ocho (default)
     option(value='chicchat') ChicChat
     option(value='atomic') Atomic
     option(value='materialish') Materialish
@@ -70,14 +70,14 @@ block lowerConfig
 
 .input-field
   select#notific8Color(name='notific8Color')
-    option(value='teal', data-for='legacy', data-selected='') teal
-    option(value='amethyst', data-for='legacy') amethyst
-    option(value='ruby', data-for='legacy') ruby
-    option(value='tangerine', data-for='legacy') tangerine
-    option(value='lemon', data-for='legacy') lemon
-    option(value='lime', data-for='legacy') lime
-    option(value='ebony', data-for='legacy') ebony
-    option(value='smoke', data-for='legacy') smoke
+    option(value='teal', data-for='ocho', data-selected='') teal
+    option(value='amethyst', data-for='ocho') amethyst
+    option(value='ruby', data-for='ocho') ruby
+    option(value='tangerine', data-for='ocho') tangerine
+    option(value='lemon', data-for='ocho') lemon
+    option(value='lime', data-for='ocho') lime
+    option(value='ebony', data-for='ocho') ebony
+    option(value='smoke', data-for='ocho') smoke
     option(value='cobalt', data-for='chicchat', data-selected='') cobalt
     option(value='ruby', data-for='chicchat') ruby
     option(value='honey', data-for='chicchat') honey
@@ -128,10 +128,10 @@ div
   em (default, only value available for the demo)
 
 p
-  input(name="notific8UseJquery", type="radio", value="0", checked="Checked")#notific8UseJavascript
+  input.with-gap(name="notific8UseJquery", type="radio", value="0", checked="Checked")#notific8UseJavascript
   label(for='notific8UseJavascript')  JavaScript&nbsp;
-  input(name="notific8UseJquery", type="radio", value="1")#notific8UseJquery
+  input.with-gap(name="notific8UseJquery", type="radio", value="1")#notific8UseJquery
   label(for='notific8UseJquery')  jQuery
 
 .input-field
-  button.btn#notific8Test(type='button', name='notific8Test') Test notific8
+  button.btn.pink.darken-2#notific8Test(type='button', name='notific8Test') Test notific8
