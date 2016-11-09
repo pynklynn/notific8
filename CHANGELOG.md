@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 4.3.0
+
+- Updating the layout of notifications on the left edge of the screen
+
 ## 4.2.1
 
 - Fixing bug in registering a module

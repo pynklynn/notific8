@@ -25,6 +25,7 @@
 
 .#{$notific8-ns}-notification.family-atomic,// deprecated
 .#{$notific8-ns}-notification.atomic {
+  border-left-width: em(45px, 14px);
   border-radius: 3px;
   font-size: em(14px);
   height: 0;
@@ -46,6 +47,7 @@
   }
 
   .#{$notific8-ns}-close {
+    right: .5em;
     top: .325em;
 
     &.sticky {
@@ -61,12 +63,7 @@
 
 .right .#{$notific8-ns}-notification.family-atomic,//deprecated
 .right .#{$notific8-ns}-notification.atomic {
-  border-left-width: em(45px, 14px);
   margin-right: .625em;
-
-  .#{$notific8-ns}-close {
-    right: .5em;
-  }
 
   .#{$notific8-ns}-heading {
     border-top-right-radius: 3px;
@@ -75,14 +72,5 @@
 
 .left .#{$notific8-ns}-notification.family-atomic,//deprecated
 .left .#{$notific8-ns}-notification.atomic {
-  border-right-width: em(45px, 14px);
   margin-left: .625em;
-
-  .#{$notific8-ns}-close {
-    left: .5em;
-  }
-
-  .#{$notific8-ns}-heading {
-    padding-left: 2.5em;
-  }
 }
