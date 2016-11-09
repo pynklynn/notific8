@@ -83,7 +83,7 @@ notific8 = function () {
       closeText = data.settings.closeText;
     }
 
-    return '<div class="' + closeClasses.join(' ') + '">' + closeText + '</div>';
+    return '<button type="button" class="' + closeClasses.join(' ') + '" aria-label="dismiss notification">' + closeText + '</button>';
   }
 
   /**
@@ -93,7 +93,7 @@ notific8 = function () {
    */
   function buildHeading(data) {
     if (data.settings.heading !== null && typeof data.settings.heading === "string") {
-      return '<div class="' + data.settings.namespace + '-heading">' + data.settings.heading + '</div>';
+      return '<header class="' + data.settings.namespace + '-heading">' + data.settings.heading + '</header>';
     } else {
       return "";
     }
@@ -141,7 +141,7 @@ notific8 = function () {
         namespace = data.settings.namespace,
         num = Number(body.dataset.notific8s) + 1,
         notificationId = namespace + '-notification-' + num,
-        notification = '<div class="$notificationClasses" id="' + notificationId + '" data-name="' + data.settings.notificationName + '">',
+        notification = '<article class="$notificationClasses" id="' + notificationId + '" data-name="' + data.settings.notificationName + '" role="status" aria-live="polite">',
         beforeContentModules = notific8RegisteredModules.beforeContent,
         afterContentModules = notific8RegisteredModules.afterContent,
         onCreateHandlers = data.settings.onCreate;
@@ -162,7 +162,7 @@ notific8 = function () {
       notification += _moduleResults.html;
     }
 
-    notification += buildClose(data) + '</div>';
+    notification += buildClose(data) + '</article>';
     notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
 

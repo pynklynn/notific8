@@ -6,7 +6,8 @@ The change log was created with version 2.0. For changes, please see the commit 
 
 - Updating the layout of notifications on the left edge of the screen
 - Restored and/or tweaked animations for notifications
-- Removed the height option to allow notifications to have a dynamic height while still animating.
+- Removed the height option to allow notifications to have a dynamic height while still animating
+- Updated the notification for accessibility considerations
 
 ## 4.2.1
 

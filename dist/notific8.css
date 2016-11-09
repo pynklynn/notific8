@@ -93,6 +93,7 @@
   .notific8-notification.family-legacy .notific8-close,
   .notific8-notification.legacy .notific8-close,
   .notific8-notification.ocho .notific8-close {
+    border: none;
     font-size: 1.25em;
     line-height: 1em;
     padding: 0 .25em;
@@ -147,6 +148,8 @@
     margin-bottom: .5em; }
   .notific8-notification.family-chicchat .notific8-close,
   .notific8-notification.chicchat .notific8-close {
+    background-color: transparent;
+    border: none;
     right: .5em;
     top: .325em; }
     .notific8-notification.family-chicchat .notific8-close.sticky,
@@ -189,6 +192,8 @@
     padding: 0.75em; }
   .notific8-notification.family-atomic .notific8-close,
   .notific8-notification.atomic .notific8-close {
+    background-color: transparent;
+    border: none;
     right: .5em;
     top: .325em; }
     .notific8-notification.family-atomic .notific8-close.sticky,
@@ -234,6 +239,8 @@
     margin-top: .25em; }
   .notific8-notification.family-materialish .notific8-close,
   .notific8-notification.materialish .notific8-close {
+    background-color: transparent;
+    border: none;
     line-height: 1.4285714286em;
     margin-top: -0.7142857143em;
     right: 1.7142857143em;

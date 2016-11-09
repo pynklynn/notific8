@@ -27,7 +27,7 @@
   opacity: 0;
   transition: all .15s ease-in-out;
 
-  .notific8-message {
+  .#{$notific8-ns}-message {
     margin: 1em em(84px, 14px) 1em em(24px, 14px);
   }
 
@@ -35,19 +35,21 @@
     opacity: 1;
   }
 
-  &.has-heading .notific8-message {
+  &.has-heading .#{$notific8-ns}-message {
     margin-bottom: .25em;
     margin-top: .25em;
   }
 
-  .notific8-close {
+  .#{$notific8-ns}-close {
+    background-color: transparent;
+    border: none;
     line-height: em(20px, 14px);
     margin-top: em(-10px, 14px);
     right: em(24px, 14px);
     top: 50%;
   }
 
-  .notific8-heading {
+  .#{$notific8-ns}-heading {
     font-size: em(11px, 14px);
     font-weight: 100;
     margin-left: em(24px, 11px);
@@ -55,12 +57,12 @@
   }
 
   &.sticky {
-    .notific8-message {
+    .#{$notific8-ns}-message {
       line-height: em(20px, 14px);
       margin-right: em(120px, 14px);
     }
 
-    .notific8-close.sticky {
+    .#{$notific8-ns}-close.sticky {
       text-transform: uppercase;
 
       &:hover {
