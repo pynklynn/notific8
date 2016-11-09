@@ -25,13 +25,7 @@ notific8 = function () {
     onCreate: [],
     onClose: [],
     namespace: 'notific8',
-    queue: false,
-    height: {
-      atomic: 70,
-      chicchat: 120,
-      ocho: 90,
-      materialish: 48
-    }
+    queue: false
   };
   window.notific8RegisteredModules = {
     beforeContent: [],
@@ -130,7 +124,7 @@ notific8 = function () {
     if (data.settings.sticky) {
       classes.push("sticky");
     }
-    if (data.settings.heading !== null) {
+    if (data.settings.heading !== null && typeof data.settings.heading === "string") {
       classes.push("has-heading");
     }
     return classes;
@@ -171,13 +165,6 @@ notific8 = function () {
     notification += buildClose(data) + '</div>';
     notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
-    setTimeout(function () {
-      var notification = document.getElementById(notificationId);
-      if (!notification) {
-        return;
-      }
-      return notification.style.height = data.settings.height + "px";
-    }, 1);
 
     for (var k = 0, _len2 = onCreateHandlers.length; k < _len2; k++) {
       var onCreate = onCreateHandlers[k];
@@ -221,7 +208,6 @@ notific8 = function () {
     }
 
     n.className = n.className.replace('open', '');
-    n.style.height = 0;
 
     // it's possible this method may be called in quick succession so we need
     // to isolate scope to this notification
@@ -231,22 +217,24 @@ notific8 = function () {
           onClose = void 0,
           onCloseCallbacks = void 0;
 
-      container.removeChild(notification);
-      delete notific8DataStore[notificationId];
+      setTimeout(function () {
+        container.removeChild(notification);
+        delete notific8DataStore[notificationId];
 
-      if (data.settings.onClose.length) {
-        onCloseCallbacks = data.settings.onClose;
-        for (var i = 0, len = onCloseCallbacks.length; i < len; i++) {
-          onClose = onCloseCallbacks[i];
-          onClose(notification, data);
+        if (data.settings.onClose.length) {
+          onCloseCallbacks = data.settings.onClose;
+          for (var i = 0, len = onCloseCallbacks.length; i < len; i++) {
+            onClose = onCloseCallbacks[i];
+            onClose(notification, data);
+          }
         }
-      }
 
-      // call the next notification in the queue
-      if (notific8Defaults.queue && notific8Queue.length) {
-        next = notific8Queue.shift();
-        notific8(next.message, next.options);
-      }
+        // call the next notification in the queue
+        if (notific8Defaults.queue && notific8Queue.length) {
+          next = notific8Queue.shift();
+          notific8(next.message, next.options);
+        }
+      }, 200);
     })(n, notificationId);
   }
 
@@ -341,9 +329,7 @@ notific8 = function () {
 
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
-      if (key !== 'height') {
-        data.settings[key] = option;
-      }
+      data.settings[key] = option;
     }
     for (key in options) {
       option = options[key];
@@ -362,14 +348,6 @@ notific8 = function () {
     propertiesToRemove = ['onContainerCreate', 'queue'];
     for (var j = 0, _len3 = propertiesToRemove.length; j < _len3; j++) {
       delete data.settings[propertiesToRemove[j]];
-    }
-
-    if (data.settings.height === undefined) {
-      data.settings.height = notific8Defaults.height[data.settings.theme];
-    }
-    data.settings.height = Number(data.settings.height);
-    if (data.settings.height < notific8Defaults.height[data.settings.theme]) {
-      data.settings.height = notific8Defaults.height[data.settings.theme];
     }
 
     buildNotification(data);

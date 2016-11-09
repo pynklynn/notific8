@@ -2,13 +2,7 @@ block moduleJs
 
 script(type='text/javascript').
   $(function () {
-    var defaultHeights = {
-      atomic: 70,
-      chicchat: 120,
-      ocho: 90,
-      materialish: 48
-    },
-      notific8ThemeColors = {
+    var notific8ThemeColors = {
         ocho: [],
         chicchat: [],
         atomic: [],
@@ -41,10 +35,6 @@ script(type='text/javascript').
           }
         }
         $color.material_select();
-
-        $height = $('#notific8Height');
-        $height.val(defaultHeights[theme]);
-        $height.attr('min', defaultHeights[theme]);
       }
     );
     $('body').on('click', '#notific8Test', function (event) {
@@ -56,7 +46,6 @@ script(type='text/javascript').
         horizontalEdge: $('#notific8horizontal').find('option:selected').val(),
         verticalEdge: $('#notific8vertical').find('option:selected').val(),
         namespace: $('#notific8Namespace').val(),
-        height: $('#notific8Height').val(),
         onInit: function(data) {
           if (window.console) {
             console.log('--onInit--');

@@ -76,7 +76,7 @@
   border-width: 2px;
   color: #fff;
   font-size: 16px;
-  height: 5.625em;
+  min-height: 5.625em;
   padding: 0.625em;
   padding-right: 2.0625em;
   transition: all .2s ease-in-out;
@@ -137,7 +137,7 @@
   border-left-width: 3.2142857143em;
   color: #121212;
   font-size: 0.875em;
-  height: 0;
+  min-height: 7.5em;
   padding: 1.125em;
   transition: all .15s ease-in-out;
   width: 31.25em; }
@@ -153,24 +153,27 @@
     .notific8-notification.chicchat .notific8-close.sticky {
       font-size: .75em;
       text-decoration: underline; }
-  .notific8-notification.family-chicchat.open,
-  .notific8-notification.chicchat.open {
-    height: 7.5em; }
 
 .right .notific8-notification.family-chicchat,
 .right .notific8-notification.chicchat {
-  margin-right: .625em; }
+  margin-right: -32.25em; }
+  .right .notific8-notification.family-chicchat.open,
+  .right .notific8-notification.chicchat.open {
+    margin-right: .625em; }
 
 .left .notific8-notification.family-chicchat,
 .left .notific8-notification.chicchat {
-  margin-left: .625em; }
+  margin-left: -32.25em; }
+  .left .notific8-notification.family-chicchat.open,
+  .left .notific8-notification.chicchat.open {
+    margin-left: .625em; }
 
 .notific8-notification.family-atomic,
 .notific8-notification.atomic {
   border-left-width: 3.2142857143em;
   border-radius: 3px;
   font-size: 0.875em;
-  height: 0;
+  min-height: 5em;
   padding: 0;
   transition: all .15s ease-in-out;
   width: 31.25em; }
@@ -192,32 +195,39 @@
     .notific8-notification.atomic .notific8-close.sticky {
       font-size: .75em;
       text-decoration: underline; }
-  .notific8-notification.family-atomic.open,
-  .notific8-notification.atomic.open {
-    height: 5em; }
 
 .right .notific8-notification.family-atomic,
 .right .notific8-notification.atomic {
-  margin-right: .625em; }
+  margin-right: -32.25em; }
   .right .notific8-notification.family-atomic .notific8-heading,
   .right .notific8-notification.atomic .notific8-heading {
     border-top-right-radius: 3px; }
+  .right .notific8-notification.family-atomic.open,
+  .right .notific8-notification.atomic.open {
+    margin-right: .625em; }
 
 .left .notific8-notification.family-atomic,
 .left .notific8-notification.atomic {
-  margin-left: .625em; }
+  margin-left: -32.25em; }
+  .left .notific8-notification.family-atomic.open,
+  .left .notific8-notification.atomic.open {
+    margin-left: .625em; }
 
 .notific8-notification.family-materialish,
 .notific8-notification.materialish {
   border-radius: 2px;
   font-size: 0.875em;
-  height: 0;
+  min-height: 3em;
   max-width: 568px;
   min-width: 288px;
-  transition: height .1s ease-in-out; }
+  opacity: 0;
+  transition: all .15s ease-in-out; }
   .notific8-notification.family-materialish .notific8-message,
   .notific8-notification.materialish .notific8-message {
     margin: 1em 6em 1em 1.7142857143em; }
+  .notific8-notification.family-materialish.open,
+  .notific8-notification.materialish.open {
+    opacity: 1; }
   .notific8-notification.family-materialish.has-heading .notific8-message,
   .notific8-notification.materialish.has-heading .notific8-message {
     margin-bottom: .25em;

@@ -29,7 +29,7 @@
   border-left-width: em(45px, 14px);
   color: #121212;
   font-size: em(14px);
-  height: 0;
+  min-height: em(120px);
   padding: 1.125em;
   transition: all .15s ease-in-out;
   width: em(500px);
@@ -48,18 +48,22 @@
       text-decoration: underline;
     }
   }
-
-  &.open {
-    height: em(120px);
-  }
 }
 
 .right .#{$notific8-ns}-notification.family-chicchat,//deprecated
 .right .#{$notific8-ns}-notification.chicchat {
-  margin-right: .625em;
+  margin-right: em(-516px);
+
+  &.open {
+    margin-right: .625em;
+  }
 }
 
 .left .#{$notific8-ns}-notification.family-chicchat,//deprecated
 .left .#{$notific8-ns}-notification.chicchat {
-  margin-left: .625em;
+  margin-left: em(-516px);
+
+  &.open {
+    margin-left: .625em;
+  }
 }
