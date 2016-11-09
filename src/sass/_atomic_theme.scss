@@ -25,9 +25,10 @@
 
 .#{$notific8-ns}-notification.family-atomic,// deprecated
 .#{$notific8-ns}-notification.atomic {
+  border-left-width: em(45px, 14px);
   border-radius: 3px;
   font-size: em(14px);
-  height: 0;
+  min-height: em(70px, 14px);
   padding: 0;
   transition: all .15s ease-in-out;
   width: em(500px);
@@ -46,6 +47,9 @@
   }
 
   .#{$notific8-ns}-close {
+    background-color: transparent;
+    border: none;
+    right: .5em;
     top: .325em;
 
     &.sticky {
@@ -53,36 +57,26 @@
       text-decoration: underline;
     }
   }
-
-  &.open {
-    height: em(70px, 14px);
-  }
 }
 
 .right .#{$notific8-ns}-notification.family-atomic,//deprecated
 .right .#{$notific8-ns}-notification.atomic {
-  border-left-width: em(45px, 14px);
-  margin-right: .625em;
-
-  .#{$notific8-ns}-close {
-    right: .5em;
-  }
+  margin-right: em(-516px);
 
   .#{$notific8-ns}-heading {
     border-top-right-radius: 3px;
+  }
+
+  &.open {
+    margin-right: .625em;
   }
 }
 
 .left .#{$notific8-ns}-notification.family-atomic,//deprecated
 .left .#{$notific8-ns}-notification.atomic {
-  border-right-width: em(45px, 14px);
-  margin-left: .625em;
+  margin-left: em(-516px);
 
-  .#{$notific8-ns}-close {
-    left: .5em;
-  }
-
-  .#{$notific8-ns}-heading {
-    padding-left: 2.5em;
+  &.open {
+    margin-left: .625em;
   }
 }

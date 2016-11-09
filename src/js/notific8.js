@@ -21,13 +21,7 @@ notific8 = (function() {
     onCreate: [],
     onClose: [],
     namespace: 'notific8',
-    queue: false,
-    height: {
-      atomic: 70,
-      chicchat: 120,
-      ocho: 90,
-      materialish: 48
-    }
+    queue: false
   };
   window.notific8RegisteredModules = {
     beforeContent: [],
@@ -82,7 +76,7 @@ notific8 = (function() {
       closeText = data.settings.closeText;
     }
 
-    return `<div class="${closeClasses.join(' ')}">${closeText}</div>`;
+    return `<button type="button" class="${closeClasses.join(' ')}" aria-label="dismiss notification">${closeText}</button>`;
   }
 
   /**
@@ -91,8 +85,11 @@ notific8 = (function() {
    * @return {String}      HTML for the heading part of the notification
    */
   function buildHeading(data) {
-    if ((data.settings.heading !== null) && (typeof data.settings.heading === "string")) {
-      return `<div class="${data.settings.namespace}-heading">${data.settings.heading}</div>`;
+    if (
+      (data.settings.heading !== null) &&
+      (typeof data.settings.heading === "string")
+    ) {
+      return `<header class="${data.settings.namespace}-heading">${data.settings.heading}</header>`;
     } else {
       return "";
     }
@@ -128,7 +125,10 @@ notific8 = (function() {
     if (data.settings.sticky) {
       classes.push("sticky");
     }
-    if (data.settings.heading !== null) {
+    if (
+      (data.settings.heading !== null) &&
+      (typeof data.settings.heading === "string")
+    ) {
       classes.push("has-heading");
     }
     return classes;
@@ -145,7 +145,7 @@ notific8 = (function() {
       namespace = data.settings.namespace,
       num = Number(body.dataset.notific8s) + 1,
       notificationId = `${namespace}-notification-${num}`,
-      notification = `<div class="$notificationClasses" id="${notificationId}" data-name="${data.settings.notificationName}">`,
+      notification = `<article class="$notificationClasses" id="${notificationId}" data-name="${data.settings.notificationName}" role="status" aria-live="polite">`,
       beforeContentModules = notific8RegisteredModules.beforeContent,
       afterContentModules = notific8RegisteredModules.afterContent,
       onCreateHandlers = data.settings.onCreate;
@@ -166,16 +166,9 @@ notific8 = (function() {
       notification += moduleResults.html;
     }
 
-    notification += `${buildClose(data)}</div>`;
+    notification += `${buildClose(data)}</article>`;
     notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
-    setTimeout(function() {
-      let notification = document.getElementById(notificationId);
-      if (!notification) {
-        return;
-      }
-      return notification.style.height = data.settings.height + "px";
-    }, 1);
 
     for (let k = 0, len = onCreateHandlers.length; k < len; k++) {
       let onCreate = onCreateHandlers[k];
@@ -219,7 +212,6 @@ notific8 = (function() {
     }
 
     n.className = n.className.replace('open', '');
-    n.style.height = 0;
 
     // it's possible this method may be called in quick succession so we need
     // to isolate scope to this notification
@@ -229,22 +221,24 @@ notific8 = (function() {
         onClose,
         onCloseCallbacks;
 
-      container.removeChild(notification);
-      delete notific8DataStore[notificationId];
+      setTimeout(function() {
+        container.removeChild(notification);
+        delete notific8DataStore[notificationId];
 
-      if (data.settings.onClose.length) {
-        onCloseCallbacks = data.settings.onClose;
-        for (let i = 0, len = onCloseCallbacks.length; i < len; i++) {
-          onClose = onCloseCallbacks[i];
-          onClose(notification, data);
+        if (data.settings.onClose.length) {
+          onCloseCallbacks = data.settings.onClose;
+          for (let i = 0, len = onCloseCallbacks.length; i < len; i++) {
+            onClose = onCloseCallbacks[i];
+            onClose(notification, data);
+          }
         }
-      }
 
-      // call the next notification in the queue
-      if (notific8Defaults.queue && notific8Queue.length) {
-        next = notific8Queue.shift();
-        notific8(next.message, next.options);
-      }
+        // call the next notification in the queue
+        if (notific8Defaults.queue && notific8Queue.length) {
+          next = notific8Queue.shift();
+          notific8(next.message, next.options);
+        }
+      }, 200);
     })(n, notificationId);
   }
 
@@ -337,9 +331,7 @@ notific8 = (function() {
 
     for (key in notific8Defaults) {
       option = notific8Defaults[key];
-      if (key !== 'height') {
-        data.settings[key] = option;
-      }
+      data.settings[key] = option;
     }
     for (key in options) {
       option = options[key];
@@ -358,14 +350,6 @@ notific8 = (function() {
     propertiesToRemove = ['onContainerCreate', 'queue'];
     for (let j = 0, len = propertiesToRemove.length; j < len; j++) {
       delete data.settings[propertiesToRemove[j]];
-    }
-
-    if (data.settings.height === undefined) {
-      data.settings.height = notific8Defaults.height[data.settings.theme];
-    }
-    data.settings.height = Number(data.settings.height);
-    if (data.settings.height < notific8Defaults.height[data.settings.theme]) {
-      data.settings.height = notific8Defaults.height[data.settings.theme];
     }
 
     buildNotification(data);
