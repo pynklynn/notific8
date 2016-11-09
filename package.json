@@ -1,7 +1,7 @@
 {
   "name": "notific8",
-  "version": "4.2.1",
-  "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8. The plug-in now contains multiple theme families for a variety of styles.",
+  "version": "4.3.0",
+  "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8.",
   "main": "dist/notific8.js",
   "scripts": {
     "test": "karma start --single-run"

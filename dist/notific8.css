@@ -76,8 +76,9 @@
   border-width: 2px;
   color: #fff;
   font-size: 16px;
-  height: 5.625em;
+  min-height: 5.625em;
   padding: 0.625em;
+  padding-right: 2.0625em;
   transition: all .2s ease-in-out;
   width: 24.375em; }
   .notific8-notification.family-legacy .notific8-heading,
@@ -92,9 +93,11 @@
   .notific8-notification.family-legacy .notific8-close,
   .notific8-notification.legacy .notific8-close,
   .notific8-notification.ocho .notific8-close {
+    border: none;
     font-size: 1.25em;
     line-height: 1em;
     padding: 0 .25em;
+    right: -2px;
     top: 0; }
     .notific8-notification.family-legacy .notific8-close.sticky,
     .notific8-notification.legacy .notific8-close.sticky,
@@ -102,48 +105,29 @@
       font-size: 0.625em;
       line-height: 1.4em;
       padding: 0.2em 0;
+      right: -3.7em;
       text-transform: uppercase;
+      top: 3.4em;
+      transform: rotate(90deg);
       width: 8.9em; }
 
 .left .notific8-notification.family-legacy,
 .left .notific8-notification.legacy,
 .left .notific8-notification.ocho {
-  margin-left: -24.375em;
-  padding-left: 2.0625em; }
+  margin-left: -24.375em; }
   .left .notific8-notification.family-legacy.open,
   .left .notific8-notification.legacy.open,
   .left .notific8-notification.ocho.open {
     margin-left: 0; }
-  .left .notific8-notification.family-legacy .notific8-close,
-  .left .notific8-notification.legacy .notific8-close,
-  .left .notific8-notification.ocho .notific8-close {
-    left: -2px; }
-    .left .notific8-notification.family-legacy .notific8-close.sticky,
-    .left .notific8-notification.legacy .notific8-close.sticky,
-    .left .notific8-notification.ocho .notific8-close.sticky {
-      left: -3.7em;
-      top: 3.4em;
-      transform: rotate(270deg); }
 
 .right .notific8-notification.family-legacy,
 .right .notific8-notification.legacy,
 .right .notific8-notification.ocho {
-  margin-right: -24.375em;
-  padding-right: 2.0625em; }
+  margin-right: -24.375em; }
   .right .notific8-notification.family-legacy.open,
   .right .notific8-notification.legacy.open,
   .right .notific8-notification.ocho.open {
     margin-right: 0; }
-  .right .notific8-notification.family-legacy .notific8-close,
-  .right .notific8-notification.legacy .notific8-close,
-  .right .notific8-notification.ocho .notific8-close {
-    right: -2px; }
-    .right .notific8-notification.family-legacy .notific8-close.sticky,
-    .right .notific8-notification.legacy .notific8-close.sticky,
-    .right .notific8-notification.ocho .notific8-close.sticky {
-      right: -3.7em;
-      top: 3.4em;
-      transform: rotate(90deg); }
 
 .notific8-notification.family-chicchat,
 .notific8-notification.chicchat {
@@ -151,9 +135,10 @@
   border-radius: .25em;
   border-style: solid;
   border-width: 1px;
+  border-left-width: 3.2142857143em;
   color: #121212;
   font-size: 0.875em;
-  height: 0;
+  min-height: 7.5em;
   padding: 1.125em;
   transition: all .15s ease-in-out;
   width: 31.25em; }
@@ -163,36 +148,35 @@
     margin-bottom: .5em; }
   .notific8-notification.family-chicchat .notific8-close,
   .notific8-notification.chicchat .notific8-close {
+    background-color: transparent;
+    border: none;
+    right: .5em;
     top: .325em; }
     .notific8-notification.family-chicchat .notific8-close.sticky,
     .notific8-notification.chicchat .notific8-close.sticky {
       font-size: .75em;
       text-decoration: underline; }
-  .notific8-notification.family-chicchat.open,
-  .notific8-notification.chicchat.open {
-    height: 7.5em; }
 
 .right .notific8-notification.family-chicchat,
 .right .notific8-notification.chicchat {
-  border-left-width: 3.2142857143em;
-  margin-right: .625em; }
-  .right .notific8-notification.family-chicchat .notific8-close,
-  .right .notific8-notification.chicchat .notific8-close {
-    right: .5em; }
+  margin-right: -32.25em; }
+  .right .notific8-notification.family-chicchat.open,
+  .right .notific8-notification.chicchat.open {
+    margin-right: .625em; }
 
 .left .notific8-notification.family-chicchat,
 .left .notific8-notification.chicchat {
-  border-right-width: 3.2142857143em;
-  margin-left: .625em; }
-  .left .notific8-notification.family-chicchat .notific8-close,
-  .left .notific8-notification.chicchat .notific8-close {
-    left: .5em; }
+  margin-left: -32.25em; }
+  .left .notific8-notification.family-chicchat.open,
+  .left .notific8-notification.chicchat.open {
+    margin-left: .625em; }
 
 .notific8-notification.family-atomic,
 .notific8-notification.atomic {
+  border-left-width: 3.2142857143em;
   border-radius: 3px;
   font-size: 0.875em;
-  height: 0;
+  min-height: 5em;
   padding: 0;
   transition: all .15s ease-in-out;
   width: 31.25em; }
@@ -208,54 +192,55 @@
     padding: 0.75em; }
   .notific8-notification.family-atomic .notific8-close,
   .notific8-notification.atomic .notific8-close {
+    background-color: transparent;
+    border: none;
+    right: .5em;
     top: .325em; }
     .notific8-notification.family-atomic .notific8-close.sticky,
     .notific8-notification.atomic .notific8-close.sticky {
       font-size: .75em;
       text-decoration: underline; }
-  .notific8-notification.family-atomic.open,
-  .notific8-notification.atomic.open {
-    height: 5em; }
 
 .right .notific8-notification.family-atomic,
 .right .notific8-notification.atomic {
-  border-left-width: 3.2142857143em;
-  margin-right: .625em; }
-  .right .notific8-notification.family-atomic .notific8-close,
-  .right .notific8-notification.atomic .notific8-close {
-    right: .5em; }
+  margin-right: -32.25em; }
   .right .notific8-notification.family-atomic .notific8-heading,
   .right .notific8-notification.atomic .notific8-heading {
     border-top-right-radius: 3px; }
+  .right .notific8-notification.family-atomic.open,
+  .right .notific8-notification.atomic.open {
+    margin-right: .625em; }
 
 .left .notific8-notification.family-atomic,
 .left .notific8-notification.atomic {
-  border-right-width: 3.2142857143em;
-  margin-left: .625em; }
-  .left .notific8-notification.family-atomic .notific8-close,
-  .left .notific8-notification.atomic .notific8-close {
-    left: .5em; }
-  .left .notific8-notification.family-atomic .notific8-heading,
-  .left .notific8-notification.atomic .notific8-heading {
-    padding-left: 2.5em; }
+  margin-left: -32.25em; }
+  .left .notific8-notification.family-atomic.open,
+  .left .notific8-notification.atomic.open {
+    margin-left: .625em; }
 
 .notific8-notification.family-materialish,
 .notific8-notification.materialish {
   border-radius: 2px;
   font-size: 0.875em;
-  height: 0;
+  min-height: 3em;
   max-width: 568px;
   min-width: 288px;
-  transition: height .1s ease-in-out; }
+  opacity: 0;
+  transition: all .15s ease-in-out; }
   .notific8-notification.family-materialish .notific8-message,
   .notific8-notification.materialish .notific8-message {
     margin: 1em 6em 1em 1.7142857143em; }
+  .notific8-notification.family-materialish.open,
+  .notific8-notification.materialish.open {
+    opacity: 1; }
   .notific8-notification.family-materialish.has-heading .notific8-message,
   .notific8-notification.materialish.has-heading .notific8-message {
     margin-bottom: .25em;
     margin-top: .25em; }
   .notific8-notification.family-materialish .notific8-close,
   .notific8-notification.materialish .notific8-close {
+    background-color: transparent;
+    border: none;
     line-height: 1.4285714286em;
     margin-top: -0.7142857143em;
     right: 1.7142857143em;
