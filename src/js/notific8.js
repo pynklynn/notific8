@@ -144,7 +144,7 @@ notific8 = (function() {
       generatedNotificationClasses = notificationClasses(data),
       namespace = data.settings.namespace,
       num = Number(body.dataset.notific8s) + 1,
-      notificationId = `${namespace}-notification-${num}`,
+      notificationId = data.settings.id ? data.settings.id.replace(/\s/g, '-') : `${namespace}-notification-${num}`,
       notification = `<article class="$notificationClasses" id="${notificationId}" data-name="${data.settings.notificationName}" role="status" aria-live="polite">`,
       beforeContentModules = notific8RegisteredModules.beforeContent,
       afterContentModules = notific8RegisteredModules.afterContent,
