@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 4.4.0
+
+- Adding the `id` option to allow for custom IDs for the notification
+
 ## 4.3.0
 
 - Updating the layout of notifications on the left edge of the screen
