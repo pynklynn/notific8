@@ -75,7 +75,8 @@ script(type='text/javascript').
         text = $('#notific8Text').val(),
         $heading = $('#notific8Heading'),
         $closeText = $('#notific8CloseText'),
-        $notificationName = $('#notific8QueueName');
+        $notificationName = $('#notific8QueueName'),
+        $notificationId = $('#notific8Id');
       if (window.notific8ModuleOptions) {
         for (var i in window.notific8ModuleOptions) {
           if (window.notific8ModuleOptions.hasOwnProperty(i)) {
@@ -91,6 +92,9 @@ script(type='text/javascript').
       }
       if ($notificationName.val()) {
         params.notificationName = $notificationName.val();
+      }
+      if ($notificationId.val()) {
+        params.id = $notificationId.val();
       }
       // show notification
       if ($('input[name="notific8UseJquery"]:checked').val() == "1") {

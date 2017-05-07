@@ -48,7 +48,6 @@ module.exports = {
       'spec/**/*.js'
     ],
     tasks: [
-      'clean:spec',
       'clean:karma',
       'karma:unit'
     ],
