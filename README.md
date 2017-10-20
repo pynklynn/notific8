@@ -4,6 +4,8 @@
 
 Notific8 is a notification JavaScript plug-in. Notific8 has built in themes that each come with a set of built in colors. The plug-in is designed to be easy to create new themes and colors for. The plug-in was born from a want for a simply designed yet modern and stylish notification system that was easily customizable.
 
+__Exciting changes are coming in version 5.0.0 in 2018. Read more [here](https://github.com/willsteinmetz/notific8/wiki/To-Infinity-%5Bversion-5%5D-and-Beyond!)!__
+
 As of version 3.0.0, the plug-in was rewritten in pure JavaScript (via CoffeeScript) to be compatible with many of today's JavaScript frameworks that do not play well with jQuery. A jQuery wrapper is also provided to allow existing code to function properly with the new version. The minified version of the jQuery wrapper `jquery.notific8.min.js` has a copy of the notific8 code included so that developers only have to include one file in their project or build script. The unminified files are also available for use in custom build scripts as well.
 
 ## Install with Bower
