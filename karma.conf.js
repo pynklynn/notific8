@@ -7,12 +7,13 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: [ 'jasmine', 'karma-typescript' ],
 
     // list of files / patterns to load in the browser
     files: [
-      'dist/notific8.js',
-      'spec/*Spec.js'
+      {
+        pattern: 'src/notific8/**/*.ts'
+      }
     ],
 
     // list of files to exclude
@@ -21,15 +22,26 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'dist/notific8.js': ['coverage']
+      'src/notific8/**/*.ts': [ 'karma-typescript' ]
     },
+
+    karmaTypescriptConfig: {
+			bundlerOptions: {
+				entrypoints: /\.spec\.ts$/,
+				transforms: [require("karma-typescript-es6-transform")()]
+			},
+			transformPath: function(filepath) {
+				return filepath.replace(/\.(ts|tsx)$/, ".js");
+      },
+      tsconfig: './tsconfig.json'
+		},
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
     reporters: [
       'progress',
-      'coverage'
+      'karma-typescript'
     ],
 
     // htmlReporter:
@@ -59,7 +71,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['PhantomJS'],
+    browsers: [ 'Chrome' ],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -67,6 +79,16 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    client: {
+      captureConsole: true
+    },
+
+    browserConsoleLogOptions: {
+      level: 'log',
+      format: '%b %T: %m',
+      terminal: true
+    }
   });
 };
