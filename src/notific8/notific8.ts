@@ -1,6 +1,6 @@
 import { Notific8Options } from './notific8-options';
 
-export namespace Notific8Factory {
+export namespace Notific8 {
   let notific8DefaultOptions: Notific8Options;
   resetDefaultOptions();
 
@@ -24,7 +24,7 @@ export namespace Notific8Factory {
   }
 
   export function setDefaultOptions(newDefaultOptions: Notific8Options): void {
-    if (!Notific8Factory.isNotific8OptionsObjectValid(newDefaultOptions)) {
+    if (!Notific8.isNotific8OptionsObjectValid(newDefaultOptions)) {
       throw new TypeError('Invalid properties passed in as part of the options');
     }
 
@@ -32,7 +32,7 @@ export namespace Notific8Factory {
   }
 
   export function setDefaultOption(option: string, newValue: string|number|boolean): void {
-    if (!Notific8Factory.isNotific8OptionsObjectValid({ option })) {
+    if (!Notific8.isNotific8OptionsObjectValid({ option })) {
       throw new TypeError(`"${option}" is not a valid Notific8 option property`);
     }
 
@@ -49,7 +49,19 @@ export namespace Notific8Factory {
     return keysIntersection.size === optionsToCheckKeys.size;
   }
 
-  export function create(message: string, notificationOptions?: Notific8Options) {
+  export function create(message: string, notificationOptions: Notific8Options = notific8DefaultOptions) {
+    ensureEdgeContainerExists(notificationOptions);
     // @todo create notification and return it
+  }
+
+  function ensureEdgeContainerExists(notificationOptions: Notific8Options): void {
+    const { horizontalEdge, verticalEdge, styleNamespace } = notificationOptions;
+    const containerSelector = `.${styleNamespace}-container.${horizontalEdge}.${verticalEdge}`;
+
+    if (!document.querySelectorAll(containerSelector).length) {
+      const containerElement = document.createElement('aside');
+      containerElement.classList.add(`${styleNamespace}-container`, horizontalEdge as string, verticalEdge as string);
+      document.body.appendChild(containerElement);
+    }
   }
 }
