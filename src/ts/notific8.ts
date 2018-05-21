@@ -1,4 +1,5 @@
 import { Notific8Options } from './notific8-options';
+import { Notific8Notification } from './notific8-notification';
 
 export namespace Notific8 {
   let notific8DefaultOptions: Notific8Options;
@@ -6,12 +7,16 @@ export namespace Notific8 {
 
   export function resetDefaultOptions(): void {
     notific8DefaultOptions = {
-      closeText: 'close',
+      closeHelpText: 'close',
       horizontalEdge: 'top',
+      id: undefined,
+      imageAltText: undefined,
+      imageUrl: undefined,
       life: 10000,
       queue: false,
       sticky: false,
       styleNamespace: 'notific8',
+      title: undefined,
       theme: 'ocho',
       themeColor: 'teal',
       verticalEdge: 'right',
@@ -49,9 +54,16 @@ export namespace Notific8 {
     return keysIntersection.size === optionsToCheckKeys.size;
   }
 
-  export function create(message: string, notificationOptions: Notific8Options = notific8DefaultOptions) {
+  export function create(message: string, notificationOptions: Notific8Options = notific8DefaultOptions): Notific8Notification {
+    notificationOptions = Object.assign({}, notific8DefaultOptions, notificationOptions);
     ensureEdgeContainerExists(notificationOptions);
-    // @todo create notification and return it
+    const notification = new Notific8Notification(message, notificationOptions);
+
+    const { horizontalEdge, verticalEdge, styleNamespace } = notificationOptions;
+    const containerSelector = `.${styleNamespace}-container.${horizontalEdge}.${verticalEdge}`;
+    (document.querySelector(containerSelector) as HTMLElement).appendChild(notification.notificationHtml);
+
+    return notification;
   }
 
   function ensureEdgeContainerExists(notificationOptions: Notific8Options): void {

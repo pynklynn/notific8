@@ -6,12 +6,16 @@ describe('Notific8 tests', () => {
 
   beforeEach(() => {
     notific8DefaultOptions = {
-      closeText: 'close',
+      closeHelpText: 'close',
       horizontalEdge: 'top',
+      id: undefined,
+      imageAltText: undefined,
+      imageUrl: undefined,
       life: 10000,
       queue: false,
       sticky: false,
       styleNamespace: 'notific8',
+      title: undefined,
       theme: 'ocho',
       themeColor: 'teal',
       verticalEdge: 'right',
@@ -22,12 +26,29 @@ describe('Notific8 tests', () => {
   describe('Notific8Notification creation method tests', () => {
     const notific8Message = 'This is a test notification';
 
-    xit('should create and return a new instance of Notific8Notification when passing in only a message', () => {
-      // @TODO update when implementing Notific8Notification class
+    it('should create and return a new instance of Notific8Notification when passing in only a message', () => {
+      const testNotification = Notific8.create('Message only test');
+      const notificationElements = document.querySelectorAll('.notific8-container.top.right notific8-notification');
+      expect(notificationElements.length).toBe(1);
+      expect((notificationElements[0].querySelector('.notific8-message') as HTMLElement).innerHTML).toBe('Message only test');
     });
 
-    xit('should create and return a new instance of Notific8Notification when passing in a message and options', () => {
-      // @TODO update when implementing Notific8Notification class
+    it('should create and return a new instance of Notific8Notification when passing in a message and options', () => {
+      const testNotification = Notific8.create('Message and configuration test', {
+        horizontalEdge: 'bottom',
+        theme: 'materialish',
+        themeColor: 'lollipop',
+        verticalEdge: 'left'
+      });
+      const notificationElements = document.querySelectorAll('.notific8-container.bottom.left notific8-notification');
+      expect(notificationElements.length).toBe(1);
+      expect((notificationElements[0].querySelector('.notific8-message') as HTMLElement).innerHTML).toBe('Message and configuration test');
+      expect((notificationElements[0].classList.contains('materialish'))).toBe(true);
+      expect((notificationElements[0].classList.contains('lollipop'))).toBe(true);
+    });
+
+    afterEach(() => {
+      (document.querySelector('body') as HTMLElement).innerHTML = '';
     });
   });
 
