@@ -8,6 +8,8 @@ export namespace Notific8 {
   export function resetDefaultOptions(): void {
     notific8DefaultOptions = {
       closeHelpText: 'close',
+      closeReject: undefined,
+      closeResolve: undefined,
       horizontalEdge: 'top',
       id: undefined,
       imageAltText: undefined,
@@ -29,9 +31,7 @@ export namespace Notific8 {
   }
 
   export function setDefaultOptions(newDefaultOptions: Notific8Options): void {
-    if (!Notific8.isNotific8OptionsObjectValid(newDefaultOptions)) {
-      throw new TypeError('Invalid properties passed in as part of the options');
-    }
+    validateOptionsObject(newDefaultOptions);
 
     notific8DefaultOptions = Object.assign(notific8DefaultOptions, newDefaultOptions);
   }
@@ -54,16 +54,28 @@ export namespace Notific8 {
     return keysIntersection.size === optionsToCheckKeys.size;
   }
 
-  export function create(message: string, notificationOptions: Notific8Options = notific8DefaultOptions): Notific8Notification {
-    notificationOptions = Object.assign({}, notific8DefaultOptions, notificationOptions);
-    ensureEdgeContainerExists(notificationOptions);
-    const notification = new Notific8Notification(message, notificationOptions);
+  export function create(message: string, notificationOptions: Notific8Options = notific8DefaultOptions): Promise<Notific8Notification> {
+    return new Promise<Notific8Notification>(((resolve, reject) => {
+      try {
+        notificationOptions = Object.assign({}, notific8DefaultOptions, notificationOptions);
+        validateOptionsObject(notificationOptions);
+        ensureEdgeContainerExists(notificationOptions);
+        const notification = new Notific8Notification(message, notificationOptions);
+    
+        // @TODO check for and handle queue
+        addNotificationToContainer(notificationOptions, notification);
 
+        resolve(notification);
+      } catch(error) {
+        reject(error);
+      }
+    }));
+  }
+
+  function addNotificationToContainer(notificationOptions: Notific8Options, notification: Notific8Notification): void {
     const { horizontalEdge, verticalEdge, styleNamespace } = notificationOptions;
     const containerSelector = `.${styleNamespace}-container.${horizontalEdge}.${verticalEdge}`;
     (document.querySelector(containerSelector) as HTMLElement).appendChild(notification.notificationHtml);
-
-    return notification;
   }
 
   function ensureEdgeContainerExists(notificationOptions: Notific8Options): void {
@@ -75,5 +87,13 @@ export namespace Notific8 {
       containerElement.classList.add(`${styleNamespace}-container`, horizontalEdge as string, verticalEdge as string);
       document.body.appendChild(containerElement);
     }
+  }
+
+  function validateOptionsObject(notific8Options: Notific8Options): boolean {
+    if (!Notific8.isNotific8OptionsObjectValid(notific8Options)) {
+      throw new TypeError('Invalid properties passed in as part of the options');
+    }
+
+    return true;
   }
 }

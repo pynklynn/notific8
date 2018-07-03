@@ -60,11 +60,12 @@ notific8 = function () {
    * @return {Object}      html DOM object for the container
    */
   function getContainer(data) {
-    var _data$settings = data.settings;
-    var verticalEdge = _data$settings.verticalEdge;
-    var horizontalEdge = _data$settings.horizontalEdge;
-    var namespace = _data$settings.namespace;
-    var containerClass = '.' + namespace + '-container.' + verticalEdge + '.' + horizontalEdge;
+    var _data$settings = data.settings,
+        verticalEdge = _data$settings.verticalEdge,
+        horizontalEdge = _data$settings.horizontalEdge,
+        namespace = _data$settings.namespace,
+        containerClass = '.' + namespace + '-container.' + verticalEdge + '.' + horizontalEdge;
+
 
     return document.querySelector(containerClass);
   }

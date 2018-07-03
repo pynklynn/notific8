@@ -1,10 +1,57 @@
 import { Notific8Options } from './notific8-options';
 
 export class Notific8Notification {
+  private closeTimeout?: number;
   public notificationHtml!: HTMLElement;
 
   constructor(public message: string, public notificationOptions: Notific8Options) {
     this.buildNotificationHtml();
+  }
+
+  public open(): Promise<void> {
+    const { life, sticky, styleNamespace } = this.notificationOptions;
+
+    return new Promise<void>((resolve, reject) => {
+      try {
+        const openClass = `${styleNamespace}-open`;
+        this.notificationHtml.classList.add(openClass);
+
+        if (!sticky) {
+          let { closeReject, closeResolve } = this.notificationOptions;
+          closeReject = closeReject || function() {};
+          closeResolve = closeResolve || function(e: any) {};
+
+          this.closeTimeout = setTimeout(() => {
+            this.close().then(() => {
+              (closeResolve as Function)();
+            }).catch((e) => {
+              (closeReject as Function)(e);
+            });
+          }, life);
+        }
+
+        resolve();
+      } catch(e) {
+        reject();
+      }
+    });
+  }
+
+  public close(): Promise<void> {
+    const { styleNamespace } = this.notificationOptions;
+    const openClass = `${styleNamespace}-open`;
+
+    return new Promise<void>((resolve, reject) => {
+      if (this.closeTimeout) {
+        clearTimeout(this.closeTimeout);
+      }
+      try {
+        this.notificationHtml.classList.remove(openClass);
+        resolve();
+      } catch(e) {
+        reject(e);
+      }
+    });
   }
 
   protected buildNotificationHtml(): void {

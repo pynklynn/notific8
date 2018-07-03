@@ -7,6 +7,8 @@ describe('Notific8 tests', () => {
   beforeEach(() => {
     notific8DefaultOptions = {
       closeHelpText: 'close',
+      closeReject: undefined,
+      closeResolve: undefined,
       horizontalEdge: 'top',
       id: undefined,
       imageAltText: undefined,
@@ -26,25 +28,38 @@ describe('Notific8 tests', () => {
   describe('Notific8Notification creation method tests', () => {
     const notific8Message = 'This is a test notification';
 
-    it('should create and return a new instance of Notific8Notification when passing in only a message', () => {
-      const testNotification = Notific8.create('Message only test');
-      const notificationElements = document.querySelectorAll('.notific8-container.top.right notific8-notification');
-      expect(notificationElements.length).toBe(1);
-      expect((notificationElements[0].querySelector('.notific8-message') as HTMLElement).innerHTML).toBe('Message only test');
+    it('should create and return a new instance of Notific8Notification when passing in only a message', (done) => {
+      Notific8.create('Message only test').then((testNotification) => {
+        const notificationElements = document.querySelectorAll('.notific8-container.top.right notific8-notification');
+        expect(notificationElements.length).toBe(1);
+        expect((notificationElements[0].querySelector('.notific8-message') as HTMLElement).innerHTML).toBe('Message only test');
+        done();
+      });
     });
 
-    it('should create and return a new instance of Notific8Notification when passing in a message and options', () => {
-      const testNotification = Notific8.create('Message and configuration test', {
+    it('should create and return a new instance of Notific8Notification when passing in a message and options', (done) => {
+      Notific8.create('Message and configuration test', {
         horizontalEdge: 'bottom',
         theme: 'materialish',
         themeColor: 'lollipop',
         verticalEdge: 'left'
+      }).then((notification) => {;
+        const notificationElements = document.querySelectorAll('.notific8-container.bottom.left notific8-notification');
+        expect(notificationElements.length).toBe(1);
+        expect((notificationElements[0].querySelector('.notific8-message') as HTMLElement).innerHTML).toBe('Message and configuration test');
+        expect((notificationElements[0].classList.contains('materialish'))).toBe(true);
+        expect((notificationElements[0].classList.contains('lollipop'))).toBe(true);
+        done();
       });
-      const notificationElements = document.querySelectorAll('.notific8-container.bottom.left notific8-notification');
-      expect(notificationElements.length).toBe(1);
-      expect((notificationElements[0].querySelector('.notific8-message') as HTMLElement).innerHTML).toBe('Message and configuration test');
-      expect((notificationElements[0].classList.contains('materialish'))).toBe(true);
-      expect((notificationElements[0].classList.contains('lollipop'))).toBe(true);
+    });
+
+    it(`should error out in the promise when creating a notification with a bad property`, (done) => {
+      Notific8.create('Error on create test', {
+        foo: 'bar'
+      }).catch((error) => {
+        expect(error.message).toBe('Invalid properties passed in as part of the options');
+        done();
+      });
     });
 
     afterEach(() => {

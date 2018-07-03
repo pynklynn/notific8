@@ -12,5 +12,6 @@ scss-lint.log
 .DS_Store
 .tscache
 coverage/
+.vs
 # likely to be updated later
 .vscode
