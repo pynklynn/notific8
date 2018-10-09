@@ -60,11 +60,12 @@ notific8 = function () {
    * @return {Object}      html DOM object for the container
    */
   function getContainer(data) {
-    var _data$settings = data.settings;
-    var verticalEdge = _data$settings.verticalEdge;
-    var horizontalEdge = _data$settings.horizontalEdge;
-    var namespace = _data$settings.namespace;
-    var containerClass = '.' + namespace + '-container.' + verticalEdge + '.' + horizontalEdge;
+    var _data$settings = data.settings,
+        verticalEdge = _data$settings.verticalEdge,
+        horizontalEdge = _data$settings.horizontalEdge,
+        namespace = _data$settings.namespace,
+        containerClass = '.' + namespace + '-container.' + verticalEdge + '.' + horizontalEdge;
+
 
     return document.querySelector(containerClass);
   }
@@ -93,7 +94,7 @@ notific8 = function () {
    */
   function buildHeading(data) {
     if (data.settings.heading !== null && typeof data.settings.heading === "string") {
-      return '<header class="' + data.settings.namespace + '-heading">' + data.settings.heading + '</header>';
+      return '<header class="' + data.settings.namespace + '-heading"></header>';
     } else {
       return "";
     }
@@ -105,7 +106,7 @@ notific8 = function () {
    * @return {String}      HTML for the message part of the notification
    */
   function buildMessage(data) {
-    return '<div class="' + data.settings.namespace + '-message">' + data.message + '</div>';
+    return '<div class="' + data.settings.namespace + '-message"></div>';
   }
 
   /**
@@ -165,6 +166,18 @@ notific8 = function () {
     notification += buildClose(data) + '</article>';
     notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
+
+    if (typeof data.settings.heading !== 'undefined') {
+      var currentNotificationHeading = container.getElementsByClassName(data.settings.namespace + '-heading');
+      var currentNotificationHeadingIndex = currentNotificationHeading.length > 0 ? currentNotificationHeading.length - 1 : 0;
+      currentNotificationHeading[currentNotificationHeadingIndex].textContent = '' + data.settings.heading;
+    }
+
+    if (typeof data.message !== 'undefined') {
+      var currentNotificationMessage = container.getElementsByClassName(data.settings.namespace + '-message');
+      var currentNotificationMessageIndex = currentNotificationMessage.length > 0 ? currentNotificationMessage.length - 1 : 0;
+      currentNotificationMessage[currentNotificationMessageIndex].textContent = '' + data.message;
+    }
 
     for (var k = 0, _len2 = onCreateHandlers.length; k < _len2; k++) {
       var onCreate = onCreateHandlers[k];
