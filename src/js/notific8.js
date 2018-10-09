@@ -89,7 +89,7 @@ notific8 = (function() {
       (data.settings.heading !== null) &&
       (typeof data.settings.heading === "string")
     ) {
-      return `<header class="${data.settings.namespace}-heading">${data.settings.heading}</header>`;
+      return `<header class="${data.settings.namespace}-heading"></header>`;
     } else {
       return "";
     }
@@ -101,7 +101,7 @@ notific8 = (function() {
    * @return {String}      HTML for the message part of the notification
    */
   function buildMessage(data) {
-    return `<div class="${data.settings.namespace}-message">${data.message}</div>`;
+    return `<div class="${data.settings.namespace}-message"></div>`;
   }
 
   /**
@@ -169,6 +169,18 @@ notific8 = (function() {
     notification += `${buildClose(data)}</article>`;
     notification = notification.replace('$notificationClasses', generatedNotificationClasses.join(' '));
     container.innerHTML += notification;
+
+    if (typeof data.settings.heading !== 'undefined') {
+        const currentNotificationHeading = container.getElementsByClassName(`${data.settings.namespace}-heading`);
+        const currentNotificationHeadingIndex = currentNotificationHeading.length > 0 ? currentNotificationHeading.length - 1 : 0;
+        currentNotificationHeading[currentNotificationHeadingIndex].textContent = `${data.settings.heading}`;
+    }
+
+    if (typeof data.message !== 'undefined') {
+        const currentNotificationMessage = container.getElementsByClassName(`${data.settings.namespace}-message`);
+        const currentNotificationMessageIndex = currentNotificationMessage.length > 0 ? currentNotificationMessage.length - 1 : 0;
+        currentNotificationMessage[currentNotificationMessageIndex].textContent = `${data.message}`;
+    }
 
     for (let k = 0, len = onCreateHandlers.length; k < len; k++) {
       let onCreate = onCreateHandlers[k];
