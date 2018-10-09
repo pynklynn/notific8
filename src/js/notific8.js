@@ -171,14 +171,14 @@ notific8 = (function() {
     container.innerHTML += notification;
 
     if (typeof data.settings.heading !== 'undefined') {
-        let currentNotificationHeading = container.getElementsByClassName(`${data.settings.namespace}-heading`);
-        let currentNotificationHeadingIndex = currentNotificationHeading.length > 0 ? currentNotificationHeading.length - 1 : 0;
+        const currentNotificationHeading = container.getElementsByClassName(`${data.settings.namespace}-heading`);
+        const currentNotificationHeadingIndex = currentNotificationHeading.length > 0 ? currentNotificationHeading.length - 1 : 0;
         currentNotificationHeading[currentNotificationHeadingIndex].textContent = `${data.settings.heading}`;
     }
 
     if (typeof data.message !== 'undefined') {
-        let currentNotificationMessage = container.getElementsByClassName(`${data.settings.namespace}-message`);
-        let currentNotificationMessageIndex = currentNotificationMessage.length > 0 ? currentNotificationMessage.length - 1 : 0;
+        const currentNotificationMessage = container.getElementsByClassName(`${data.settings.namespace}-message`);
+        const currentNotificationMessageIndex = currentNotificationMessage.length > 0 ? currentNotificationMessage.length - 1 : 0;
         currentNotificationMessage[currentNotificationMessageIndex].textContent = `${data.message}`;
     }
 
