@@ -2,6 +2,10 @@
 
 The change log was created with version 2.0. For changes, please see the commit history of the project.
 
+## 4.4.2
+
+- Adding in fix for possible XSS vulnerability contributed by the community
+
 ## 4.4.1
 
 - Fixing version number
