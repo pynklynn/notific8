@@ -13,7 +13,6 @@ module.exports = {
   },
   build: {
     files: {
-      'dist/jquery.notific8.js': 'src/js/jquery.notific8.js',
       'dist/notific8.js': 'src/js/notific8.js'
     }
   }

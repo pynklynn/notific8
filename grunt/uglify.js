@@ -19,10 +19,6 @@ module.exports = {
   },
   my_target: {
     files: {
-      'dist/jquery.notific8.min.js': [
-        'dist/notific8.js',
-        'dist/jquery.notific8.js'
-      ],
       'dist/notific8.min.js': [ 'dist/notific8.js' ]
     }
   }

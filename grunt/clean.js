@@ -23,17 +23,6 @@ module.exports = {
     'build/css',
     'dist/**/*.css*',
   ],
-  release: [
-    'src/sass-format/**/*.sass',
-    'src/stylus/**/*.styl',
-    'src/less/**/*.less',
-  ],
-  stylus: [
-    'src/stylus/src',
-  ],
-  less: [
-    'src/less/jquery.less',
-  ],
   karma: [
     'karma_tests',
   ]

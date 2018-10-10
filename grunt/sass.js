@@ -6,9 +6,12 @@
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
+const sass = require('node-sass');
+
 module.exports = {
   dist: {
     options: {
+      implementation: sass,
       style: 'compact',
       sourceMap: true
     },

@@ -19,21 +19,8 @@ module.exports = {
     'babel:build'
   ],
   'release': [
-    'clean:release',
     'build',
-    'update_json',
     'uglify',
     'cssmin'
-  ],
-  'alternate-styles': [
-    // for some reason this is not running properly when called from here and
-    // and has to be called separately
-    // 'sass2stylus',
-    'scss2less',
-    'concat:less',
-    'replace:less',
-    'sass-convert',
-    // 'clean:stylus',
-    'clean:less'
   ]
 };
