@@ -93,10 +93,8 @@ export class Notific8Notification {
     }
   }
 
-  /**
-   * Solution found as an answer on StackOverflow:
-   * http://stackoverflow.com/a/2117523/5870787
-   */
+  // Solution found as an answer on StackOverflow:
+  // http://stackoverflow.com/a/2117523/5870787
   protected generateUniqueId(): string {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
       let r, v;
