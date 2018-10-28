@@ -13,7 +13,7 @@ export class Notific8Notification {
                 if (!sticky) {
                     let { closeReject, closeResolve } = this.notificationOptions;
                     closeReject = closeReject || function () { };
-                    closeResolve = closeResolve || function (e) { };
+                    closeResolve = closeResolve || function () { };
                     this.closeTimeout = setTimeout(() => {
                         this.close().then(() => {
                             closeResolve();
