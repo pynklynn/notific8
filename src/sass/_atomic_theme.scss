@@ -1,82 +1,80 @@
-//
 // @author Will Steinmetz
 //
-// Atomic family themes for the notific8 JavaScript plug-in
+// Atomic theme for the notific8 JavaScript library
 //
-// Copyright (c)2013-2016, Will Steinmetz
+// Copyright (c)2013-2019, Will Steinmetz
 // Licensed under the BSD license.
 // http://opensource.org/licenses/BSD-3-Clause
-//
 
-// mixins
 @mixin notific8_atomic_theme($name, $color, $text-color: #454545) {
-  .#{$notific8-ns}-notification.family-atomic.#{$name},// deprecated
-  .#{$notific8-ns}-notification.atomic.#{$name} {
-    background-color: lighten($color, 30%);
-    border-color: $color;
-    color: $text-color;
-
-    .#{$notific8-ns}-heading {
-      background-color: lighten($color, 20%);
-      border-bottom: solid 1px lighten($color, 10%);
-    }
+  notific8-notification.atomic.#{$name} {
+    --background-color: #{lighten($color, 30%)};
+    --header-background-color: #{lighten($color, 20%)};
+    --header-border-bottom-color: #{lighten($color, 10%)};
+    --border-color: #{$color};
+    --text-color: #{$text-color};
   }
 }
 
-.#{$notific8-ns}-notification.family-atomic,// deprecated
-.#{$notific8-ns}-notification.atomic {
+notific8-notification.atomic {
+  --background-color: lighten(#999, 30%);
+  --header-background-color: lighten(#999, 20%);
+  --header-border-bottom-color: lighten(#999, 10%);
+  --border-color: #999;
+  --text-color: #fff;
+
+  background-color: var(--background-color);
+  border-color: var(--border-color);
   border-left-width: em(45px, 14px);
   border-radius: 3px;
+  color: var(--text-color);
   font-size: em(14px);
   min-height: em(70px, 14px);
   padding: 0;
   transition: all .15s ease-in-out;
   width: em(500px);
 
-  .#{$notific8-ns}-heading {
+  .notific8-header {
+    background-color: var(--header-background-color);
+    border-bottom: solid 1px var(--header-border-bottom-color);
     padding: .75em;
   }
 
-  .#{$notific8-ns}-message-content {
+  .notific8-content {
     width: 100%;
   }
 
-  .#{$notific8-ns}-message {
+  .notific8-message {
+    display: block;
     font-size: em(12px, 14px);
     padding: em(10.5px, 14px);
   }
 
-  .#{$notific8-ns}-close {
+  .notific8-close-button {
     background-color: transparent;
     border: none;
+    font-size: em(20px, 14px);
     right: .5em;
     top: .325em;
-
-    &.sticky {
-      font-size: .75em;
-      text-decoration: underline;
-    }
   }
 }
 
-.right .#{$notific8-ns}-notification.family-atomic,//deprecated
-.right .#{$notific8-ns}-notification.atomic {
+notific8-container[right] notific8-notification.atomic {
   margin-right: em(-516px);
 
-  .#{$notific8-ns}-heading {
+  .notific8-header {
     border-top-right-radius: 3px;
   }
 
-  &.open {
+  &[open] {
     margin-right: .625em;
   }
 }
 
-.left .#{$notific8-ns}-notification.family-atomic,//deprecated
-.left .#{$notific8-ns}-notification.atomic {
+notific8-container[left] notific8-notification.atomic {
   margin-left: em(-516px);
 
-  &.open {
+  &[open] {
     margin-left: .625em;
   }
 }

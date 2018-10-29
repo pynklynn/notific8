@@ -9,7 +9,6 @@ export interface Notific8Options {
   life?: number;
   queue?: boolean;
   sticky?: boolean;
-  styleNamespace?: string;
   title?: string;
   theme?: string;
   themeColor?: string;
@@ -27,44 +26,44 @@ export class Notific8Notification {
   }
 
   public open(): Promise<void> {
-    const { life, sticky, styleNamespace } = this.notificationOptions;
+    const { life, sticky } = this.notificationOptions;
 
     return new Promise<void>((resolve, reject) => {
-      try {
-        const openClass = `${styleNamespace}-open`;
-        this.notificationHtml.classList.add(openClass);
+      setTimeout(() => {
+        try {
+          this.notificationHtml.setAttribute('open', '');
 
-        if (!sticky) {
-          let { closeReject, closeResolve } = this.notificationOptions;
-          closeReject = closeReject || function() {};
-          closeResolve = closeResolve || function() {};
+          if (!sticky) {
+            let { closeReject, closeResolve } = this.notificationOptions;
+            closeReject = closeReject || function() {};
+            closeResolve = closeResolve || function() {};
 
-          this.closeTimeout = setTimeout(() => {
-            this.close().then(() => {
-              (closeResolve as Function)();
-            }).catch((e) => {
-              (closeReject as Function)(e);
-            });
-          }, life);
+            this.closeTimeout = setTimeout(() => {
+              this.close().then(() => {
+                (closeResolve as Function)();
+              }).catch((e) => {
+                (closeReject as Function)(e);
+              });
+            }, life);
+          } else {
+            this.notificationHtml.setAttribute('sticky', '');
+          }
+
+          resolve();
+        } catch(e) {
+          reject();
         }
-
-        resolve();
-      } catch(e) {
-        reject();
-      }
+      }, 5);
     });
   }
 
   public close(): Promise<void> {
-    const { styleNamespace } = this.notificationOptions;
-    const openClass = `${styleNamespace}-open`;
-
     return new Promise<void>((resolve, reject) => {
       if (this.closeTimeout) {
         clearTimeout(this.closeTimeout);
       }
       try {
-        this.notificationHtml.classList.remove(openClass);
+        this.notificationHtml.removeAttribute('open');
         resolve();
       } catch(e) {
         reject(e);
@@ -73,12 +72,13 @@ export class Notific8Notification {
   }
 
   protected buildNotificationHtml(): void {
-    const { theme, themeColor, styleNamespace, zIndex } = this.notificationOptions;
+    const { theme, themeColor, zIndex } = this.notificationOptions;
 
-    this.notificationHtml = document.createElement(`${styleNamespace}-notification`);
+    this.notificationHtml = document.createElement('notific8-notification');
     this.notificationHtml.classList.add(theme as string, themeColor as string);
     this.notificationHtml.style.zIndex = (zIndex as number).toString();
     this.buildNotificationId();
+    this.notificationHtml.appendChild(this.buildNotificationCloseButton());
     this.notificationHtml.appendChild(this.buildNotificationHeader());
     this.notificationHtml.appendChild(this.buildNotificationContent());
   }
@@ -106,32 +106,32 @@ export class Notific8Notification {
   }
 
   protected buildNotificationHeader(): HTMLElement {
-    const { styleNamespace, title } = this.notificationOptions;
+    const { title } = this.notificationOptions;
     const notificationHeader = document.createElement('header');
 
-    notificationHeader.classList.add(`${styleNamespace}-header`);
+    notificationHeader.classList.add('notific8-header');
     if (title) {
       notificationHeader.appendChild(this.buildNotificationTitle());
     }
-    notificationHeader.appendChild(this.buildNotificationCloseButton());
+    // notificationHeader.appendChild(this.buildNotificationCloseButton());
 
     return notificationHeader;
   }
 
   protected buildNotificationTitle(): HTMLElement {
-    const { title, styleNamespace } = this.notificationOptions;
+    const { title } = this.notificationOptions;
     const notificationTitle = document.createElement('span');
     
-    notificationTitle.classList.add(`${styleNamespace}-title`);
+    notificationTitle.classList.add('notific8-title');
     notificationTitle.innerText = title as string;
 
     return notificationTitle;
   }
 
   protected buildNotificationCloseButton(): HTMLElement {
-    const { styleNamespace, closeHelpText } = this.notificationOptions;
+    const { closeHelpText } = this.notificationOptions;
     const notificationCloseButton = document.createElement('span');
-    notificationCloseButton.classList.add(`${styleNamespace}-close-button`);
+    notificationCloseButton.classList.add('notific8-close-button');
     notificationCloseButton.title = closeHelpText as string;
     notificationCloseButton.innerHTML = '&times;';
 
@@ -139,17 +139,17 @@ export class Notific8Notification {
   }
 
   protected buildNotificationContent(): HTMLElement {
-    const { styleNamespace, imageUrl } = this.notificationOptions;
+    const { imageUrl } = this.notificationOptions;
     const notificationContent = document.createElement('section');
     const notificationMessage = document.createElement('span');
 
-    const contentClasses = [ `${styleNamespace}-content` ];
+    const contentClasses = [ 'notific8-content' ];
     if (imageUrl) {
-      contentClasses.push(`${styleNamespace}-has-image`);
+      contentClasses.push('notific8-has-image');
       notificationContent.appendChild(this.buildNotificationImage());
     }
     notificationContent.classList.add(...contentClasses);
-    notificationMessage.classList.add(`${styleNamespace}-message`);
+    notificationMessage.classList.add('notific8-message');
     notificationMessage.innerHTML = this.message;
     notificationContent.appendChild(notificationMessage);
 
@@ -157,10 +157,10 @@ export class Notific8Notification {
   }
 
   protected buildNotificationImage(): HTMLElement {
-    const { styleNamespace, imageUrl, imageAltText } = this.notificationOptions;
+    const { imageUrl, imageAltText } = this.notificationOptions;
     const notificationImage = document.createElement('img');
 
-    notificationImage.classList.add(`${styleNamespace}-image`);
+    notificationImage.classList.add('notific8-image');
     notificationImage.src = imageUrl as string;
     if (imageAltText) {
       notificationImage.alt = imageAltText as string;
@@ -186,7 +186,6 @@ export namespace Notific8 {
       life: 10000,
       queue: false,
       sticky: false,
-      styleNamespace: 'notific8',
       title: undefined,
       theme: 'ocho',
       themeColor: 'teal',
@@ -242,18 +241,19 @@ export namespace Notific8 {
   }
 
   function addNotificationToContainer(notificationOptions: Notific8Options, notification: Notific8Notification): void {
-    const { horizontalEdge, verticalEdge, styleNamespace } = notificationOptions;
-    const containerSelector = `.${styleNamespace}-container.${horizontalEdge}.${verticalEdge}`;
+    const { horizontalEdge, verticalEdge } = notificationOptions;
+    const containerSelector = `notific8-container[${horizontalEdge}][${verticalEdge}]`;
     (document.querySelector(containerSelector) as HTMLElement).appendChild(notification.notificationHtml);
   }
 
   function ensureEdgeContainerExists(notificationOptions: Notific8Options): void {
-    const { horizontalEdge, verticalEdge, styleNamespace } = notificationOptions;
-    const containerSelector = `.${styleNamespace}-container.${horizontalEdge}.${verticalEdge}`;
+    const { horizontalEdge, verticalEdge } = notificationOptions;
+    const containerSelector = `notific8-container[${horizontalEdge}][${verticalEdge}]`;
 
     if (!document.querySelectorAll(containerSelector).length) {
-      const containerElement = document.createElement('aside');
-      containerElement.classList.add(`${styleNamespace}-container`, horizontalEdge as string, verticalEdge as string);
+      const containerElement = document.createElement('notific8-container');
+      containerElement.setAttribute(horizontalEdge as string, '');
+      containerElement.setAttribute(verticalEdge as string, '');
       document.body.appendChild(containerElement);
     }
   }

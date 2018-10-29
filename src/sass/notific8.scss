@@ -1,16 +1,14 @@
 /**
  * @author Will Steinmetz
  *
- * Styles for the notific8 JavaScript plug-in
+ * Styles for the notific8 JavaScript library
  *
- * Copyright (c)2013-2016, Will Steinmetz
+ * Copyright (c)2013-2019, Will Steinmetz
  * Licensed under the BSD license.
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
 // import the style file
-@import 'mixins';
-@import 'variables';
 @import 'notific8-base';
 @import 'ocho_theme';
 @import 'chicchat_theme';
@@ -24,6 +22,6 @@
 @import 'default_materialish_colors';
 
 // custom themes
-//@include notific8_legacy_theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color);
+// @include notific8-ocho-theme($name, $border-color, $background-color, $close-background-color: $border-color, $text-color: #fff, $close-text-color: $text-color);
 // example:
-//@include notific8_legacy_theme(smoke, #ababab, #efefef, #ababab, #333, #fff);
+// @include notific8-ocho-theme('smoke', #ababab, #efefef, #ababab, #333, #fff);

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>{{ title }}</h1>
+    <h1>Notific8 Demo</h1>
     <button @click="openNotification">Open notification</button>
   </div>
 </template>
@@ -13,14 +13,21 @@ export default {
   name: 'app',
   components: {},
   data() {
-    return {
-      title: 'Hello, World!'
-    }
+    return {}
   },
   methods: {
     openNotification() {
-      console.log('Hello, world!');
-      Notific8.create('Hello, world!').then((notification) => {
+      Notific8.create('Hello, world!', { 
+        sticky: true,
+        // theme: 'materialish',
+        // theme: 'chicchat',
+        theme: 'atomic',
+        // themeColor: 'purple-rain',
+        // themeColor: 'honey',
+        themeColor: 'cerulean',
+        title: 'Test Notification'
+
+      }).then((notification) => {
         notification.open();
         console.log('notification', notification);
       });
@@ -29,5 +36,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+// this is how to import from a node module
+@import "~notific8/src/sass/notific8";
 </style>

@@ -1,25 +1,28 @@
-//
 // @author Will Steinmetz
 //
-// Materialish theme for the notific8 JavaScript plug-in
+// Materialish theme for the notific8 JavaScript library
 //
-// Copyright (c)2013-2016, Will Steinmetz
+// Copyright (c)2013-2019, Will Steinmetz
 // Licensed under the BSD license.
 // http://opensource.org/licenses/BSD-3-Clause
-//
 
-// mixin
-@mixin notific8_materialish_theme($name, $color, $text-color: #eee) {
-  .#{$notific8-ns}-notification.family-materialish.#{$name},// deprecated
-  .#{$notific8-ns}-notification.materialish.#{$name} {
-    background-color: $color;
-    color: $text-color;
+@mixin notific8_materialish_theme($name, $background-color, $text-color: #eee) {
+  notific8-notification.materialish.#{$name} {
+    --background-color: #{$background-color};
+    --text-color: #{$text-color};
   }
 }
 
-.#{$notific8-ns}-notification.family-materialish,// deprecated
-.#{$notific8-ns}-notification.materialish {
+notific8-notification.materialish {
+  --background-color: #999;
+  --text-color: #fff;
+
+  align-items: flex-start;
+  background-color: var(--background-color);
   border-radius: 2px;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
   font-size: em(14px);
   min-height: em(48px);
   max-width: 568px;
@@ -27,42 +30,37 @@
   opacity: 0;
   transition: all .15s ease-in-out;
 
-  .#{$notific8-ns}-message {
-    margin: 1em em(84px, 14px) 1em em(24px, 14px);
+  .notific8-content {
+    margin: 0 em(84px, 14px) 0 1em;
   }
 
-  &.open {
+  &[open] {
     opacity: 1;
   }
 
-  &.has-heading .#{$notific8-ns}-message {
-    margin-bottom: .25em;
-    margin-top: .25em;
-  }
-
-  .#{$notific8-ns}-close {
+  .notific8-close-button {
     background-color: transparent;
     border: none;
     line-height: em(20px, 14px);
     margin-top: em(-10px, 14px);
-    right: em(24px, 14px);
+    right: 1em;
     top: 50%;
   }
 
-  .#{$notific8-ns}-heading {
+  .notific8-header {
     font-size: em(11px, 14px);
     font-weight: 100;
-    margin-left: em(24px, 11px);
+    margin-left: em(14px, 11px);
     margin-top: em(5px, 11px);
   }
 
-  &.sticky {
-    .#{$notific8-ns}-message {
+  &[sticky] {
+    .notific8-message {
       line-height: em(20px, 14px);
       margin-right: em(120px, 14px);
     }
 
-    .#{$notific8-ns}-close.sticky {
+    .notific8-close-button {
       text-transform: uppercase;
 
       &:hover {
