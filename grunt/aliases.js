@@ -10,7 +10,6 @@ module.exports = {
   'default': [
     'clean:all',
     'build',
-    'karma:unit',
     'watch'
   ],
   'build': [

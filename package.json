@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "karma start --single-run"
+    "test": "jest --config=jest.config.js",
+    "ts:watch": "tsc -p tsconfig.json --watch --skipLibCheck"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,7 @@
   "author": "Will Steinmetz <willsteinmetz@users.noreply.github.com>",
   "license": "BSD-3-Clause",
   "devDependencies": {
-    "@types/jasmine": "^2.8.6",
+    "@types/jest": "^23.3.8",
     "babel-preset-es2015": "^6.16.0",
     "grunt": "^1.0.3",
     "grunt-babel": "^6.0.0",
@@ -29,22 +30,14 @@
     "grunt-contrib-pug": "^1.0.0",
     "grunt-contrib-uglify": "^4.0.0",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-karma": "^3.0.0",
     "grunt-sass": "^3.0.2",
     "jasmine-core": "^2.4.1",
-    "karma": "^3.0.0",
-    "karma-chrome-launcher": "^1.0.1",
-    "karma-coverage": "^1.1.2",
-    "karma-htmlfile-reporter": "^0.3.7",
-    "karma-jasmine": "^1.0.2",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "karma-typescript": "^3.0.13",
-    "karma-typescript-es6-transform": "^1.0.4",
+    "jest": "^23.6.0",
     "load-grunt-config": "^0.19.2",
     "node-sass": "^4.9.3",
     "node-static": "^0.7.8",
-    "phantomjs-prebuilt": "^2.1.7",
     "time-grunt": "^1.4.0",
+    "ts-jest": "^23.10.4",
     "typescript": "^2.8.1"
   },
   "dependencies": {}
