@@ -39,6 +39,17 @@ notific8-notification.ocho {
   transition: all .2s ease-in-out;
   width: em(390px);
 
+  &[image] {
+    padding-left: em(85px);
+
+    .notific8-image {
+      float: left;
+      margin-left: em(-80px);
+      max-height: em(70px);
+      max-width: em(70px);
+    }
+  }
+
   .notific8-header {
     font-weight: bold;
     margin-bottom: em(5px);

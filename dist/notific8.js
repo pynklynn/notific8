@@ -48,13 +48,16 @@ export class Notific8Notification {
         });
     }
     buildNotificationHtml() {
-        const { theme, themeColor, zIndex } = this.notificationOptions;
+        const { theme, themeColor, zIndex, imageUrl } = this.notificationOptions;
         this.notificationHtml = document.createElement('notific8-notification');
         this.notificationHtml.classList.add(theme, themeColor);
         this.notificationHtml.style.zIndex = zIndex.toString();
         this.buildNotificationId();
         this.notificationHtml.appendChild(this.buildNotificationCloseButton());
-        this.notificationHtml.appendChild(this.buildNotificationHeader());
+        if (imageUrl) {
+            this.notificationHtml.setAttribute('image', '');
+            this.notificationHtml.appendChild(this.buildNotificationImage());
+        }
         this.notificationHtml.appendChild(this.buildNotificationContent());
     }
     buildNotificationId() {
@@ -83,7 +86,6 @@ export class Notific8Notification {
         if (title) {
             notificationHeader.appendChild(this.buildNotificationTitle());
         }
-        // notificationHeader.appendChild(this.buildNotificationCloseButton());
         return notificationHeader;
     }
     buildNotificationTitle() {
@@ -99,18 +101,19 @@ export class Notific8Notification {
         notificationCloseButton.classList.add('notific8-close-button');
         notificationCloseButton.title = closeHelpText;
         notificationCloseButton.innerHTML = '&times;';
+        notificationCloseButton.addEventListener('click', () => {
+            this.close();
+        });
         return notificationCloseButton;
     }
     buildNotificationContent() {
-        const { imageUrl } = this.notificationOptions;
+        const { title } = this.notificationOptions;
         const notificationContent = document.createElement('section');
+        notificationContent.classList.add('notific8-content');
         const notificationMessage = document.createElement('span');
-        const contentClasses = ['notific8-content'];
-        if (imageUrl) {
-            contentClasses.push('notific8-has-image');
-            notificationContent.appendChild(this.buildNotificationImage());
+        if (title) {
+            notificationContent.appendChild(this.buildNotificationHeader());
         }
-        notificationContent.classList.add(...contentClasses);
         notificationMessage.classList.add('notific8-message');
         notificationMessage.innerHTML = this.message;
         notificationContent.appendChild(notificationMessage);

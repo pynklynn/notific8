@@ -40,6 +40,20 @@ notific8-notification.atomic {
     padding: .75em;
   }
 
+  &[image] {
+    .notific8-image {
+      left: em(5px, 14px);
+      max-height: em(18px, 14px);
+      max-width: em(18px, 14px);
+      position: absolute;
+      top: em(48px, 14px);
+    }
+
+    .notific8-message {
+      margin-left: em(20px, 12px);
+    }
+  }
+
   .notific8-content {
     width: 100%;
   }

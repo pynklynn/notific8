@@ -19,12 +19,36 @@ notific8-notification.chicchat {
   border-radius: .25em;
   border-style: solid;
   border-width: 1px;
-  border-left-width: em(45px, 14px);
   color: var(--theme-color);
   font-size: em(14px);
   padding: .75em;
   transition: all .15s ease-in-out;
   width: em(500px);
+
+  &::before {
+    background-color: var(--theme-color);
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: em(45px, 14px);
+    z-index: -1;
+  }
+
+  &[image] {
+    align-content: flex-start;
+    display: flex;
+
+    .notific8-image {
+      align-self: center;
+      max-height: em(28px, 14px);
+      max-width: em(28px, 14px);
+    }
+  }
+
+  .notific8-content {
+    flex-grow: 1;
+  }
 
   .notific8-header {
     font-weight: bold;
@@ -36,7 +60,6 @@ notific8-notification.chicchat {
     border: none;
     font-size: em(20px, 14px);
     line-height: 1;
-    right: .5em;
     top: .325em;
   }
 }
@@ -47,12 +70,60 @@ notific8-container[right] notific8-notification.chicchat {
   &[open] {
     margin-right: .625em;
   }
+
+  &::before {
+    left: 0;
+  }
+
+  &[image] {
+    .notific8-content {
+      margin-left: em(20px, 14px);
+    }
+
+    .notific8-image {
+      margin-left: em(-2px, 14px);
+    }
+  }
+
+  .notific8-content {
+    margin-left: em(45px, 14px);
+    margin-right: em(20px, 14px);
+  }
+
+  .notific8-close-button {
+    right: .5em;
+  }
 }
 
 notific8-container[left] notific8-notification.chicchat {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
   margin-left: em(-516px);
 
   &[open] {
     margin-left: .625em;
+  }
+
+  &::before {
+    right: 0;
+  }
+
+  &[image] {
+    .notific8-content {
+      margin-right: em(20px, 14px);
+    }
+
+    .notific8-image {
+      margin-right: em(-2px, 14px);
+    }
+  }
+
+  .notific8-content {
+    margin-right: em(45px, 14px);
+    margin-left: em(20px, 14px);
+  }
+
+  .notific8-close-button {
+    left: .5em;
   }
 }

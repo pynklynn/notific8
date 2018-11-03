@@ -17,12 +17,11 @@ notific8-notification.materialish {
   --background-color: #999;
   --text-color: #fff;
 
-  align-items: flex-start;
+  align-items: center;
   background-color: var(--background-color);
   border-radius: 2px;
   color: var(--text-color);
   display: flex;
-  flex-direction: column;
   font-size: em(14px);
   min-height: em(48px);
   max-width: 568px;
@@ -31,11 +30,20 @@ notific8-notification.materialish {
   transition: all .15s ease-in-out;
 
   .notific8-content {
-    margin: 0 em(84px, 14px) 0 1em;
+    margin: em(5px, 11px) em(84px, 14px) em(5px, 11px) 1em;
   }
 
   &[open] {
     opacity: 1;
+  }
+
+  &[image] {
+    padding-left: 1em;
+
+    .notific8-image {
+      max-height: 1em;
+      max-width: 1em;
+    }
   }
 
   .notific8-close-button {
@@ -50,14 +58,11 @@ notific8-notification.materialish {
   .notific8-header {
     font-size: em(11px, 14px);
     font-weight: 100;
-    margin-left: em(14px, 11px);
-    margin-top: em(5px, 11px);
   }
 
   &[sticky] {
     .notific8-message {
       line-height: em(20px, 14px);
-      margin-right: em(120px, 14px);
     }
 
     .notific8-close-button {

@@ -9,7 +9,6 @@ export interface Notific8Options {
     life?: number;
     queue?: boolean;
     sticky?: boolean;
-    styleNamespace?: string;
     title?: string;
     theme?: string;
     themeColor?: string;
