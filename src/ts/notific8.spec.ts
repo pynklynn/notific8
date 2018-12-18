@@ -5,6 +5,7 @@ describe('Notific8 Notification tests', () => {
 
   beforeEach(() => {
     notific8DefaultOptions = {
+      actionButtons: undefined,
       closeHelpText: 'close',
       closeReject: undefined,
       closeResolve: undefined,
@@ -14,6 +15,8 @@ describe('Notific8 Notification tests', () => {
       imageUrl: undefined,
       life: 10000,
       queue: false,
+      queueOpenReject: undefined,
+      queueOpenResolve: undefined,
       sticky: false,
       title: undefined,
       theme: 'ocho',
@@ -21,6 +24,8 @@ describe('Notific8 Notification tests', () => {
       verticalEdge: 'right',
       zIndex: 1100
     };
+
+    document.write('<notific8-container top right></notific8-container>');
   });
 
   test('should create a notification with a title', () => {
@@ -62,6 +67,21 @@ describe('Notific8 Notification tests', () => {
     const testNotification = new Notific8Notification('Image test notification', notific8Options);
 
     expect((testNotification.notificationHtml.querySelector('.notific8-image') as HTMLImageElement).alt).toBe('');
+  });
+
+  test('should create a notification with action buttons', () => {
+    const notific8Options = Object.assign(
+      {},
+      notific8DefaultOptions,
+      { actionButtons: [ { buttonText: 'Close' } ] }
+    );
+    const testNotification = new Notific8Notification('Action buttons test notification', notific8Options);
+    const testNotificationButtons = testNotification.notificationHtml.querySelectorAll('.notific8-action-button');
+    const testNotificationMessage = testNotification.notificationHtml.querySelectorAll('.notific8-message');
+
+    expect(testNotificationButtons.length).toBe(1);
+    expect(testNotificationMessage.length).toBe(1);
+    expect(testNotificationMessage[0].innerHTML).toBe('Action buttons test notification');
   });
 
   describe('notification id', () => {
@@ -106,6 +126,39 @@ describe('Notific8 Notification tests', () => {
         expect(testNotification.notificationHtml.hasAttribute('open')).toBe(false);
       });
     });
+
+    test('should mark a notification as sticky', () => {
+      const notific8Options = Object.assign(
+        notific8DefaultOptions,
+        {
+          life: 5000,
+          sticky: true
+        }
+      );
+      const testNotification = new Notific8Notification('Test opening non-sticky notification', notific8Options);
+      testNotification.open().then(() => {
+        expect(testNotification.notificationHtml.hasAttribute('sticky')).toBe(true);
+      });
+    });
+
+    test('should reopen an existing notification', () => {
+      const notific8Options = Object.assign(
+        notific8DefaultOptions,
+        {
+          life: 500
+        }
+      );
+      const testNotification = new Notific8Notification('Testing reusing a notification', notific8Options);
+      spyOn(Notific8, 'queueOrAddToContainer');
+      testNotification.open().then(() => {
+        testNotification.close();
+        testNotification.open().then(async() => {
+          expect(Notific8.queueOrAddToContainer).toHaveBeenCalled();
+        });
+        jest.runOnlyPendingTimers();
+      });
+      jest.runOnlyPendingTimers();
+    });
   });
 
   describe('notification close function', () => {
@@ -126,25 +179,10 @@ describe('Notific8 Notification tests', () => {
         });
       });
     });
+  });
 
-    test('should not try to close an already closed notification', () => {
-      const closeResolveSpy = jasmine.createSpy('closeResolve');
-      const closeRejectSpy = jasmine.createSpy('closeReject');
-      const notific8Options = Object.assign(
-        notific8DefaultOptions,
-        {
-          closeReject: closeRejectSpy,
-          closeResolve: closeResolveSpy
-        }
-      );
-      const testNotification = new Notific8Notification('Test no double-closing', notific8Options);
-      testNotification.open();
-      testNotification.close();
-
-      jest.runOnlyPendingTimers();
-      expect(closeRejectSpy).not.toHaveBeenCalled();
-      expect(closeResolveSpy).not.toHaveBeenCalled();
-    });
+  afterEach(() => {
+    document.body.innerHTML = '';
   });
 });
 
@@ -294,6 +332,68 @@ describe('Notific8 tests', () => {
       expect(document.querySelectorAll(containerSelector).length).toBe(1);
       Notific8.create('ensureEdgeContainerExists test to create container');
       expect(document.querySelectorAll(containerSelector).length).toBe(1);
+    });
+  });
+
+  describe('queueOrAddToContainer tests', () => {
+    beforeEach(() => jest.useFakeTimers());
+
+    test('should queue a notification', (done) => {
+      const notification2Options = Object.assign(
+        {},
+        notific8DefaultOptions,
+        { queue: true }
+      );
+      Notific8.create('Queued notification 1').then((notification1) => {
+        notification1.open().then(() => {
+          Notific8.create('Queued notification 2', notification2Options).then((notification2) => {
+            expect(Notific8.hasQueuedNotifications()).toBe(true);
+            done();
+          });
+        });
+        jest.runOnlyPendingTimers();
+      });
+    });
+
+    test('should not queue a notification', (done) => {
+      Notific8.create('Queued notification 1').then((notification1) => {
+        notification1.open().then(() => {
+          Notific8.create('Queued notification 2').then((notification2) => {
+            expect(document.querySelectorAll('notific8-notification').length).toBe(2);
+            done();
+          });
+        });
+        jest.runOnlyPendingTimers();
+      });
+    });
+  });
+
+  describe('triggerQueue tests', () => {
+    beforeEach(() => jest.useFakeTimers());
+
+    test('should trigger a queue to open', () => {
+      const openResolveSpy = jasmine.createSpy('queueOpenResolve');
+      const notification2Options = Object.assign(
+        {},
+        notific8DefaultOptions,
+        {
+          queueOpenResolve: openResolveSpy,
+          queue: true
+        }
+      );
+
+      Notific8.create('Trigger queue test 1').then((notification1) => {
+        notification1.open().then(() => {
+          Notific8.create('Trigger queue 2', notification2Options).then((notification2) => {
+            notification1.close().then(() => {
+              jest.runOnlyPendingTimers();
+              expect(openResolveSpy).toHaveBeenCalled();
+            });
+            jest.runOnlyPendingTimers();
+          });
+        });
+        jest.runOnlyPendingTimers();
+      });
     });
   });
 

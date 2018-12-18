@@ -62,6 +62,19 @@ notific8-notification.chicchat {
     line-height: 1;
     top: .325em;
   }
+
+  notific8-action-buttons {
+    padding-top: em(10px, 14px);
+  }
+
+  .notific8-action-button {
+    background-color: var(--theme-color);
+    border: none;
+    border-radius: em(4px, 11px);
+    color: white;
+    margin-right: em(5px, 11px);
+    padding: em(5px, 11px) em(10px, 11px);
+  }
 }
 
 notific8-container[right] notific8-notification.chicchat {
@@ -92,6 +105,10 @@ notific8-container[right] notific8-notification.chicchat {
 
   .notific8-close-button {
     right: .5em;
+  }
+
+  notific8-action-buttons {
+    padding-left: em(45px, 14px);
   }
 }
 
@@ -125,5 +142,9 @@ notific8-container[left] notific8-notification.chicchat {
 
   .notific8-close-button {
     left: .5em;
+  }
+
+  notific8-action-buttons {
+    padding-right: em(45px, 14px);
   }
 }

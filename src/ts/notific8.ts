@@ -1,4 +1,5 @@
 export interface Notific8Options {
+  actionButtons?: Notific8ActionButton[];
   closeHelpText?: string;
   closeReject?: Function;
   closeResolve?: Function;
@@ -8,14 +9,20 @@ export interface Notific8Options {
   imageUrl?: string;
   life?: number;
   queue?: boolean;
+  queueOpenReject?: Function;
+  queueOpenResolve?: Function;
   sticky?: boolean;
   title?: string;
   theme?: string;
   themeColor?: string;
   verticalEdge?: 'left'|'right';
   zIndex?: number;
-  [key: string]: string|number|boolean|Function|undefined;
-  // @TODO add in actions for buttons
+  [key: string]: string|number|boolean|Function|Notific8ActionButton[]|undefined;
+}
+
+export interface Notific8ActionButton {
+  buttonAction?: Function;
+  buttonText: string;
 }
 
 export class Notific8Notification {
@@ -30,6 +37,10 @@ export class Notific8Notification {
     const { life, sticky } = this.notificationOptions;
 
     return new Promise<void>((resolve, reject) => {
+      /* istanbul ignore else */
+      if (!this.notificationHtml.parentNode) {
+        Notific8.queueOrAddToContainer(this);
+      }
       setTimeout(() => {
         try {
           this.notificationHtml.setAttribute('open', '');
@@ -60,11 +71,18 @@ export class Notific8Notification {
 
   public close(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
+      /* istanbul ignore else */
       if (this.closeTimeout) {
         clearTimeout(this.closeTimeout);
       }
+      if (!this.notificationHtml.parentNode) {
+        reject(new Error('Notification is already closed'));
+        return;
+      }
       try {
         this.notificationHtml.removeAttribute('open');
+        this.remove();
+        Notific8.triggerQueue();
         resolve();
       } catch(e) {
         reject(e);
@@ -72,8 +90,12 @@ export class Notific8Notification {
     });
   }
 
+  protected remove(): void {
+    setTimeout(() => (this.notificationHtml.parentNode as Node).removeChild(this.notificationHtml), 155);
+  }
+
   protected buildNotificationHtml(): void {
-    const { theme, themeColor, zIndex, imageUrl } = this.notificationOptions;
+    const { theme, themeColor, zIndex, imageUrl, actionButtons } = this.notificationOptions;
 
     this.notificationHtml = document.createElement('notific8-notification');
     this.notificationHtml.classList.add(theme as string, themeColor as string);
@@ -85,6 +107,10 @@ export class Notific8Notification {
       this.notificationHtml.appendChild(this.buildNotificationImage());
     }
     this.notificationHtml.appendChild(this.buildNotificationContent());
+    if (actionButtons && actionButtons.length) {
+      this.notificationHtml.setAttribute('action-buttons', '');
+      this.notificationHtml.appendChild(this.buildNotificationActionButtons());
+    }
   }
   
   protected buildNotificationId(): void {
@@ -114,6 +140,7 @@ export class Notific8Notification {
     const notificationHeader = document.createElement('header');
 
     notificationHeader.classList.add('notific8-header');
+    /* istanbul ignore else */
     if (title) {
       notificationHeader.appendChild(this.buildNotificationTitle());
     }
@@ -174,14 +201,36 @@ export class Notific8Notification {
 
     return notificationImage;
   }
+
+  protected buildNotificationActionButtons(): HTMLElement {
+    const { actionButtons } = this.notificationOptions;
+    const notificationActionButtons = document.createElement('notific8-action-buttons');
+
+    (actionButtons as Notific8ActionButton[]).forEach((actionButtonDetails) => {
+      const actionButton = document.createElement('button');
+      const buttonAction = actionButtonDetails.buttonAction || this.close;
+      actionButton.innerText = actionButtonDetails.buttonText;
+      actionButton.classList.add('notific8-action-button');
+
+      actionButton.addEventListener('click', () => {
+        buttonAction.call(this);
+      });
+
+      notificationActionButtons.appendChild(actionButton);
+    });
+
+    return notificationActionButtons;
+  }
 }
 
 export namespace Notific8 {
+  const notificationQueue: Notific8Notification[] = [];
   let notific8DefaultOptions: Notific8Options;
   resetDefaultOptions();
 
   export function resetDefaultOptions(): void {
     notific8DefaultOptions = {
+      actionButtons: undefined,
       closeHelpText: 'close',
       closeReject: undefined,
       closeResolve: undefined,
@@ -191,6 +240,8 @@ export namespace Notific8 {
       imageUrl: undefined,
       life: 10000,
       queue: false,
+      queueOpenReject: undefined,
+      queueOpenResolve: undefined,
       sticky: false,
       title: undefined,
       theme: 'ocho',
@@ -235,9 +286,7 @@ export namespace Notific8 {
         validateOptionsObject(notificationOptions);
         ensureEdgeContainerExists(notificationOptions);
         const notification = new Notific8Notification(message, notificationOptions);
-    
-        // @TODO check for and handle queue
-        addNotificationToContainer(notificationOptions, notification);
+        queueOrAddToContainer(notification);
 
         resolve(notification);
       } catch(error) {
@@ -246,10 +295,46 @@ export namespace Notific8 {
     }));
   }
 
-  function addNotificationToContainer(notificationOptions: Notific8Options, notification: Notific8Notification): void {
-    const { horizontalEdge, verticalEdge } = notificationOptions;
+  export function queueOrAddToContainer(notification: Notific8Notification): void {
+    if (
+      notification.notificationOptions.queue &&
+      document.querySelectorAll('notific8-notification[open]').length
+    ) {
+      notificationQueue.push(notification);
+    } else {
+      addNotificationToContainer(notification);
+    }
+  }
+
+  export function hasQueuedNotifications(): boolean {
+    return !!notificationQueue.length;
+  }
+
+  function addNotificationToContainer(notification: Notific8Notification): void {
+    const { horizontalEdge, verticalEdge } = notification.notificationOptions;
     const containerSelector = `notific8-container[${horizontalEdge}][${verticalEdge}]`;
     (document.querySelector(containerSelector) as HTMLElement).appendChild(notification.notificationHtml);
+  }
+
+  export function triggerQueue(): void {
+    if (!notificationQueue.length) {
+      return;
+    }
+
+    const currentNotification = notificationQueue.shift() as Notific8Notification;
+    let {queueOpenReject, queueOpenResolve } = currentNotification.notificationOptions;
+    queueOpenReject = queueOpenReject || function() {};
+    queueOpenResolve = queueOpenResolve || function() {};
+
+    setTimeout(() => {
+      currentNotification.open()
+        .then(() => {
+          (queueOpenResolve as Function)();
+        })
+        .catch((e) => {
+          (queueOpenReject as Function)(e);
+        });
+    }, 200);
   }
 
   function ensureEdgeContainerExists(notificationOptions: Notific8Options): void {

@@ -34,6 +34,12 @@ notific8-notification {
   line-height: 1;
   position: absolute; }
 
+notific8-action-buttons {
+  display: flex; }
+
+.notific8-action-button {
+  cursor: pointer; }
+
 notific8-notification[sticky] .notific8-close-button {
   display: block; }
 
@@ -63,7 +69,7 @@ notific8-notification.ocho {
   font-size: 16px;
   padding: 0.625em;
   padding-right: 2.0625em;
-  transition: all .2s ease-in-out;
+  transition: all .15s ease-in-out;
   width: 24.375em; }
   notific8-notification.ocho[image] {
     padding-left: 5.3125em; }
@@ -86,6 +92,26 @@ notific8-notification.ocho {
     padding: 0 .25em;
     right: -2px;
     top: 0; }
+  notific8-notification.ocho notific8-action-buttons {
+    justify-content: space-around;
+    margin-right: -1.25em;
+    padding-top: 0.625em; }
+  notific8-notification.ocho .notific8-action-button {
+    background-color: var(--background-color);
+    border: solid 1px var(--border-color);
+    color: var(--text-color);
+    flex-grow: 1;
+    font-size: 0.75em;
+    margin-left: 0.4166666667em;
+    margin-right: 0.4166666667em;
+    padding: 0.4166666667em;
+    transition: background-color .15s ease-in-out; }
+    notific8-notification.ocho .notific8-action-button:first-child {
+      margin-left: 0; }
+    notific8-notification.ocho .notific8-action-button:last-child {
+      margin-right: 0; }
+    notific8-notification.ocho .notific8-action-button:hover {
+      background-color: var(--border-color); }
 
 notific8-container[left] notific8-notification.ocho {
   margin-left: -24.375em; }
@@ -134,6 +160,15 @@ notific8-notification.chicchat {
     font-size: 1.4285714286em;
     line-height: 1;
     top: .325em; }
+  notific8-notification.chicchat notific8-action-buttons {
+    padding-top: 0.7142857143em; }
+  notific8-notification.chicchat .notific8-action-button {
+    background-color: var(--theme-color);
+    border: none;
+    border-radius: 0.3636363636em;
+    color: white;
+    margin-right: 0.4545454545em;
+    padding: 0.4545454545em 0.9090909091em; }
 
 notific8-container[right] notific8-notification.chicchat {
   margin-right: -32.25em; }
@@ -150,6 +185,8 @@ notific8-container[right] notific8-notification.chicchat {
     margin-right: 1.4285714286em; }
   notific8-container[right] notific8-notification.chicchat .notific8-close-button {
     right: .5em; }
+  notific8-container[right] notific8-notification.chicchat notific8-action-buttons {
+    padding-left: 3.2142857143em; }
 
 notific8-container[left] notific8-notification.chicchat {
   flex-direction: row-reverse;
@@ -168,17 +205,19 @@ notific8-container[left] notific8-notification.chicchat {
     margin-left: 1.4285714286em; }
   notific8-container[left] notific8-notification.chicchat .notific8-close-button {
     left: .5em; }
+  notific8-container[left] notific8-notification.chicchat notific8-action-buttons {
+    padding-right: 3.2142857143em; }
 
 notific8-notification.atomic {
+  --action-button-hover-background-color: darken(#999, 1%);
   --background-color: lighten(#999, 30%);
   --header-background-color: lighten(#999, 20%);
   --header-border-bottom-color: lighten(#999, 10%);
   --border-color: #999;
   --text-color: #fff;
   background-color: var(--background-color);
-  border-color: var(--border-color);
-  border-left-width: 3.2142857143em;
-  border-radius: 3px;
+  border: solid 1px var(--border-color);
+  border-radius: 0.2142857143em;
   color: var(--text-color);
   font-size: 0.875em;
   min-height: 5em;
@@ -209,6 +248,24 @@ notific8-notification.atomic {
     font-size: 1.4285714286em;
     right: .5em;
     top: .325em; }
+  notific8-notification.atomic notific8-action-buttons {
+    justify-content: space-around;
+    padding: 0.5em; }
+  notific8-notification.atomic .notific8-action-button {
+    background-color: var(--background-color);
+    border: none;
+    border-radius: 0.25em;
+    flex-grow: 1;
+    margin-left: 0.4166666667em;
+    margin-right: 0.4166666667em;
+    padding: 0.4166666667em;
+    transition: background-color .15s ease-in-out; }
+    notific8-notification.atomic .notific8-action-button:hover {
+      background-color: var(--action-button-hover-background-color); }
+    notific8-notification.atomic .notific8-action-button:first-child {
+      margin-left: 0; }
+    notific8-notification.atomic .notific8-action-button:last-child {
+      margin-right: 0; }
 
 notific8-container[right] notific8-notification.atomic {
   margin-right: -32.25em; }
@@ -237,7 +294,8 @@ notific8-notification.materialish {
   opacity: 0;
   transition: all .15s ease-in-out; }
   notific8-notification.materialish .notific8-content {
-    margin: 0.4545454545em 6em 0.4545454545em 1em; }
+    flex-grow: 1;
+    margin: 0.4545454545em auto 0.4545454545em 1em; }
   notific8-notification.materialish[open] {
     opacity: 1; }
   notific8-notification.materialish[image] {
@@ -255,12 +313,23 @@ notific8-notification.materialish {
   notific8-notification.materialish .notific8-header {
     font-size: 0.7857142857em;
     font-weight: 100; }
+  notific8-notification.materialish .notific8-action-button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    margin-bottom: 0.1818181818em; }
+    notific8-notification.materialish .notific8-action-button:hover {
+      text-decoration: underline; }
+    notific8-notification.materialish .notific8-action-button:last-child {
+      margin-bottom: 0; }
   notific8-notification.materialish[sticky] .notific8-message {
     line-height: 1.4285714286em; }
   notific8-notification.materialish[sticky] .notific8-close-button {
     text-transform: uppercase; }
     notific8-notification.materialish[sticky] .notific8-close-button:hover {
       text-decoration: underline; }
+  notific8-notification.materialish[action-buttons] {
+    padding-right: 2.1428571429em; }
 
 notific8-notification.ocho.teal {
   --background-color: #069;
@@ -331,6 +400,7 @@ notific8-notification.chicchat.shamrock {
   --theme-color: #8bb92d; }
 
 notific8-notification.atomic.cerulean {
+  --action-button-hover-background-color: #4b97d2;
   --background-color: #c9e0f2;
   --header-background-color: #a1c8e7;
   --header-border-bottom-color: #78b1dd;
@@ -338,6 +408,7 @@ notific8-notification.atomic.cerulean {
   --text-color: #454545; }
 
 notific8-notification.atomic.tomato {
+  --action-button-hover-background-color: #cf3a3d;
   --background-color: #eeb9ba;
   --header-background-color: #e49092;
   --header-border-bottom-color: #da6769;
@@ -345,6 +416,7 @@ notific8-notification.atomic.tomato {
   --text-color: #454545; }
 
 notific8-notification.atomic.mustard {
+  --action-button-hover-background-color: #dccd5d;
   --background-color: #f8f5df;
   --header-background-color: #efe8b5;
   --header-border-bottom-color: #e6db8b;
@@ -352,6 +424,7 @@ notific8-notification.atomic.mustard {
   --text-color: #454545; }
 
 notific8-notification.atomic.pear {
+  --action-button-hover-background-color: #9ccb4a;
   --background-color: #dfeec5;
   --header-background-color: #c9e39d;
   --header-border-bottom-color: #b4d776;
@@ -359,6 +432,7 @@ notific8-notification.atomic.pear {
   --text-color: #454545; }
 
 notific8-notification.atomic.amethyst {
+  --action-button-hover-background-color: #5a2c73;
   --background-color: #ab73ca;
   --header-background-color: #954ebc;
   --header-border-bottom-color: #7a3b9c;
@@ -366,6 +440,7 @@ notific8-notification.atomic.amethyst {
   --text-color: #eee; }
 
 notific8-notification.atomic.onyx {
+  --action-button-hover-background-color: #424242;
   --background-color: #929191;
   --header-background-color: #787878;
   --header-border-bottom-color: #5f5e5e;

@@ -30,7 +30,8 @@ notific8-notification.materialish {
   transition: all .15s ease-in-out;
 
   .notific8-content {
-    margin: em(5px, 11px) em(84px, 14px) em(5px, 11px) 1em;
+    flex-grow: 1;
+    margin: em(5px, 11px) auto em(5px, 11px) 1em;
   }
 
   &[open] {
@@ -60,6 +61,21 @@ notific8-notification.materialish {
     font-weight: 100;
   }
 
+  .notific8-action-button {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    margin-bottom: em(2px, 11px);
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   &[sticky] {
     .notific8-message {
       line-height: em(20px, 14px);
@@ -72,5 +88,9 @@ notific8-notification.materialish {
         text-decoration: underline;
       }
     }
+  }
+
+  &[action-buttons] {
+    padding-right: em(30px, 14px);
   }
 }

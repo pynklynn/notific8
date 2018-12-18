@@ -52,6 +52,14 @@ notific8-notification {
   position: absolute;
 }
 
+notific8-action-buttons {
+  display: flex;
+}
+
+.notific8-action-button {
+  cursor: pointer;
+}
+
 notific8-notification[sticky] .notific8-close-button {
   display: block;
 }

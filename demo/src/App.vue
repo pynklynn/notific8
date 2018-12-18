@@ -87,7 +87,21 @@
       <input type="text" v-model="notific8ImageAltText" id="notific8-image-alt-text">
     </div>
 
-    <!-- @TODO queue -->
+    <div>
+      <span>Action buttons: </span>
+      <label for="notific8-action-close">
+        <input type="checkbox" v-model="notific8ActionButtonClose" id="notific8-action-close"> Close (auto configured)
+      </label>
+      <label for="notific8-action-hello">
+        <input type="checkbox" v-model="notific8ActionButtonHello" id="notific8-action-hello"> Hello alert
+      </label>
+    </div>
+
+    <div>
+      <label for="notific8-queue-notification">
+        <input type="checkbox" v-model="notific8QueueNotification" id="notific8-queue-notification"> Queue notification (automatically opens when triggered)
+      </label>
+    </div>
 
     <button @click="openNotification">Open notification</button>
   </div>
@@ -117,7 +131,10 @@ export default {
       notific8Id: '',
       notific8CloseHelpText: 'close',
       notific8ImageUrl: '',
-      notific8ImageAltText: ''
+      notific8ImageAltText: '',
+      notific8ActionButtonClose: false,
+      notific8ActionButtonHello: false,
+      notific8QueueNotification: false,
     }
   },
   methods: {
@@ -136,14 +153,41 @@ export default {
           console.log('Notification has been closed.');
         },
         imageUrl: this.notific8ImageUrl,
-        imageAltText: this.notific8ImageAltText
+        imageAltText: this.notific8ImageAltText,
+        queue: this.notific8QueueNotification,
       };
 
       if (this.notific8Title) { notificationOptions.title = this.notific8Title; }
 
+      if (this.notific8ActionButtonClose || this.notific8ActionButtonHello) {
+        notificationOptions.actionButtons = [];
+        if (this.notific8ActionButtonClose) {
+          notificationOptions.actionButtons.push({ buttonText: 'Close' });
+        }
+        if (this.notific8ActionButtonHello) {
+          notificationOptions.actionButtons.push({
+            buttonAction() {
+              alert('Hello, world!');
+            },
+            buttonText: 'Hello'
+          });
+        }
+      }
+
+      if (this.notific8QueueNotification) {
+        notificationOptions.queueOpenResolve = function() {
+          console.log(`Queued notification opened`);
+        }
+      }
+
       console.log(notificationOptions);
       Notific8.create(this.notific8Message, notificationOptions).then((notification) => {
-        notification.open();
+        if (
+          !notification.notificationOptions.queue ||
+          (notification.notificationOptions.queue && !document.querySelectorAll('notific8-notification[open]').length)
+        ) {
+          notification.open();
+        }
         console.log('notification', notification);
       });
     },

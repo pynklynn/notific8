@@ -36,7 +36,7 @@ notific8-notification.ocho {
   font-size: $notific8-base-font-size;
   padding: em(10px);
   padding-right: em(33px);
-  transition: all .2s ease-in-out;
+  transition: all .15s ease-in-out;
   width: em(390px);
 
   &[image] {
@@ -68,6 +68,36 @@ notific8-notification.ocho {
     padding: 0 .25em;
     right: -2px;
     top: 0;
+  }
+
+  notific8-action-buttons {
+    justify-content: space-around;
+    margin-right: em(-20px);
+    padding-top: em(10px);
+  }
+
+  .notific8-action-button {
+    background-color: var(--background-color);
+    border: solid 1px var(--border-color);
+    color: var(--text-color);
+    flex-grow: 1;
+    font-size: em(12px);
+    margin-left: em(5px, 12px);
+    margin-right: em(5px, 12px);
+    padding: em(5px, 12px);
+    transition: background-color .15s ease-in-out;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      background-color: var(--border-color);
+    }
   }
 }
 
