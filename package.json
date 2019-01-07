@@ -4,7 +4,9 @@
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start:dev": "concurrently -k \"npm run styles:watch\" \"npm run ts:watch\"",
+    "styles": "node-sass src/sass/notific8.scss --output dist",
+    "styles:watch": "node-sass src/sass/notific8.scss --output dist --watch",
     "test": "jest --config=jest.config.js --coverage",
     "ts:watch": "tsc -p tsconfig.json --watch --skipLibCheck"
   },
@@ -16,27 +18,17 @@
     "javascript",
     "typescript",
     "css",
-    "sass"
+    "sass",
+    "notifications"
   ],
   "author": "Will Steinmetz <willsteinmetz@users.noreply.github.com>",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/jest": "^23.3.8",
-    "babel-preset-es2015": "^6.16.0",
-    "grunt": "^1.0.3",
-    "grunt-babel": "^6.0.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-cssmin": "^0.11.0",
-    "grunt-contrib-pug": "^1.0.0",
-    "grunt-contrib-uglify": "^4.0.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-sass": "^3.0.2",
+    "concurrently": "^4.1.0",
     "jasmine-core": "^2.4.1",
     "jest": "^23.6.0",
-    "load-grunt-config": "^0.19.2",
     "node-sass": "^4.9.3",
-    "node-static": "^0.7.8",
-    "time-grunt": "^1.4.0",
     "ts-jest": "^23.10.4",
     "typescript": "^2.8.1"
   },
