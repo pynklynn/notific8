@@ -1,75 +1,83 @@
-/**
- * @author Will Steinmetz
- *
- * Base styles for the notific8 JavaScript plug-in
- *
- * Copyright (c)2013-2016, Will Steinmetz
- * Licensed under the BSD license.
- * http://opensource.org/licenses/BSD-3-Clause
- */
+// @author Will Steinmetz
+//
+// Base styles for the notific8 JavaScript library
+//
+// Copyright (c)2013-2019, Will Steinmetz
+// Licensed under the BSD license.
+// http://opensource.org/licenses/BSD-3-Clause
 
-// definitions
-.#{$notific8-ns}-container {
+$notific8-base-font-size: 16px !default;
+
+@function em($px, $base: $notific8-base-font-size) {
+  @return ($px / $base) * 1em;
+}
+
+notific8-container {
   display: block;
   margin: 0;
   padding: 0;
   position: fixed;
-  &.top {
+
+  &[top] {
     top: 0;
   }
-  &.bottom {
+  &[bottom] {
     bottom: 0;
   }
-  &.top, &.bottom {
-    &.right {
+  &[top],
+  &[bottom] {
+    &[right] {
       right: 0;
     }
-    &.left {
+    &[left] {
       left: 0;
     }
   }
 }
 
-.#{$notific8-ns}-notification {
+notific8-notification {
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-  &:hover {
-    .#{$notific8-ns}-close {
-      display: block;
-    }
+
+  &:hover .notific8-close-button {
+    display: block;
   }
 }
 
-.#{$notific8-ns}-close {
+.notific8-close-button {
   cursor: pointer;
   display: none;
+  line-height: 1;
   position: absolute;
-  &.sticky {
-    display: block;
-    position: absolute;
-    text-align: center;
-  }
 }
 
-.right {
-  .#{$notific8-ns}-notification {
-    clear: right;
-    float: right;
-  }
+notific8-action-buttons {
+  display: flex;
 }
 
-.left {
-  .#{$notific8-ns}-notification {
-    clear: left;
-    float: left;
-  }
+.notific8-action-button {
+  cursor: pointer;
 }
 
-.top .#{$notific8-ns}-notification {
+notific8-notification[sticky] .notific8-close-button {
+  display: block;
+}
+
+notific8-container[right] notific8-notification {
+  clear: right;
+  float: right;
+}
+
+notific8-container[left] notific8-notification {
+  clear: left;
+  float: left;
+}
+
+notific8-container[top] notific8-notification {
   margin-top: em(10px);
 }
 
-.bottom .#{$notific8-ns}-notification {
+notific8-container[bottom] notific8-notification {
   margin-bottom: em(10px);
 }
