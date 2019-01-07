@@ -1,6 +1,13 @@
 #Change Log
 
-The change log was created with version 2.0. For changes, please see the commit history of the project.
+The change log was created with version 2.0. For a full list of changes, please see the commit history of the project.
+
+## 5.0.0
+
+- Rewrite of the application in Typescript - breaking features and not backwards compatible
+- Finer tuned control of notifications for opening and closing with promises
+- Easier to use in libraries now that it's provided as a proper module
+- Demo converted to use Vue
 
 ## 4.4.0
 

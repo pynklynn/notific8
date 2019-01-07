@@ -46,7 +46,7 @@ export declare namespace Notific8 {
     function resetDefaultOptions(): void;
     function getDefaultOptions(): Notific8Options;
     function setDefaultOptions(newDefaultOptions: Notific8Options): void;
-    function setDefaultOption(option: string, newValue: string | number | boolean): void;
+    function setDefaultOption(option: string, newValue: string | number | boolean | Notific8ActionButton[]): void;
     function isNotific8OptionsObjectValid(optionsToCheck: object): boolean;
     function create(message: string, notificationOptions?: Notific8Options): Promise<Notific8Notification>;
     function queueOrAddToContainer(notification: Notific8Notification): void;

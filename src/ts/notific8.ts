@@ -261,7 +261,7 @@ export namespace Notific8 {
     notific8DefaultOptions = Object.assign(notific8DefaultOptions, newDefaultOptions);
   }
 
-  export function setDefaultOption(option: string, newValue: string|number|boolean): void {
+  export function setDefaultOption(option: string, newValue: string|number|boolean|Notific8ActionButton[]): void {
     if (!Notific8.isNotific8OptionsObjectValid({ option })) {
       throw new TypeError(`"${option}" is not a valid Notific8 option property`);
     }
