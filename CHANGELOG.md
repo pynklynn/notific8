@@ -9,6 +9,14 @@ The change log was created with version 2.0. For a full list of changes, please 
 - Easier to use in libraries now that it's provided as a proper module
 - Demo converted to use Vue
 
+## 4.4.2
+
+- Adding in fix for possible XSS vulnerability contributed by the community
+
+## 4.4.1
+
+- Fixing version number
+
 ## 4.4.0
 
 - Adding the `id` option to allow for custom IDs for the notification
