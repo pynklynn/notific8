@@ -74,7 +74,7 @@ Notific8.create('Test notification').then((notification) => {
 (async() => {
     const notification = await Notific8.create('Test notification');
     await notification.open();
-    console.log('Notification has been opened!);
+    console.log('Notification has been opened!');
 })();
 ```
 
@@ -88,8 +88,8 @@ Provides action buttons to the notification. If an action is not provided, the b
 
 Definition of Notific8ActionButton:
 
-```ts
-export interface Notific8ActionButton {
+```typescript
+interface Notific8ActionButton {
   buttonAction: Function;
   buttonText: string;
 }
