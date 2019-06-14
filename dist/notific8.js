@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright (c) 2013-2019 Pynk Lynn, LLC
+ * This code may only be used under the MIT style license found at
+ * https://github.com/pynklynn/notific8/blob/master/LICENSE
+ */
 export class Notific8Notification {
     constructor(message, notificationOptions) {
         this.message = message;
@@ -286,3 +292,4 @@ export var Notific8;
         return true;
     }
 })(Notific8 || (Notific8 = {}));
+//# sourceMappingURL=notific8.js.map

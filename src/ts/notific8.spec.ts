@@ -1,3 +1,10 @@
+/**
+ * @license
+ * Copyright (c) 2013-2019 Pynk Lynn, LLC
+ * This code may only be used under the MIT style license found at
+ * https://github.com/pynklynn/notific8/blob/master/LICENSE
+ */
+
 import { Notific8, Notific8Options, Notific8Notification } from './notific8';
 
 describe('Notific8 Notification tests', () => {

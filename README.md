@@ -209,6 +209,6 @@ Triggers the queue to fire.
 
 ## License
 
-The notific8 library is released under the BSD license.
+The notific8 library is released under the MIT license.
 
-(c) 2013-2019 [Will Steinmetz](http://willsteinmetz.net)
+(c) 2013-2019 [Pynk Lynn LLC](http://pynklynn.com)

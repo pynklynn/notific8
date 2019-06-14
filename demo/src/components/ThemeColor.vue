@@ -1,3 +1,12 @@
+<!--
+/**
+ * @license
+ * Copyright (c) 2013-2019 Pynk Lynn, LLC
+ * This code may only be used under the MIT style license found at
+ * https://github.com/pynklynn/notific8/blob/master/LICENSE
+ */
+-->
+
 <template>
   <div id="theme-color-cmp">
     <label for="notific8-theme-color">Theme color: </label>
