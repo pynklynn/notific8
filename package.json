@@ -1,18 +1,20 @@
 {
   "name": "notific8",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "description": "Flexible and themeable notification plug-in initially inspired by the notifications introduced in Windows 8.",
   "main": "index.js",
   "scripts": {
+    "build": "run-s styles ts",
     "start:dev": "concurrently -k \"npm run styles:watch\" \"npm run ts:watch\"",
-    "styles": "node-sass src/sass/notific8.scss --output dist",
+    "styles": "node-sass src/sass/notific8.scss --source-map true --output dist",
     "styles:watch": "node-sass src/sass/notific8.scss --output dist --watch",
     "test": "jest --config=jest.config.js --coverage",
+    "ts": "tsc -p tsconfig.json --skipLibCheck --sourceMap",
     "ts:watch": "tsc -p tsconfig.json --watch --skipLibCheck"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:willsteinmetz/notific8.git"
+    "url": "https://github.com/pynklynn/notific8"
   },
   "keywords": [
     "javascript",
@@ -22,15 +24,15 @@
     "notifications"
   ],
   "author": "Will Steinmetz <willsteinmetz@users.noreply.github.com>",
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^23.3.8",
+    "@types/jest": "^24.0.14",
     "concurrently": "^4.1.0",
-    "jasmine-core": "^2.4.1",
-    "jest": "^23.6.0",
-    "node-sass": "^4.9.3",
-    "ts-jest": "^23.10.4",
-    "typescript": "^2.8.1"
+    "jest": "^24.8.0",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "^4.1.5",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
   },
   "dependencies": {}
 }
