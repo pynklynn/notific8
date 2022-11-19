@@ -8,51 +8,66 @@ notific8-container {
   display: block;
   margin: 0;
   padding: 0;
-  position: fixed; }
-  notific8-container[top] {
-    top: 0; }
-  notific8-container[bottom] {
-    bottom: 0; }
-  notific8-container[top][right], notific8-container[bottom][right] {
-    right: 0; }
-  notific8-container[top][left], notific8-container[bottom][left] {
-    left: 0; }
+  position: fixed;
+}
+notific8-container[top] {
+  top: 0;
+}
+notific8-container[bottom] {
+  bottom: 0;
+}
+notific8-container[top][right], notific8-container[bottom][right] {
+  right: 0;
+}
+notific8-container[top][left], notific8-container[bottom][left] {
+  left: 0;
+}
 
 notific8-notification {
   box-sizing: border-box;
   overflow: hidden;
-  position: relative; }
-  notific8-notification:hover .notific8-close-button {
-    display: block; }
+  position: relative;
+}
+notific8-notification:hover .notific8-close-button {
+  display: block;
+}
 
 .notific8-close-button {
   cursor: pointer;
   display: none;
   line-height: 1;
-  position: absolute; }
+  position: absolute;
+}
 
 notific8-action-buttons {
-  display: flex; }
+  display: flex;
+}
 
 .notific8-action-button {
-  cursor: pointer; }
+  cursor: pointer;
+}
 
 notific8-notification[sticky] .notific8-close-button {
-  display: block; }
+  display: block;
+}
 
 notific8-container[right] notific8-notification {
   clear: right;
-  float: right; }
+  float: right;
+}
 
 notific8-container[left] notific8-notification {
   clear: left;
-  float: left; }
+  float: left;
+}
 
 notific8-container[top] notific8-notification {
-  margin-top: 0.625em; }
+  margin-top: 0.625em;
+}
 
 notific8-container[bottom] notific8-notification {
-  margin-bottom: 0.625em; }
+  margin-bottom: 0.625em;
+}
 
 notific8-notification.ocho {
   --background-color: #999;
@@ -66,144 +81,184 @@ notific8-notification.ocho {
   font-size: 16px;
   padding: 0.625em;
   padding-right: 2.0625em;
-  transition: all .15s ease-in-out;
-  width: 24.375em; }
-  notific8-notification.ocho[image] {
-    padding-left: 5.3125em; }
-    notific8-notification.ocho[image] .notific8-image {
-      float: left;
-      margin-left: -5em;
-      max-height: 4.375em;
-      max-width: 4.375em; }
-  notific8-notification.ocho .notific8-header {
-    font-weight: bold;
-    margin-bottom: 0.3125em; }
-  notific8-notification.ocho .notific8-message {
-    font-size: 0.875em; }
-  notific8-notification.ocho .notific8-close-button {
-    border: none;
-    background-color: var(--close-background-color);
-    color: var(--close-text-color);
-    font-size: 1.25em;
-    line-height: 1em;
-    padding: 0 .25em;
-    right: -2px;
-    top: 0; }
-  notific8-notification.ocho notific8-action-buttons {
-    justify-content: space-around;
-    margin-right: -1.25em;
-    padding-top: 0.625em; }
-  notific8-notification.ocho .notific8-action-button {
-    background-color: var(--background-color);
-    border: solid 1px var(--border-color);
-    color: var(--text-color);
-    flex-grow: 1;
-    font-size: 0.75em;
-    margin-left: 0.41667em;
-    margin-right: 0.41667em;
-    padding: 0.41667em;
-    transition: background-color .15s ease-in-out; }
-    notific8-notification.ocho .notific8-action-button:first-child {
-      margin-left: 0; }
-    notific8-notification.ocho .notific8-action-button:last-child {
-      margin-right: 0; }
-    notific8-notification.ocho .notific8-action-button:hover {
-      background-color: var(--border-color); }
+  transition: all 0.15s ease-in-out;
+  width: 24.375em;
+}
+notific8-notification.ocho[image] {
+  padding-left: 5.3125em;
+}
+notific8-notification.ocho[image] .notific8-image {
+  float: left;
+  margin-left: -5em;
+  max-height: 4.375em;
+  max-width: 4.375em;
+}
+notific8-notification.ocho .notific8-header {
+  font-weight: bold;
+  margin-bottom: 0.3125em;
+}
+notific8-notification.ocho .notific8-message {
+  font-size: 0.875em;
+}
+notific8-notification.ocho .notific8-close-button {
+  border: none;
+  background-color: var(--close-background-color);
+  color: var(--close-text-color);
+  font-size: 1.25em;
+  line-height: 1em;
+  padding: 0 0.25em;
+  right: -2px;
+  top: 0;
+}
+notific8-notification.ocho notific8-action-buttons {
+  justify-content: space-around;
+  margin-right: -1.25em;
+  padding-top: 0.625em;
+}
+notific8-notification.ocho .notific8-action-button {
+  background-color: var(--background-color);
+  border: solid 1px var(--border-color);
+  color: var(--text-color);
+  flex-grow: 1;
+  font-size: 0.75em;
+  margin-left: 0.4166666667em;
+  margin-right: 0.4166666667em;
+  padding: 0.4166666667em;
+  transition: background-color 0.15s ease-in-out;
+}
+notific8-notification.ocho .notific8-action-button:first-child {
+  margin-left: 0;
+}
+notific8-notification.ocho .notific8-action-button:last-child {
+  margin-right: 0;
+}
+notific8-notification.ocho .notific8-action-button:hover {
+  background-color: var(--border-color);
+}
 
 notific8-container[left] notific8-notification.ocho {
-  margin-left: -24.375em; }
-  notific8-container[left] notific8-notification.ocho[open] {
-    margin-left: 0; }
+  margin-left: -24.375em;
+}
+notific8-container[left] notific8-notification.ocho[open] {
+  margin-left: 0;
+}
 
 notific8-container[right] notific8-notification.ocho {
-  margin-right: -24.375em; }
-  notific8-container[right] notific8-notification.ocho[open] {
-    margin-right: 0; }
+  margin-right: -24.375em;
+}
+notific8-container[right] notific8-notification.ocho[open] {
+  margin-right: 0;
+}
 
 notific8-notification.chicchat {
   --theme-color: #121212;
   background-color: #fff;
-  border-radius: .25em;
+  border-radius: 0.25em;
   border-style: solid;
   border-width: 1px;
   color: var(--theme-color);
   font-size: 0.875em;
-  padding: .75em;
-  transition: all .15s ease-in-out;
-  width: 31.25em; }
-  notific8-notification.chicchat::before {
-    background-color: var(--theme-color);
-    content: '';
-    height: 100%;
-    position: absolute;
-    top: 0;
-    width: 3.21429em;
-    z-index: -1; }
-  notific8-notification.chicchat[image] {
-    align-content: flex-start;
-    display: flex; }
-    notific8-notification.chicchat[image] .notific8-image {
-      align-self: center;
-      max-height: 2em;
-      max-width: 2em; }
-  notific8-notification.chicchat .notific8-content {
-    flex-grow: 1; }
-  notific8-notification.chicchat .notific8-header {
-    font-weight: bold;
-    margin-bottom: .5em; }
-  notific8-notification.chicchat .notific8-close-button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.42857em;
-    line-height: 1;
-    top: .325em; }
-  notific8-notification.chicchat notific8-action-buttons {
-    padding-top: 0.71429em; }
-  notific8-notification.chicchat .notific8-action-button {
-    background-color: var(--theme-color);
-    border: none;
-    border-radius: 0.36364em;
-    color: white;
-    margin-right: 0.45455em;
-    padding: 0.45455em 0.90909em; }
+  padding: 0.75em;
+  transition: all 0.15s ease-in-out;
+  width: 31.25em;
+}
+notific8-notification.chicchat::before {
+  background-color: var(--theme-color);
+  content: "";
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 3.2142857143em;
+  z-index: -1;
+}
+notific8-notification.chicchat[image] {
+  align-content: flex-start;
+  display: flex;
+}
+notific8-notification.chicchat[image] .notific8-image {
+  align-self: center;
+  max-height: 2em;
+  max-width: 2em;
+}
+notific8-notification.chicchat .notific8-content {
+  flex-grow: 1;
+}
+notific8-notification.chicchat .notific8-header {
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+notific8-notification.chicchat .notific8-close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.4285714286em;
+  line-height: 1;
+  top: 0.325em;
+}
+notific8-notification.chicchat notific8-action-buttons {
+  padding-top: 0.7142857143em;
+}
+notific8-notification.chicchat .notific8-action-button {
+  background-color: var(--theme-color);
+  border: none;
+  border-radius: 0.3636363636em;
+  color: white;
+  margin-right: 0.4545454545em;
+  padding: 0.4545454545em 0.9090909091em;
+}
 
 notific8-container[right] notific8-notification.chicchat {
-  margin-right: -32.25em; }
-  notific8-container[right] notific8-notification.chicchat[open] {
-    margin-right: .625em; }
-  notific8-container[right] notific8-notification.chicchat::before {
-    left: 0; }
-  notific8-container[right] notific8-notification.chicchat[image] .notific8-content {
-    margin-left: 1.42857em; }
-  notific8-container[right] notific8-notification.chicchat[image] .notific8-image {
-    margin-left: -0.14286em; }
-  notific8-container[right] notific8-notification.chicchat .notific8-content {
-    margin-left: 3.21429em;
-    margin-right: 1.42857em; }
-  notific8-container[right] notific8-notification.chicchat .notific8-close-button {
-    right: .5em; }
-  notific8-container[right] notific8-notification.chicchat notific8-action-buttons {
-    padding-left: 3.21429em; }
+  margin-right: -32.25em;
+}
+notific8-container[right] notific8-notification.chicchat[open] {
+  margin-right: 0.625em;
+}
+notific8-container[right] notific8-notification.chicchat::before {
+  left: 0;
+}
+notific8-container[right] notific8-notification.chicchat[image] .notific8-content {
+  margin-left: 1.4285714286em;
+}
+notific8-container[right] notific8-notification.chicchat[image] .notific8-image {
+  margin-left: -0.1428571429em;
+}
+notific8-container[right] notific8-notification.chicchat .notific8-content {
+  margin-left: 3.2142857143em;
+  margin-right: 1.4285714286em;
+}
+notific8-container[right] notific8-notification.chicchat .notific8-close-button {
+  right: 0.5em;
+}
+notific8-container[right] notific8-notification.chicchat notific8-action-buttons {
+  padding-left: 3.2142857143em;
+}
 
 notific8-container[left] notific8-notification.chicchat {
   flex-direction: row-reverse;
   justify-content: flex-end;
-  margin-left: -32.25em; }
-  notific8-container[left] notific8-notification.chicchat[open] {
-    margin-left: .625em; }
-  notific8-container[left] notific8-notification.chicchat::before {
-    right: 0; }
-  notific8-container[left] notific8-notification.chicchat[image] .notific8-content {
-    margin-right: 1.42857em; }
-  notific8-container[left] notific8-notification.chicchat[image] .notific8-image {
-    margin-right: -0.14286em; }
-  notific8-container[left] notific8-notification.chicchat .notific8-content {
-    margin-right: 3.21429em;
-    margin-left: 1.42857em; }
-  notific8-container[left] notific8-notification.chicchat .notific8-close-button {
-    left: .5em; }
-  notific8-container[left] notific8-notification.chicchat notific8-action-buttons {
-    padding-right: 3.21429em; }
+  margin-left: -32.25em;
+}
+notific8-container[left] notific8-notification.chicchat[open] {
+  margin-left: 0.625em;
+}
+notific8-container[left] notific8-notification.chicchat::before {
+  right: 0;
+}
+notific8-container[left] notific8-notification.chicchat[image] .notific8-content {
+  margin-right: 1.4285714286em;
+}
+notific8-container[left] notific8-notification.chicchat[image] .notific8-image {
+  margin-right: -0.1428571429em;
+}
+notific8-container[left] notific8-notification.chicchat .notific8-content {
+  margin-right: 3.2142857143em;
+  margin-left: 1.4285714286em;
+}
+notific8-container[left] notific8-notification.chicchat .notific8-close-button {
+  left: 0.5em;
+}
+notific8-container[left] notific8-notification.chicchat notific8-action-buttons {
+  padding-right: 3.2142857143em;
+}
 
 notific8-notification.atomic {
   --action-button-hover-background-color: darken(#999, 1%);
@@ -214,67 +269,84 @@ notific8-notification.atomic {
   --text-color: #fff;
   background-color: var(--background-color);
   border: solid 1px var(--border-color);
-  border-radius: 0.21429em;
+  border-radius: 0.2142857143em;
   color: var(--text-color);
   font-size: 0.875em;
   min-height: 5em;
   padding: 0;
-  transition: all .15s ease-in-out;
-  width: 31.25em; }
-  notific8-notification.atomic .notific8-header {
-    background-color: var(--header-background-color);
-    border-bottom: solid 1px var(--header-border-bottom-color);
-    padding: .75em; }
-  notific8-notification.atomic[image] .notific8-image {
-    left: 0.35714em;
-    max-height: 1.28571em;
-    max-width: 1.28571em;
-    position: absolute;
-    top: 3.42857em; }
-  notific8-notification.atomic[image] .notific8-message {
-    margin-left: 1.66667em; }
-  notific8-notification.atomic .notific8-content {
-    width: 100%; }
-  notific8-notification.atomic .notific8-message {
-    display: block;
-    font-size: 0.85714em;
-    padding: 0.75em; }
-  notific8-notification.atomic .notific8-close-button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.42857em;
-    right: .5em;
-    top: .325em; }
-  notific8-notification.atomic notific8-action-buttons {
-    justify-content: space-around;
-    padding: 0.5em; }
-  notific8-notification.atomic .notific8-action-button {
-    background-color: var(--background-color);
-    border: none;
-    border-radius: 0.25em;
-    flex-grow: 1;
-    margin-left: 0.41667em;
-    margin-right: 0.41667em;
-    padding: 0.41667em;
-    transition: background-color .15s ease-in-out; }
-    notific8-notification.atomic .notific8-action-button:hover {
-      background-color: var(--action-button-hover-background-color); }
-    notific8-notification.atomic .notific8-action-button:first-child {
-      margin-left: 0; }
-    notific8-notification.atomic .notific8-action-button:last-child {
-      margin-right: 0; }
+  transition: all 0.15s ease-in-out;
+  width: 31.25em;
+}
+notific8-notification.atomic .notific8-header {
+  background-color: var(--header-background-color);
+  border-bottom: solid 1px var(--header-border-bottom-color);
+  padding: 0.75em;
+}
+notific8-notification.atomic[image] .notific8-image {
+  left: 0.3571428571em;
+  max-height: 1.2857142857em;
+  max-width: 1.2857142857em;
+  position: absolute;
+  top: 3.4285714286em;
+}
+notific8-notification.atomic[image] .notific8-message {
+  margin-left: 1.6666666667em;
+}
+notific8-notification.atomic .notific8-content {
+  width: 100%;
+}
+notific8-notification.atomic .notific8-message {
+  display: block;
+  font-size: 0.8571428571em;
+  padding: 0.75em;
+}
+notific8-notification.atomic .notific8-close-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1.4285714286em;
+  right: 0.5em;
+  top: 0.325em;
+}
+notific8-notification.atomic notific8-action-buttons {
+  justify-content: space-around;
+  padding: 0.5em;
+}
+notific8-notification.atomic .notific8-action-button {
+  background-color: var(--background-color);
+  border: none;
+  border-radius: 0.25em;
+  flex-grow: 1;
+  margin-left: 0.4166666667em;
+  margin-right: 0.4166666667em;
+  padding: 0.4166666667em;
+  transition: background-color 0.15s ease-in-out;
+}
+notific8-notification.atomic .notific8-action-button:hover {
+  background-color: var(--action-button-hover-background-color);
+}
+notific8-notification.atomic .notific8-action-button:first-child {
+  margin-left: 0;
+}
+notific8-notification.atomic .notific8-action-button:last-child {
+  margin-right: 0;
+}
 
 notific8-container[right] notific8-notification.atomic {
-  margin-right: -32.25em; }
-  notific8-container[right] notific8-notification.atomic .notific8-header {
-    border-top-right-radius: 3px; }
-  notific8-container[right] notific8-notification.atomic[open] {
-    margin-right: .625em; }
+  margin-right: -32.25em;
+}
+notific8-container[right] notific8-notification.atomic .notific8-header {
+  border-top-right-radius: 3px;
+}
+notific8-container[right] notific8-notification.atomic[open] {
+  margin-right: 0.625em;
+}
 
 notific8-container[left] notific8-notification.atomic {
-  margin-left: -32.25em; }
-  notific8-container[left] notific8-notification.atomic[open] {
-    margin-left: .625em; }
+  margin-left: -32.25em;
+}
+notific8-container[left] notific8-notification.atomic[open] {
+  margin-left: 0.625em;
+}
 
 notific8-notification.materialish {
   --background-color: #999;
@@ -289,112 +361,138 @@ notific8-notification.materialish {
   max-width: 568px;
   min-width: 288px;
   opacity: 0;
-  transition: all .15s ease-in-out; }
-  notific8-notification.materialish .notific8-content {
-    flex-grow: 1;
-    margin: 0.45455em auto 0.45455em 1em; }
-  notific8-notification.materialish[open] {
-    opacity: 1; }
-  notific8-notification.materialish[image] {
-    padding-left: 1em; }
-    notific8-notification.materialish[image] .notific8-image {
-      max-height: 1em;
-      max-width: 1em; }
-  notific8-notification.materialish .notific8-close-button {
-    background-color: transparent;
-    border: none;
-    line-height: 1.42857em;
-    margin-top: -0.71429em;
-    right: 1em;
-    top: 50%; }
-  notific8-notification.materialish .notific8-header {
-    font-size: 0.78571em;
-    font-weight: 100; }
-  notific8-notification.materialish .notific8-action-button {
-    background-color: transparent;
-    border: none;
-    color: var(--text-color);
-    margin-bottom: 0.18182em; }
-    notific8-notification.materialish .notific8-action-button:hover {
-      text-decoration: underline; }
-    notific8-notification.materialish .notific8-action-button:last-child {
-      margin-bottom: 0; }
-  notific8-notification.materialish[sticky] .notific8-message {
-    line-height: 1.42857em; }
-  notific8-notification.materialish[sticky] .notific8-close-button {
-    text-transform: uppercase; }
-    notific8-notification.materialish[sticky] .notific8-close-button:hover {
-      text-decoration: underline; }
-  notific8-notification.materialish[action-buttons] {
-    padding-right: 2.14286em; }
+  transition: all 0.15s ease-in-out;
+}
+notific8-notification.materialish .notific8-content {
+  flex-grow: 1;
+  margin: 0.4545454545em auto 0.4545454545em 1em;
+}
+notific8-notification.materialish[open] {
+  opacity: 1;
+}
+notific8-notification.materialish[image] {
+  padding-left: 1em;
+}
+notific8-notification.materialish[image] .notific8-image {
+  max-height: 1em;
+  max-width: 1em;
+}
+notific8-notification.materialish .notific8-close-button {
+  background-color: transparent;
+  border: none;
+  line-height: 1.4285714286em;
+  margin-top: -0.7142857143em;
+  right: 1em;
+  top: 50%;
+}
+notific8-notification.materialish .notific8-header {
+  font-size: 0.7857142857em;
+  font-weight: 100;
+}
+notific8-notification.materialish .notific8-action-button {
+  background-color: transparent;
+  border: none;
+  color: var(--text-color);
+  margin-bottom: 0.1818181818em;
+}
+notific8-notification.materialish .notific8-action-button:hover {
+  text-decoration: underline;
+}
+notific8-notification.materialish .notific8-action-button:last-child {
+  margin-bottom: 0;
+}
+notific8-notification.materialish[sticky] .notific8-message {
+  line-height: 1.4285714286em;
+}
+notific8-notification.materialish[sticky] .notific8-close-button {
+  text-transform: uppercase;
+}
+notific8-notification.materialish[sticky] .notific8-close-button:hover {
+  text-decoration: underline;
+}
+notific8-notification.materialish[action-buttons] {
+  padding-right: 2.1428571429em;
+}
 
 notific8-notification.ocho.teal {
   --background-color: #069;
   --border-color: #09c;
   --close-background-color: #09c;
   --text-color: #fff;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.ocho.amethyst {
   --background-color: #5D2D77;
   --border-color: #915faa;
   --close-background-color: #915faa;
   --text-color: #fff;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.ocho.ruby {
   --background-color: #a10;
   --border-color: #d10;
   --close-background-color: #d10;
   --text-color: #fff;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.ocho.tangerine {
   --background-color: #e88f00;
   --border-color: #ffb23f;
   --close-background-color: #ffb23f;
   --text-color: #fff;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.ocho.lemon {
   --background-color: #ffcc00;
   --border-color: #ffde00;
   --close-background-color: #ffde00;
   --text-color: #333;
-  --close-text-color: #333; }
+  --close-text-color: #333;
+}
 
 notific8-notification.ocho.lime {
   --background-color: #32b512;
   --border-color: #38d315;
   --close-background-color: #38d315;
   --text-color: #fff;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.ocho.ebony {
   --background-color: #121212;
   --border-color: #666;
   --close-background-color: #666;
   --text-color: #fff;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.ocho.smoke {
   --background-color: #efefef;
   --border-color: #ababab;
   --close-background-color: #ababab;
   --text-color: #333;
-  --close-text-color: #fff; }
+  --close-text-color: #fff;
+}
 
 notific8-notification.chicchat.cobalt {
-  --theme-color: #3171B2; }
+  --theme-color: #3171B2;
+}
 
 notific8-notification.chicchat.ruby {
-  --theme-color: #a10; }
+  --theme-color: #a10;
+}
 
 notific8-notification.chicchat.honey {
-  --theme-color: #f2cc00; }
+  --theme-color: #f2cc00;
+}
 
 notific8-notification.chicchat.shamrock {
-  --theme-color: #8bb92d; }
+  --theme-color: #8bb92d;
+}
 
 notific8-notification.atomic.cerulean {
   --action-button-hover-background-color: #4b97d2;
@@ -402,7 +500,8 @@ notific8-notification.atomic.cerulean {
   --header-background-color: #a1c8e7;
   --header-border-bottom-color: #78b1dd;
   --border-color: #4F99D3;
-  --text-color: #454545; }
+  --text-color: #454545;
+}
 
 notific8-notification.atomic.tomato {
   --action-button-hover-background-color: #cf3a3d;
@@ -410,7 +509,8 @@ notific8-notification.atomic.tomato {
   --header-background-color: #e49092;
   --header-border-bottom-color: #da6769;
   --border-color: #D03E41;
-  --text-color: #454545; }
+  --text-color: #454545;
+}
 
 notific8-notification.atomic.mustard {
   --action-button-hover-background-color: #dccd5d;
@@ -418,7 +518,8 @@ notific8-notification.atomic.mustard {
   --header-background-color: #efe8b5;
   --header-border-bottom-color: #e6db8b;
   --border-color: #DDCE61;
-  --text-color: #454545; }
+  --text-color: #454545;
+}
 
 notific8-notification.atomic.pear {
   --action-button-hover-background-color: #9ccb4a;
@@ -426,7 +527,8 @@ notific8-notification.atomic.pear {
   --header-background-color: #c9e39d;
   --header-border-bottom-color: #b4d776;
   --border-color: #9ECC4E;
-  --text-color: #454545; }
+  --text-color: #454545;
+}
 
 notific8-notification.atomic.amethyst {
   --action-button-hover-background-color: #5a2c73;
@@ -434,7 +536,8 @@ notific8-notification.atomic.amethyst {
   --header-background-color: #954ebc;
   --header-border-bottom-color: #7a3b9c;
   --border-color: #5D2D77;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.atomic.onyx {
   --action-button-hover-background-color: #424242;
@@ -442,50 +545,62 @@ notific8-notification.atomic.onyx {
   --header-background-color: #787878;
   --header-border-bottom-color: #5f5f5f;
   --border-color: #454545;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.twilight {
   --background-color: #323232;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.lilrobot {
   --background-color: #A4C639;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.cupcake {
   --background-color: #FFBAD2;
-  --text-color: #323232; }
+  --text-color: #323232;
+}
 
 notific8-notification.materialish.eclair {
   --background-color: #654848;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.honeycomb {
   --background-color: #f6e080;
-  --text-color: #323232; }
+  --text-color: #323232;
+}
 
 notific8-notification.materialish.lollypop {
   --background-color: #54b2a9;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.marshmallow {
   --background-color: #fff8ed;
-  --text-color: #323232; }
+  --text-color: #323232;
+}
 
 notific8-notification.materialish.strawberry {
   --background-color: #BE2625;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.creamsicle {
   --background-color: #F7BB67;
-  --text-color: #323232; }
+  --text-color: #323232;
+}
 
 notific8-notification.materialish.purple-rain {
   --background-color: #694489;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 notific8-notification.materialish.peafowl {
   --background-color: #1D7CF2;
-  --text-color: #eee; }
+  --text-color: #eee;
+}
 
 /*# sourceMappingURL=notific8.css.map */

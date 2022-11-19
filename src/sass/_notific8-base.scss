@@ -5,10 +5,12 @@
 // https://github.com/pynklynn/notific8/blob/master/LICENSE
 //
 
+@use "sass:math";
+
 $notific8-base-font-size: 16px !default;
 
 @function em($px, $base: $notific8-base-font-size) {
-  @return ($px / $base) * 1em;
+  @return math.div($px, $base) * 1em;
 }
 
 notific8-container {
