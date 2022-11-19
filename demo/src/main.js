@@ -1,15 +1,12 @@
 /**
  * @license
- * Copyright (c) 2013-2019 Pynk Lynn, LLC
+ * Copyright (c) 2013-present Pynk Lynn, LLC
  * This code may only be used under the MIT style license found at
  * https://github.com/pynklynn/notific8/blob/master/LICENSE
  */
 
-import Vue from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: h => h(App)
-}).$mount('#notific8-demo');
+const app = createApp(App);
+app.mount('#notific8-demo');
