@@ -1,11 +1,6 @@
 module.exports = {
   clearMocks: true,
   coverageDirectory: './coverage',
-  globals: {
-    'ts-jest': {
-      tsConfig: 'tsconfig.json',
-    },
-  },
   moduleFileExtensions: [
     'js',
     'ts',

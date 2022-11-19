@@ -24,7 +24,7 @@ export class Notific8Notification {
                         let { closeReject, closeResolve } = this.notificationOptions;
                         closeReject = closeReject || function () { };
                         closeResolve = closeResolve || function () { };
-                        this.closeTimeout = setTimeout(() => {
+                        this.closeTimeout = window.setTimeout(() => {
                             this.close().then(() => {
                                 closeResolve();
                             }).catch((e) => {
@@ -292,4 +292,3 @@ export var Notific8;
         return true;
     }
 })(Notific8 || (Notific8 = {}));
-//# sourceMappingURL=notific8.js.map

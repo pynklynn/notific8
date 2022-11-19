@@ -261,7 +261,7 @@ describe('Notific8 tests', () => {
   });
 
   describe('Notific8 option setting methods', () => {
-    const notific8ValidOptionsSpy = jasmine.createSpy('isNotific8OptionsObjectValid');
+    const notific8ValidOptionsSpy = jest.fn();
     const originalIsNotific8OptionsObjectValid = Notific8.isNotific8OptionsObjectValid;
 
     beforeEach(() => {
@@ -270,7 +270,7 @@ describe('Notific8 tests', () => {
     });
 
     test('should set a list of options as the new defaults', () => {
-      notific8ValidOptionsSpy.and.returnValue(true);
+      notific8ValidOptionsSpy.mockReturnValue(true);
       const newNotific8DefaultOptions: Notific8Options = {
         horizontalEdge: 'bottom',
         themeColor: 'ruby',
@@ -284,14 +284,14 @@ describe('Notific8 tests', () => {
     });
 
     test('should set a single new default option', () => {
-      notific8ValidOptionsSpy.and.returnValue(true);
+      notific8ValidOptionsSpy.mockReturnValue(true);
       Notific8.setDefaultOption('themeColor', 'ruby');
       const updatedNotific8DefaultOptions = Notific8.getDefaultOptions();
       expect(updatedNotific8DefaultOptions).toEqual(Object.assign({}, notific8DefaultOptions, { themeColor: 'ruby' }));
     });
 
     test('should throw a TypeError when trying to set a list of new defaults that contains an invalid option', () => {
-      notific8ValidOptionsSpy.and.returnValue(false);
+      notific8ValidOptionsSpy.mockReturnValue(false);
       const newNotific8DefaultOptions: Notific8Options = {
         shiz: 'is bananas',
         themeColor: 'ruby',
@@ -302,7 +302,7 @@ describe('Notific8 tests', () => {
     });
 
     test('should throw a TypeError when trying to set a new default that is an invalid option', () => {
-      notific8ValidOptionsSpy.and.returnValue(false);
+      notific8ValidOptionsSpy.mockReturnValue(false);
       expect(() => { Notific8.setDefaultOption('shiz', 'is bananas'); })
         .toThrowError('"shiz" is not a valid Notific8 option property');
     });
